@@ -1,0 +1,228 @@
+<ngx-spinner>
+</ngx-spinner>
+<div class="animated fadeIn">
+
+  <!-- <div class="row">
+      <div class="col-sm-12 col-md-8 col-lg-4">
+        <div class="form-group">
+          <span class="fa fa-search form-control-feedback has-search"></span>
+          <input type="text" class="form-control pl-5" placeholder="Search" [(ngModel)]="searchModel" />
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-4 col-lg-4">
+        <button class="btn btn-success" (click)="OnFilterWithKeyDown()">Search</button>
+      </div>
+    </div> -->
+  <div class="row mt-3 mb-4">
+    <div class="col-md-6">
+      <h2>{{title.toUpperCase()}} Management</h2>
+    </div>
+    <div class="col-md-6" style="text-align: end;">
+      <button class="btn btn-primary btn-width-default" (click)="navigateUserToCreate()">
+        <span class="fas fa-plus mr-3"></span>
+        Add New
+      </button>
+    </div>
+    <!-- <div class="row mt-4">
+        
+      </div> -->
+  </div>
+
+  <ng-container *ngIf="title === 'vac'">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr class="table-active text-center">
+          <th width="15%" [ngStyle]="{ cursor: 'pointer' }" (click)="sortBy('VacNo')">
+            VAC No.
+          </th>
+          <th width="15%" [ngStyle]="{ cursor: 'pointer' }" (click)="sortBy('MeetingDate')">
+            Meeting Date
+          </th>
+          <th width="25%" [ngStyle]="{ cursor: 'pointer' }" (click)="sortBy('VacMember')">
+            VAC Members
+          </th>
+          <th width="15%" [ngStyle]="{ cursor: 'pointer' }" (click)="sortBy('TotalInitialtive')">
+            Total Initialtive
+          </th>
+          <th width="15%" [ngStyle]="{ cursor: 'pointer' }" (click)="sortBy('Status')">
+            Status
+          </th>
+          <th width="15%" [ngStyle]="{ cursor: 'pointer' }">
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="dataTableVac.length == 0; else haveData">
+          <tr>
+            <td colspan="6">No Data</td>
+          </tr>
+        </ng-container>
+        <ng-template #haveData>
+          <ng-container *ngFor="let item of dataTableVac; let i = index">
+            <tr>
+              <td>{{ item.vacListId }}</td>
+              <td>{{ item.meetingDate | date: 'dd-MM-yyyy' }}</td>
+              <td>{{ item.common.length }}</td>
+              <td>{{ item.initiativeMember.length }}</td>
+              <td>{{ item.statusVac }}</td>
+              <td>
+                <a class="btn btn-primary action-anchor ml-3" (click)="exportToExcel('vac',item.vacListId)">
+                  <!-- <i class="fas fa-external-link action-span"></i> -->
+                  <i class="fas fa-cloud-download-alt action-span"></i>
+                </a>
+                <a class="btn btn-primary action-anchor ml-3" (click)="navigateUserToEdit(item.vacListId)">
+                  <i class="fas fa-edit action-span"></i>
+                </a>
+                <a *ngIf="item.statusVac != 'submit'" class="btn btn-danger action-anchor ml-3"
+                  (click)="navigateToDelete(item.vacListId)">
+                  <i class="fas fa-trash-alt action-span"></i>
+                </a>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-template>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <ng-container *ngIf="title === 'pic'">
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr class="table-active text-center">
+          <th width="15%" [ngStyle]="{ cursor: 'pointer' }" (click)="sortBy('RoleName')">
+            PIC No.
+          </th>
+          <th width="15%" [ngStyle]="{ cursor: 'pointer' }" (click)="sortBy('RoleName')">
+            Meeting Date
+          </th>
+          <th width="25%" [ngStyle]="{ cursor: 'pointer' }" (click)="sortBy('RoleName')">
+            PIC/Sub-PIC Members
+          </th>
+          <th width="15%" [ngStyle]="{ cursor: 'pointer' }" (click)="sortBy('Description')">
+            Total Initialtive
+          </th>
+          <th width="15%" [ngStyle]="{ cursor: 'pointer' }" (click)="sortBy('Description')">
+            Status
+          </th>
+          <th width="15%" [ngStyle]="{ cursor: 'pointer' }">
+            Actions
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="dataTablePic.length == 0; else havePicData">
+          <tr>
+            <td colspan="6">No Data</td>
+          </tr>
+        </ng-container>
+        <ng-template #havePicData>
+          <ng-container *ngFor="let item of dataTablePic; let i = index">
+            <ng-template #popTemplate>
+              <div class="card" style="width: 450px; height: auto; left: 0px">
+                <div class="card-body">
+                  <!-- Row -->
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-body">
+                          <button class="btn"
+                            [ngClass]="{'btn-success': findUpStream('ARO', item.upStream), 'btn-secondary': !findUpStream('ARO', item.upStream)}">ARO</button>
+                          <button class="btn ml-3"
+                            [ngClass]="{'btn-success': findUpStream('OLE', item.upStream), 'btn-secondary': !findUpStream('OLE', item.upStream)}">OLE</button>
+                          <button class="btn ml-3"
+                            [ngClass]="{'btn-success': findUpStream('REF', item.upStream), 'btn-secondary': !findUpStream('REF', item.upStream)}">REF</button>
+                          <button class="btn ml-3"
+                            [ngClass]="{'btn-success': findUpStream('UTY', item.upStream), 'btn-secondary': !findUpStream('UTY', item.upStream)}">UTY</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-body">
+                          <button class="btn"
+                            [ngClass]="{'btn-success': findCenter('TPX', item.centerStream), 'btn-secondary': !findCenter('TPX', item.centerStream)}">TPX</button>
+                          <button class="btn ml-3"
+                            [ngClass]="{'btn-success': findCenter('TEM', item.centerStream), 'btn-secondary': !findCenter('TEM', item.centerStream)}">TEM</button>
+                          <button class="btn ml-3"
+                            [ngClass]="{'btn-success': findCenter('QSE', item.centerStream), 'btn-secondary': !findCenter('QSE', item.centerStream)}">QSE</button>
+                          <button class="btn ml-3"
+                            [ngClass]="{'btn-success': findCenter('M-SE', item.centerStream), 'btn-secondary': !findCenter('M-SE', item.centerStream)}">M-SE</button>
+                          <button class="btn ml-3"
+                            [ngClass]="{'btn-success': findCenter('F-MA', item.centerStream), 'btn-secondary': !findCenter('F-MA', item.centerStream)}">F-MA</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-body">
+                          <button class="btn"
+                            [ngClass]="{'btn-success': findDownStream('EOB', item.downStream), 'btn-secondary': !findDownStream('EOB', item.downStream)}">EOB</button>
+                          <button class="btn ml-3"
+                            [ngClass]="{'btn-success': findDownStream('PHN', item.downStream), 'btn-secondary': !findDownStream('PHN', item.downStream)}">PHN</button>
+                          <button class="btn ml-3"
+                            [ngClass]="{'btn-success': findDownStream('POL', item.downStream), 'btn-secondary': !findDownStream('POL', item.downStream)}">POL</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+            <tr>
+              <td>{{ item.picListId }}</td>
+              <td>{{ item.meetingDate | date: 'dd-MM-yyyy' }}</td>
+              <td>
+                <button class="btn btn-primary action-anchor" [tooltip]="popTemplate" [placement]="'right'"
+                  [triggers]="getMobileOperatingSystem() === 'Android' || getMobileOperatingSystem() === 'iOS' ? 'click' : 'hover'">
+                  <span class="fas fa-eye action-span-button"></span>
+                </button>
+              </td>
+              <td>{{ item.initiativeMember.length }}</td>
+              <td>{{ item.statusPic }}</td>
+              <td>
+                <a class="btn btn-primary action-anchor ml-3" (click)="exportToExcel('pic',item.picListId)">
+                  <!-- <i class="fas fa-external-link action-span"></i> -->
+                  <i class="fas fa-cloud-download-alt action-span"></i>
+                </a>
+                <a class="btn btn-primary action-anchor ml-3" (click)="navigateUserToEdit(item.picListId)">
+                  <i class="fas fa-edit action-span"></i>
+                </a>
+                <a *ngIf="item.statusPic != 'submit'" class="btn btn-danger action-anchor ml-3"
+                  (click)="navigateToDelete(item.picListId)">
+                  <i class="fas fa-trash-alt action-span"></i>
+                </a>
+              </td>
+            </tr>
+          </ng-container>
+        </ng-template>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <hr />
+  <ng-container class="mt-4" *ngIf="dataTableVac.length > 0 || dataTablePic.length > 0">
+    <div class="d-flex justify-content-left">
+      <div class="form-inline">
+        <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+          [(ngModel)]="currentPage" [maxSize]="maxSize" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+          lastText="&raquo;" (ngModelChange)="pageChanged($event)" #pager>
+        </pagination>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- <div class="row mt-4">
+    <div class="col-12">
+      <button class="btn btn-primary btn-width-default" (click)="navigateUserToCreate()">
+        <span class="fas fa-plus mr-3"></span>
+        Add New
+      </button>
+    </div>
+  </div> -->
+
+</div>

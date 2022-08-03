@@ -1,0 +1,69 @@
+<div class="row justify-content-between">
+  <div class="col-md-6">
+    <form class="form-inline" [formGroup]="searchForm">
+      <!-- <div style="border: 1px solid #A8A8A8;margin-right: 16px;">
+        <a type="button" class="btn btn-default" [ngClass]="{'fa-spin': isClicked }" (click)="Refresh()">
+          <i class="fas fa-sync-alt"></i>
+        </a>
+      </div> -->
+      <div class="input-group" style="border: 1px solid #A8A8A8;">
+        <input type="text" class="form-control" aria-describedby="validatedInputGroupPrepend" formControlName="text"
+          placeholder="Search" (input)="SearchChange()">
+        <!-- <i class="fa fa-cog right-icon" (click)="ShowModal()"></i> -->
+        <div class="input-group-prepend">
+          <button class="btn" type="submit" style="background-color: #A8A8A8;color: #ffffff;" (click)="Search()">
+            <span class="fa fa-search"></span>
+          </button>
+        </div>
+      </div>
+      <div style="border: 1px solid #A8A8A8;margin-right: 16px;">
+        <a type="button" class="btn btn-default" [ngClass]="{'fa-spin': isClicked }" (click)="Refresh()">
+          <i class="fas fa-sync-alt"></i>
+        </a>
+      </div>
+      <div>
+        <button class="btn" (click)="ShowModal()"><i class="fa fa-search-plus" aria-hidden="true"></i>Advanced
+          Search</button>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-6">
+    <div class="float-right">
+      <ng-container *ngIf="name != 'My Tasks'">
+        <form class="form-inline" [formGroup]="typeStatus">
+          <div class="my-1 mr-2">
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="progress" value="progress" class="custom-control-input" type="checkbox"
+                formControlName="progress" (change)="OnChangeStatus()">
+              <label class="custom-control-label" for="progress"> On Progress </label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="complete" value="complete" class="custom-control-input" type="checkbox"
+                formControlName="complete" (change)="OnChangeStatus()">
+              <label class="custom-control-label" for="complete"> Complete </label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="cancel" value="cancel" class="custom-control-input" type="checkbox" formControlName="cancel"
+                (change)="OnChangeStatus()">
+              <label class="custom-control-label" for="cancel"> Cancelled </label>
+            </div>
+          </div>
+          <!-- <label class="my-1 mr-2" for="PageLenght">Show</label>
+          <select class="custom-select my-1 mr-sm-2" (change)="ChangePageLength($event)">
+            <option *ngFor="let item of length" value="{{item}}">{{item}}</option>
+          </select>
+          <label class="my-1 mr-2" for="PageLenght">entries</label> -->
+        </form>
+      </ng-container>
+      <!-- <ng-container *ngIf="name == 'My Tasks'">
+        <form class="form-inline">
+          <label class="my-1 mr-2" for="PageLenght">Show</label>
+          <select class="custom-select my-1 mr-sm-2" (change)="ChangePageLength($event)">
+            <option *ngFor="let item of length" value="{{item}}">{{item}}</option>
+          </select>
+          <label class="my-1 mr-2" for="PageLenght">entries</label>
+        </form>
+      </ng-container> -->
+    </div>
+  </div>
+</div>

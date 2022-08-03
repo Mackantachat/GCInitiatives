@@ -1,0 +1,39 @@
+<!-- <ng-container *ngIf="IsApprove">
+  <div bsModal #ViewLogHistoryModal="bs-modal" class="modal fade modal-ViewLog" [config]="{ backdrop: 'static' }">
+    <app-view-log-history (modelClose)="CloseViewLogHistory()" [id]="id"></app-view-log-history>
+  </div>
+
+  <div bsModal #HistoryStatus="bs-modal" class="modal fade modal-ViewLog" [config]="{ backdrop: 'static' }">
+    <app-history-status (modelClose)="CloseHistoryStatus()" [id]="id" [stage]="history"></app-history-status>
+  </div>
+</ng-container> -->
+<!-- 
+<ng-container *ngIf="Impact">
+  <div bsModal #ContactIO="bs-modal" class="modal fade modal-ViewLog" [config]="{ backdrop: 'static' }">
+    <app-contact-io (modelClose)="CloseContactIO()" [id]="id"></app-contact-io>
+  </div>
+</ng-container> -->
+
+<div class="form-group row">
+  <div class="col-md-12" *ngIf="page == 'create'">
+    <label style="font-size: 28px;">My Own Initiatives <i class="fa fa-angle-right" aria-hidden="true"></i> Create
+      New</label>
+  </div>
+  <div class="col-md-12" *ngIf="page != 'create'">
+    <label style="font-size: 28px;">My Own Initiatives <i class="fa fa-angle-right" aria-hidden="true"></i>
+      {{getInitiativeName()}}</label>
+  </div>
+</div>
+<!-- <div class="col-md-12">
+    <ng-container *ngIf="IsApprove">
+      <button class="btn float-right" (click)="ShowViewLogHistory()"
+        style="margin-top:-8px;background:#FFFFFF;">
+        <i class="fas fa-history"></i> View Log History
+      </button>
+    </ng-container>
+    <ng-container *ngIf="Impact">
+      <button class="btn btn-outline-dark float-right mr-3" (click)="ShowContactIO()" style="margin-top:-8px">
+        <i class="fas fa-comment-dots mr-2"></i> Contact IO
+      </button>
+    </ng-container>
+  </div> -->

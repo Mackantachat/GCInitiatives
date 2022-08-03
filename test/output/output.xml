@@ -1,0 +1,1834 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.8.1 on win32)" generated="20201005 15:22:41.555" rpa="false">
+<suite id="s1" name="maxCapexEndToEndNew" source="C:\Work_GC\test\maxCapexEndToEndNew.robot">
+<test id="s1-t1" name="Log in User New Initiatives Max">
+<kw name="Open Browser" library="Selenium2Library">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>${url1}</arg>
+<arg>${browser}</arg>
+<arg>${selspeed}</arg>
+</arguments>
+<msg timestamp="20201005 15:22:41.872" level="INFO">Opening browser 'chrome' to base url 'https://gcinitiative-front-dev.azurewebsites.net/'.</msg>
+<status status="PASS" starttime="20201005 15:22:41.872" endtime="20201005 15:22:52.356"></status>
+</kw>
+<kw name="Maximize Browser Window" library="Selenium2Library">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20201005 15:22:52.357" endtime="20201005 15:22:54.492"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>name=loginfmt</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:22:54.493" endtime="20201005 15:22:54.528"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>loginfmt</arg>
+<arg>${username1}</arg>
+</arguments>
+<msg timestamp="20201005 15:22:54.529" level="INFO">Typing text 'z0007193@pttgcgroup.com' into text field 'loginfmt'.</msg>
+<status status="PASS" starttime="20201005 15:22:54.529" endtime="20201005 15:22:54.628"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks the button identified by ``locator``.</doc>
+<arguments>
+<arg>id=idSIButton9</arg>
+</arguments>
+<msg timestamp="20201005 15:22:54.629" level="INFO">Clicking button 'id=idSIButton9'.</msg>
+<status status="PASS" starttime="20201005 15:22:54.628" endtime="20201005 15:22:54.688"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>name=passwd</arg>
+<arg>100 seconds</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:22:54.688" endtime="20201005 15:22:55.976"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>passwd</arg>
+<arg>${password1}</arg>
+</arguments>
+<msg timestamp="20201005 15:22:55.976" level="INFO">Typing text 'P@ssw0rd193' into text field 'passwd'.</msg>
+<status status="PASS" starttime="20201005 15:22:55.976" endtime="20201005 15:22:56.046"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>id=idSIButton9</arg>
+<arg>60 seconds</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:22:56.047" endtime="20201005 15:22:56.061"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks the button identified by ``locator``.</doc>
+<arguments>
+<arg>id=idSIButton9</arg>
+</arguments>
+<msg timestamp="20201005 15:22:56.061" level="INFO">Clicking button 'id=idSIButton9'.</msg>
+<status status="PASS" starttime="20201005 15:22:56.061" endtime="20201005 15:22:56.486"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>id=idSIButton9</arg>
+<arg>60 seconds</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:22:56.487" endtime="20201005 15:22:56.943"></status>
+</kw>
+<kw name="Click Button" library="Selenium2Library">
+<doc>Clicks the button identified by ``locator``.</doc>
+<arguments>
+<arg>id=idSIButton9</arg>
+</arguments>
+<msg timestamp="20201005 15:22:56.943" level="INFO">Clicking button 'id=idSIButton9'.</msg>
+<status status="PASS" starttime="20201005 15:22:56.943" endtime="20201005 15:22:58.440"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5 seconds</arg>
+</arguments>
+<msg timestamp="20201005 15:23:03.442" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20201005 15:22:58.440" endtime="20201005 15:23:03.442"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:23:08.442" level="INFO">Slept 5 seconds</msg>
+<msg timestamp="20201005 15:23:08.442" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:23:03.442" endtime="20201005 15:23:08.442"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//a[contains(text(),'Create')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:08.443" endtime="20201005 15:23:08.718"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//a[contains(text(),'Create')]</arg>
+<arg>30</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:08.718" endtime="20201005 15:23:08.736"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//a[contains(text(),'Create')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:08.737" level="INFO">Clicking element 'xpath=//a[contains(text(),'Create')]'.</msg>
+<status status="PASS" starttime="20201005 15:23:08.737" endtime="20201005 15:23:08.780"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:08.737" endtime="20201005 15:23:08.780"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//a[contains(text(),'New Initiatives')]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:08.781" endtime="20201005 15:23:08.809"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//a[contains(text(),'New Initiatives')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:08.811" level="INFO">Clicking element 'xpath=//a[contains(text(),'New Initiatives')]'.</msg>
+<status status="PASS" starttime="20201005 15:23:08.811" endtime="20201005 15:23:08.957"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:08.810" endtime="20201005 15:23:08.957"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>10</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:23:18.959" level="INFO">Slept 10 seconds</msg>
+<msg timestamp="20201005 15:23:18.959" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:23:08.958" endtime="20201005 15:23:18.959"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//button[contains(text(),'Submit')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:18.961" endtime="20201005 15:23:19.256"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//button[contains(text(),'Submit')]</arg>
+<arg>30</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:19.257" endtime="20201005 15:23:19.273"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//button[contains(text(),'Submit')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:19.275" level="INFO">Clicking element 'xpath=//button[contains(text(),'Submit')]'.</msg>
+<status status="PASS" starttime="20201005 15:23:19.275" endtime="20201005 15:23:19.346"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:19.274" endtime="20201005 15:23:19.346"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:23:22.348" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:23:22.348" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:23:19.347" endtime="20201005 15:23:22.348"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//button[contains(text(),'OK')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:22.348" endtime="20201005 15:23:22.619"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//button[contains(text(),'OK')]</arg>
+<arg>30</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:22.619" endtime="20201005 15:23:22.634"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//button[contains(text(),'OK')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:22.635" level="INFO">Clicking element 'xpath=//button[contains(text(),'OK')]'.</msg>
+<status status="PASS" starttime="20201005 15:23:22.634" endtime="20201005 15:23:22.675"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:22.634" endtime="20201005 15:23:22.676"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:23:25.678" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:23:25.678" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:23:22.676" endtime="20201005 15:23:25.678"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Initiative Name is required !')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:25.680" endtime="20201005 15:23:25.978"></status>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<arguments>
+<arg>Element Text Should Be</arg>
+<arg>xpath=//div[contains(text(),'Initiative Name is required !')]</arg>
+<arg>Initiative Name is required !</arg>
+</arguments>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Initiative Name is required !')]</arg>
+<arg>Initiative Name is required !</arg>
+</arguments>
+<msg timestamp="20201005 15:23:25.982" level="INFO">Verifying element 'xpath=//div[contains(text(),'Initiative Name is required !')]' contains exact text 'Initiative Name is required !'.</msg>
+<status status="PASS" starttime="20201005 15:23:25.981" endtime="20201005 15:23:26.006"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:25.980" endtime="20201005 15:23:26.006"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:23:29.008" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:23:29.008" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:23:26.007" endtime="20201005 15:23:29.008"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Plant is required !')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:29.009" endtime="20201005 15:23:29.279"></status>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<arguments>
+<arg>Element Text Should Be</arg>
+<arg>xpath=//div[contains(text(),'Plant is required !')]</arg>
+<arg>Plant is required !</arg>
+</arguments>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Plant is required !')]</arg>
+<arg>Plant is required !</arg>
+</arguments>
+<msg timestamp="20201005 15:23:29.280" level="INFO">Verifying element 'xpath=//div[contains(text(),'Plant is required !')]' contains exact text 'Plant is required !'.</msg>
+<status status="PASS" starttime="20201005 15:23:29.280" endtime="20201005 15:23:29.295"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:29.279" endtime="20201005 15:23:29.295"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:23:32.297" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:23:32.297" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:23:29.296" endtime="20201005 15:23:32.297"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Organization (Budget Owner) is required !')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:32.298" endtime="20201005 15:23:32.571"></status>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<arguments>
+<arg>Element Text Should Be</arg>
+<arg>xpath=//div[contains(text(),'Organization (Budget Owner) is required !')]</arg>
+<arg>Organization (Budget Owner) is required !</arg>
+</arguments>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Organization (Budget Owner) is required !')]</arg>
+<arg>Organization (Budget Owner) is required !</arg>
+</arguments>
+<msg timestamp="20201005 15:23:32.575" level="INFO">Verifying element 'xpath=//div[contains(text(),'Organization (Budget Owner) is required !')]' contains exact text 'Organization (Budget Owner) is required !'.</msg>
+<status status="PASS" starttime="20201005 15:23:32.574" endtime="20201005 15:23:32.596"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:32.573" endtime="20201005 15:23:32.596"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:23:35.599" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:23:35.599" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:23:32.598" endtime="20201005 15:23:35.599"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Finish Date is required !')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:35.601" endtime="20201005 15:23:35.880"></status>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<arguments>
+<arg>Element Text Should Be</arg>
+<arg>xpath=//div[contains(text(),'Finish Date is required !')]</arg>
+<arg>Finish Date is required !</arg>
+</arguments>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Finish Date is required !')]</arg>
+<arg>Finish Date is required !</arg>
+</arguments>
+<msg timestamp="20201005 15:23:35.884" level="INFO">Verifying element 'xpath=//div[contains(text(),'Finish Date is required !')]' contains exact text 'Finish Date is required !'.</msg>
+<status status="PASS" starttime="20201005 15:23:35.883" endtime="20201005 15:23:35.904"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:35.882" endtime="20201005 15:23:35.904"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:23:38.906" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:23:38.906" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:23:35.905" endtime="20201005 15:23:38.906"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Background is required !')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:38.908" endtime="20201005 15:23:39.183"></status>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<arguments>
+<arg>Element Text Should Be</arg>
+<arg>xpath=//div[contains(text(),'Background is required !')]</arg>
+<arg>Background is required !</arg>
+</arguments>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Background is required !')]</arg>
+<arg>Background is required !</arg>
+</arguments>
+<msg timestamp="20201005 15:23:39.187" level="INFO">Verifying element 'xpath=//div[contains(text(),'Background is required !')]' contains exact text 'Background is required !'.</msg>
+<status status="PASS" starttime="20201005 15:23:39.186" endtime="20201005 15:23:39.211"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:39.185" endtime="20201005 15:23:39.212"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:23:42.216" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:23:42.216" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:23:39.214" endtime="20201005 15:23:42.216"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Objective')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:42.216" endtime="20201005 15:23:42.484"></status>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<arguments>
+<arg>Element Text Should Be</arg>
+<arg>xpath=//div[contains(text(),'Objective')]</arg>
+<arg>Objective/Expected Result is required !</arg>
+</arguments>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Objective')]</arg>
+<arg>Objective/Expected Result is required !</arg>
+</arguments>
+<msg timestamp="20201005 15:23:42.485" level="INFO">Verifying element 'xpath=//div[contains(text(),'Objective')]' contains exact text 'Objective/Expected Result is required !'.</msg>
+<status status="PASS" starttime="20201005 15:23:42.485" endtime="20201005 15:23:42.516"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:42.485" endtime="20201005 15:23:42.516"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:23:45.537" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:23:45.537" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:23:42.535" endtime="20201005 15:23:45.537"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'ScopeOfWork is required !')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:45.539" endtime="20201005 15:23:45.833"></status>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<arguments>
+<arg>Element Text Should Be</arg>
+<arg>xpath=//div[contains(text(),'ScopeOfWork is required !')]</arg>
+<arg>ScopeOfWork is required !</arg>
+</arguments>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'ScopeOfWork is required !')]</arg>
+<arg>ScopeOfWork is required !</arg>
+</arguments>
+<msg timestamp="20201005 15:23:45.837" level="INFO">Verifying element 'xpath=//div[contains(text(),'ScopeOfWork is required !')]' contains exact text 'ScopeOfWork is required !'.</msg>
+<status status="PASS" starttime="20201005 15:23:45.836" endtime="20201005 15:23:45.858"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:45.835" endtime="20201005 15:23:45.858"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:23:48.860" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:23:48.860" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:23:45.859" endtime="20201005 15:23:48.860"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Cost Estimated (CAPEX) is required !')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:48.861" endtime="20201005 15:23:49.129"></status>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<arguments>
+<arg>Element Text Should Be</arg>
+<arg>xpath=//div[contains(text(),'Cost Estimated (CAPEX) is required !')]</arg>
+<arg>Cost Estimated (CAPEX) is required !</arg>
+</arguments>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Cost Estimated (CAPEX) is required !')]</arg>
+<arg>Cost Estimated (CAPEX) is required !</arg>
+</arguments>
+<msg timestamp="20201005 15:23:49.130" level="INFO">Verifying element 'xpath=//div[contains(text(),'Cost Estimated (CAPEX) is required !')]' contains exact text 'Cost Estimated (CAPEX) is required !'.</msg>
+<status status="PASS" starttime="20201005 15:23:49.130" endtime="20201005 15:23:49.146"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:49.130" endtime="20201005 15:23:49.146"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:23:52.148" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:23:52.148" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:23:49.146" endtime="20201005 15:23:52.148"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Budget Source is required !')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:52.148" endtime="20201005 15:23:52.428"></status>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<arguments>
+<arg>Element Text Should Be</arg>
+<arg>xpath=//div[contains(text(),'Budget Source is required !')]</arg>
+<arg>Budget Source is required !</arg>
+</arguments>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Budget Source is required !')]</arg>
+<arg>Budget Source is required !</arg>
+</arguments>
+<msg timestamp="20201005 15:23:52.431" level="INFO">Verifying element 'xpath=//div[contains(text(),'Budget Source is required !')]' contains exact text 'Budget Source is required !'.</msg>
+<status status="PASS" starttime="20201005 15:23:52.431" endtime="20201005 15:23:52.459"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:52.430" endtime="20201005 15:23:52.459"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:23:55.461" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:23:55.461" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:23:52.460" endtime="20201005 15:23:55.461"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Type of Investment is required !')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:55.463" endtime="20201005 15:23:55.741"></status>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<arguments>
+<arg>Element Text Should Be</arg>
+<arg>xpath=//div[contains(text(),'Type of Investment is required !')]</arg>
+<arg>Type of Investment is required !</arg>
+</arguments>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Type of Investment is required !')]</arg>
+<arg>Type of Investment is required !</arg>
+</arguments>
+<msg timestamp="20201005 15:23:55.745" level="INFO">Verifying element 'xpath=//div[contains(text(),'Type of Investment is required !')]' contains exact text 'Type of Investment is required !'.</msg>
+<status status="PASS" starttime="20201005 15:23:55.744" endtime="20201005 15:23:55.771"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:55.743" endtime="20201005 15:23:55.771"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//input[@formcontrolname="name"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:55.771" endtime="20201005 15:23:56.041"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath=//input[@formcontrolname="name"]</arg>
+</arguments>
+<msg timestamp="20201005 15:23:56.041" level="INFO">Clicking element 'xpath=//input[@formcontrolname="name"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:56.041" endtime="20201005 15:23:56.090"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>xpath=//input[@formcontrolname="name"]</arg>
+<arg>[Testing1Max]</arg>
+</arguments>
+<msg timestamp="20201005 15:23:56.091" level="INFO">Typing text '[Testing1Max]' into text field 'xpath=//input[@formcontrolname="name"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:56.091" endtime="20201005 15:23:56.194"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//ng-select[@formcontrolname="company"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:56.194" endtime="20201005 15:23:56.469"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//ng-select[@formcontrolname="company"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:56.470" level="INFO">Clicking element 'xpath=//ng-select[@formcontrolname="company"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:56.470" endtime="20201005 15:23:56.525"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:56.470" endtime="20201005 15:23:56.526"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//ng-select[@formcontrolname="company"]//input[@type="text"]</arg>
+<arg>30</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:56.526" endtime="20201005 15:23:56.550"></status>
+</kw>
+<kw name="type">
+<arguments>
+<arg>xpath=//ng-select[@formcontrolname="company"]//input[@type="text"]</arg>
+<arg>11-Glycol</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:56.552" level="INFO">Typing text '11-Glycol' into text field 'xpath=//ng-select[@formcontrolname="company"]//input[@type="text"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:56.551" endtime="20201005 15:23:56.653"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:56.551" endtime="20201005 15:23:56.653"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//span[contains(text(),'11-Glycol')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:56.654" level="INFO">Clicking element 'xpath=//span[contains(text(),'11-Glycol')]'.</msg>
+<status status="PASS" starttime="20201005 15:23:56.654" endtime="20201005 15:23:56.705"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:56.654" endtime="20201005 15:23:56.705"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//ng-select[@formcontrolname="plant"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:56.706" endtime="20201005 15:23:56.977"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//ng-select[@formcontrolname="plant"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:56.978" level="INFO">Clicking element 'xpath=//ng-select[@formcontrolname="plant"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:56.978" endtime="20201005 15:23:57.024"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:56.978" endtime="20201005 15:23:57.024"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//span[contains(text(),'1151 - GC GLYCOL PLANT - E-GC1.1')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:57.025" level="INFO">Clicking element 'xpath=//span[contains(text(),'1151 - GC GLYCOL PLANT - E-GC1.1')]'.</msg>
+<status status="PASS" starttime="20201005 15:23:57.025" endtime="20201005 15:23:57.072"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:57.025" endtime="20201005 15:23:57.072"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//ng-select[@formcontrolname="organization"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:57.073" endtime="20201005 15:23:57.345"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//ng-select[@formcontrolname="organization"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:57.349" level="INFO">Clicking element 'xpath=//ng-select[@formcontrolname="organization"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:57.348" endtime="20201005 15:23:57.400"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:57.347" endtime="20201005 15:23:57.400"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//ng-select[@formcontrolname="organization"]//input[@type="text"]</arg>
+<arg>30</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:57.401" endtime="20201005 15:23:57.419"></status>
+</kw>
+<kw name="type">
+<arguments>
+<arg>xpath=//ng-select[@formcontrolname="organization"]//input[@type="text"]</arg>
+<arg>EOB</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:57.420" level="INFO">Typing text 'EOB' into text field 'xpath=//ng-select[@formcontrolname="organization"]//input[@type="text"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:57.420" endtime="20201005 15:23:57.486"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:57.420" endtime="20201005 15:23:57.486"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//span[contains(text(),'EOB')]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:57.486" endtime="20201005 15:23:57.506"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//span[contains(text(),'EOB')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:57.508" level="INFO">Clicking element 'xpath=//span[contains(text(),'EOB')]'.</msg>
+<status status="PASS" starttime="20201005 15:23:57.508" endtime="20201005 15:23:57.549"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:57.507" endtime="20201005 15:23:57.549"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//input[@formcontrolname="finishingDate"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:57.549" endtime="20201005 15:23:57.821"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//input[@formcontrolname="finishingDate"]</arg>
+<arg>30</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:57.824" endtime="20201005 15:23:57.845"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//input[@formcontrolname="finishingDate"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:57.847" level="INFO">Clicking element 'xpath=//input[@formcontrolname="finishingDate"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:57.847" endtime="20201005 15:23:57.948"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:57.846" endtime="20201005 15:23:57.948"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//button[@class='current']</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:57.949" endtime="20201005 15:23:57.978"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//button[@class='current']</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:57.979" level="INFO">Clicking element 'xpath=//button[@class='current']'.</msg>
+<status status="PASS" starttime="20201005 15:23:57.979" endtime="20201005 15:23:58.060"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:57.979" endtime="20201005 15:23:58.061"></status>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<arguments>
+<arg>UTC</arg>
+<arg>+ 365 days</arg>
+</arguments>
+<assign>
+<var>${date}</var>
+</assign>
+<msg timestamp="20201005 15:23:58.063" level="INFO">${date} = 2021-10-05 08:23:58.063</msg>
+<status status="PASS" starttime="20201005 15:23:58.062" endtime="20201005 15:23:58.063"></status>
+</kw>
+<kw name="Convert Date" library="DateTime">
+<doc>Converts between supported `date formats`.</doc>
+<arguments>
+<arg>${date}</arg>
+<arg>result_format=%d/%m/%Y</arg>
+</arguments>
+<assign>
+<var>${newDate}</var>
+</assign>
+<msg timestamp="20201005 15:23:58.072" level="INFO">${newDate} = 05/10/2021</msg>
+<status status="PASS" starttime="20201005 15:23:58.064" endtime="20201005 15:23:58.072"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//input[@formcontrolname="finishingDate"]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:58.073" endtime="20201005 15:23:58.092"></status>
+</kw>
+<kw name="type">
+<arguments>
+<arg>xpath=//input[@formcontrolname="finishingDate"]</arg>
+<arg>${newDate}</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:58.093" level="INFO">Typing text '05/10/2021' into text field 'xpath=//input[@formcontrolname="finishingDate"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:58.093" endtime="20201005 15:23:58.196"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:58.093" endtime="20201005 15:23:58.196"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//textarea[@formcontrolname="background"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:58.197" endtime="20201005 15:23:58.470"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//textarea[@formcontrolname="background"]</arg>
+<arg>30</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:58.471" endtime="20201005 15:23:58.488"></status>
+</kw>
+<kw name="type">
+<arguments>
+<arg>xpath=//textarea[@formcontrolname="background"]</arg>
+<arg>Background1</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:58.489" level="INFO">Typing text 'Background1' into text field 'xpath=//textarea[@formcontrolname="background"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:58.489" endtime="20201005 15:23:58.579"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:58.489" endtime="20201005 15:23:58.579"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//textarea[@formcontrolname="background"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:58.579" endtime="20201005 15:23:58.854"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//textarea[@formcontrolname="resultObjective"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:58.855" level="INFO">Clicking element 'xpath=//textarea[@formcontrolname="resultObjective"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:58.855" endtime="20201005 15:23:58.902"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:58.855" endtime="20201005 15:23:58.902"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//textarea[@formcontrolname="resultObjective"]</arg>
+<arg>30</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:58.903" endtime="20201005 15:23:58.920"></status>
+</kw>
+<kw name="type">
+<arguments>
+<arg>xpath=//textarea[@formcontrolname="resultObjective"]</arg>
+<arg>resultObjective</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:58.921" level="INFO">Typing text 'resultObjective' into text field 'xpath=//textarea[@formcontrolname="resultObjective"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:58.921" endtime="20201005 15:23:58.995"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:58.920" endtime="20201005 15:23:58.995"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//textarea[@formcontrolname="scopeOfWork"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:58.996" endtime="20201005 15:23:59.270"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//textarea[@formcontrolname="scopeOfWork"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:59.271" level="INFO">Clicking element 'xpath=//textarea[@formcontrolname="scopeOfWork"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:59.271" endtime="20201005 15:23:59.310"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:59.270" endtime="20201005 15:23:59.311"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//textarea[@formcontrolname="scopeOfWork"]</arg>
+<arg>30</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:59.311" endtime="20201005 15:23:59.328"></status>
+</kw>
+<kw name="type">
+<arguments>
+<arg>xpath=//textarea[@formcontrolname="scopeOfWork"]</arg>
+<arg>scopeOfWork</arg>
+</arguments>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+<arg>${value}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:59.329" level="INFO">Typing text 'scopeOfWork' into text field 'xpath=//textarea[@formcontrolname="scopeOfWork"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:59.328" endtime="20201005 15:23:59.397"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:59.328" endtime="20201005 15:23:59.397"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//input[@id='falseOpex']/..//label[@for="falseOpex"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:59.397" endtime="20201005 15:23:59.678"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//input[@id='falseOpex']/..//label[@for="falseOpex"]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:59.680" endtime="20201005 15:23:59.718"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//input[@id='falseOpex']/..//label[@for="falseOpex"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:23:59.720" level="INFO">Clicking element 'xpath=//input[@id='falseOpex']/..//label[@for="falseOpex"]'.</msg>
+<status status="PASS" starttime="20201005 15:23:59.720" endtime="20201005 15:23:59.761"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:23:59.720" endtime="20201005 15:23:59.761"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//input[@id='false']/..//label[@for="false"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:23:59.761" endtime="20201005 15:24:00.048"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//input[@id='false']/..//label[@for="false"]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:00.048" endtime="20201005 15:24:00.066"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//input[@id='false']/..//label[@for="false"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:24:00.068" level="INFO">Clicking element 'xpath=//input[@id='false']/..//label[@for="false"]'.</msg>
+<status status="PASS" starttime="20201005 15:24:00.068" endtime="20201005 15:24:00.147"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:24:00.067" endtime="20201005 15:24:00.147"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//select[@formcontrolname="typeBenefit"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:00.148" endtime="20201005 15:24:00.425"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//select[@formcontrolname="typeBenefit"]</arg>
+<arg>30</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:00.427" endtime="20201005 15:24:00.446"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//select[@formcontrolname="typeBenefit"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:24:00.447" level="INFO">Clicking element 'xpath=//select[@formcontrolname="typeBenefit"]'.</msg>
+<status status="PASS" starttime="20201005 15:24:00.447" endtime="20201005 15:24:00.497"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:24:00.447" endtime="20201005 15:24:00.497"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//option[@value="EBIT"]</arg>
+<arg>30</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:00.498" endtime="20201005 15:24:00.521"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//option[@value="EBIT"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:24:00.522" level="INFO">Clicking element 'xpath=//option[@value="EBIT"]'.</msg>
+<status status="PASS" starttime="20201005 15:24:00.522" endtime="20201005 15:24:00.560"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:24:00.521" endtime="20201005 15:24:00.560"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:24:05.563" level="INFO">Slept 5 seconds</msg>
+<msg timestamp="20201005 15:24:05.563" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:24:00.561" endtime="20201005 15:24:05.563"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//input[@formcontrolname="benefitAmount"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:05.563" endtime="20201005 15:24:05.834"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//input[@formcontrolname="benefitAmount"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:05.835" endtime="20201005 15:24:05.855"></status>
+</kw>
+<kw name="Input Text" library="Selenium2Library">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>xpath=//input[@formcontrolname="benefitAmount"]</arg>
+<arg>100</arg>
+</arguments>
+<msg timestamp="20201005 15:24:05.856" level="INFO">Typing text '100' into text field 'xpath=//input[@formcontrolname="benefitAmount"]'.</msg>
+<status status="PASS" starttime="20201005 15:24:05.856" endtime="20201005 15:24:05.947"></status>
+</kw>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>xpath=//button[@type="submit"]</arg>
+</arguments>
+<msg timestamp="20201005 15:24:05.948" level="INFO">Clicking element 'xpath=//button[@type="submit"]'.</msg>
+<status status="PASS" starttime="20201005 15:24:05.948" endtime="20201005 15:24:06.031"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1 seconds</arg>
+</arguments>
+<msg timestamp="20201005 15:24:07.033" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20201005 15:24:06.031" endtime="20201005 15:24:07.033"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//label[@for="max"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:07.034" endtime="20201005 15:24:07.481"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3 seconds</arg>
+</arguments>
+<msg timestamp="20201005 15:24:10.483" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20201005 15:24:07.481" endtime="20201005 15:24:10.483"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//button[@class='btn']</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:10.483" endtime="20201005 15:24:10.755"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//button[@class='btn']</arg>
+<arg>30</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:10.758" endtime="20201005 15:24:10.777"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//button[@class='btn']</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:24:10.778" level="INFO">Clicking element 'xpath=//button[@class='btn']'.</msg>
+<status status="PASS" starttime="20201005 15:24:10.778" endtime="20201005 15:24:10.837"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:24:10.778" endtime="20201005 15:24:10.837"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:24:15.839" level="INFO">Slept 5 seconds</msg>
+<msg timestamp="20201005 15:24:15.839" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:24:10.838" endtime="20201005 15:24:15.839"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//div[@class="container top"]//button[contains(text(),'Next')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:15.841" endtime="20201005 15:24:16.121"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//div[@class="container top"]//button[contains(text(),'Next')]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:16.123" endtime="20201005 15:24:16.163"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//div[@class="container top"]//button[contains(text(),'Next')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:24:16.164" level="INFO">Clicking element 'xpath=//div[@class="container top"]//button[contains(text(),'Next')]'.</msg>
+<status status="PASS" starttime="20201005 15:24:16.164" endtime="20201005 15:24:16.204"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:24:16.164" endtime="20201005 15:24:16.204"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>10</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:24:26.207" level="INFO">Slept 10 seconds</msg>
+<msg timestamp="20201005 15:24:26.207" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:24:16.205" endtime="20201005 15:24:26.207"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>10</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:24:36.208" level="INFO">Slept 10 seconds</msg>
+<msg timestamp="20201005 15:24:36.208" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:24:26.207" endtime="20201005 15:24:36.208"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//button[contains(text(),'Submit')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:36.211" endtime="20201005 15:24:36.490"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//button[contains(text(),'Submit')]</arg>
+<arg>30</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:36.492" endtime="20201005 15:24:36.516"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//button[contains(text(),'Submit')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:24:36.518" level="INFO">Clicking element 'xpath=//button[contains(text(),'Submit')]'.</msg>
+<status status="PASS" starttime="20201005 15:24:36.517" endtime="20201005 15:24:36.574"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:24:36.517" endtime="20201005 15:24:36.574"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>10</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:24:46.576" level="INFO">Slept 10 seconds</msg>
+<msg timestamp="20201005 15:24:46.576" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:24:36.574" endtime="20201005 15:24:46.577"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//button[contains(text(),'OK')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:46.579" endtime="20201005 15:24:46.854"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//button[contains(text(),'OK')]</arg>
+<arg>30</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:46.855" endtime="20201005 15:24:46.871"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//button[contains(text(),'OK')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:24:46.872" level="INFO">Clicking element 'xpath=//button[contains(text(),'OK')]'.</msg>
+<status status="PASS" starttime="20201005 15:24:46.872" endtime="20201005 15:24:46.914"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:24:46.871" endtime="20201005 15:24:46.914"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:24:49.917" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:24:49.917" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:24:46.915" endtime="20201005 15:24:49.917"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//span[contains(text(),'General Information')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:49.917" endtime="20201005 15:24:49.936"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//span[contains(text(),'General Information')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:49.937" endtime="20201005 15:24:50.202"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//span[contains(text(),'General Information')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:24:50.203" level="INFO">Clicking element 'xpath=//span[contains(text(),'General Information')]'.</msg>
+<status status="PASS" starttime="20201005 15:24:50.202" endtime="20201005 15:24:50.244"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:24:50.202" endtime="20201005 15:24:50.244"></status>
+</kw>
+<kw name="Get Element Attribute" library="Selenium2Library">
+<doc>Returns the value of ``attribute`` from the element ``locator``.</doc>
+<arguments>
+<arg>xpath=//input[@id='initiativeCode']</arg>
+<arg>attribute=value</arg>
+</arguments>
+<assign>
+<var>${getCode}</var>
+</assign>
+<msg timestamp="20201005 15:24:50.262" level="INFO">${getCode} = 2020-004623</msg>
+<status status="PASS" starttime="20201005 15:24:50.245" endtime="20201005 15:24:50.262"></status>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<arguments>
+<arg>${initiativeCode}</arg>
+<arg>${getCode}</arg>
+</arguments>
+<msg timestamp="20201005 15:24:50.263" level="INFO">${initiativeCode} = 2020-004623</msg>
+<status status="PASS" starttime="20201005 15:24:50.262" endtime="20201005 15:24:50.263"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:24:55.265" level="INFO">Slept 5 seconds</msg>
+<msg timestamp="20201005 15:24:55.265" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:24:50.264" endtime="20201005 15:24:55.265"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//span[contains(text(),' Detail Information ')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:24:55.266" level="INFO">Clicking element 'xpath=//span[contains(text(),' Detail Information ')]'.</msg>
+<status status="PASS" starttime="20201005 15:24:55.266" endtime="20201005 15:24:55.315"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:24:55.265" endtime="20201005 15:24:55.315"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:24:58.318" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:24:58.318" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:24:55.316" endtime="20201005 15:24:58.318"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Initiative Type is required !')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:24:58.321" endtime="20201005 15:24:58.596"></status>
+</kw>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Initiative Type is required !')]</arg>
+<arg>Initiative Type is required !</arg>
+</arguments>
+<msg timestamp="20201005 15:24:58.598" level="INFO">Verifying element 'xpath=//div[contains(text(),'Initiative Type is required !')]' contains exact text 'Initiative Type is required !'.</msg>
+<status status="PASS" starttime="20201005 15:24:58.598" endtime="20201005 15:24:58.639"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:25:01.641" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:25:01.641" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:24:58.640" endtime="20201005 15:25:01.641"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Workstream is required !')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:01.642" endtime="20201005 15:25:01.935"></status>
+</kw>
+<kw name="Element Text Should Be" library="Selenium2Library">
+<doc>Verifies that element ``locator`` contains exact the text ``expected``.</doc>
+<arguments>
+<arg>xpath=//div[contains(text(),'Workstream is required !')]</arg>
+<arg>Workstream is required !</arg>
+</arguments>
+<msg timestamp="20201005 15:25:01.938" level="INFO">Verifying element 'xpath=//div[contains(text(),'Workstream is required !')]' contains exact text 'Workstream is required !'.</msg>
+<status status="PASS" starttime="20201005 15:25:01.937" endtime="20201005 15:25:01.960"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:25:06.963" level="INFO">Slept 5 seconds</msg>
+<msg timestamp="20201005 15:25:06.963" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:25:01.961" endtime="20201005 15:25:06.963"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//select[@formcontrolname="initiativeTypeMax"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:06.965" endtime="20201005 15:25:07.239"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//select[@formcontrolname="initiativeTypeMax"]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:07.239" endtime="20201005 15:25:07.254"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//select[@formcontrolname="initiativeTypeMax"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:25:07.255" level="INFO">Clicking element 'xpath=//select[@formcontrolname="initiativeTypeMax"]'.</msg>
+<status status="PASS" starttime="20201005 15:25:07.254" endtime="20201005 15:25:07.299"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:25:07.254" endtime="20201005 15:25:07.299"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//option[@value="MAX Infinity"]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:07.299" endtime="20201005 15:25:07.327"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//option[@value="MAX Infinity"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:25:07.328" level="INFO">Clicking element 'xpath=//option[@value="MAX Infinity"]'.</msg>
+<status status="PASS" starttime="20201005 15:25:07.328" endtime="20201005 15:25:07.367"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:25:07.327" endtime="20201005 15:25:07.367"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1 seconds</arg>
+</arguments>
+<msg timestamp="20201005 15:25:08.369" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20201005 15:25:07.368" endtime="20201005 15:25:08.369"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//select[@formcontrolname="workstream"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:08.369" endtime="20201005 15:25:08.639"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//select[@formcontrolname="workstream"]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:08.641" endtime="20201005 15:25:08.663"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//select[@formcontrolname="workstream"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:25:08.663" level="INFO">Clicking element 'xpath=//select[@formcontrolname="workstream"]'.</msg>
+<status status="PASS" starttime="20201005 15:25:08.663" endtime="20201005 15:25:08.726"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:25:08.663" endtime="20201005 15:25:08.726"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//option[@value="CAPEX"]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:08.727" endtime="20201005 15:25:08.750"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//option[@value="CAPEX"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:25:08.753" level="INFO">Clicking element 'xpath=//option[@value="CAPEX"]'.</msg>
+<status status="PASS" starttime="20201005 15:25:08.753" endtime="20201005 15:25:08.788"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:25:08.752" endtime="20201005 15:25:08.789"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>seconds</arg>
+</arguments>
+<msg timestamp="20201005 15:25:11.791" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:25:11.791" level="INFO">seconds</msg>
+<status status="PASS" starttime="20201005 15:25:08.789" endtime="20201005 15:25:11.791"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:25:14.795" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:25:14.795" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:25:11.793" endtime="20201005 15:25:14.795"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//select[@formcontrolname="subWorkstream2"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:14.795" endtime="20201005 15:25:15.067"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//select[@formcontrolname="subWorkstream2"]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:15.069" endtime="20201005 15:25:15.090"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//select[@formcontrolname="subWorkstream2"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:25:15.092" level="INFO">Clicking element 'xpath=//select[@formcontrolname="subWorkstream2"]'.</msg>
+<status status="PASS" starttime="20201005 15:25:15.092" endtime="20201005 15:25:15.151"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:25:15.091" endtime="20201005 15:25:15.151"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//option[@value="CAPEX - GCME"]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:15.151" endtime="20201005 15:25:15.175"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//option[@value="CAPEX - GCME"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:25:15.176" level="INFO">Clicking element 'xpath=//option[@value="CAPEX - GCME"]'.</msg>
+<status status="PASS" starttime="20201005 15:25:15.176" endtime="20201005 15:25:15.212"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:25:15.176" endtime="20201005 15:25:15.212"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1 seconds</arg>
+</arguments>
+<msg timestamp="20201005 15:25:16.214" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20201005 15:25:15.213" endtime="20201005 15:25:16.214"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>3</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:25:19.218" level="INFO">Slept 3 seconds</msg>
+<msg timestamp="20201005 15:25:19.218" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:25:16.216" endtime="20201005 15:25:19.218"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//select[@formcontrolname="workstreamLead"]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:19.220" endtime="20201005 15:25:19.497"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//select[@formcontrolname="workstreamLead"]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:19.499" endtime="20201005 15:25:19.521"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//select[@formcontrolname="workstreamLead"]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:25:19.522" level="INFO">Clicking element 'xpath=//select[@formcontrolname="workstreamLead"]'.</msg>
+<status status="PASS" starttime="20201005 15:25:19.522" endtime="20201005 15:25:19.580"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:25:19.522" endtime="20201005 15:25:19.580"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//option[contains(text(),' Akrapon.S &lt;xx&gt;')]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:19.581" endtime="20201005 15:25:19.603"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//option[contains(text(),' Akrapon.S &lt;xx&gt;')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:25:19.604" level="INFO">Clicking element 'xpath=//option[contains(text(),' Akrapon.S &lt;xx&gt;')]'.</msg>
+<status status="PASS" starttime="20201005 15:25:19.604" endtime="20201005 15:25:19.636"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:25:19.604" endtime="20201005 15:25:19.637"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>1 seconds</arg>
+</arguments>
+<msg timestamp="20201005 15:25:20.638" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20201005 15:25:19.638" endtime="20201005 15:25:20.638"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:25:25.643" level="INFO">Slept 5 seconds</msg>
+<msg timestamp="20201005 15:25:25.643" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:25:20.642" endtime="20201005 15:25:25.643"></status>
+</kw>
+<kw name="Scroll Element Into View" library="Selenium2Library">
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<arguments>
+<arg>xpath=//button[contains(text(),' Submit ')]</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:25.645" endtime="20201005 15:25:25.920"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//button[contains(text(),' Submit ')]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:25.922" endtime="20201005 15:25:25.944"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//button[contains(text(),' Submit ')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:25:25.945" level="INFO">Clicking element 'xpath=//button[contains(text(),' Submit ')]'.</msg>
+<status status="PASS" starttime="20201005 15:25:25.945" endtime="20201005 15:25:26.018"></status>
+</kw>
+<status status="PASS" starttime="20201005 15:25:25.945" endtime="20201005 15:25:26.018"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:25:31.020" level="INFO">Slept 5 seconds</msg>
+<msg timestamp="20201005 15:25:31.020" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:25:26.019" endtime="20201005 15:25:31.020"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+<arg>second</arg>
+</arguments>
+<msg timestamp="20201005 15:25:36.021" level="INFO">Slept 5 seconds</msg>
+<msg timestamp="20201005 15:25:36.021" level="INFO">second</msg>
+<status status="PASS" starttime="20201005 15:25:31.020" endtime="20201005 15:25:36.021"></status>
+</kw>
+<kw name="Wait Until Element Is Visible" library="Selenium2Library">
+<doc>Waits until the element ``locator`` is visible.</doc>
+<arguments>
+<arg>xpath=//a[contains(text(),'My Tasks')]</arg>
+<arg>50</arg>
+</arguments>
+<status status="PASS" starttime="20201005 15:25:36.022" endtime="20201005 15:25:36.044"></status>
+</kw>
+<kw name="click">
+<arguments>
+<arg>xpath=//a[contains(text(),'My Tasks')]</arg>
+</arguments>
+<kw name="Click Element" library="Selenium2Library">
+<doc>Click the element identified by ``locator``.</doc>
+<arguments>
+<arg>${element}</arg>
+</arguments>
+<msg timestamp="20201005 15:25:36.045" level="INFO">Clicking element 'xpath=//a[contains(text(),'My Tasks')]'.</msg>
+<kw name="Capture Page Screenshot" library="Selenium2Library">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20201005 15:25:37.506" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1097.png"&gt;&lt;img src="selenium-screenshot-1097.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20201005 15:25:37.107" endtime="20201005 15:25:37.506"></status>
+</kw>
+<msg timestamp="20201005 15:25:37.564" level="FAIL">ElementClickInterceptedException: Message: element click intercepted: Element &lt;a _ngcontent-exj-c104="" class="nav-link menu" style="color: #FFFFFF; margin-bottom: 7px;" ng-reflect-router-link="/initiative/my-tasks" href="/initiative/my-tasks"&gt;...&lt;/a&gt; is not clickable at point (1186, 31). Other element would receive the click: &lt;div class="swal2-container swal2-center swal2-backdrop-show" style="overflow-y: auto;"&gt;...&lt;/div&gt;
+  (Session info: chrome=85.0.4183.102)
+</msg>
+<status status="FAIL" starttime="20201005 15:25:36.045" endtime="20201005 15:25:37.565"></status>
+</kw>
+<status status="FAIL" starttime="20201005 15:25:36.045" endtime="20201005 15:25:37.565"></status>
+</kw>
+<status status="FAIL" starttime="20201005 15:22:41.868" endtime="20201005 15:25:37.566" critical="yes">ElementClickInterceptedException: Message: element click intercepted: Element &lt;a _ngcontent-exj-c104="" class="nav-link menu" style="color: #FFFFFF; margin-bottom: 7px;" ng-reflect-router-link="/initiative/my-tasks" href="/initiative/my-tasks"&gt;...&lt;/a&gt; is not clickable at point (1186, 31). Other element would receive the click: &lt;div class="swal2-container swal2-center swal2-backdrop-show" style="overflow-y: auto;"&gt;...&lt;/div&gt;
+  (Session info: chrome=85.0.4183.102)
+</status>
+</test>
+<status status="FAIL" starttime="20201005 15:22:41.558" endtime="20201005 15:25:37.573"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" id="s1" name="maxCapexEndToEndNew">maxCapexEndToEndNew</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

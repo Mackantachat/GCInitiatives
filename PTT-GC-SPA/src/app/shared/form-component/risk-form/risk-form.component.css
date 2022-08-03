@@ -1,0 +1,19 @@
+.level-red {
+    background-color: red;
+    cursor: default;
+}
+
+.level-green {
+    background-color: green;
+    cursor: default;
+}
+
+.level-yellow {
+    background-color: yellow;
+    cursor: default;
+}
+
+.level-orange {
+    background-color: orange;
+    cursor: default;
+}

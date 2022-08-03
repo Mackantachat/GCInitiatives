@@ -1,0 +1,150 @@
+<!-- <ng-container>
+    <div bsModal #AttachmentLessonLearnModal="bs-modal" class="modal fade modal-Attachment"
+        [config]="{ backdrop: 'static'}">
+        <app-lesson-learn-attachment (modelClose)="CloseAttachmentLessonLearnModal()" [id]="GetId">
+        </app-lesson-learn-attachment>
+    </div>
+</ng-container> -->
+<div class="modal-body">
+    <div [formGroup]="lessonForm" (ngSubmit)="submit()">
+        <div class="row">
+            <div class="col-6">
+                <!-- Change chps to checkControl or checkNotControl -->
+                <div class="form-group" [ngClass]="ps.checkControl(lessonForm,'LessonLearn','triggerType')">
+                    <p class="required">Project Lesson Learn</p>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input id="isProjectPhaseNo" value="projectPhaseNo" class="custom-control-input" type="radio"
+                            name="triggerType" formControlName="triggerType" (change)="changeType()">
+                        <label class="custom-control-label" for="isProjectPhaseNo"> Project Phase No. </label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input id="isMileStone" value="mileStone" class="custom-control-input" type="radio"
+                            name="triggerType" formControlName="triggerType" (change)="changeType()">
+                        <label class="custom-control-label" for="isMileStone"> MileStone No. </label>
+                    </div>
+                </div>
+
+                <div class="form-group" *ngIf="isProjectPhaseNo()">
+                    <div [ngClass]="ps.checkControl(lessonForm,'LessonLearn','projectPhaseNo')">
+                        <label for="projectPhaseNo" class="required">Project Phase No.</label>
+                        <ng-select [items]="phaseList" id="projectPhaseNo" bindValue="value" bindLabel="name"
+                            [ngClass]="{'is-invalid': isShowInvalid('projectPhaseNo')}" [selectOnTab]="true"
+                            formControlName="projectPhaseNo">
+                        </ng-select>
+                        <div class="invalid-feedback">
+                            Project Phase No. is required!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" *ngIf="isMileStone()">
+                    <div [ngClass]="ps.checkControl(lessonForm,'LessonLearn','milestoneNo')">
+                        <label for="milestoneNo" class="required">MileStone No.</label>
+                        <ng-select [items]="mileStoneList" id="milestoneNo" bindValue="milestone" bindLabel="milestone"
+                            [ngClass]="{'is-invalid': isShowInvalid('milestoneNo')}" [selectOnTab]="true"
+                            formControlName="milestoneNo">
+                        </ng-select>
+                        <div class="invalid-feedback">
+                            MileStone No. is required!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" [ngClass]="ps.checkControl(lessonForm,'LessonLearn','areaOfLearning')">
+                    <label for="areaOfLearning" class="required">Area Of Learning</label>
+                    <ng-select [items]="areaOfLearningList" id="areaOfLearning"
+                        [ngClass]="{'is-invalid': isShowInvalid('areaOfLearning')}" [selectOnTab]="true"
+                        formControlName="areaOfLearning">
+                    </ng-select>
+                    <div class="invalid-feedback" *ngIf="isShowInvalid('areaOfLearning')">
+                        Area Of Learning is required!
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6" [ngClass]="ps.checkControl(lessonForm,'LessonLearn','issues')">
+                <div class="form-group">
+                    <label for="issues" class="required">Issue (What happen)</label>
+                    <textarea class="form-control" [ngClass]="{'is-invalid': isShowInvalid('issues')}"
+                        formControlName="issues" id="issues">
+                    </textarea>
+                    <div class="invalid-feedback">
+                        Issue is required!
+                    </div>
+                </div>
+            </div>
+            <div class="col-6" [ngClass]="ps.checkControl(lessonForm,'LessonLearn','background')">
+                <div class="form-group">
+                    <label for="background" class="required">Background</label>
+                    <textarea class="form-control" [ngClass]="{'is-invalid': isShowInvalid('background')}"
+                        formControlName="background" id="background">
+                    </textarea>
+                    <div class="invalid-feedback">
+                        Background is required!
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6" [ngClass]="ps.checkControl(lessonForm,'LessonLearn','lessonLearned')">
+                <div class="form-group">
+                    <label for="lessonLearned" class="required">Lesson Learned</label>
+                    <textarea class="form-control" [ngClass]="{'is-invalid': isShowInvalid('lessonLearned')}"
+                        formControlName="lessonLearned" id="lessonLearned">
+                    </textarea>
+                    <div class="invalid-feedback">
+                        Lesson Learned is required!
+                    </div>
+                </div>
+            </div>
+            <div class="col-6" [ngClass]="ps.checkControl(lessonForm,'LessonLearn','remark')">
+                <div class="form-group">
+                    <label for="remark">Remark</label>
+                    <textarea class="form-control" formControlName="remark" id="remark">
+                    </textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row" [ngClass]="ps.checkControl(lessonForm,'LessonLearn','rating')">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="rating">Rating</label>
+                    <select class="form-control" formControlName="rating" id="rating">
+                        <option [value]="row" *ngFor="let row of ratingList"> {{row}} </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="form-initiative">
+                    <label>Rating Information</label>
+                    <button class="btn float-right" style="color: #0078B8;" data-toggle="collapse"
+                        data-target="#ratingImage" (click)="OnHideShow()">
+                        {{hideShowBtnText}}
+                    </button>
+                    <!-- <button (click)="LogTracking()">Log</button> -->
+                    <hr>
+                </div>
+                <div class="form-initiative collapse show" aria-expanded="true" id="ratingImage">
+                    <img src="assets/images/rateing_lessonlearn.png" alt="" width="100%">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="float-right">
+                    <button type="button" *ngIf="isEdit" class="btn btn-white btn-width mr-2"
+                        (click)="ShowAttachmentLessonLearnModal()">
+                        <span class="fas fa-paperclip mr-2"></span> <span style="font-size: 0.9rem;"> Attachment </span>
+                    </button>
+                    <button type="button" class="btn btn-success btn-width mr-2" (click)="submit()">
+                        <i class="far fa-check-circle"></i> OK
+                    </button>
+                    <button type="button" class="btn btn-white btn-width" (click)="close()">
+                        <i class="fas fa-ban"></i> Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

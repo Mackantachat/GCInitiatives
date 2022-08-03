@@ -1,0 +1,75 @@
+<div class="animated fadeIn">
+
+  <div class="form-group row mt-3">
+    <div class="col-md-12">
+      <h2>Assign User Role</h2>
+    </div>
+  </div>
+  <hr>
+  <br>
+  <div class="form-horizontal" [formGroup]="form">
+    <div class="form-group row">
+      <div class="col-md-4">
+        <label for="name"> First Name </label>
+        <input type="text" class="form-control" placeholder="" formControlName="firstName" readonly>
+      </div>
+      <div class="col-md-4">
+        <label for="name"> Last Name </label>
+        <input type="text" class="form-control" placeholder="" formControlName="lastName" readonly>
+      </div>
+
+      <div class="col-md-4">
+        <label for="name"> Email </label>
+        <input type="text" class="form-control" placeholder="" formControlName="email" readonly>
+      </div>
+
+    </div>
+    <div class="form-group row">
+      <div class="col-md-4">
+        <label for="name"> BU </label>
+        <ng-select [multiple]="false" formControlName="buid">
+          <ng-option *ngFor="let item of dropdownBU" [value]="item.value">
+            {{item.text}}
+          </ng-option>
+        </ng-select>
+      </div>
+
+      <div class="col-md-4">
+        <label for="name"> Position </label>
+        <ng-select [multiple]="false" formControlName="positionID">
+          <ng-option *ngFor="let item of dropdownPosition" [value]="item.value">
+            {{item.text}}
+          </ng-option>
+        </ng-select>
+      </div>
+
+      <div class="col-md-4">
+        <label for="name"> Workstream </label>
+        <ng-select [multiple]="false" formControlName="workstreamID">
+          <ng-option *ngFor="let item of dropdownWorkstream" [value]="item.value">
+            {{item.text}}
+          </ng-option>
+        </ng-select>
+      </div>
+    </div>
+    <br>
+    <div class="form-group row">
+      <div class="col-md-12">
+        <label for="name"> Role </label>
+        <ng-select [multiple]="true" formControlName="roleID">
+          <ng-option *ngFor="let item of roleList" [value]="item.id">{{item.roleName}}</ng-option>
+        </ng-select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-5">
+    <div class="col-12">
+      <a href='/user/list' type="button" class="btn btn-outline-dark btn-width-default ml-4 float-right"
+        (click)="initialData()">Cancel</a>
+      <button type="button" class="btn btn-outline-primary btn-width-default float-right"
+        (click)="saveData()">Save</button>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,12 @@
+UPDATE DetailInformations SET ProjectManager = NULL WHERE InitiativeId = '110240' AND Id = '84432' AND ProjectManager = 'SANTI.SA <TP-PP-PB/1033>' ;
+UPDATE DetailInformations SET ProjectManager = NULL WHERE InitiativeId = '114166' AND Id = '88094' AND ProjectManager = 'KEERATI.P <SC-EX-PL/4210>' ;
+UPDATE DetailInformations SET ProjectManager = NULL WHERE InitiativeId = '114227' AND Id = '88151' AND ProjectManager = 'NARUEPAT.T <PM-P2-SV/4115>' ;
+UPDATE DetailInformations SET ProjectManager = NULL WHERE InitiativeId = '114379' AND Id = '88288' AND ProjectManager = 'EKARAT.FA <GCO-PO-MN/->' ;
+UPDATE DetailInformations SET ProjectManager = NULL WHERE InitiativeId = '114385' AND Id = '88294' AND ProjectManager = 'EKARAT.FA <GCO-PO-MN/->' ;
+UPDATE DetailInformations SET ProjectManager = NULL WHERE InitiativeId = '113419' AND Id = '87413' AND ProjectManager = 'KRIENGKRAI.B <TP-PQ-CE/1550>' ;
+UPDATE DetailInformations SET ProjectManager = NULL WHERE InitiativeId = '113553' AND Id = '87531' AND ProjectManager = 'KRIRK.P <PM-P1-CC/4089>' ;
+UPDATE DetailInformations SET ProjectManager = NULL WHERE InitiativeId = '113605' AND Id = '87581' AND ProjectManager = 'KRIRK.P <PM-P1-CC/4089>' ;
+UPDATE DetailInformations SET ProjectManager = NULL WHERE InitiativeId = '113611' AND Id = '87584' AND ProjectManager = 'EKTANA.M <TP-PP-PC/1618>' ;
+UPDATE DetailInformations SET ProjectManager = NULL WHERE InitiativeId = '113637' AND Id = '87604' AND ProjectManager = 'KRIRK.P <PM-P1-CC/4089>' ;
+UPDATE DetailInformations SET ProjectManager = NULL WHERE InitiativeId = '113809' AND Id = '87764' AND ProjectManager = 'SANTI.SA <TP-PP-PB/1033>' ;
+UPDATE DetailInformations SET ProjectManager = NULL WHERE InitiativeId = '113820' AND Id = '87776' AND ProjectManager = 'SANTI.SA <TP-PP-PB/1033>' ;

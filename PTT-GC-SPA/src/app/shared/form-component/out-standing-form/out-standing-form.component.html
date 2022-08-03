@@ -1,0 +1,343 @@
+<div class="">
+  <!--container-fluid-->
+  <div class="row">
+    <div class="col-sm-12">
+      <!--<h4>Outstanding Item</h4>-->
+      <br />
+      <h3 style="color: #1c6ea4">Outstanding Item</h3>
+      <div class="devider"></div>
+    </div>
+  </div>
+
+  <!-- <form [formGroup]="searchForm">
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="form-group">
+          <label for="month_date_picker">Month</label>
+          <div class="input-group">
+            <input type="text" bsDatepicker class="form-control" id="month_date_picker" #dpFinish="bsDatepicker"
+              formControlName="month" [minDate]="getMinDate()" [bsConfig]="monthViewDateFormart"
+              (bsValueChange)="monthChanged()" [readonly]="viewMode" [isDisabled]="viewMode" />
+            <div class="input-group-prepend">
+              <span class="input-group-text">
+                <i class="far fa-calendar"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form> -->
+
+
+  <ng-container *ngIf="selectedMonth">
+    <div class="row">
+      <!--[formGroup]="this.formGroup.get('outstandingForm')-->
+      <div class="col-sm-12">
+        <strong>{{ selectedMonth | date: "MMMM yyyy" }} </strong>
+      </div>
+
+      <div class="col-lg-12">
+        <table id="year-table" class="table table-sm table-bordered u-margin-top-small outstanding-table">
+          <thead>
+            <tr class="table-primary">
+              <th scope="col" rowspan="2" class="text-center">
+                Budget Baht (SAP)
+              </th>
+              <th scope="col" rowspan="2" class="text-center">
+                Actual Baht (SAP)
+              </th>
+              <th scope="col" colspan="3" class="text-center">Commit</th>
+              <th scope="col" colspan="6" class="text-center">Outstanding</th>
+              <th scope="col" rowspan="2" class="text-center">Contingency</th>
+              <th scope="col" rowspan="2" class="text-center">
+                Estimate at Completion
+              </th>
+            </tr>
+
+            <tr>
+              <th scope="col">PR Item Baht (SAP)</th>
+              <th scope="col">PO Item Baht (SAP)</th>
+              <th scope="col">Commitment Baht</th>
+              <th scope="col">Item Discription</th>
+              <th scope="col">Item list Value Baht</th>
+              <th scope="col">RPC Discription</th>
+              <th scope="col">RPC Value Baht</th>
+              <th scope="col" colspan="2">Outstanding</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <!-- <ng-container *ngIf="!getOutstandingFormData(); else haveData">
+              <tr>
+                <td rowspan="6">No Data </td>
+              </tr>
+              <tr>
+                <td rowspan="8">No Data </td>
+              </tr>
+            </ng-container>
+            <ng-template #haveData> -->
+            <tr [formGroup]="outstandingForm">
+              <td [attr.rowspan]="rowSpan" class="table-secondary text-center align-middle">
+                <input type="number" formControlName="budgetBaht" readonly type="text" mask="separator.2"
+                  thousandSeparator="," [allowNegativeNumbers]="true"
+                  style="border: none;background-color:#D6D8DB;max-width:80px;text-align:center;">
+              </td>
+              <td [attr.rowspan]="rowSpan" class="table-secondary text-center align-middle">
+                <input type="number" formControlName="actualBaht" readonly type="text" mask="separator.2"
+                  thousandSeparator="," [allowNegativeNumbers]="true"
+                  style="border: none;background-color:#D6D8DB;max-width:80px;text-align:center;">
+              </td>
+              <td [attr.rowspan]="rowSpan" class="table-secondary text-center align-middle">
+                <input type="number" formControlName="prItemBaht" readonly type="text" mask="separator.2"
+                  thousandSeparator="," [allowNegativeNumbers]="true"
+                  style="border: none;background-color:#D6D8DB;max-width:80px;text-align:center;">
+              </td>
+              <td [attr.rowspan]="rowSpan" class="table-secondary text-center align-middle">
+                <input type="number" formControlName="poItemBaht" readonly type="text" mask="separator.2"
+                  thousandSeparator="," [allowNegativeNumbers]="true"
+                  style="border: none;background-color:#D6D8DB;max-width:80px;text-align:center;">
+              </td>
+              <td [attr.rowspan]="rowSpan" class="table-secondary text-center align-middle">
+                <input type="number" formControlName="commitmentBaht" readonly type="text" mask="separator.2"
+                  thousandSeparator="," [allowNegativeNumbers]="true"
+                  style="border: none;background-color:#D6D8DB;max-width:80px;text-align:center;">
+              </td>
+
+              <ng-container [formGroup]="formGroup.get('outstandingForm').get('outstandingFormArray')['controls'][0]"
+                *ngIf="formGroup.get('outstandingForm').get('outstandingFormArray')['controls'].length > 0">
+                <td>
+                  <input type="text" class="form-control form-control-sm" formControlName="itemDescription" />
+                </td>
+                <td>
+                  <input type="text" [allowNegativeNumbers]="true" mask="separator.2" thousandSeparator=","
+                    (blur)="outStandingKeyUp(0)" class="form-control form-control-sm"
+                    [formControl]="formGroup.get('outstandingForm').get('outstandingFormArray')['controls'][0].get('itemListValueBaht')" />
+                </td>
+                <td>
+                  <input type="text" class="form-control form-control-sm" formControlName="rpcDescription" />
+                </td>
+                <td>
+                  <input min="0" [allowNegativeNumbers]="true" type="text" mask="separator.2" thousandSeparator=","
+                    (blur)="outStandingKeyUp(0)" class="form-control form-control-sm"
+                    [formControl]="formGroup.get('outstandingForm').get('outstandingFormArray')['controls'][0].get('rpcValueBaht')" />
+                </td>
+                <td class="table-default text-center align-middle">
+                  <input min="0" readonly type="text" mask="separator.2" thousandSeparator=","
+                    [allowNegativeNumbers]="true" class="form-control form-control-sm"
+                    [formControl]="formGroup.get('outstandingForm').get('outstandingFormArray')['controls'][0].get('outstanding')" />
+                </td>
+                <td class="table-default text-center align-middle" width="35px">
+                  <i *ngIf="!viewMode" role="button" class="fa fa-trash text-danger" (click)="removeOutStanding(0)"></i>
+                </td>
+              </ng-container>
+
+              <td [attr.rowspan]="rowSpan" class="table-secondary text-center align-middle">
+                <input formControlName="contingency" type="text" [allowNegativeNumbers]="true" mask="separator.2"
+                  thousandSeparator="," class="form-control form-control-sm" (change)="contingencyChanged($event)"
+                  [readonly]="viewMode" />
+              </td>
+              <td [attr.rowspan]="rowSpan" class="table-secondary text-center align-middle">
+                <input type="text" mask="separator.2" [allowNegativeNumbers]="true" thousandSeparator=","
+                  formControlName="estimateAtCompletion" readonly
+                  style="border: none;background-color:#D6D8DB;max-width:80px;text-align:center;"
+                  [allowNegativeNumbers]="true">
+              </td>
+            </tr>
+
+            <!-- Dynamic from array -->
+            <ng-container *ngIf="getOutstandingFormData().length > 1 ">
+              <tr *ngFor="let outStandingFormGroup of formGroup.get('outstandingForm').get('outstandingFormArray')['controls'].slice(1);
+                index as i
+              ">
+                <ng-container [formGroup]="outStandingFormGroup">
+                  <td>
+                    <input type="text" formControlName="itemDescription" class="form-control form-control-sm" />
+                  </td>
+                  <td>
+                    <input type="text" mask="separator.2" thousandSeparator="," [allowNegativeNumbers]="true"
+                      (blur)="outStandingKeyUp(i +1)" [formControl]="outStandingFormGroup.get('itemListValueBaht')"
+                      class="form-control form-control-sm" />
+                  </td>
+                  <td>
+                    <input type="text" formControlName="rpcDescription" class="form-control form-control-sm" />
+                  </td>
+                  <td>
+                    <input type="text" mask="separator.2" thousandSeparator="," [allowNegativeNumbers]="true"
+                      [formControl]="outStandingFormGroup.get('rpcValueBaht')" (blur)="outStandingKeyUp(i+1)"
+                      class="form-control form-control-sm" />
+                  </td>
+                  <td class="table-default text-center align-middle">
+                    <div class="d-flex">
+                      <input readonly type="text" mask="separator.2" thousandSeparator="," [allowNegativeNumbers]="true"
+                        [formControl]="outStandingFormGroup.get('outstanding')" (blur)="outStandingKeyUp(i+1)"
+                        class="form-control form-control-sm" />
+                    </div>
+                  </td>
+                  <td class="text-center align-middle">
+                    <i *ngIf="!viewMode" role="button" class="fa fa-trash text-danger"
+                      (click)="removeOutStanding(i+1)"></i>
+                  </td>
+                </ng-container>
+              </tr>
+            </ng-container>
+            <!-- </ng-template> -->
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="!viewMode" class="col-sm-12">
+        <button class="btn btn-sm btn-primary" (click)="newOutStanding()">
+          <i class="fa fa-plus"></i> Add New
+        </button>
+      </div>
+    </div>
+
+
+    <!-- <div class="row u-margin-top-medium">
+      <div class="col-sm-12 text-right">
+        <button class="btn btn-primary u-margin-right-tiny" (click)="save()">
+          <i class="fa fa-save"></i> Save
+        </button>
+        <button class="btn btn-secondary" (click)="reset()">
+          <i class="fa fa-redo"></i> Reset
+        </button>
+      </div>
+    </div> -->
+  </ng-container>
+
+  <ng-container *ngIf="selectedMonth">
+    <div class="row u-margin-top-medium">
+      <div class="col-sm-12">
+        <strong class="50-left">
+          Outstanding {{ selectedMonth | date: "yyyy" }}
+        </strong>
+      </div>
+
+      <div class="col-sm-12">
+        <table id="year-table" class="table table-sm table-bordered u-margin-top-small outstanding-table">
+          <thead>
+            <tr class="table-primary">
+              <th scope="col" rowspan="2" class="text-center" width="150px">
+                Month
+              </th>
+              <th scope="col" rowspan="2" class="text-center">
+                Budget Baht <br />
+                (SAP)
+              </th>
+              <th scope="col" rowspan="2" class="text-center">
+                Actual Baht <br />(SAP)
+              </th>
+              <th scope="col" colspan="3" class="text-center">Commit</th>
+              <th scope="col" colspan="3" class="text-center">Outstanding</th>
+              <th scope="col" rowspan="2" class="text-center">Contingency</th>
+              <th scope="col" rowspan="2" class="text-center">
+                Estimate at Completion
+              </th>
+            </tr>
+
+            <tr>
+              <th scope="col">
+                PR Item Baht <br />
+                (SAP)
+              </th>
+              <th scope="col">
+                PO Item Baht <br />
+                (SAP)
+              </th>
+              <th scope="col">
+                Commitment Baht <br />
+                (PR + PO)
+              </th>
+              <th scope="col">Item list Value Baht</th>
+              <th scope="col">RPC Value Baht</th>
+              <th scope="col">Outstanding</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <!-- <tr *ngFor="let item of outStandingList">
+              <td class="text-left align-middle">
+                <strong class="month-padding">{{ item.month }}</strong>
+              </td>
+              <td class="text-center align-middle">
+                {{ item.budgetBaht }}
+              </td>
+              <td class="text-center align-middle">
+                {{ item.actualBaht }}
+              </td>
+              <td class="text-center align-middle">
+                {{ item.prItemBaht }}
+              </td>
+              <td class="text-center align-middle">
+                {{ item.poItemBaht }}
+              </td>
+              <td class="text-center align-middle">
+                {{ item.commitmentBaht }}
+              </td>
+              <td class="text-center align-middle">
+                {{ item.itemListValueBaht }}
+              </td>
+              <td class="text-center align-middle">
+                {{ item.rpcValueBaht }}
+              </td>
+              <td class="text-center align-middle">
+                {{ item.outStanding }}
+              </td>
+              <td class="text-center align-middle">
+                {{ item.contingency }}
+              </td>
+              <td class="text-center align-middle">
+                {{ item.estimateAtCompletion }}
+              </td>
+            </tr> -->
+            <!-- <ng-container *ngIf="outStandingByYear.length > 0; else noData"> -->
+            <tr *ngFor="let item of outStandingByYear">
+              <td class="text-left align-middle">
+                <strong class="month-padding">{{ item.monthDesc }}</strong>
+              </td>
+              <td class="text-center align-middle">
+                {{ convertData(item.budgetBaht) | number : '1.2-2'}}
+              </td>
+              <td class="text-center align-middle">
+                {{ convertData(item.actualBaht) | number : '1.2-2'}}
+              </td>
+              <td class="text-center align-middle">
+                {{ convertData(item.prItemBaht) | number : '1.2-2'}}
+              </td>
+              <td class="text-center align-middle">
+                {{ convertData(item.poItemBaht) | number : '1.2-2'}}
+              </td>
+              <td class="text-center align-middle">
+                {{ convertData(item.commitmentBaht) | number : '1.2-2'}}
+              </td>
+              <td class="text-center align-middle">
+                {{ convertData(item.itemListValueBaht) | number : '1.2-2' }}
+              </td>
+              <td class="text-center align-middle">
+                {{ convertData(item.rpcValueBaht) | number : '1.2-2'}}
+              </td>
+              <td class="text-center align-middle">
+                {{ convertData(item.outStanding) | number : '1.2-2'}}
+              </td>
+              <td class="text-center align-middle">
+                {{ convertData(item.contingency) | number : '1.2-2'}}
+              </td>
+              <td class="text-center align-middle">
+                {{ convertData(item.estimateAtCompletion) | number : '1.2-2' }}
+              </td>
+            </tr>
+            <!-- </ng-container>
+            <ng-template #noData>
+              <tr>
+                <td rowspan="11">No Data</td>
+              </tr>
+            </ng-template> -->
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </ng-container>
+</div>

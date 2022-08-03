@@ -1,0 +1,26 @@
+[
+  {
+    "EntryModeId": "E001",
+    "EntryModeTitle": "JV"
+  },
+  {
+    "EntryModeId": "E002",
+    "EntryModeTitle": "CVC"
+  },
+  {
+    "EntryModeId": "E003",
+    "EntryModeTitle": "Existing"
+  },
+  {
+    "EntryModeId": "E004",
+    "EntryModeTitle": "Organic"
+  },
+  {
+    "EntryModeId": "E005",
+    "EntryModeTitle": "M&A"
+  },
+  {
+    "EntryModeId": "E006",
+    "EntryModeTitle": "Divestment"
+  }
+]

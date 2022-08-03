@@ -1,0 +1,226 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <label style="font-size: 28px;">
+                    Maintain Investment Type
+                </label>
+                <!-- <p style="font-size: 28px;color: white;background-color: #4a7fbd;">Maintain Investment Type</p> -->
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-1">
+                <p style="font-size: 18px;">Data</p>
+            </div>
+            <div class="col-md-3">
+                <select class="form-control" name="maintain_data" [ngModel]="maintainDataModel"
+                    (ngModelChange)="onChangeData($event)">
+                    <option *ngFor="let item of listMaintainDataModel;" [ngValue]="item">{{item.displayName}}</option>
+                </select>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-4 pr-0">
+                        <div class="input-group" style="border: 1px solid #A8A8A8;">
+                            <input type="text" class="form-control" placeholder="Search"
+                                style="border-bottom-width: 0px;" [(ngModel)]="keyword">
+                            <div class="input-group-prepend">
+                                <button class="btn" type="submit" style="background-color: #A8A8A8;color: #ffffff;"
+                                    (click)="searching()">
+                                    <span class="fa fa-search"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1 pl-0">
+                        <div
+                            style="border: 1px solid #A8A8A8;margin-right: 16px; text-align: center; margin-right: 0px;">
+                            <a type="button" class="btn btn-default" (click)="Refresh()">
+                                <i class="fas fa-sync-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6" style="text-align:right">
+                <button type="button" class="btn btn-success" (click)="createModal(create)" style="width:115px">
+                    <i class="fas fa-plus"></i> <span style="font-size: 0.9rem;"> Add </span></button>
+                <!-- modal-add -->
+                <ng-template #create>
+                    <div class="modal-header">
+                        <h4 class="modal-title pull-left">Add</h4>
+                        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" *ngFor="let item of attributeNames; let i = index">
+                        <label for="name"> {{item}} <span class="text-danger">*</span> : </label>
+                        <input type="text" class="form-control"
+                            [(ngModel)]="AddDataDetail['attribute'+ GetNumber(i+1)]">
+                    </div>
+                    <div class="modal-body" style="text-align: right;">
+                        <button type="button" class="btn btn-outline-primary" style="width: 95px;"
+                            (click)="confirmAdd()">Submit</button>
+                        &nbsp;
+                        <button type="button" class="btn btn-outline-dark" style="width: 95px;"
+                            (click)="declineAdd()">Cancle</button>
+                    </div>
+                </ng-template>
+                <!-- end-modal-add -->
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-12">
+        <table class="table table-hover responsive" id="sort" *ngIf="maintainDataModel">
+            <thead>
+                <tr class="table-active text-left table-initiative">
+                    <ng-container *ngFor="let item of attributeNames; let i = index">
+
+                        <th (click)="sortTable(i)" *ngIf="IsNotNull(item)" scope="col"
+                            [ngStyle]="{ cursor: 'pointer' }">
+                            {{item | titlecase}}
+                        </th>
+                    </ng-container>
+                    <!-- <i *ngIf="sortingData.order == 'ASC'" class="fas fa-arrow-down"></i>
+              <i *ngIf="sortingData.order == 'DESC'" class="fas fa-arrow-up"></i> -->
+
+                    <!-- <th scope=" col" *ngIf="maintainDataModel.AttributeName01 !== null">
+              {{maintainDataModel.AttributeName01}}</th>
+            <th scope="col" *ngIf="maintainDataModel.AttributeName02 !== null">{{maintainDataModel.AttributeName02}}</th>
+            <th scope="col" *ngIf="maintainDataModel.AttributeName03 !== null">{{maintainDataModel.AttributeName03}}</th>
+            <th scope="col" *ngIf="maintainDataModel.AttributeName04 !== null">{{maintainDataModel.AttributeName04}}</th>
+            -->
+                    <th class="text-center" scope="col">Action</th>
+                    <!-- <th scope="col"></th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <!-- | slice: (currentPage-1)*pagination.itemsPerPage:currentPage*pagination.itemsPerPage -->
+                <tr *ngFor="let item of dataDetail ; let i = index;">
+                    <!-- {{ item | json }} -->
+                    <ng-container>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName01)">{{item.attribute01}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName02)">{{item.attribute02}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName03)">{{item.attribute03}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName04)">{{item.attribute04}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName05)">{{item.attribute05}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName06)">{{item.attribute06}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName07)">{{item.attribute07}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName08)">{{item.attribute08}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName09)">{{item.attribute09}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName10)">{{item.attribute10}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName11)">{{item.attribute11}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName12)">{{item.attribute12}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName13)">{{item.attribute13}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName14)">{{item.attribute14}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName15)">{{item.attribute15}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName16)">{{item.attribute16}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName17)">{{item.attribute17}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName18)">{{item.attribute18}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName19)">{{item.attribute19}}</td>
+                        <td *ngIf="IsNotNull(maintainDataModel.attributeName20)">{{item.attribute20}}</td>
+                        <td class="text-center">
+                            <!-- <button type="button" class="btn btn-primary" (click)="updateModal(item, update)" style="width:115px">
+                    <span style="font-size: 0.9rem;"> Edit </span></button> -->
+                            <a type="button" class="btn btn-warning btn-sm mr-1 text-white btn-list"
+                                (click)="updateModal(item, update)">
+                                <i class="fas fa-pen"></i>
+                            </a> &nbsp;
+                            <a type="button" class="btn btn-danger btn-sm mr-1 text-white btn-list"
+                                (click)="deleteModal(item, delete)">
+                                <i class="far fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </ng-container>
+                    <!-- <td>
+              <button type="button" class="btn btn-outline-dark" (click)="deleteModal(i, delete)" style="width:115px">
+                <span style="font-size: 0.9rem;"> Delete </span></button>
+            </td> -->
+                </tr>
+            </tbody>
+            <tfoot>
+                Total Items: {{ pagination.totalItems }}
+                <br>
+                Current Page: {{ currentPage }}/{{ pagination.totalPages }}
+            </tfoot>
+        </table>
+        <ng-container class="mt-4">
+            <div class="d-flex justify-content-left">
+                <div class="form-inline">
+                    <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems"
+                        [itemsPerPage]="pagination.itemsPerPage" [(ngModel)]="currentPage" [maxSize]="maxSize"
+                        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"
+                        (pageChanged)="onChangePage($event)" (click)="log($event)">
+                    </pagination>
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- <table class="table responsive" id="sort" *ngIf="maintainDataModel">
+        <ng-container cdkColumnDef="name">
+          <th cdk-header-cell *cdkHeaderCellDef> No. </th>
+          <td cdk-cell *cdkCellDef="let element "> {{element.position}} </td>
+        </ng-container>
+        <ng-container cdkColumnDef="edit">
+          <th cdk-header-cell *cdkHeaderCellDef> No. </th>
+          <td cdk-cell *cdkCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+        <ng-container cdkColumnDef="delete">
+          <th cdk-header-cell *cdkHeaderCellDef> No. </th>
+          <td cdk-cell *cdkCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+      </table> -->
+
+    </div>
+
+    <!-- modal-edit -->
+    <ng-template #update>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Edit</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form [formGroup]="defaultData">
+            <div class="modal-body" *ngFor="let attributeName of attributeNames;let i = index">
+                <label for="name"> {{attributeNames[i]}} <span class="text-danger">*</span> : </label>
+                <input type="text" class="form-control" [formControlName]="getAttribute(i+1)">
+            </div>
+        </form>
+        <div class="modal-body" style="text-align: right;">
+            <button type="button" class="btn btn-outline-primary" style="width: 95px;"
+                (click)="confirmUpdate()">Submit</button>
+            &nbsp;
+            <button type="button" class="btn btn-outline-dark" style="width: 95px;"
+                (click)="declineUpdate()">Cancle</button>
+        </div>
+    </ng-template>
+    <!-- end-modal-edit -->
+
+    <!-- modal-delete -->
+    <ng-template #delete>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Delete</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p style="text-align: left;font-size: 18px;margin-left: 3%;margin-top:3%">Are you certain you want to
+                delete?</p>
+        </div>
+        <div class="modal-body" style="text-align: right">
+            <button type="button" class="btn btn-outline-primary" style="width: 95px;"
+                (click)="confirmDelete()">Submit</button>
+            &nbsp;
+            <button type="button" class="btn btn-outline-dark" style="width: 95px;"
+                (click)="declineDelete()">Cancle</button>
+        </div>
+    </ng-template>
+    <!-- end-modal-delete -->
+</div>

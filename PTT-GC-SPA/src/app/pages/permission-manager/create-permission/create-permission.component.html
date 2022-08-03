@@ -1,0 +1,130 @@
+<div class="animated fadeIn">
+
+    <div class="form-group row mt-3">
+        <div class="col-md-12">
+            <h2>Role Detail</h2>
+        </div>
+    </div>
+    <hr>
+    <br>
+
+    <form class="form-group" [formGroup]="form">
+        <div class="row mt-3">
+            <div class="col-12 col-md-4">
+                <div class="row">
+                    <div class="col-3"><span class="span-scale">Role ID</span></div>
+                    <div class="col-9"><input type="text" class="form-control ml-2" formControlName="RoleId" /></div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="row">
+                    <div class="col-3"><span class="span-scale">Role Name</span></div>
+                    <div class="col-9"><input type="text" class="form-control ml-2" formControlName="RoleName" /></div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                <div class="row">
+                    <span class="span-scale ml-3">Active</span>
+                    <input type="checkbox" class="action-size" formControlName="IsActive" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 col-md-6">
+                <div class="row">
+                    <span class="span-scale ml-3">Description</span>
+                </div>
+                <div class="row mt-3">
+                    <textarea rows="4" class="form-control ml-2" formControlName="Description"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr class="table-active text-center">
+                        <th width="15%" [ngStyle]="{ cursor: 'pointer' }">
+                            No
+                        </th>
+                        <th width="35%" [ngStyle]="{ cursor: 'pointer' }">
+                            Screen/Object
+                        </th>
+                        <th width="45%" [ngStyle]="{ cursor: 'pointer' }">
+                            Action
+                        </th>
+                        <th width="10%" [ngStyle]="{ cursor: 'pointer' }">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container formArrayName="Item">
+                        <ng-container *ngFor="let item of getFormArray.controls; let i = index" [formGroupName]="i">
+                            <tr>
+                                <td class="pt-4">{{ i + 1 }}</td>
+                                <td>
+                                    <select class="form-control" formControlName="ScreenObject">
+                                        <option [value]="null">--- Please select ---</option>
+                                        <ng-container *ngFor="let optionItem of screenObjectList">
+                                            <option [value]="optionItem.screenObjectId">{{optionItem.screenObjectName}}
+                                            </option>
+                                        </ng-container>
+                                    </select>
+                                </td>
+                                <td>
+                                    <ng-select [multiple]="true" formControlName="Action">
+                                        <ng-option *ngFor="let item of actionList" [value]="item.actionId">
+                                            {{item.actionName}}</ng-option>
+                                    </ng-select>
+                                </td>
+                                <td class="pt-3">
+                                    <a class="btn btn-danger action-anchor" (click)="removeItem(i)">
+                                        <i class="fa fa-trash action-span"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </ng-container>
+                    </ng-container>
+                    <tr>
+                        <td class="pt-4">{{ getFormArray.length + 1 }}</td>
+                        <td>
+                            <select class="form-control" [(ngModel)]="modelScreenObject"
+                                [ngModelOptions]="{standalone: true}">
+                                <option [value]="null">--- Please select ---</option>
+                                <ng-container *ngFor="let optionItem of screenObjectList">
+                                    <option [value]="optionItem.screenObjectId">{{optionItem.screenObjectName}}</option>
+                                </ng-container>
+                            </select>
+                        </td>
+                        <td>
+                            <ng-select [multiple]="true" [(ngModel)]="modelAction"
+                                [ngModelOptions]="{standalone: true}">
+                                <ng-option *ngFor="let item of actionList" [value]="item.actionId">{{item.actionName}}
+                                </ng-option>
+                            </ng-select>
+                        </td>
+                        <td class="pt-3">
+                            <a class="btn btn-success action-anchor" (click)="addItems()">
+                                <i class="fa fa-plus-circle action-span"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+    <div class="row mt-4">
+        <div class="col-12">
+            <button type="button" class="btn btn-outline-dark btn-width-default float-right">
+                Cancel
+            </button>
+            <button type="button" class="btn btn-outline-primary btn-width-default float-right mr-4"
+                (click)="saveForm()">
+                Save
+            </button>
+        </div>
+    </div>
+
+</div>

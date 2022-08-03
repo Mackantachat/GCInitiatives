@@ -1,0 +1,265 @@
+<form>
+    <div class="row">
+        <div class="col-md-12" style="padding-left: inherit;padding-right: inherit;">
+            <div class=" card text card-initiative">
+                <div class="card-body">
+                    <div class="form-initiative">
+                        <label style="font-size: 28px;color: #454545;">Setting</label>
+                        <hr>
+                    </div>
+                    <div class="form-initiative" [formGroup]="settingForm">
+
+                        <!-- row-1 -->
+                        <!-- <ng-container>
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label> Initiative Code Format <span class="text-danger">*</span> : </label>
+                                    <input type="text" class="form-control" id="InitiativeCodeFormat"
+                                        formControlName="InitiativeCodeFormat">
+                                </div>
+                                <div class="col-md-6">
+                                </div>
+                            </div>
+                        </ng-container> -->
+
+                        <!-- row-2 -->
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label> Period for Keeping Audit Log <span class="text-danger">*</span> : </label>
+                                <input type="number" class="form-control" id="AuditPeriod"
+                                    formControlName="AuditPeriod">
+                            </div>
+                            <div class="col-md-6"></div>
+                        </div>
+
+                        <!-- row-3 -->
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <label> <B><U>CAPEX</U></B> <span class="text-danger">*</span> : </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label> Available Request Budget Period Annual<span class="text-danger"></span></label>
+                            </div>
+                            <div class="col-md-6">
+                                <label> Available Request Budget Period Mid<span class="text-danger"></span></label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label class="custom-control custom-control-inline">
+                                    <input class="custom-control custom-control-inline" type="radio"
+                                        id="AnnualPeriodActive" name="AnnualPeriod" formControlName="AnnualPeriod"
+                                        [value]="true">
+                                    <span>Active</span>
+                                </label>
+                                <label class="custom-control custom-control-inline">
+                                    <input class="custom-control custom-control-inline" type="radio"
+                                        id="AnnualPeriodInActive" name="AnnualPeriod" formControlName="AnnualPeriod"
+                                        [value]="false">
+                                    <span>In - Active</span>
+                                </label>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="custom-control custom-control-inline">
+                                    <input class="custom-control custom-control-inline" type="radio"
+                                        id="MidPeriodActive" name="MidPeriod" formControlName="MidPeriod"
+                                        [value]="true">
+                                    <span>Active</span>
+                                </label>
+                                <label class="custom-control custom-control-inline">
+                                    <input class="custom-control custom-control-inline" type="radio"
+                                        id="MidPeriodInActive" name="MidPeriod" formControlName="MidPeriod"
+                                        [value]="false">
+                                    <span>In - Active</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- row-4 -->
+                        <div class="form-group row">
+                            <!--CAPEX: Start Date Period Mid -->
+                            <div class="col-md-3">
+                                <label for="company"> Start Period<span class="text-danger">*</span> : </label>
+                                <div class="input-group">
+                                    <input id="AnnualFrom" formControlName="AnnualFrom" type="text"
+                                        [bsConfig]="bsConfig" class="form-control" bsDatepicker>
+                                    <div class="input-group-append">
+                                        <i class="far fa-calendar right-icon mt-2"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--CAPEX: Finish Date Period Mid -->
+                            <div class="col-md-3">
+                                <label> Finish Period <span class="text-danger">*</span> : </label>
+                                <div class="input-group">
+                                    <input id="AnnualTo" formControlName="AnnualTo" type="text" [bsConfig]="bsConfig"
+                                        class="form-control" bsDatepicker>
+                                    <div class="input-group-append">
+                                        <i class="far fa-calendar right-icon mt-2"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3">
+                                <label> Start Period <span class="text-danger">*</span> : </label>
+                                <div class="input-group">
+                                    <input id="MidFrom" formControlName="MidFrom" type="text" [bsConfig]="bsConfig"
+                                        class="form-control" bsDatepicker>
+                                    <div class="input-group-append">
+                                        <i class="far fa-calendar right-icon mt-2"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-3">
+                                <label> Finish Period <span class="text-danger">*</span> : </label>
+                                <div class="input-group">
+                                    <input id="MidTo" formControlName="MidTo" type="text" [bsConfig]="bsConfig"
+                                        class="form-control" bsDatepicker>
+                                    <div class="input-group-append">
+                                        <i class="far fa-calendar right-icon mt-2"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- row-5 -->
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <br />
+                                <label for="name"> Available Request Budget Pool<span
+                                        class="text-danger"></span></label>
+                            </div>
+
+                            <div class="col-md-3">
+                                <br />
+                                <label class="custom-control custom-control-inline" *ngFor="let choice of choices">
+                                    <input class="custom-control custom-control-inline" type="radio"
+                                        id="RequestBudgetPool" name="RequestBudgetPool"
+                                        formControlName="RequestBudgetPool" [value]="choice.value">
+                                    <span>{{choice.display}}</span>
+                                </label>
+                            </div>
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3"></div>
+                        </div>
+
+                        <!-- row-6 -->
+
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label> Start Period <span class="text-danger">*</span> : </label>
+                                <div class="input-group">
+                                    <input id="RequestFrom" formControlName="RequestFrom" type="text"
+                                        [bsConfig]="bsConfig" class="form-control" bsDatepicker>
+                                    <div class="input-group-append">
+                                        <i class="far fa-calendar right-icon mt-2"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label> Finish Period <span class="text-danger">*</span> : </label>
+                                <div class="input-group">
+                                    <input id="RequestTo" formControlName="RequestTo" type="text" [bsConfig]="bsConfig"
+                                        class="form-control" bsDatepicker>
+                                    <div class="input-group-append">
+                                        <i class="far fa-calendar right-icon mt-2"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3"></div>
+                        </div>
+
+                        <!-- row-7 -->
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <br />
+                                <label><B><U>IT/Budget Survey</U></B><span class="text-danger">*</span> : </label>
+                            </div>
+
+                            <div class="col-md-3">
+                                <br />
+                                <label class="custom-control custom-control-inline" *ngFor="let choice of choices">
+                                    <input class="custom-control custom-control-inline" type="radio" id="BudgetSurvey"
+                                        name="BudgetSurvey" formControlName="BudgetSurvey" [value]="choice.value">
+                                    <span>{{choice.display}}</span>
+                                </label>
+                            </div>
+
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3"></div>
+                        </div>
+
+
+                        <!-- row-8 -->
+                        <div class="form-group row">
+                            <div class="col-md-3">
+                                <label for="company"> Start Period <span class="text-danger">*</span> : </label>
+                                <div class="input-group">
+                                    <input id="BudgetFrom" formControlName="BudgetFrom" type="text"
+                                        [bsConfig]="bsConfig" class="form-control" bsDatepicker>
+                                    <div class="input-group-append">
+                                        <i class="far fa-calendar right-icon mt-2"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label> Finish Period <span class="text-danger">*</span> : </label>
+                                <div class="input-group">
+                                    <input id="BudgetTo" formControlName="BudgetTo" type="text" [bsConfig]="bsConfig"
+                                        class="form-control" bsDatepicker>
+                                    <div class="input-group-append">
+                                        <i class="far fa-calendar right-icon mt-2"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3"></div>
+                        </div>
+
+                        <!-- row-9 -->
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <label> <B><U>MAX</U></B> <span class="text-danger">*</span> : </label> <br />
+                                <label> IL4 Tracking Period (Month) <span class="text-danger">*</span> : </label>
+                            </div>
+
+                            <div class="col-md-6">
+                                <br />
+                                <label> One time benefit (Portion)<span class="text-danger">*</span> : </label>
+                            </div>
+                        </div>
+
+                        <!-- row-10 -->
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input type="number" class="form-control" id="TrackingPeriod"
+                                    formControlName="TrackingPeriod">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="number" min="0.00" max="100" (keyup)="checkNumber()" class="form-control"
+                                    id="OneTimeBenefit" formControlName="OneTimeBenefit" step="00.00">
+                            </div>
+                        </div>
+
+                        <div style="text-align: right; margin-top:15px;">
+                            <button type="button" class="btn btn-outline-primary"
+                                style="margin-right:10px; width: 95px;" (click)="onClickSave()"> Save </button>
+                            <button type="button" class="btn btn-outline-dark" style="width: 95px;"> Cancel </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

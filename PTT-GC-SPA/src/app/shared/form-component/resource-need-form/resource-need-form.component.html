@@ -1,0 +1,1457 @@
+<!-- <app-initiative-box></app-initiative-box>
+
+<app-form-tabs></app-form-tabs> -->
+
+
+<form [formGroup]="resourceNeededForm">
+  <div class="row">
+    <div class="col-12">
+      <div class=" card text card-initiative">
+        <div class="card-body">
+          <div class="form-initiative">
+            <app-initiative-info [id]="id"></app-initiative-info>
+          </div>
+          <div class="form-initiative">
+            <h3>Resource Needed</h3>
+          </div>
+          <div class="form-initiative">
+            <!-- Manpower -->
+            <div class="row mt-4">
+              <div class=" col-md-12">
+                <h4> Manpower </h4>
+                <hr>
+              </div>
+            </div>
+            <!-- Change chps to checkControl or checkNotControl -->
+            <div class=" align-items-center"
+              [ngClass]="ps.checkControl(resourceNeededForm,'ResourceNeeded','isManpowerRequire')">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="manpower_require" [value]="true" class="custom-control-input" type="radio"
+                  name="isManpowerRequire" formControlName="isManpowerRequire">
+                <label class="custom-control-label" for="manpower_require"> Require </label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="manpower_not_require" [value]="false" class="custom-control-input" type="radio"
+                  name="isManpowerRequire" formControlName="isManpowerRequire">
+                <label class="custom-control-label" for="manpower_not_require"> Not Require </label>
+              </div>
+            </div>
+            <br>
+            <div class=" align-items-center">
+              <form [formGroup]="resourceNeededForm.get('manpowerForm')">
+                <table class="table table-bordered" *ngIf="manpowerRequire">
+                  <thead class="text-center bg-light">
+                    <th width="5%">No.</th>
+                    <th width="50%">Position</th>
+                    <th width="15%">Amount Person</th>
+                    <th width="25%">Remark</th>
+                    <th width="5%"></th>
+                  </thead>
+                  <tbody
+                    *ngFor="let control of resourceNeededForm.get('manpowerForm').get('manpowerData')['controls']; let i=index">
+                    <tr [formGroup]="control">
+                      <td class="text-center"> {{ i+1 }} </td>
+                      <td class="form-group">
+                        <input type="text" class="form-control" formControlName="position"
+                          [ngClass]="{'is-invalid': invalidManpower(i, 'position')}">
+                        <div class="invalid-feedback" *ngIf="invalidManpower(i, 'position')">
+                          Position is required !
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <input type="text" class="form-control" type="number" min="0" formControlName="amountPerson"
+                          [ngClass]="{'is-invalid': invalidManpower(i, 'amountPerson')}">
+                        <div class="invalid-feedback" *ngIf="invalidManpower(i, 'amountPerson')">
+                          Amount Person is required !
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <input type="text" class="form-control" formControlName="remark">
+                      </td>
+                      <td class="text-center">
+                        <button *ngIf="!viewMode" class="btn btn-danger btn-sm" (click)="RemoveManpower(i)"
+                          [disabled]="GetIsDisabledManpower">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
+            </div>
+            <div>
+              <button (click)="AddManpower()" class="btn btn-primary mr-5" *ngIf="manpowerRequire && !viewMode">
+                <i class="fas fa-plus-square mr-2"></i> Add New
+              </button>
+            </div>
+            <br>
+
+
+
+            <!-- Import / Export facilit -->
+            <div class="row mt-4">
+              <div class=" col-md-12">
+                <h4> Import / Export facility </h4>
+                <hr>
+              </div>
+            </div>
+
+            <div class=" align-items-center"
+              [ngClass]="ps.checkControl(resourceNeededForm,'ResourceNeeded','isImportRequire')">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="facility_require" [value]="true" class="custom-control-input" type="radio"
+                  name="isImportRequire" formControlName="isImportRequire">
+                <label class="custom-control-label" for="facility_require"> Require </label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="facility_not_require" [value]="false" class="custom-control-input" type="radio"
+                  name="isImportRequire" formControlName="isImportRequire">
+                <label class="custom-control-label" for="facility_not_require"> Not Require </label>
+              </div>
+            </div>
+            <br>
+            <div class="col-12" *ngIf="facilityRequire">
+              <div [ngClass]="ps.checkControl(resourceNeededForm,'ResourceNeeded','remarkImport')">
+                <div class="col-1" style="padding: 0%;">Remark</div>
+                <textarea class="form-control col-11" rows="5" formControlName="remarkImport"
+                  [ngClass]="{'is-invalid': invalidReamrkImport()}"></textarea>
+                <div class="invalid-feedback" *ngIf="invalidReamrkImport()">
+                  Remark is required !
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <!-- Land -->
+            <div class="row mt-4">
+              <div class=" col-md-12">
+                <h4> Land </h4>
+                <hr>
+              </div>
+            </div>
+
+            <div class=" align-items-center"
+              [ngClass]="ps.checkControl(resourceNeededForm,'ResourceNeeded','isLandRequire')">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="land_require" [value]="true" class="custom-control-input" type="radio" name="isLandRequire"
+                  formControlName="isLandRequire">
+                <label class="custom-control-label" for="land_require"> Require </label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="land_not_require" [value]="false" class="custom-control-input" type="radio"
+                  name="isLandRequire" formControlName="isLandRequire">
+                <label class="custom-control-label" for="land_not_require"> Not Require </label>
+              </div>
+            </div>
+            <br>
+            <div class=" align-items-center">
+              <form [formGroup]="resourceNeededForm.get('landForm')">
+                <table class="table table-bordered" *ngIf="landRequire">
+                  <thead class="text-center bg-light">
+                    <th width="5%">No.</th>
+                    <th width="30%">Location</th>
+                    <th width="15%">Amount</th>
+                    <th width="15%">Unit</th>
+                    <th width="15%">Start Date</th>
+                    <th width="15%">Remark</th>
+                    <th width="5%"></th>
+                  </thead>
+                  <tbody
+                    *ngFor="let control of resourceNeededForm.get('landForm').get('landData')['controls']; let i=index">
+                    <tr [formGroup]="control">
+                      <td class="text-center"> {{ i+1 }} </td>
+                      <td class="form-group">
+                        <input type="text" class="form-control" formControlName="location"
+                          [ngClass]="{'is-invalid': invalidFormNonArray(i,'landForm','landData' ,'location')}">
+                        <div class="invalid-feedback" *ngIf="invalidFormNonArray(i,'landForm','landData' ,'location')">
+                          Location is required !
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <input type="text" class="form-control" type="number" min="0" formControlName="amount"
+                          [ngClass]="{'is-invalid': invalidFormNonArray(i,'landForm','landData' ,'amount')}">
+                        <div class=" invalid-feedback" *ngIf="invalidFormNonArray(i,'landForm','landData' ,'amount')">
+                          Amount is required !
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <select class="form-control" formControlName="unit"
+                          [ngClass]="{'is-invalid': invalidFormNonArray(i,'landForm','landData' ,'unit')}">
+                          <option value="rai">Rai</option>
+                          <option value="wa_sqaure">Wa2</option>
+                          <option value="meter_sqaure">m2</option>
+                        </select>
+                        <div class=" invalid-feedback" *ngIf="invalidFormNonArray(i,'landForm','landData' ,'unit')">
+                          Unit is required !
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <input type="text" class="form-control" type="text" formControlName="startDate"
+                          [ngClass]="{'is-invalid': invalidFormNonArray(i,'landForm','landData' ,'startDate')}"
+                          [bsConfig]="bsConfig" bsDatepicker [triggers]="viewMode ? '' : 'click:click'">
+                        <div class=" invalid-feedback"
+                          *ngIf="invalidFormNonArray(i,'landForm','landData' ,'startDate')">
+                          Amount is required !
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <input type="text" class="form-control" formControlName="remark">
+                      </td>
+                      <td class="text-center">
+                        <button *ngIf="!viewMode" class="btn btn-danger btn-sm" (click)="RemoveLand(i)"
+                          [disabled]="GetIsDisabledLand">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
+              <button (click)="AddLand()" class="btn btn-primary mr-5" *ngIf="landRequire && !viewMode">
+                <i class="fas fa-plus-square mr-2"></i> Add New
+              </button>
+            </div>
+            <br>
+
+            <!-- Air pollution -->
+            <div class="row mt-4">
+              <div class=" col-md-12">
+                <h4> Air pollution </h4>
+                <hr>
+              </div>
+            </div>
+
+            <div class=" align-items-center"
+              [ngClass]="ps.checkControl(resourceNeededForm,'ResourceNeeded','isAirPollutionRequire')">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="air_require" [value]="true" class="custom-control-input" type="radio"
+                  name="isAirPollutionRequire" formControlName="isAirPollutionRequire">
+                <label class="custom-control-label" for="air_require"> Require </label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="air_not_require" [value]="false" class="custom-control-input" type="radio"
+                  name="isAirPollutionRequire" formControlName="isAirPollutionRequire">
+                <label class="custom-control-label" for="air_not_require"> Not Require </label>
+              </div>
+            </div>
+            <br>
+            <div class=" align-items-center">
+              <form [formGroup]="resourceNeededForm.get('airForm')">
+                <table class="table table-bordered" *ngIf="airRequire">
+                  <thead class="text-center bg-light">
+                    <th width="5%">No.</th>
+                    <th width="40%">Topic</th>
+                    <th width="15%">Amount</th>
+                    <th width="15%">Unit</th>
+                    <th width="15%">Remark</th>
+                    <th width="5%"></th>
+                  </thead>
+                  <tbody
+                    *ngFor="let control of resourceNeededForm.get('airForm').get('pollutionData')['controls']; let i=index">
+                    <tr [formGroup]="control">
+                      <td class="text-center"> {{ i+1 }} </td>
+                      <td class="form-group">
+                        <select class="form-control" formControlName="topic"
+                          [ngClass]="{'is-invalid': invalidFormNonArray(i,'airForm','pollutionData' ,'topic')}">
+                          <option value="SOx">SOx</option>
+                          <option value="Nox">NOx</option>
+                          <option value="CO2">CO2</option>
+                          <option value="dust">Dust</option>
+                          <option value="CO">CO</option>
+                          <option value="H2S">H2S</option>
+                          <option value="Hg">Hg</option>
+                        </select>
+                        <div class=" invalid-feedback"
+                          *ngIf="invalidFormNonArray(i,'airForm','pollutionData' ,'topic')">
+                          Topic is required !
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <input type="text" class="form-control" type="number" min="0" formControlName="amount"
+                          [ngClass]="{'is-invalid': invalidFormNonArray(i,'airForm','pollutionData' ,'amount')}">
+                        <div class=" invalid-feedback"
+                          *ngIf="invalidFormNonArray(i,'airForm','pollutionData' ,'amount')">
+                          Amount is required !
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <select class="form-control" formControlName="unit" (change)="unitRequire(i)"
+                          [ngClass]="{'is-invalid': invalidFormNonArray(i,'airForm','pollutionData' ,'unit')}">
+                          <option value="g_per_s">g/s</option>
+                          <option value="ppm">ppm</option>
+                          <option value="ton">ton</option>
+                          <option value="m3">m3</option>
+                          <option value="mg_per_m3">mg/m3</option>
+                          <option value="other">Other</option>
+                        </select>
+                        <div class=" invalid-feedback"
+                          *ngIf="invalidFormNonArray(i,'airForm','pollutionData' ,'amount')">
+                          Unit is required !
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <input type="text" class="form-control" formControlName="remark"
+                          [ngClass]="{ 'is-invalid': invalidRemark('airForm','pollutionData', i) }">
+                        <div class="invalid-feedback" *ngIf="invalidRemark('airForm','pollutionData', i)">
+                          Remark is required !
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <button *ngIf="!viewMode" class="btn btn-danger btn-sm" (click)="RemoveAir(i)"
+                          [disabled]="GetIsDisabledAir">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
+              <button (click)="AddAir()" class="btn btn-primary mr-5" *ngIf="airRequire && !viewMode">
+                <i class="fas fa-plus-square mr-2"></i> Add New
+              </button>
+            </div>
+            <br>
+
+            <!-- Waste -->
+            <div class="row mt-4">
+              <div class=" col-md-12">
+                <h4> Waste </h4>
+                <hr>
+              </div>
+            </div>
+
+            <div class=" align-items-center"
+              [ngClass]="ps.checkControl(resourceNeededForm,'ResourceNeeded','isWasteRequire')">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="waste_require" [value]="true" class="custom-control-input" type="radio" name="isWasteRequire"
+                  formControlName="isWasteRequire">
+                <label class="custom-control-label" for="waste_require"> Require </label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="waste_not_require" [value]="false" class="custom-control-input" type="radio"
+                  name="isWasteRequire" formControlName="isWasteRequire">
+                <label class="custom-control-label" for="waste_not_require"> Not Require </label>
+              </div>
+            </div>
+            <br>
+            <div class=" align-items-center">
+              <form [formGroup]="resourceNeededForm.get('wasteForm')">
+                <table class="table table-bordered" *ngIf="wasteRequire">
+                  <thead class="text-center bg-light">
+                    <th width="5%">No.</th>
+                    <th width="40%">Topic</th>
+                    <th width="15%">Amount</th>
+                    <th width="15%">Unit</th>
+                    <th width="15%">Remark</th>
+                    <th width="5%"></th>
+                  </thead>
+                  <tbody
+                    *ngFor="let control of resourceNeededForm.get('wasteForm').get('wasteData')['controls']; let i=index">
+                    <tr [formGroup]="control">
+                      <td class="text-center"> {{ i+1 }} </td>
+                      <td class="form-group">
+                        <input type="text" class="form-control" formControlName="topic"
+                          [ngClass]="{'is-invalid': invalidFormNonArray(i,'wasteForm','wasteData' ,'topic')}">
+                        <div class=" invalid-feedback" *ngIf="invalidFormNonArray(i,'wasteForm','wasteData' ,'topic')">
+                          Topic is required !
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <input type="text" class="form-control" type="number" min="0" formControlName="amount"
+                          [ngClass]="{'is-invalid': invalidFormNonArray(i,'wasteForm','wasteData' ,'amount')}">
+                        <div class=" invalid-feedback" *ngIf="invalidFormNonArray(i,'wasteForm','wasteData' ,'amount')">
+                          Amount is required !
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <select class="form-control" formControlName="unit" (change)="unitRequire(i)"
+                          [ngClass]="{'is-invalid': invalidFormNonArray(i,'wasteForm','wasteData' ,'unit')}">
+                          <option value="g_per_s">g/s</option>
+                          <option value="ppm">ppm</option>
+                          <option value="ton">ton</option>
+                          <option value="m3">m3</option>
+                          <option value="other">Other</option>
+                        </select>
+                        <div class=" invalid-feedback" *ngIf="invalidFormNonArray(i,'wasteForm','wasteData' ,'unit')">
+                          Unit is required !
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <input type="text" class="form-control" formControlName="remark"
+                          [ngClass]="{ 'is-invalid': invalidRemark('wasteForm','wasteData', i) }">
+                        <div class="invalid-feedback" *ngIf="invalidRemark('wasteForm','wasteData', i)">
+                          Remark is required !
+                        </div>
+                      </td>
+                      <td class="text-center">
+                        <button *ngIf="!viewMode" class="btn btn-danger btn-sm" (click)="RemoveWaste(i)"
+                          [disabled]="GetIsDisabledWaste">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
+              <button (click)="AddWaste()" class="btn btn-primary mr-5" *ngIf="wasteRequire && !viewMode">
+                <i class="fas fa-plus-square mr-2"></i> Add New
+              </button>
+            </div>
+
+            <!-- Utility -->
+            <div class="row mt-4">
+              <div class=" col-md-12">
+                <h4 [ngClass]="{'invalidCollapse': utilitySomeRequire}"> Utility <span *ngIf="utilitySomeRequire"
+                    class="invalidCollapse">( Please enter information )</span></h4>
+                <hr>
+              </div>
+            </div>
+
+            <div class=" align-items-center"
+              [ngClass]="ps.checkControl(resourceNeededForm,'ResourceNeeded','isUtilityRequire')">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="utility_require" value="true" (change)="OnChangeRequireUtility($event)"
+                  class="custom-control-input" type="radio" name="isUtilityRequire" formControlName="isUtilityRequire">
+                <label class="custom-control-label" for="utility_require"> Require </label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="utility_not_require" value="false" (change)="OnChangeRequireUtility($event)"
+                  class="custom-control-input" type="radio" name="isUtilityRequire" formControlName="isUtilityRequire">
+                <label class="custom-control-label" for="utility_not_require"> Not Require </label>
+              </div>
+            </div>
+            <br>
+            <div class=" align-items-center">
+              <form [formGroup]="resourceNeededForm.get('utilityData')">
+                <div *ngIf="utilityRequire" style="padding-left: 1%;">
+                  <h5 style="color: black;"><b> Quantities (Condition at battery limit) </b></h5>
+                  1.1 Electricity
+                  <table class="table table-bordered">
+                    <thead class="text-center bg-light">
+                      <tr>
+                        <th width="5%" rowspan="2" scope="rowgroup">No.</th>
+                        <th width="30%" rowspan="2" scope="rowgroup">Voltage (kV)</th>
+                        <th width="60%" colspan="2" scope="colgroup">Capacity (MW)</th>
+                        <th width="5%" rowspan="2" scope="rowgroup"></th>
+                      </tr>
+                      <tr>
+                        <th scope="col">Normal</th>
+                        <th scope="col">Max</th>
+                      </tr>
+                    </thead>
+                    <ng-template [ngIf]="electricityFormArray.length !== 0" [ngIfElse]="NoData">
+                      <tbody
+                        *ngFor="let control of getResourceNeedForm()?.get('utilityData')?.get('electricityData')['controls']; let i=index">
+
+                        <tr [formGroup]="control">
+                          <td class="text-center"> {{ i+1 }} </td>
+                          <td class="form-group">
+                            <input type="number" class="form-control" formControlName="voltage"
+                              [ngClass]="{'is-invalid': invalidFormNonArray(i,'utilityData','electricityData' ,'voltage')}">
+                            <div class=" invalid-feedback"
+                              *ngIf="invalidFormNonArray(i,'utilityData','electricityData' ,'voltage')">
+                              Voltage is required !
+                            </div>
+                          </td>
+                          <td class="form-group">
+                            <input type="number" class="form-control" formControlName="normal"
+                              [ngClass]="{'is-invalid': invalidFormNonArray(i,'utilityData','electricityData' ,'normal')}">
+                            <div class=" invalid-feedback"
+                              *ngIf="invalidFormNonArray(i,'utilityData','electricityData' ,'voltage')">
+                              Normal is required !
+                            </div>
+                          </td>
+                          <td class="form-group">
+                            <input type="number" class="form-control" formControlName="max"
+                              [ngClass]="{'is-invalid': invalidFormNonArray(i,'utilityData','electricityData' ,'max')}">
+                            <div class=" invalid-feedback"
+                              *ngIf="invalidFormNonArray(i,'utilityData','electricityData' ,'max')">
+                              Max is required !
+                            </div>
+                          </td>
+                          <td class="text-center">
+                            <button *ngIf="!viewMode" class="btn btn-danger btn-sm" (click)="RemoveElectricity(i)"
+                              [disabled]="GetIsDisabledElectricity">
+                              <i class="fas fa-trash-alt"></i>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </ng-template>
+                  </table>
+                  <ng-template #NoData>
+                    <tbody>
+                      <tr>
+                        <td colspan="9" class="text-center">
+                          No Data Available.
+                        </td>
+                      </tr>
+                    </tbody>
+                  </ng-template>
+                  <button *ngIf="!viewMode" class="btn btn-primary mr-5" (click)="AddElectricity()">
+                    <i class="fas fa-plus-square mr-2"></i> Add New
+                  </button>
+                </div>
+                <br>
+                <br>
+                <div *ngIf="utilityRequire" style="padding-left: 1%;"
+                  [formGroup]="resourceNeededForm.get('utilityData').get('steamData')">
+                  1.2 Steam
+                  <table class="table table-bordered">
+                    <thead class="text-center bg-light">
+                      <tr>
+                        <th width="20%" rowspan="2" scope=" rowgroup">Topic</th>
+                        <th width="40%" colspan="3" scope="colgroup">Normal</th>
+                        <th width="40%" colspan="3" scope="colgroup">Max</th>
+                      </tr>
+                      <tr>
+                        <th scope="col">Pressure<br>(kg/cm2.G)</th>
+                        <th scope="col">Temp<br>(C)</th>
+                        <th scope="col">Flow<br>(ton/hr)</th>
+                        <th scope="col">Pressure<br>(kg/cm2.G)</th>
+                        <th scope="col">Temp<br>(C)</th>
+                        <th scope="col">Flow<br>(ton/hr)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr [formGroup]="resourceNeededForm.get('utilityData').get('steamData').get('highPressure')">
+                        <th class="form-group" scope="row">High Pressure</th>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'steamData', 'highPressure', 'pressureNormal')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'highPressure', 'pressureNormal')">
+                            Highpressure is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="tempNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('steamData', 'highPressure', 'tempNormal')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'highPressure', 'tempNormal')">
+                            Temp Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'steamData', 'highPressure', 'flowNormal')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'highPressure', 'flowNormal')">
+                            Flow Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'steamData', 'highPressure', 'pressureMax')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'highPressure', 'pressureMax')">
+                            Pressure Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="tempMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('steamData', 'highPressure', 'tempMax')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'highPressure', 'tempMax')">
+                            Temp Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'steamData', 'highPressure', 'flowMax')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'highPressure', 'flowMax')">
+                            Flow Max is required !
+                          </div>
+                        </td>
+                      </tr>
+                      <tr [formGroup]="resourceNeededForm.get('utilityData').get('steamData').get('mediumPressure')">
+                        <th class="form-group" scope="row">Medium Pressure</th>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('steamData', 'mediumPressure', 'pressureNormal')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'mediumPressure', 'pressureNormal')">
+                            Pressure Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="tempNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('steamData', 'mediumPressure', 'tempNormal')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'mediumPressure', 'tempNormal')">
+                            Temp Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'steamData', 'mediumPressure', 'flowNormal')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'mediumPressure', 'flowNormal')">
+                            Flow Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'steamData', 'mediumPressure', 'pressureMax')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('steamData', 'mediumPressure', 'pressureMax')">
+                            Pressure Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="tempMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'steamData', 'mediumPressure', 'tempMax')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'mediumPressure', 'tempMax')">
+                            Temp Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'steamData', 'mediumPressure', 'flowMax')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('steamData', 'mediumPressure', 'flowMax')">
+                            Flow Max is required !
+                          </div>
+                        </td>
+                      </tr>
+                      <tr [formGroup]="resourceNeededForm.get('utilityData').get('steamData').get('lowPressure')">
+                        <th class="form-group" scope="row">Low Pressure</th>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'steamData', 'lowPressure', 'pressureNormal')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'lowPressure', 'pressureNormal')">
+                            Pressure Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="tempNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('steamData', 'lowPressure', 'tempNormal')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'lowPressure', 'tempNormal')">
+                            Temp Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('steamData', 'lowPressure', 'flowNormal')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('steamData', 'lowPressure', 'flowNormal')">
+                            Flow Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('steamData', 'lowPressure', 'pressureMax')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'lowPressure', 'pressureMax')">
+                            Pressure Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="tempMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('steamData', 'lowPressure', 'tempMax')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('steamData', 'lowPressure', 'tempMax')">
+                            Temp Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('steamData', 'lowPressure', 'flowMax')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'lowPressure', 'flowMax')">
+                            Flow Max is required !
+                          </div>
+                        </td>
+                      </tr>
+                      <tr
+                        [formGroup]="resourceNeededForm.get('utilityData').get('steamData').get('otherSteamPressure')">
+                        <th class="form-group" scope="row">Other Stream Pressure</th>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'steamData', 'otherSteamPressure', 'pressureNormal')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'otherSteamPressure', 'pressureNormal')">
+                            Pressure Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="tempNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('steamData', 'otherSteamPressure', 'tempNormal')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('steamData', 'otherSteamPressure', 'tempNormal')">
+                            Temp Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'steamData', 'otherSteamPressure', 'flowNormal')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'otherSteamPressure', 'flowNormal')">
+                            Flow Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'steamData', 'otherSteamPressure', 'pressureMax')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'otherSteamPressure', 'pressureMax')">
+                            Pressure Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="tempMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'steamData', 'otherSteamPressure', 'tempMax')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'steamData', 'otherSteamPressure', 'tempMax')">
+                            Temp Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'steamData', 'otherSteamPressure', 'flowMax')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('steamData', 'otherSteamPressure', 'flowMax')">
+                            Flow Max is required !
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div *ngIf="utilityRequire" style="padding-left: 1%;"
+                  [formGroup]="resourceNeededForm.get('utilityData').get('deminWaterData')">
+                  1.3 Demin Water
+                  <table class="table table-bordered">
+                    <thead class="text-center bg-light">
+                      <tr>
+                        <th width="50%" colspan="2" scope="colgroup">Normal</th>
+                        <th width="50%" colspan="2" scope="colgroup">Max</th>
+                      </tr>
+                      <tr>
+                        <th scope="col">Pressure<br>(kg/cm2.G)</th>
+                        <th scope="col">Flow<br>(m3/hr)</th>
+                        <th scope="col">Pressure<br>(kg/cm2.G)</th>
+                        <th scope="col">Flow<br>(m3/hr)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'deminWaterData', 'pressureNormal', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('steamData', 'otherSteamPressure', 'flowMax')">
+                            Pressure Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'deminWaterData', 'flowNormal', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'deminWaterData', 'flowNormal', null)">
+                            Flow Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'deminWaterData', 'pressureMax', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'deminWaterData', 'pressureMax', null)">
+                            Pressure Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'deminWaterData', 'flowMax', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'deminWaterData', 'flowMax', null)">
+                            Flow Max is required !
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div *ngIf="utilityRequire" style="padding-left: 1%;"
+                  [formGroup]="resourceNeededForm.get('utilityData').get('treatedClarifyWater')">
+                  1.4 Treated/Clarify Water
+                  <table class="table table-bordered">
+                    <thead class="text-center bg-light">
+                      <tr>
+                        <th width="50%" colspan="2" scope="colgroup">Normal</th>
+                        <th width="50%" colspan="2" scope="colgroup">Max</th>
+                      </tr>
+                      <tr>
+                        <th scope="col">Pressure<br>(kg/cm2.G)</th>
+                        <th scope="col">Flow<br>(m3/hr)</th>
+                        <th scope="col">Pressure<br>(kg/cm2.G)</th>
+                        <th scope="col">Flow<br>(m3/hr)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'treatedClarifyWater', 'pressureNormal', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'treatedClarifyWater', 'pressureNormal', null)">
+                            Pressure Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'treatedClarifyWater', 'flowNormal', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'treatedClarifyWater', 'flowNormal', null)">
+                            Flow Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'treatedClarifyWater', 'pressureMax', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'treatedClarifyWater', 'pressureMax', null)">
+                            Pressure Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'treatedClarifyWater', 'flowMax', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'treatedClarifyWater', 'flowMax', null)">
+                            Flow Max is required !
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div *ngIf="utilityRequire" style="padding-left: 1%;"
+                  [formGroup]="resourceNeededForm.get('utilityData').get('returnWater')">
+                  1.5 Condensate Return Water
+                  <table class="table table-bordered">
+                    <thead class="text-center bg-light">
+                      <tr>
+                        <th width="50%" colspan="3" scope="colgroup">Normal</th>
+                        <th width="50%" colspan="3" scope="colgroup">Max</th>
+                      </tr>
+                      <tr>
+                        <th scope="col">Pressure<br>(kg/cm2.G)</th>
+                        <th scope="col">Temp<br>(C)</th>
+                        <th scope="col">Flow<br>(m3/hr)</th>
+                        <th scope="col">Pressure<br>(kg/cm2.G)</th>
+                        <th scope="col">Temp<br>(C)</th>
+                        <th scope="col">Flow<br>(m3/hr)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'returnWater', 'pressureNormal', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'returnWater', 'pressureNormal', null)">
+                            Pressure Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="tempNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'returnWater', 'tempNormal', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'returnWater', 'tempNormal', null)">
+                            Temp Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'returnWater', 'flowNormal', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'returnWater', 'flowNormal', null)">
+                            Flow Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'returnWater', 'pressureMax', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'returnWater', 'pressureMax', null)">
+                            Pressure Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="tempMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'returnWater', 'tempMax', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'returnWater', 'tempMax', null)">
+                            Temp Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'returnWater', 'flowMax', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'returnWater', 'flowMax', null)">
+                            Flow Max is required !
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div *ngIf="utilityRequire" style="padding-left: 1%;"
+                  [formGroup]="resourceNeededForm.get('utilityData').get('hydrogen')">
+                  1.6 Hydrogen
+                  <table class="table table-bordered">
+                    <thead class="text-center bg-light">
+                      <tr>
+                        <th width="50%" colspan="2" scope="colgroup">Normal</th>
+                        <th width="50%" colspan="2" scope="colgroup">Max</th>
+                      </tr>
+                      <tr>
+                        <th scope="col">Pressure<br>(kg/cm2.G)</th>
+                        <th scope="col">Flow<br>(Nm3/hr)</th>
+                        <th scope="col">Pressure<br>(kg/cm2.G)</th>
+                        <th scope="col">Flow<br>(Nm3/hr)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'hydrogen', 'pressureNormal', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'hydrogen', 'pressureNormal', null)">
+                            Pressure Normal Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'hydrogen', 'flowNormal', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'hydrogen', 'flowNormal', null)">
+                            Flow Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'hydrogen', 'pressureMax', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'hydrogen', 'pressureMax', null)">
+                            Pressure Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'hydrogen', 'flowMax', null)}">
+                          <div class=" invalid-feedback" *ngIf="invalidNonArrayUtility( 'hydrogen', 'flowMax', null)">
+                            Flow Max is required !
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div *ngIf="utilityRequire" style="padding-left: 1%;"
+                  [formGroup]="resourceNeededForm.get('utilityData').get('nitrogen')">
+                  1.7 Nitrogen
+                  <table class="table table-bordered">
+                    <thead class="text-center bg-light">
+                      <tr>
+                        <th width="50%" colspan="2" scope="colgroup">Normal</th>
+                        <th width="50%" colspan="2" scope="colgroup">Max</th>
+                      </tr>
+                      <tr>
+                        <th scope="col">Pressure<br>(kg/cm2.G)</th>
+                        <th scope="col">Flow<br>(Nm3/hr)</th>
+                        <th scope="col">Pressure<br>(kg/cm2.G)</th>
+                        <th scope="col">Flow<br>(Nm3/hr)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'nitrogen', 'pressureNormal', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'nitrogen', 'pressureNormal', null)">
+                            Pressure Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'nitrogen', 'flowNormal', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'nitrogen', 'flowNormal', null)">
+                            Flow Normal is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'nitrogen', 'pressureMax', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'nitrogen', 'pressureMax', null)">
+                            Pressure Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'nitrogen', 'flowMax', null)}">
+                          <div class=" invalid-feedback" *ngIf="invalidNonArrayUtility( 'nitrogen', 'flowMax', null)">
+                            Flow Max is required !
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div *ngIf="utilityRequire" style="padding-left: 1%;"
+                  [formGroup]="resourceNeededForm.get('utilityData').get('naturalGas')">
+                  1.8 Natural Gas
+                  <table class="table table-bordered">
+                    <thead class="text-center bg-light">
+                      <tr>
+                        <th width="50%" colspan="2" scope="colgroup">Normal</th>
+                        <th width="50%" colspan="2" scope="colgroup">Max</th>
+                      </tr>
+                      <tr>
+                        <th scope="col">Pressure<br>(psig)</th>
+                        <th scope="col">Flow<br>(MMBTU/DAY)</th>
+                        <th scope="col">Pressure<br>(psig)</th>
+                        <th scope="col">Flow<br>(MMBTU/DAY)</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'naturalGas', 'pressureNormal', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'naturalGas', 'pressureNormal', null)">
+                            Flow Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowNormal"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'naturalGas', 'flowNormal', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'naturalGas', 'flowNormal', null)">
+                            Flow Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="pressureMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'naturalGas', 'pressureMax', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility( 'naturalGas', 'pressureMax', null)">
+                            Flow Max is required !
+                          </div>
+                        </td>
+                        <td class="form-group">
+                          <input type="number" class="form-control" formControlName="flowMax"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility( 'naturalGas', 'flowMax', null)}">
+                          <div class=" invalid-feedback" *ngIf="invalidNonArrayUtility( 'naturalGas', 'flowMax', null)">
+                            Flow Max is required !
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div *ngIf="utilityRequire" style="padding-left: 1%;">
+                  <p>Other</p>
+
+                  <div
+                    *ngFor="let controlOther of resourceNeededForm.get('utilityData').get('otherData')['controls']; let i=index">
+                    <div [formGroup]="controlOther">
+                      <div class="row">
+                        <div class="col-md-12 mb-1">
+                          <span style="float: left;"> 1.{{ i+9 }}</span>
+                          <button style="float: right;" type="button" class="btn btn-danger btn-sm mr-1 btn-list"
+                            (click)="DeleteOther(i)" id="delete-button-link">
+                            <i class="fas fa-trash-alt"></i>
+                          </button>
+                        </div>
+                        <div class="col-md-12">
+                          <table class="table table-bordered">
+                            <thead class="text-center bg-light">
+                              <tr>
+                                <th width="100%" colspan="4" scope="colgroup"><input type="text" class="form-control"
+                                    placeholder="Name Table" style="background-color: #FFFFF0;" formControlName="name"
+                                    [ngClass]="{'is-invalid': invalidOther(i, 'name')}"></th>
+                                <div class=" invalid-feedback" *ngIf="invalidOther(i, 'name')">
+                                  Name Unit is required !
+                                </div>
+                              </tr>
+                              <tr>
+                                <th width="50%" colspan="2" scope="colgroup">Normal</th>
+                                <th width="50%" colspan="2" scope="colgroup">Max</th>
+                              </tr>
+                              <tr>
+                                <th scope="col">Pressure</th>
+                                <th scope="col">Flow</th>
+                                <th scope="col">Pressure</th>
+                                <th scope="col">Flow</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td class="form-group">
+                                  <input type="text" class="form-control" formControlName="pressureNormalUnit"
+                                    placeholder="(Unit)"
+                                    [ngClass]="{'is-invalid': invalidOther(i, 'pressureNormalUnit')}">
+                                  <div class=" invalid-feedback" *ngIf="invalidOther(i, 'pressureNormalUnit')">
+                                    Pressure Normal Unit is required !
+                                  </div>
+                                </td>
+                                <td class="form-group">
+                                  <input type="text" class="form-control" formControlName="flowNormalUnit"
+                                    placeholder="(Unit)" [ngClass]="{'is-invalid': invalidOther(i, 'flowNormalUnit')}">
+                                  <div class=" invalid-feedback" *ngIf="invalidOther(i, 'flowNormalUnit')">
+                                    Pressure Normal Unit is required !
+                                  </div>
+                                </td>
+                                <td class="form-group">
+                                  <input type="text" class="form-control" formControlName="pressureMaxUnit"
+                                    placeholder="(Unit)" [ngClass]="{'is-invalid': invalidOther(i, 'pressureMaxUnit')}">
+                                  <div class=" invalid-feedback" *ngIf="invalidOther(i, 'pressureMaxUnit')">
+                                    Pressure Max Unit is required !
+                                  </div>
+                                </td>
+                                <td class="form-group">
+                                  <input type="text" class="form-control" formControlName="flowMaxUnit"
+                                    placeholder="(Unit)" [ngClass]="{'is-invalid': invalidOther(i, 'flowMaxUnit')}">
+                                  <div class=" invalid-feedback" *ngIf="invalidOther(i, 'flowMaxUnit')">
+                                    Flow Max Unit is required !
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td class="form-group">
+                                  <input type="number" class="form-control" formControlName="pressureNormalAmount"
+                                    placeholder="(Amount)"
+                                    [ngClass]="{'is-invalid': invalidOther(i, 'pressureNormalAmount')}">
+                                  <div class=" invalid-feedback" *ngIf="invalidOther(i, 'pressureNormalAmount')">
+                                    Pressure Normal is required !
+                                  </div>
+                                </td>
+                                <td class="form-group">
+                                  <input type="number" class="form-control" formControlName="flowNormalAmount"
+                                    placeholder="(Amount)"
+                                    [ngClass]="{'is-invalid': invalidOther(i, 'flowNormalAmount')}">
+                                  <div class=" invalid-feedback" *ngIf="invalidOther(i, 'flowNormalAmount')">
+                                    Flow Normal is required !
+                                  </div>
+                                </td>
+                                <td class="form-group">
+                                  <input type="number" class="form-control" formControlName="pressureMaxAmount"
+                                    placeholder="(Amount)"
+                                    [ngClass]="{'is-invalid': invalidOther(i, 'pressureMaxAmount')}">
+                                  <div class=" invalid-feedback" *ngIf="invalidOther(i, 'pressureMaxAmount')">
+                                    Pressure Max is required !
+                                  </div>
+                                </td>
+                                <td class="form-group">
+                                  <input type="number" class="form-control" formControlName="flowMaxAmount"
+                                    placeholder="(Amount)" [ngClass]="{'is-invalid': invalidOther(i, 'flowMaxAmount')}">
+                                  <div class=" invalid-feedback" *ngIf="invalidOther(i, 'flowMaxAmount')">
+                                    Flow Max is required !
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button *ngIf="!viewMode" class="btn btn-primary mr-5" (click)="AddOther()">
+                    <i class="fas fa-plus-square mr-2"></i> Add New
+                  </button>
+                </div>
+                <br>
+                <br>
+                <div *ngIf="utilityRequire" style="padding-left: 1%;">
+                  <h5 style="color: black;"><b> Time Line </b></h5>
+                  <table class="table table-bordered">
+                    <thead class="text-center bg-light">
+                      <th width="25%"></th>
+                      <th width="25%">First Supply (Date)</th>
+                      <th width="25%">COD (Date)</th>
+                      <th width="25%">Supply Periods (YRS)</th>
+                    </thead>
+
+                    <tbody>
+                      <tr
+                        [formGroup]="getResourceNeedForm()?.get('utilityData')?.get('electricityData')['controls'][0]">
+                        <th>Electricity</th>
+                        <th><input (bsValueChange)="OnChangeFirstSupply($event)" type="text" class="form-control"
+                            type="text" [bsConfig]="bsConfig" bsDatepicker formControlName="firstSupply"
+                            [ngClass]="{'is-invalid': invalidFormNonArray(0,'utilityData','electricityData' ,'firstSupply')}"
+                            [triggers]="viewMode ? '' : 'click:click'">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidFormNonArray(0,'utilityData','electricityData' ,'firstSupply')">
+                            First Supply is required !
+                          </div>
+                        </th>
+                        <th><input type="text" (bsValueChange)="OnChangeCOD($event)" class="form-control" type="text"
+                            [bsConfig]="bsConfig" bsDatepicker formControlName="cod"
+                            [ngClass]="{'is-invalid': invalidFormNonArray(0,'utilityData','electricityData' ,'cod')}"
+                            [triggers]="viewMode ? '' : 'click:click'">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidFormNonArray(0,'utilityData','electricityData' ,'cod')">
+                            COD is required !
+                          </div>
+                        </th>
+                        <th>
+                          <input type="number" (input)="OnChangeSupplyPeriods($event)" class="form-control"
+                            placeholder="Number" formControlName="supplyPeriods"
+                            [ngClass]="{'is-invalid': invalidFormNonArray(0,'utilityData','electricityData' ,'supplyPeriods')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidFormNonArray(0,'utilityData','electricityData' ,'supplyPeriods')">
+                            Supply Periods is required !
+                          </div>
+                        </th>
+                      </tr>
+                      <tr [formGroup]="resourceNeededForm.get('utilityData').get('steamData').get('highPressure')">
+                        <th>Steam</th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="firstSupply"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('steamData', 'highPressure', 'firstSupply')}"
+                            [triggers]="viewMode ? '' : 'click:click'">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('steamData', 'highPressure', 'firstSupply')">
+                            First Supply is required !
+                          </div>
+                        </th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="cod"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('steamData', 'highPressure', 'cod')}"
+                            [triggers]="viewMode ? '' : 'click:click'">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('steamData', 'highPressure', 'cod')">
+                            COD is required !
+                          </div>
+                        </th>
+
+                        <th><input type="number" class="form-control" placeholder="Number"
+                            formControlName="supplyPeriods"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('steamData', 'highPressure', 'supplyPeriods')}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('steamData', 'highPressure', 'supplyPeriods')">
+                            Supply Periods is required !
+                          </div>
+                        </th>
+                      </tr>
+                      <tr [formGroup]="resourceNeededForm.get('utilityData').get('deminWaterData')">
+                        <th>Demin Water</th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="firstSupply"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('deminWaterData', 'firstSupply', null)}"
+                            [triggers]="viewMode ? '' : 'click:click'">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('deminWaterData', 'firstSupply', null)">
+                            First Supply is required !
+                          </div>
+                        </th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="cod"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('deminWaterData', 'cod', null)}"
+                            [triggers]="viewMode ? '' : 'click:click'">
+                          <div class=" invalid-feedback" *ngIf="invalidNonArrayUtility('deminWaterData', 'cod', null)">
+                            COD is required !
+                          </div>
+                        </th>
+                        <th><input type="number" class="form-control" placeholder="Number"
+                            formControlName="supplyPeriods"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('deminWaterData', 'supplyPeriods', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('deminWaterData', 'supplyPeriods', null)">
+                            Supply Periods is required !
+                          </div>
+                        </th>
+                      </tr>
+                      <tr [formGroup]="resourceNeededForm.get('utilityData').get('treatedClarifyWater')">
+                        <th>Treated/Clarify Water</th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="firstSupply"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('treatedClarifyWater', 'firstSupply', null)}"
+                            [triggers]="viewMode ? '' : 'click:click'">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('deminWaterData', 'firstSupply', null)">
+                            First Supply is required !
+                          </div>
+                        </th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="cod"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('treatedClarifyWater', 'cod', null)}"
+                            [triggers]="viewMode ? '' : 'click:click'">
+                          <div class=" invalid-feedback" *ngIf="invalidNonArrayUtility('deminWaterData', 'cod', null)">
+                            COD is required !
+                          </div>
+                        </th>
+                        <th><input type="number" class="form-control" placeholder="Number"
+                            formControlName="supplyPeriods"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('treatedClarifyWater', 'supplyPeriods', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('deminWaterData', 'supplyPeriods', null)">
+                            Supply Periods is required !
+                          </div>
+                        </th>
+                      </tr>
+                      <tr [formGroup]="resourceNeededForm.get('utilityData').get('returnWater')">
+                        <th>Condensate Return Water</th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="firstSupply"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('returnWater', 'firstSupply', null)}"
+                            [triggers]="viewMode ? '' : 'click:click'">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('returnWater', 'firstSupply', null)">
+                            First Supply is required !
+                          </div>
+                        </th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="cod"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('returnWater', 'cod', null)}"
+                            [triggers]="viewMode ? '' : 'click:click'">
+                          <div class=" invalid-feedback" *ngIf="invalidNonArrayUtility('returnWater', 'cod', null)">
+                            COD is required !
+                          </div>
+                        </th>
+                        <th><input type="number" class="form-control" placeholder="Number"
+                            formControlName="supplyPeriods"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('returnWater', 'supplyPeriods', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('returnWater', 'supplyPeriods', null)">
+                            Supply Periods is required !
+                          </div>
+                        </th>
+                      </tr>
+                      <tr [formGroup]="resourceNeededForm.get('utilityData').get('hydrogen')">
+                        <th>Hydrogen</th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="firstSupply"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('hydrogen', 'firstSupply', null)}"
+                            [triggers]="viewMode ? '' : 'click:click'">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('hydrogen', 'firstSupply', null)">
+                            First Supply is required !
+                          </div>
+                        </th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="cod"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('hydrogen', 'cod', null)}"
+                            [triggers]="viewMode ? '' : 'click:click'">
+                          <div class=" invalid-feedback" *ngIf="invalidNonArrayUtility('hydrogen', 'cod', null)">
+                            COD is required !
+                          </div>
+                        </th>
+                        <th><input type="number" class="form-control" placeholder="Number"
+                            formControlName="supplyPeriods"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('hydrogen', 'supplyPeriods', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('hydrogen', 'supplyPeriods', null)">
+                            Supply Periods is required !
+                          </div>
+                        </th>
+                      </tr>
+                      <tr [formGroup]="getResourceNeedForm()?.get('utilityData')?.get('nitrogen')">
+                        <th>Nitrogen</th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="firstSupply" [triggers]="viewMode ? '' : 'click:click'"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('nitrogen', 'firstSupply', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('nitrogen', 'firstSupply', null)">
+                            First Supply is required !
+                          </div>
+                        </th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="cod" [triggers]="viewMode ? '' : 'click:click'"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('nitrogen', 'cod', null)}">
+                          <div class=" invalid-feedback" *ngIf="invalidNonArrayUtility('nitrogen', 'cod', null)">
+                            COD is required !
+                          </div>
+                        </th>
+                        <th><input type="number" class="form-control" placeholder="Number"
+                            formControlName="supplyPeriods"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('nitrogen', 'supplyPeriods', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('nitrogen', 'supplyPeriods', null)">
+                            Supply Periods is required !
+                          </div>
+                        </th>
+                      </tr>
+                      <tr [formGroup]="getResourceNeedForm()?.get('utilityData')?.get('naturalGas')">
+                        <th>Natural Gas</th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="firstSupply" [triggers]="viewMode ? '' : 'click:click'"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('naturalGas', 'firstSupply', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('naturalGas', 'firstSupply', null)">
+                            First Supply is required !
+                          </div>
+                        </th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="cod" [triggers]="viewMode ? '' : 'click:click'"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('naturalGas', 'cod', null)}">
+                          <div class=" invalid-feedback" *ngIf="invalidNonArrayUtility('naturalGas', 'cod', null)">
+                            COD is required !
+                          </div>
+                        </th>
+                        <th><input type="number" class="form-control" placeholder="Number"
+                            formControlName="supplyPeriods"
+                            [ngClass]="{'is-invalid': invalidNonArrayUtility('naturalGas', 'supplyPeriods', null)}">
+                          <div class=" invalid-feedback"
+                            *ngIf="invalidNonArrayUtility('naturalGas', 'supplyPeriods', null)">
+                            Supply Periods is required !
+                          </div>
+                        </th>
+                      </tr>
+                    </tbody>
+                    <tbody
+                      *ngFor="let control of getResourceNeedForm()?.get('utilityData')?.get('otherData')['controls']; let i=index">
+                      <tr [formGroup]="control">
+                        <th>{{control.value.name}}</th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="firstSupply" [triggers]="viewMode ? '' : 'click:click'"
+                            [ngClass]="{'is-invalid': invalidOther(i, 'firstSupply')}">
+                          <div class=" invalid-feedback" *ngIf="invalidOther(i, 'firstSupply')">
+                            First Supply is required !
+                          </div>
+                        </th>
+                        <th><input type="text" class="form-control" type="text" [bsConfig]="bsConfig" bsDatepicker
+                            formControlName="cod" [triggers]="viewMode ? '' : 'click:click'"
+                            [ngClass]="{'is-invalid': invalidOther(i, 'cod')}">
+                          <div class=" invalid-feedback" *ngIf="invalidOther(i, 'cod')">
+                            COD is required !
+                          </div>
+                        </th>
+                        <th><input type="number" class="form-control" placeholder="Number"
+                            formControlName="supplyPeriods"
+                            [ngClass]="{'is-invalid': invalidOther(i, 'supplyPeriods')}">
+                          <div class=" invalid-feedback" *ngIf="invalidOther(i, 'supplyPeriods')">
+                            Supply Periods is required !
+                          </div>
+                        </th>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

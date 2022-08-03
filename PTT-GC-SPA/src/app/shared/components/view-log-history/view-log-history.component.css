@@ -1,0 +1,7 @@
+.bg-audit {
+  background-color: #b8daff;
+}
+
+.word-warp {
+  word-wrap: break-word;min-width: 100px;max-width: 100px;
+}

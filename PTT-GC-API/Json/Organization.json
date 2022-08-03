@@ -1,0 +1,110 @@
+[
+  {
+    "OrganizationId": "BWS001",
+    "OrganizationTitle": "ARO"
+  },
+  {
+    "OrganizationId": "BWS002",
+    "OrganizationTitle": "CAF"
+  },
+  {
+    "OrganizationId": "BWS003",
+    "OrganizationTitle": "CEO"
+  },
+  {
+    "OrganizationId": "BWS004",
+    "OrganizationTitle": "COD"
+  },
+  {
+    "OrganizationId": "BWS005",
+    "OrganizationTitle": "COE"
+  },
+  {
+    "OrganizationId": "BWS006",
+    "OrganizationTitle": "COU"
+  },
+  {
+    "OrganizationId": "BWS007",
+    "OrganizationTitle": "DSB"
+  },
+  {
+    "OrganizationId": "BWS008",
+    "OrganizationTitle": "EOB"
+  },
+  {
+    "OrganizationId": "BWS009",
+    "OrganizationTitle": "EXA"
+  },
+  {
+    "OrganizationId": "BWS010",
+    "OrganizationTitle": "FNA"
+  },
+  {
+    "OrganizationId": "BWS011",
+    "OrganizationTitle": "GRN"
+  },
+  {
+    "OrganizationId": "BWS012",
+    "OrganizationTitle": "HOE"
+  },
+  {
+    "OrganizationId": "BWS013",
+    "OrganizationTitle": "IBO"
+  },
+  {
+    "OrganizationId": "BWS014",
+    "OrganizationTitle": "ISI"
+  },
+  {
+    "OrganizationId": "BWS015",
+    "OrganizationTitle": "MCS"
+  },
+  {
+    "OrganizationId": "BWS016",
+    "OrganizationTitle": "OLE"
+  },
+  {
+    "OrganizationId": "BWS017",
+    "OrganizationTitle": "PHN"
+  },
+  {
+    "OrganizationId": "BWS018",
+    "OrganizationTitle": "PMT"
+  },
+  {
+    "OrganizationId": "BWS019",
+    "OrganizationTitle": "POL"
+  },
+  {
+    "OrganizationId": "BWS020",
+    "OrganizationTitle": "QSE"
+  },
+  {
+    "OrganizationId": "BWS021",
+    "OrganizationTitle": "REF"
+  },
+  {
+    "OrganizationId": "BWS022",
+    "OrganizationTitle": "STG"
+  },
+  {
+    "OrganizationId": "BWS023",
+    "OrganizationTitle": "TEM"
+  },
+  {
+    "OrganizationId": "BWS024",
+    "OrganizationTitle": "TFE"
+  },
+  {
+    "OrganizationId": "BWS025",
+    "OrganizationTitle": "TPX"
+  },
+  {
+    "OrganizationId": "BWS026",
+    "OrganizationTitle": "UTY"
+  },
+  {
+    "OrganizationId": "BWS027",
+    "OrganizationTitle": "XVS"
+  }
+]

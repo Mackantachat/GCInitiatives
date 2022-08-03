@@ -1,0 +1,686 @@
+<ng-container *ngIf="!viewMode; else isViewMode">
+  <div class="mt-5">
+    <hr>
+    <ng-container *ngIf="!getDataArray(); else editRisk">
+      <h3>Add New Risk</h3>
+
+    </ng-container>
+    <ng-template #editRisk>
+      <h3>Edit</h3>
+    </ng-template>
+  </div>
+  <!-- Change chps to checkControl or checkControl -->
+  <div class="mt-3" [formGroup]="riskFormGroup">
+    <div class="row mt-4">
+      <div class="form-group col-md-4">
+        <label>Register date</label>
+        <div class="input-group" [ngClass]="ps.checkControl(riskFormGroup,'Risk','registerDate')">
+          <input formControlName="registerDate" type="text" [bsConfig]="bsConfigDate" class="form-control" bsDatepicker
+            #dpRegisterDate="bsDatepicker" [triggers]="viewMode ? '' : 'click:click'">
+          <div *ngIf="!viewMode" class="input-group-append">
+            <i class="far fa-calendar right-icon mt-2" (click)="dpRegisterDate.toggle()"
+              [attr.aria-expanded]="dpRegisterDate.isOpen"></i>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-4" [ngClass]="ps.checkControl(riskFormGroup,'Risk','riskFactor')">
+        <label>Risk factor</label>
+        <select formControlName="riskFactor" class="form-control">
+          <option value="" selected disabled>Choose Factor </option>
+          <option value="Business Continuity">Business Continuity</option>
+          <option value="Compliance">Compliance</option>
+          <option value="Currency">Currency</option>
+          <option value="Cyber Threat">Cyber Threat</option>
+          <option value="Digitalization Implementation">Digitalization Implementation</option>
+          <option value="Environmental">Environmental</option>
+          <option value="Feedstock Supply">Feedstock Supply</option>
+          <option value="Government Policy & Regulatory Change">Government Policy & Regulatory Change
+          </option>
+          <option value="Green Flagship Execution">Green Flagship Execution</option>
+          <option value="Innovation Excellence">Innovation Excellence</option>
+          <option value="International Business Growth">International Business Growth</option>
+          <option value="Investment capacity management">Investment capacity management</option>
+          <option value="JV Partner Management">JV Partner Management</option>
+          <option value="Manpower, Capability & Organization">Manpower, Capability & Organization</option>
+          <option value="Operating Excellence">Operating Excellence</option>
+          <option value="Price">Price</option>
+          <option value="Project Execution & Infrastructure Readiness">Project Execution & Infrastructure
+            Readiness</option>
+          <option value="Sales & Marketing">Sales & Marketing</option>
+          <option value="Stakeholder Expectation">Stakeholder Expectation</option>
+          <option value="Sustainability & Climate Strategy">Sustainability & Climate Strategy</option>
+          <option value="Technology">Technology</option>
+        </select>
+      </div>
+      <div class="from-group col-md-4" [ngClass]="ps.checkControl(riskFormGroup,'Risk','phase')">
+        <label>Phase</label>
+        <ng-select formControlName="phase" [items]="phaseList" bindValue="value" bindLabel="name"
+          placeholder="Choose Phase">
+        </ng-select>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="from-group col-md-5" [ngClass]="ps.checkControl(riskFormGroup,'Risk','approvePeriod')">
+        <label>Approve Period</label>
+        <div class="input-group">
+          <input formControlName="approvePeriod" type="text" [bsConfig]="bsConfigDate" class="form-control" bsDatepicker
+            #dpApprovePeriod="bsDatepicker" [triggers]="viewMode ? '' : 'click:click'">
+          <div *ngIf="!viewMode" class="input-group-append">
+            <i class="far fa-calendar right-icon mt-2" (click)="dpApprovePeriod.toggle()"
+              [attr.aria-expanded]="dpApprovePeriod.isOpen"></i>
+          </div>
+        </div>
+      </div>
+      <div class="from-group col-md-8" [ngClass]="ps.checkControl(riskFormGroup,'Risk','description')">
+        <label>Root Cause/Description</label>
+        <textarea type="text" formControlName="description" class="form-control"></textarea>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">
+        <img src="assets/images/risk-map.png" alt="">
+      </div>
+      <div class="col-6">
+        <div class="row md-6">
+          <label class="col-md-6" style="color: darkslategrey;">Inherent Risk</label>
+          <label class="col-md-6" style="color: darkslategrey;">Residual Risk</label>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="row">
+              <div class="col" [ngClass]="ps.checkControl(riskFormGroup,'Risk','exitingControl')">
+                <label>Exiting Control</label>
+                <textarea class="form-control" formControlName="exitingControl"></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col" [ngClass]="ps.checkControl(riskFormGroup,'Risk','impactExitingControl')">
+                <label>Impact</label>
+                <select formControlName="impactExitingControl" class="form-control"
+                  (change)="setLevel('impactExitingControl','likelihoodExitingControl','riskLevelExitingControl')">
+                  <option value="" selected disabled>Choose Impact</option>
+                  <option value="Minor(1)">Minor(1)</option>
+                  <option value="Moderate(2)">Moderate(2)</option>
+                  <option value="Major(3)">Major(3)</option>
+                  <option value="Servere(4)">Servere(4)</option>
+                </select>
+              </div>
+              <div class="col" [ngClass]="ps.checkControl(riskFormGroup,'Risk','likelihoodExitingControl')">
+                <label>Likelihood</label>
+                <select formControlName="likelihoodExitingControl" class="form-control"
+                  (change)="setLevel('impactExitingControl','likelihoodExitingControl','riskLevelExitingControl')">
+                  <option value="" selected disabled>Choose Likelihood </option>
+                  <option value="Rarely(1)">Rarely(1)</option>
+                  <option value="Unlikely(2)">Unlikely(2)</option>
+                  <option value="Posible(3)">Posible(3)</option>
+                  <option value="Probable(4)">Probable(4)</option>
+                </select>
+              </div>
+            </div>
+            <div class="col" [ngClass]="ps.checkControl(riskFormGroup,'Risk','riskLevelExitingControl')">
+              <label>Risk Level(After Exiting Control)</label>
+              <input class="form-control" [ngClass]="'level-'+ getLevel(riskFormGroup.value.riskLevelExitingControl)"
+                readonly>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row">
+              <div class="col" [ngClass]="ps.checkControl(riskFormGroup,'Risk','mitigationPlan')">
+                <label>Mitigation Plan</label>
+                <textarea class="form-control" [readonly]="checkLevelExitingControl"
+                  formControlName="mitigationPlan"></textarea>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col" [ngClass]="ps.checkControl(riskFormGroup,'Risk','impactMitigationPlan')">
+                <label>Impact</label>
+                <select [attr.disabled]="checkLevelExitingControl ? 'true' : null"
+                  formControlName="impactMitigationPlan" class="form-control"
+                  (change)="setLevel('impactMitigationPlan','likelihoodMitigationPlan','riskLevelMitigationPlan')">
+                  <option value="" selected disabled>Choose Impact </option>
+                  <option value="Minor(1)">Minor(1)</option>
+                  <option value="Moderate(2)">Moderate(2)</option>
+                  <option value="Major(3)">Major(3)</option>
+                  <option value="Servere(4)">Servere(4)</option>
+                </select>
+              </div>
+              <div class="col" [ngClass]="ps.checkControl(riskFormGroup,'Risk','likelihoodMitigationPlan')">
+                <label>Likelihood</label>
+                <select [attr.disabled]="checkLevelExitingControl ? 'true' : null"
+                  formControlName="likelihoodMitigationPlan" class="form-control"
+                  (change)="setLevel('impactMitigationPlan','likelihoodMitigationPlan','riskLevelMitigationPlan')">
+                  <option value="" selected disabled>Choose Likelihood </option>
+                  <option value="Rarely(1)">Rarely(1)</option>
+                  <option value="Unlikely(2)">Unlikely(2)</option>
+                  <option value="Posible(3)">Posible(3)</option>
+                  <option value="Probable(4)">Probable(4)</option>
+                </select>
+              </div>
+            </div>
+            <div class="col" [ngClass]="ps.checkControl(riskFormGroup,'Risk','riskLevelMitigationPlan')">
+              <label>Risk Level(Expected after Mitigation)</label>
+              <input class="form-control" [ngClass]="'level-'+ getLevel(riskFormGroup.value.riskLevelMitigationPlan)"
+                readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12 my-1">
+        <h3>Update Risk Progress</h3>
+        <table class="table table-bordered">
+          <thead class="text-center bg-light">
+            <th width="5%">Action No.</th>
+            <th width="15%">Action Description</th>
+            <th width="10%">Due Date</th>
+            <th width="10%">Actual Completing Date</th>
+            <th width="20%">Responsible Person</th>
+            <th width="10%">Status</th>
+            <th width="15%">Action Due Status</th>
+            <th width="10%">Remark</th>
+            <th width="5%">Action</th>
+          </thead>
+          <ng-container *ngIf="getArrayLength('riskProgressArray').length > 0; else noProgressData">
+            <tbody *ngFor="let control of riskFormGroup.controls.riskProgressArray['controls'];let i = index">
+              <tr [formGroup]="control">
+                <td class="text-center">
+                  {{i+1}}
+                </td>
+                <td>
+                  <textarea formControlName="actionDescription" rows="3" class="form-control comment"
+                    [ngClass]="{'is-invalid': invalidProgressArr(i,'actionDescription')}"></textarea>
+                  <div class=" invalid-feedback" *ngIf="invalidProgressArr(i,'actionDescription')">
+                    Action Description date is required !
+                  </div>
+                </td>
+                <td>
+                  <input type="text" formControlName="dueDate" class="form-control" [bsConfig]="bsConfigDate"
+                    (bsValueChange)="checkActionDueStatus(i)" bsDatepicker #dpBOD2="bsDatepicker"
+                    [ngClass]="{'is-invalid': invalidProgressArr(i,'dueDate')}"
+                    [triggers]="viewMode ? '' : 'click:click'">
+                  <div class=" invalid-feedback" *ngIf="invalidProgressArr(i,'dueDate')">
+                    Due date is required !
+                  </div>
+                </td>
+                <td>
+                  <input type="text" formControlName="actualCompletingDate" class="form-control"
+                    [bsConfig]="bsConfigDate" (bsValueChange)="checkActionDueStatus(i)" bsDatepicker
+                    #dpBOD2="bsDatepicker" [triggers]="viewMode ? '' : 'click:click'">
+                </td>
+                <td>
+                  <ng-select formControlName="responsible" [items]="responsibleList" bindValue="ownerName"
+                    bindLabel="ownerName" placeholder="Choose Responsible" (search)="SearchPerson($event)"
+                    [ngClass]="{'is-invalid': invalidProgressArr(i,'responsible')}">
+                  </ng-select>
+                  <div class=" invalid-feedback" *ngIf="invalidProgressArr(i,'responsible')">
+                    Responsible Person is required !
+                  </div>
+                </td>
+                <td>
+                  <select formControlName="status" class="form-control" (change)="checkActionDueStatus(i)"
+                    [ngClass]="{'is-invalid': invalidProgressArr(i,'status')}">
+                    <option value="" selected disabled>Choose Status </option>
+                    <option value="Complete">Complete</option>
+                    <option value="Cancled">Cancelled</option>
+                    <option value="On Progress">On Progress</option>
+                  </select>
+                  <div class=" invalid-feedback" *ngIf="invalidProgressArr(i,'status')">
+                    Status is required !
+                  </div>
+                </td>
+                <td>
+                  <input formControlName="actionDueStatus" class="form-control" readonly>
+                </td>
+                <td>
+                  <textarea class="form-control" formControlName="remark"></textarea>
+                </td>
+                <td>
+                  <button (click)="removeRiskProgress(i)" class="btn btn-danger btn-sm"
+                    *ngIf="getRiskProgressId(i) == 0">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </ng-container>
+          <ng-template #noProgressData>
+            <tbody>
+              <tr>
+                <td colspan="9">
+                  No Data
+                </td>
+              </tr>
+            </tbody>
+          </ng-template>
+
+        </table>
+        <button class="btn btn-primary mr-5" (click)="addRiskProgress()">
+          <i class="fas fa-plus-square mr-2"></i> Add New Action
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 my-1">
+        <h3>Update KRI</h3>
+        <table class="table table-bordered">
+          <thead class="text-center bg-light">
+            <th width="10%">KRI No.</th>
+            <th width="20%">KRI Target</th>
+            <th width="20%">KRI Tolerance</th>
+            <th width="20%">KRI Status</th>
+            <th width="20%">KRI Progress</th>
+            <th width="10%">Action</th>
+          </thead>
+          <ng-container *ngIf="getArrayLength('kriArray').length > 0; else noKriData">
+            <tbody *ngFor="let control of riskFormGroup.controls.kriArray['controls']; let i = index">
+              <tr [formGroup]="control">
+                <td class="text-center">{{i+1}}</td>
+                <td>
+                  <textarea class="form-control" formControlName="kriTarget"></textarea>
+                </td>
+                <td>
+                  <textarea class="form-control" formControlName="kriTolerance"></textarea>
+                </td>
+                <td>
+                  <select formControlName="kriStatus"
+                    [ngClass]="'level-'+ getLevel(riskFormGroup.value.kriArray[i].kriStatus)" class="form-control">
+                    <option value="" selected disabled>Choose KRI Status </option>
+                    <option value="1" [ngClass]="'level-green'"></option>
+                    <option value="2" [ngClass]="'level-yellow'"></option>
+                    <option value="4" [ngClass]="'level-red'"></option>
+                  </select>
+                </td>
+                <td>
+                  <select formControlName="kriProgress" class="form-control">
+                    <option value="" selected disabled>Choose KRI Progress </option>
+                    <option value="Not Deal">Not Deal</option>
+                    <option value="On Deal">On Deal</option>
+                    <option value="Over Deal">Over Deal</option>
+                  </select>
+                </td>
+                <td>
+                  <button (click)="removeKRI(i)" class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </ng-container>
+          <ng-template #noKriData>
+            <tbody>
+              <tr>
+                <td colspan="9">
+                  No Data
+                </td>
+              </tr>
+            </tbody>
+          </ng-template>
+        </table>
+        <button class="btn btn-primary mr-5" (click)="addKRIData()">
+          <i class="fas fa-plus-square mr-2"></i> Add New KRI
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 my-1" [ngClass]="ps.checkControl(riskFormGroup,'Risk','mitigationProgress')">
+        <label>Mitigation Progress</label>
+        <textarea class="form-control" formControlName="mitigationProgress"></textarea>
+      </div>
+      <div class="col-md-4" [ngClass]="ps.checkControl(riskFormGroup,'Risk','mitigationProgressImpact')">
+        <label>Impact</label>
+        <select class="form-control" formControlName="mitigationProgressImpact"
+          (change)="setLevel('mitigationProgressImpact','mitigationProgressLikelihood','riskLevelMitigationProgress')">
+          <option value="" selected disabled>Choose Impact </option>
+          <option value="Minor(1)">Minor(1)</option>
+          <option value="Moderate(2)">Moderate(2)</option>
+          <option value="Major(3)">Major(3)</option>
+          <option value="Servere(4)">Servere(4)</option>
+        </select>
+      </div>
+      <div class="col-md-2" [ngClass]="ps.checkControl(riskFormGroup,'Risk','mitigationProgressLikelihood')">
+        <label>Likelihood</label>
+        <select class="form-control" formControlName="mitigationProgressLikelihood"
+          (change)="setLevel('mitigationProgressImpact','mitigationProgressLikelihood','riskLevelMitigationProgress')">
+          <option value="" selected disabled>Choose Likelihood </option>
+          <option value="Rarely(1)">Rarely(1)</option>
+          <option value="Unlikely(2)">Unlikely(2)</option>
+          <option value="Posible(3)">Posible(3)</option>
+          <option value="Probable(4)">Probable(4)</option>
+        </select>
+      </div>
+      <div class="col-md-2" [ngClass]="ps.checkControl(riskFormGroup,'Risk','riskLevelMitigationProgress')">
+        <label>Risk Level</label>
+        <input class="form-control" [ngClass]="'level-'+ getLevel(riskFormGroup.value.riskLevelMitigationProgress)"
+          readonly>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <ng-container *ngIf="!viewMode; else viewModeTemplate">
+        <div class="col-lg-12" style="text-align: center;height: 10%;">
+          <button class="btn btn-primary mr-5" *ngIf="isAddNewRiskData" (click)="saveRiskData()"
+            style="height: 150%;width: 8%;">Save</button>
+          <button class="btn btn-primary mr-5" *ngIf="isEditRiskData" (click)="changeRiskData()"
+            style="height: 150%;width: 8%;">Change</button>
+          <button class="btn btn-danger mr-5" (click)="cancle()" style="height: 150%;width: 8%;">Cancel</button>
+        </div>
+      </ng-container>
+      <ng-template #viewModeTemplate>
+        <div class="col-lg-12" style="text-align: center;height: 10%;">
+          <button class="btn btn-danger mr-5" (click)="cancle()" style="height: 150%;width: 8%;">Cancel</button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</ng-container>
+<ng-template #isViewMode>
+  <div class="mt-5">
+    <hr>
+    <h3>Detail Risk</h3>
+  </div>
+  <div class="mt-3" [formGroup]="riskFormGroup">
+    <div class="row mt-4">
+      <div class="form-group col-md-4">
+        <label>Register date</label>
+        <div class="input-group">
+          <input formControlName="registerDate" type="text" [bsConfig]="bsConfigDate" class="form-control" bsDatepicker
+            #dpRegisterDate="bsDatepicker" triggers="" [readonly]="true" [isDisabled]="true">
+          <div class="input-group-append">
+            <i class="far fa-calendar right-icon mt-2"></i>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label>Risk factor</label>
+        <select formControlName="riskFactor" class="form-control" [attr.disabled]="true">
+          <option value="" selected disabled>Choose Factor </option>
+          <option value="Business Continuity">Business Continuity</option>
+          <option value="Compliance">Compliance</option>
+          <option value="Currency">Currency</option>
+          <option value="Cyber Threat">Cyber Threat</option>
+          <option value="Digitalization Implementation">Digitalization Implementation</option>
+          <option value="Environmental">Environmental</option>
+          <option value="Feedstock Supply">Feedstock Supply</option>
+          <option value="Government Policy & Regulatory Change">Government Policy & Regulatory Change
+          </option>
+          <option value="Green Flagship Execution">Green Flagship Execution</option>
+          <option value="Innovation Excellence">Innovation Excellence</option>
+          <option value="International Business Growth">International Business Growth</option>
+          <option value="Investment capacity management">Investment capacity management</option>
+          <option value="JV Partner Management">JV Partner Management</option>
+          <option value="Manpower, Capability & Organization">Manpower, Capability & Organization</option>
+          <option value="Operating Excellence">Operating Excellence</option>
+          <option value="Price">Price</option>
+          <option value="Project Execution & Infrastructure Readiness">Project Execution & Infrastructure
+            Readiness</option>
+          <option value="Sales & Marketing">Sales & Marketing</option>
+          <option value="Stakeholder Expectation">Stakeholder Expectation</option>
+          <option value="Sustainability & Climate Strategy">Sustainability & Climate Strategy</option>
+          <option value="Technology">Technology</option>
+        </select>
+      </div>
+      <div class="from-group col-md-4" [ngClass]="ps.checkControl(riskFormGroup,'Risk','phase')">
+        <label>Phase</label>
+        <ng-select formControlName="phase" [items]="phaseList" bindValue="value" bindLabel="name"
+          placeholder="Choose Phase" [attr.disabled]="true">
+        </ng-select>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="from-group col-md-5">
+        <label>Approve Period</label>
+        <div class="input-group">
+          <input formControlName="approvePeriod" type="text" [bsConfig]="bsConfigDate" class="form-control" bsDatepicker
+            #dpApprovePeriod="bsDatepicker" triggers="" [readonly]="true" [isDisabled]="true">
+          <div class="input-group-append">
+            <i class="far fa-calendar right-icon mt-2"></i>
+          </div>
+        </div>
+      </div>
+      <div class="from-group col-md-8">
+        <label>Root Cause/Description</label>
+        <textarea type="text" formControlName="description" class="form-control"></textarea>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4">
+        <img src="assets/images/risk-map.png" alt="">
+      </div>
+      <div class="col-6">
+        <div class="row md-6">
+          <label class="col-md-6" style="color: darkslategrey;">Inherent Risk</label>
+          <label class="col-md-6" style="color: darkslategrey;">Residual Risk</label>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Exiting Control</label>
+            <textarea class="form-control" formControlName="exitingControl"></textarea>
+            <div class="row">
+              <div class="col">
+                <label>Impact</label>
+                <select [attr.disabled]="true" formControlName="impactExitingControl" class="form-control">
+                  <option value="" selected disabled>Choose Impact</option>
+                  <option value="Minor(1)">Minor(1)</option>
+                  <option value="Moderate(2)">Moderate(2)</option>
+                  <option value="Major(3)">Major(3)</option>
+                  <option value="Servere(4)">Servere(4)</option>
+                </select>
+              </div>
+              <div class="col">
+                <label>Likelihood</label>
+                <select [attr.disabled]="true" formControlName="likelihoodExitingControl" class="form-control">
+                  <option value="" selected disabled>Choose Likelihood </option>
+                  <option value="Rarely(1)">Rarely(1)</option>
+                  <option value="Unlikely(2)">Unlikely(2)</option>
+                  <option value="Posible(3)">Posible(3)</option>
+                  <option value="Probable(4)">Probable(4)</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <label>Risk Level(After Exiting Control)</label>
+              <input class="form-control" [ngClass]="'level-'+ getLevel(riskFormGroup.value.riskLevelExitingControl)"
+                readonly>
+            </div>
+          </div>
+          <div class="col">
+            <label>Mitigation Plan</label>
+            <textarea class="form-control" [readonly]="true" formControlName="mitigationPlan"></textarea>
+            <div class="row">
+              <div class="col">
+                <label>Impact</label>
+                <select [attr.disabled]="true" formControlName="impactMitigationPlan" class="form-control">
+                  <option value="" selected disabled>Choose Impact </option>
+                  <option value="Minor(1)">Minor(1)</option>
+                  <option value="Moderate(2)">Moderate(2)</option>
+                  <option value="Major(3)">Major(3)</option>
+                  <option value="Servere(4)">Servere(4)</option>
+                </select>
+              </div>
+              <div class="col">
+                <label>Likelihood</label>
+                <select [attr.disabled]="true" formControlName="likelihoodMitigationPlan" class="form-control">
+                  <option value="" selected disabled>Choose Likelihood </option>
+                  <option value="Rarely(1)">Rarely(1)</option>
+                  <option value="Unlikely(2)">Unlikely(2)</option>
+                  <option value="Posible(3)">Posible(3)</option>
+                  <option value="Probable(4)">Probable(4)</option>
+                </select>
+              </div>
+            </div>
+            <div class="col">
+              <label>Risk Level(Expected after Mitigation)</label>
+              <input class="form-control" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12 my-1">
+        <h3>Update Risk Progress</h3>
+        <table class="table table-bordered">
+          <thead class="text-center bg-light">
+            <th width="5%">Action No.</th>
+            <th width="15%">Action Description</th>
+            <th width="10%">Due Date</th>
+            <th width="10%">Actual Completing Date</th>
+            <th width="20%">Responsible Person</th>
+            <th width="10%">Status</th>
+            <th width="15%">Action Due Status</th>
+            <th width="10%">Remark</th>
+          </thead>
+          <ng-container *ngIf="getArrayLength('riskProgressArray').length > 0; else noProgressData">
+            <tbody *ngFor="let control of riskFormGroup.controls.riskProgressArray['controls'];let i = index">
+              <tr [formGroup]="control">
+                <td class="text-center">
+                  {{i+1}}
+                </td>
+                <td>
+                  <textarea [readonly]="true" formControlName="actionDescription" rows="3"
+                    class="form-control comment"></textarea>
+                </td>
+                <td>
+                  <input type="text" formControlName="dueDate" class="form-control" [bsConfig]="bsConfigDate"
+                    (bsValueChange)="checkActionDueStatus(i)" bsDatepicker #dpBOD2="bsDatepicker" triggers=""
+                    [readonly]="true" [isDisabled]="true">
+                </td>
+                <td>
+                  <input type="text" formControlName="actualCompletingDate" class="form-control"
+                    [bsConfig]="bsConfigDate" (bsValueChange)="checkActionDueStatus(i)" bsDatepicker
+                    #dpBOD2="bsDatepicker" triggers="" [readonly]="true" [isDisabled]="true">
+                </td>
+                <td>
+                  <ng-select formControlName="responsible" [items]="responsibleList" bindValue="ownerName"
+                    bindLabel="ownerName" placeholder="Choose Responsible" (search)="SearchPerson($event)"
+                    [attr.disabled]="true">
+                  </ng-select>
+                </td>
+                <td>
+                  <select formControlName="status" class="form-control" [attr.disabled]="true">
+                    <option value="" selected disabled>Choose Status </option>
+                    <option value="Complete">Complete</option>
+                    <option value="Cancled">Cancelled</option>
+                    <option value="On Progress">On Progress</option>
+                  </select>
+                </td>
+                <td>
+                  <input formControlName="actionDueStatus" class="form-control" readonly>
+                </td>
+                <td>
+                  <textarea [readonly]="true" class="form-control" formControlName="remark"></textarea>
+                </td>
+              </tr>
+            </tbody>
+          </ng-container>
+          <ng-template #noProgressData>
+            <tbody>
+              <tr>
+                <td colspan="9">
+                  No Data
+                </td>
+              </tr>
+            </tbody>
+          </ng-template>
+
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 my-1">
+        <h3>Update KRI</h3>
+        <table class="table table-bordered">
+          <thead class="text-center bg-light">
+            <th width="10%">KRI No.</th>
+            <th width="20%">KRI Target</th>
+            <th width="20%">KRI Tolerance</th>
+            <th width="20%">KRI Status</th>
+            <th width="20%">KRI Progress</th>
+          </thead>
+          <ng-container *ngIf="getArrayLength('kriArray').length > 0; else noKriData">
+            <tbody *ngFor="let control of riskFormGroup.controls.kriArray['controls']; let i = index">
+              <tr [formGroup]="control">
+                <td class="text-center">{{i+1}}</td>
+                <td>
+                  <textarea [readonly]="true" class="form-control" formControlName="kriTarget"></textarea>
+                </td>
+                <td>
+                  <textarea [readonly]="true" class="form-control" formControlName="kriTolerance"></textarea>
+                </td>
+                <td>
+                  <select [attr.disabled]="true" formControlName="kriStatus"
+                    [ngClass]="'level-'+ getLevel(riskFormGroup.value.kriArray[i].kriStatus)" class="form-control">
+                    <option value="" selected disabled>Choose KRI Status </option>
+                    <option value="1" [ngClass]="'level-green'"></option>
+                    <option value="2" [ngClass]="'level-yellow'"></option>
+                    <option value="4" [ngClass]="'level-red'"></option>
+                  </select>
+                </td>
+                <td>
+                  <select [attr.disabled]="true" formControlName="kriProgress" class="form-control">
+                    <option value="" selected disabled>Choose KRI Progress </option>
+                    <option value="Not Deal">Not Deal</option>
+                    <option value="On Deal">On Deal</option>
+                    <option value="Over Deal">Over Deal</option>
+                  </select>
+                </td>
+              </tr>
+            </tbody>
+          </ng-container>
+          <ng-template #noKriData>
+            <tbody>
+              <tr>
+                <td colspan="9">
+                  No Data
+                </td>
+              </tr>
+            </tbody>
+          </ng-template>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 my-1">
+        <label>Mitigation Progress</label>
+        <textarea [readonly]="true" class="form-control" formControlName="mitigationProgress"></textarea>
+      </div>
+      <div class="col-md-4">
+        <label>Impact</label>
+        <select class="form-control" formControlName="mitigationProgressImpact" [attr.disabled]="true">
+          <option value="" selected disabled>Choose Impact </option>
+          <option value="Minor(1)">Minor(1)</option>
+          <option value="Moderate(2)">Moderate(2)</option>
+          <option value="Major(3)">Major(3)</option>
+          <option value="Servere(4)">Servere(4)</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label>Likelihood</label>
+        <select class="form-control" formControlName="mitigationProgressLikelihood" [attr.disabled]="true">
+          <option value="" selected disabled>Choose Likelihood </option>
+          <option value="Rarely(1)">Rarely(1)</option>
+          <option value="Unlikely(2)">Unlikely(2)</option>
+          <option value="Posible(3)">Posible(3)</option>
+          <option value="Probable(4)">Probable(4)</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label>Risk Level</label>
+        <input class="form-control" [ngClass]="'level-'+ getLevel(riskFormGroup.value.riskLevelMitigationProgress)"
+          readonly>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-lg-12" style="text-align: center;height: 10%;">
+        <button class="btn btn-danger mr-5" (click)="cancle()" style="height: 150%;width: 8%;">Cancel</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

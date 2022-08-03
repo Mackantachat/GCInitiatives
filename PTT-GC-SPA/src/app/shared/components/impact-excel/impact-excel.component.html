@@ -1,0 +1,29 @@
+<hr>
+<ng-container *ngIf="isUpLoading">
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="line-scale" [fullScreen]="true">
+    <p style="color: white" > Uploading... </p>
+  </ngx-spinner>
+</ng-container>
+
+<div class="file-excel">
+  <div class="row">
+    <div class="col-md-12">
+      <form>
+        <div class="form-group">
+          <label for="excel"> <i class="fas fa-file-alt mr-2"></i> Impact Excel </label>
+          <input type="file" class="form-control-file border" [ngStyle]="{'padding' : '10px'}" ng2FileSelect [uploader]="uploader">
+        </div>
+      </form>
+    </div>
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col">
+          <button type="button" class="btn btn-block btn-outline-success" (click)="Upload()"> <i class="fas fa-cloud-upload-alt mr-2"></i> Upload   </button>
+        </div>
+        <div class="col">
+          <button type="button" class="btn btn-block btn-outline-primary" (click)="Download()">  <i class="fas fa-download mr-2"></i> Download </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

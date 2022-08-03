@@ -1,0 +1,440 @@
+<div class="form-group row mt-5">
+  <div class="col-md-12">
+    <div class="form-initiative" *ngIf="id">
+      <app-initiative-info [id]="id"></app-initiative-info>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <h3>Detailed Information</h3>
+    <hr />
+  </div>
+</div>
+
+<form [formGroup]="detailForm">
+  <div class="bg-light">
+    <div id="Investment">
+      <div class="card-header">
+        <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+          data-target="#collapseInvestment" aria-expanded="true">
+          <div class="float-left">Investment Framework</div>
+          <i class="fas fa-chevron-circle-down float-right"></i>
+        </button>
+        <!-- <button class="btn btn-primary mr-5" (click)="Log()">
+                    <i class="fas fa-plus-square mr-2"></i> log
+                </button> -->
+      </div>
+      <div id="collapseInvestment" class="collapse bg-white" aria-labelledby="headingOne" data-parent="#Investment">
+        <div class="card-body">
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="production">
+                Production Process of Project , List of equipment & Leadtime
+              </label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="productionProcess" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="production"> Milestone & Schedule </label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="milestoneSchedule" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="production"> Expected Target &Result </label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="expectedTarget" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="comparison">
+                Comparison with other alternative</label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="comparisonWithOther" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="production">
+                Other resources needed to support the project: (Personnel,
+                IT, Others)
+              </label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="otherResources" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="other"> Other </label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="otherInvestment" rows="2"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="strategic">
+      <div class="card-header">
+        <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+          data-target="#collapseStrategic" aria-expanded="true">
+          <div class="float-left">
+            Strategic Analysis
+          </div>
+          <i class="fas fa-chevron-circle-down float-right"></i>
+        </button>
+      </div>
+      <div id="collapseStrategic" class="collapse bg-white" aria-labelledby="headingOne" data-parent="#strategic">
+        <div class="card-body">
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="consistent">
+                Consistent with company's strategy
+              </label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="consistent" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="keySuccess"> Key Success Factor </label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="keySuccessFactor" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="synergyBenefit"> Synergy Benefit</label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="synergyBenefit" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="other"> Other </label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="otherStrategic" rows="2"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="business">
+      <div class="card-header">
+        <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+          data-target="#collapseBusiness" aria-expanded="true">
+          <div class="float-left">
+            Business Analysis
+          </div>
+          <i class="fas fa-chevron-circle-down float-right"></i>
+        </button>
+      </div>
+      <div id="collapseBusiness" class="collapse bg-white" aria-labelledby="headingOne" data-parent="#business">
+        <div class="card-body">
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="marketOverview"> Market overview</label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="marketOverview" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="potentialCustomer"> Potential Customer</label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="potentialCustomer" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="salesPain"> Sales Plan </label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="salesPlan" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="sourceOfFeedback"> Source of Feedback </label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="sourceOfFeedback" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="other"> Other </label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="otherBusiness" rows="2"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="quality">
+      <div class="card-header">
+        <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+          data-target="#collapseQuality" aria-expanded="true">
+          <div class="float-left">
+            Quality Index
+          </div>
+          <i class="fas fa-chevron-circle-down float-right"></i>
+        </button>
+      </div>
+      <div id="collapseQuality" class="collapse bg-white" aria-labelledby="headingOne" data-parent="#quality">
+        <div class="card-body">
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="safetyIndex"> Safety index</label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="safetyIndex" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="CorporateImageIndex">
+                Corporate image index</label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="corporateImageIndex" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="other"> Other </label>
+            </div>
+            <div class="col-md-9">
+              <textarea class="form-control" formControlName="otherQuality" rows="2"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="return">
+      <div class="card-header">
+        <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse" data-target="#collapseReturn"
+          aria-expanded="true">
+          <div class="float-left">
+            Return of Investment
+          </div>
+          <i class="fas fa-chevron-circle-down float-right"></i>
+        </button>
+      </div>
+      <div id="collapseReturn" class="collapse bg-white" aria-labelledby="headingOne" data-parent="#return">
+        <div class="card-body">
+          <div class="form-group row">
+            <div class="col-md-12">
+              <label for="baseCase">
+                Base Case (Please specify assumption)</label>
+              <textarea class="form-control" formControlName="baseCase" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="projectIrrBaseCase">
+                Project IRR(%)</label>
+              <input class="form-control" type="number" formControlName="projectIrrBaseCase" />
+            </div>
+            <div class="col-md-3">
+              <label for="npvBaseCase">
+                NPV (M THB)</label>
+              <input class="form-control" type="number" formControlName="npvBaseCase" />
+            </div>
+            <div class="col-md-3">
+              <label for="paybackBaseCase">
+                Payback(Year) </label>
+              <input class="form-control" type="number" formControlName="paybackBaseCase" />
+            </div>
+            <div class="col-md-3">
+              <label for="ebitdaUpLiftBaseCase">
+                EBITDA Uplift ( M.THB)</label>
+              <input class="form-control" type="number" formControlName="ebitdaBaseCase" />
+            </div>
+          </div>
+          <br />
+          <hr />
+          <br />
+          <div class="form-group row">
+            <div class="col-md-12">
+              <label for="optimisticCase">
+                Optimistic Case (Please specify assumption)
+              </label>
+              <textarea class="form-control" formControlName="optimisticCase" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="projectIrrOptimisticCase">
+                Project IRR(%)
+              </label>
+              <input class="form-control" type="number" formControlName="projectIrrOptimisticCase" />
+            </div>
+            <div class="col-md-3">
+              <label for="npvOptimisticCase"> NPV (M THB) </label>
+              <input class="form-control" type="number" formControlName="npvOptimisticCase" />
+            </div>
+            <div class="col-md-3">
+              <label for="paybackOptimisticCase"> Payback(Year) </label>
+              <input class="form-control" type="number" formControlName="paybackOptimisticCase" />
+            </div>
+            <div class="col-md-3">
+              <label for="ebitdaUpLiftOptimisticCase">
+                EBITDA Uplift ( M.THB)
+              </label>
+              <input class="form-control" type="number" formControlName="ebitdaOptimisticCase" />
+            </div>
+          </div>
+          <br />
+          <hr />
+          <br />
+          <div class="form-group row">
+            <div class="col-md-12">
+              <label for="pessimisticCase">
+                Pessimistic Case (Please specify assumption)
+              </label>
+              <textarea class="form-control" formControlName="pessimisticCase" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-3">
+              <label for="projectIrrPessimisticCase">
+                Project IRR(%)
+              </label>
+              <input class="form-control" type="number" formControlName="projectIrrPessimisticCase" />
+            </div>
+            <div class="col-md-3">
+              <label for="npvPessimisticCase"> NPV (M THB) </label>
+              <input class="form-control" type="number" formControlName="npvPessimisticCase" />
+            </div>
+            <div class="col-md-3">
+              <label for="paybackPessimisticCase"> Payback(Year) </label>
+              <input class="form-control" type="number" formControlName="paybackPessimisticCase" />
+            </div>
+            <div class="col-md-3">
+              <label for="ebitdaUpLiftPessimisticCase">
+                EBITDA Uplift ( M.THB)
+              </label>
+              <input class="form-control" type="number" formControlName="ebitdaPessimisticCase" />
+            </div>
+          </div>
+          <br />
+          <hr />
+          <br />
+
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label for="usefulLife">
+                Useful life
+              </label>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-2">
+              <input class="form-control" type="number" formControlName="usefulYear"
+                (input)="calculateDepreciationCost()" />
+            </div>
+            <div class="text-center mt-2">Year</div>
+            <div class="col-md-2">
+              <input class="form-control" type="number" formControlName="usefulMonth"
+                (input)="calculateDepreciationCost()" />
+            </div>
+            <div class="text-center mt-2">Month</div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label for="depreciationCost">
+                Depreciation Cost
+              </label>
+              <input class="form-control" type="text" formControlName="depreciationCost" readonly />
+            </div>
+          </div>
+          <br />
+          <hr />
+          <br />
+          <h5>
+            Additional Key Performance Indicators
+          </h5>
+          <table class="table table-bordered mt-4">
+            <thead class="text-center bg-light">
+              <th width="20%">KPIs</th>
+              <th width="55%">Target</th>
+              <th width="20%">Frequency</th>
+              <th width="5%" *ngIf="!viewMode"></th>
+            </thead>
+            <tbody *ngFor="
+                  let control of detailForm.controls.kpisForm.get('kpis')[
+                    'controls'
+                  ];
+                  let i = index
+                ">
+              <tr [formGroup]="control">
+                <td>
+                  <select class="form-control" type="text" formControlName="kpis" (change)="ChangeKpis(i, $event)">
+                    <option value="" selected disabled>
+                      Choose...
+                    </option>
+                    <option *ngFor="let kpis of kpises" value="{{ kpis.kpisTitle }}" [disabled]="kpis.disabled">
+                      {{ kpis.kpisTitle }}
+                    </option>
+                  </select>
+                </td>
+                <td>
+                  <input class="form-control" type="text" formControlName="target" />
+                </td>
+                <td>
+                  <select class="form-control" type="text" formControlName="frequency">
+                    <option value="" selected disabled>Choose...</option>
+                    <option *ngFor="let frequency of frequencies" value="{{ frequency.frequencyTitle }}">
+                      {{ frequency.frequencyTitle }}
+                    </option>
+                  </select>
+                </td>
+                <td *ngIf="!viewMode">
+                  <button type="button" style="font-size: x-small;" class="btn btn-danger btn-sm mr-1"
+                    (click)="RemoveKpis(i)" [disabled]="isRemoveKpis">
+                    <i class="fas fa-trash-alt"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <ng-container *ngIf="!viewMode">
+            <button class="btn btn-primary mr-5" (click)="AddKpis()" [disabled]="isDisableAddKpis">
+              <i class="fas fa-plus-square mr-2"></i> Add New
+            </button>
+          </ng-container>
+          <br />
+          <hr />
+          <br />
+          <div class="col-md-12">
+            <label for="">KPIs Remark</label>
+            <textarea class="form-control" formControlName="remark" rows="5"></textarea>
+          </div>
+          <br />
+          <br />
+          <div class="col-md-12">
+            <label for="">Other Remark</label>
+            <textarea class="form-control" formControlName="otherKpis" rows="5"></textarea>
+          </div>
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

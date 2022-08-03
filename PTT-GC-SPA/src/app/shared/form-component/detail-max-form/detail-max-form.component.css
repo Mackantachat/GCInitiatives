@@ -1,0 +1,81 @@
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.invalidCollapse{
+    color: red;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.card-initiative {
+    border: none;
+}
+
+table {
+    table-layout: fixed;
+}
+
+.fixedBenefit {
+    width: 280px;
+    overflow: hidden;
+}
+
+.fixed {
+    width: 140px;
+    overflow: hidden;
+}
+
+.fixedMonth {
+    width: 90px;
+    overflow: hidden;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.btn-width {
+    width: 105px;
+}
+
+.btn-co {
+    width: 100%;
+    /* width:2180px; */
+}
+
+.form-control:disabled, .form-control[readonly] {
+    background-color: #B9B9B9;
+    opacity: 1;
+}
+
+/*  Disable Ng Select */
+
+.edit-general .ng-select .ng-arrow-wrapper {
+    background-color: #B9B9B9;
+}
+
+.edit-general .ng-select.ng-select-single .ng-select-container {
+    left: 0;
+    width: 100%;
+    background-color: #B9B9B9;
+    border-radius: 2px;
+}
+
+.edit-general .ng-select.ng-select-multiple .ng-select-container .ng-value-container {
+    left: 0;
+    width: 100%;
+    background-color: #B9B9B9;
+    border-radius: 2px;
+}
+
+.edit-general .ng-select.ng-select-multiple.ng-select-disabled>.ng-select-container .ng-value-container .ng-value {
+    background-color: #B9B9B9;
+    border: 1px solid #B9B9B9;
+}
+
+.edit-general .ng-select.ng-select-disabled>.ng-select-container {
+    background-color: #B9B9B9;
+}

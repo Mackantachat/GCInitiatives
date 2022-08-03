@@ -1,0 +1,100 @@
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.disabled-check {
+    cursor: not-allowed!important;
+    pointer-events: none;
+    opacity: 0.50;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.card-initiative {
+    border: none;
+}
+
+table {
+    table-layout: fixed;
+}
+
+.fixedBenefit {
+    width: 360px;
+    overflow: hidden;
+}
+
+.fixed {
+    width: 140px;
+    overflow: hidden;
+}
+
+.fixedRunRate {
+    width: 90px;
+    overflow: hidden;
+}
+
+.fixedMonth {
+    width: 90px;
+    overflow: hidden;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+}
+
+.btn-width {
+    width: 105px;
+}
+
+.finance-table thead th {
+    background-color: #b8daff;
+    box-shadow: inset 0.1px 0.1px #7abaff, 0 0.1px #7abaff;
+}
+
+.finance-table tbody td {
+    background-color: #fff;
+    box-shadow: inset 0.1px 0.1px #dee2e6, 0 0.1px #dee2e6;
+}
+
+.impact-table thead th {
+    background-color: #f8f9fa;
+    box-shadow: inset 0.1px 0.1px #dee2e6, 0 0.1px #dee2e6;
+}
+
+.impact-table tbody td {
+    background-color: #fff;
+    box-shadow: inset 0.1px 0.1px #dee2e6, 0 0.1px #dee2e6;
+}
+
+.impact-col-1 {
+    left: 0;
+    position: sticky;
+}
+
+.impact-col-2 {
+    left: 360px;
+    position: sticky;
+}
+
+.impact-col-3 {
+    left: 500px;
+    position: sticky;
+}
+
+.card-layout {
+    height: 262px;
+}
+
+.sticky-content{
+    position: sticky;
+    z-index: 100;
+    top: 50px;
+    background-color: white;
+}
+
+.change-colour{
+  background-color: rgba(228, 228, 228);
+}

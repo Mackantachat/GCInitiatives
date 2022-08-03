@@ -1,0 +1,2598 @@
+<div *ngIf="!isMax">
+  <div [formGroup]="detailPimForm">
+    <div class="row">
+      <div class="col-md-12" style="padding-left: inherit;padding-right: inherit;">
+        <div class=" card text card-initiative">
+          <div class="card-body">
+            <!-- <div class="form-initiative">
+              <label for="" style="font-size: 28px;color: #454545;">PIM Detailed Information</label>
+              <hr>
+            </div> -->
+            <div class="form-initiative">
+              <app-initiative-info [id]="id"></app-initiative-info>
+            </div>
+            <div class="form-initiative">
+
+              <!-- Checkboxes (Align with Corporate Strategy/Max Benefit) -->
+              <!-- <div class="form-group">
+                              <div class="custom-control custom-checkbox custom-control-inline">
+                                  <input type="checkbox" formControlName="isAlignWithCorporateStrategy"
+                                      class="custom-control-input" id="alignWithCorporateStrategyCheck"
+                                      #alignWithCorporateStrategyCheck>
+                                  <label for="alignWithCorporateStrategyCheck" class="custom-control-label">Align with
+                                      Corporate Strategy</label>
+                              </div> -->
+              <!-- <div class="custom-control custom-checkbox custom-control-inline">
+                                  <input type="checkbox" class="custom-control-input" id="trackMaxBenefitCheck"
+                                      #trackMaxBenefitCheck>
+                                  <label for="trackMaxBenefitCheck" class="custom-control-label">Track MAX Benefit</label>
+                              </div> -->
+              <!-- </div> -->
+
+              <!-- Align with Corporate Strategy -->
+              <!-- <div *ngIf="alignWithCorporateStrategy">
+                              <div class="form-group row">
+                                  <div class="col-md-6">
+                                      <label for="initiativeYear">Initiative Year</label>
+                                      <input class="form-control" formControlName="year" readonly>
+                                  </div>
+                              </div>
+                              <div class="form-group row">
+                                  <div class="col-md-6">
+                                      <label for="strategicObjective"> Strategic Objective <span
+                                              class="text-danger">*</span> : </label>
+                                      <select formControlName="strategicObjective" class="form-control"
+                                          (change)="OnChangeStrategic($event)">
+                                          <option value="" selected disabled> Choose Strategic Objective </option>
+                                          <option *ngFor="let strategic of strategicObjectives"
+                                              value="{{ strategic.id }}">
+                                              {{strategic.strategicObjectiveTitle}}
+                                          </option>
+                                      </select>
+                                      <div class="invalid-feedback">
+                                          Strategic Objective is required !
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <label for="strategy"> Strategy <span class="text-danger">*</span> : </label>
+                                      <select formControlName="strategy" class="form-control">
+                                          <option value="" selected>Choose Strategy</option>
+                                          <option *ngFor="let strategy of strategies" value="{{strategy.strategyId}}">
+                                              {{strategy.strategyTitle}}
+                                          </option>
+                                      </select>
+                                      <div class="invalid-feedback">
+                                          Strategy is required !
+                                      </div>
+                                  </div>
+                              </div>
+                          </div> -->
+
+              <!-- Max Benefit -->
+              <!-- Change chps to checkControl or checkNotControl -->
+              <ng-container *ngIf="isMax || isPim">
+
+                <div *ngIf="trackMaxBenefit">
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <!-- [ngClass]="ps.checkControl(detailPimForm,'PimDetail','subWorkStream')"-->
+                      <label for="subWorkStream">Sub-Workstream</label>
+                      <ng-select [items]="" [virtualScroll]="true" bindLabel="name" bindValue="id"
+                        formControlName="subWorkStream" id="subWorkStream">
+                      </ng-select>
+                    </div>
+                    <div class="col-md-6">
+                      <!-- [ngClass]="ps.checkControl(detailPimForm,'PimDetail','initiativeType')"-->
+                      <label for="initiativeType">Initiative Type</label>
+                      <ng-select [items]="" [virtualScroll]="true" bindLabel="name" bindValue="id"
+                        formControlName="initiativeType" id="initiativeType">
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <!-- [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectPriority')"-->
+                      <label for="projectPriority">Project Priority</label>
+                      <ng-select [items]="" [virtualScroll]="true" bindLabel="name" bindValue="id"
+                        formControlName="projectPriority" id="projectPriority">
+                      </ng-select>
+                    </div>
+                    <div class="col-md-6">
+                      <!-- [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectControl')"-->
+                      <label for="projectControl">Project Control</label>
+                      <ng-select [items]="" [virtualScroll]="true" bindLabel="name" bindValue="id"
+                        formControlName="projectControl" id="projectControl">
+                      </ng-select>
+                    </div>
+                  </div>
+                </div>
+
+
+                <ng-container *ngIf="isPim; else isMaxFlowPim">
+                  <!-- Sim Project) -->
+                  <div class="row mt-5" *ngIf="showProjectTeam">
+                    <div class="col">
+                      <!-- [ngClass]="ps.checkControl(detailPimForm,'PimDetail','simProjectSkipGate2')"-->
+                      <div class="custom-control custom-checkbox custom-control-inline">
+                        <input formControlName="simProjectSkipGate2" type="checkbox" class="custom-control-input"
+                          id="simProjectSkipGate2" #simProjectSkipGate2>
+                        <label for="simProjectSkipGate2" class="custom-control-label">Simplified Project
+                          (Request to skip Gate 2)</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Date Detail -->
+                  <div class="row mt-5">
+                    <div class="col">
+                      <label style="color: #454545;font-size: 28px;">Approval Plan</label>
+                      <hr>
+                    </div>
+                  </div>
+
+
+
+                  <!-- Date detail -->
+                  <div class="form-group row">
+
+                    <!-- Kickoff Meeting -->
+                    <div class="col-md-6">
+                      <!-- [ngClass]="ps.checkControl(detailPimForm,'PimDetail','kickoffMeeting')"-->
+                      <label for="kickoffMeeting">Kickoff Meeting<span class="text-danger">*</span></label>
+                      <div class="input-group">
+                        <input formControlName="kickoffMeeting" type="text" [bsConfig]="bsConfig" class="form-control"
+                          bsDatepicker #dpKickoff="bsDatepicker" placeholder="DD/MM/YYYY"
+                          [triggers]="viewMode ? '' : 'click:click'"
+                          [ngClass]="{ 'is-invalid': getFormError('kickoffMeeting') }">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpKickoff.isOpen"></i>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="getFormError('kickoffMeeting')">
+                          Kickoff Meeting is required !
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Kickoff Meeting -->
+
+                    <!-- Gate 1 Date -->
+                    <div class="col-md-6" *ngIf="showProjectTeam">
+                      <!-- <ng-container [ngClass]="ps.chps('PimDetail','gate1Date')"> -->
+                      <label for="gate1Date">Gate 1 Date (Plan)<span class="text-danger">*</span></label>
+                      <div class="input-group">
+                        <input formControlName="gate1Date" type="text" [bsConfig]="bsConfig" class="form-control"
+                          bsDatepicker #dpGate1="bsDatepicker" placeholder="DD/MM/YYYY"
+                          [ngClass]="{ 'is-invalid': getFormError('gate1Date') }">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpGate1.isOpen"></i>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="getFormError('gate1Date')">
+                          Gate 1 Date is required !
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Gate 1 Date -->
+                  </div>
+
+
+                  <!-- checkbox -->
+                  <!-- Key Attachments -->
+                  <div *ngIf="!showProjectTeam && isPim" class="form-group row">
+                    <!-- Date Detail -->
+                    <div class="row mt-5">
+                      <div class="col-md-12">
+                        <label style="color: #454545;font-size: 28px;">Key Attachments</label>
+                        <hr>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                          <input formControlName="attachProcess" type="checkbox" class="custom-control-input"
+                            id="attachProcess">
+                          <label for="attachProcess" class="custom-control-label">
+                            Attachment 1) Process Description/Blockflow diagram/PFD/Marked-up P&ID
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                          <input formControlName="attachPlotPlanSite" type="checkbox" class="custom-control-input"
+                            id="attachPlotPlanSite">
+                          <label for="attachPlotPlanSite" class="custom-control-label">
+                            Attachment 2) Plot Plan/Site Photos
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                          <input formControlName="attachReference" type="checkbox" class="custom-control-input"
+                            id="attachReference">
+                          <label for="attachReference" class="custom-control-label">
+                            Attachment 3) Reference Incident Case (for J-Factor)
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                          <input formControlName="attachBenefit" type="checkbox" class="custom-control-input"
+                            id="attachBenefit">
+                          <label for="attachBenefit" class="custom-control-label">
+                            Attachment 4) Benefit Calculation (for %IRR)
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Key Attachments -->
+
+                  <!-- Section A แสดงเฉพาะ MAX PIM -->
+                  <!-- Gate 2 Date (Plan) Gate 3 Date (Plan)  -->
+                  <div class="form-group row">
+                    <!-- <div class="col-md-6" *ngIf=" showProjectTeam && !GetSimProjectSkipGate2"> -->
+                    <div class="col-md-6" *ngIf="showProjectTeam && !GetSimProjectSkipGate2">
+                      <!-- <ng-container [ngClass]="ps.chps('PimDetail','gate2Date')"> -->
+                      <label for="gate2Date">Gate 2 Date (Plan)<span class="text-danger">*</span></label>
+                      <div class="input-group">
+                        <input formControlName="gate2Date" type="text" [bsConfig]="bsConfig" class="form-control"
+                          bsDatepicker #dpGate2="bsDatepicker" placeholder="DD/MM/YYYY"
+                          [triggers]="viewMode ? '' : 'click:click'"
+                          [ngClass]="{ 'is-invalid': getFormError('gate2Date') }">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpGate2.isOpen"></i>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="getFormError('gate2Date')">
+                          Gate 2 Date is required !
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="showProjectTeam">
+                      <!-- <ng-container [ngClass]="ps.chps('PimDetail','gate3Date')"> -->
+
+                      <label for="gate3Date">Gate 3 Date (Plan)<span class="text-danger">*</span></label>
+                      <div class="input-group">
+                        <input formControlName="gate3Date" type="text" [bsConfig]="bsConfig" class="form-control"
+                          bsDatepicker #dpGate3="bsDatepicker" placeholder="DD/MM/YYYY"
+                          [ngClass]="{ 'is-invalid': getFormError('gate3Date') }">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpGate3.isOpen"></i>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="getFormError('gate3Date')">
+                          Gate 3 Date is required !
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Gate 2 Date (Plan) Gate 3 Date (Plan)  -->
+                  </div>
+
+
+
+
+                  <!-- Highlight Work  hide for prod -->
+                  <div class="form-group row">
+                    <div class="col-md-6" *ngIf="showProjectTeam">
+                      <label>Status</label>
+                      <textarea formControlName="highlightWorkStatus" class="form-control"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-6" *ngIf="showProjectTeam">
+                      <label>Concern</label>
+                      <textarea formControlName="highlightWorkConCern" class="form-control"></textarea>
+                    </div>
+                    <div class="col-md-6" *ngIf="showProjectTeam">
+                      <label>Next Activities</label>
+                      <textarea formControlName="nextActivities" class="form-control"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-6" *ngIf="showProjectTeam && !viewMode">
+
+                      <button class="btn btn-info" (click)="updateHighlightWork()">
+                        <ng-container *ngIf="Updating; else updated">
+                          <i class="fas fa-sync-alt fa-spin"></i> Loading...
+                        </ng-container>
+                        <ng-template #updated>
+                          Update
+                        </ng-template>
+                      </button>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-template #isMaxFlowPim>
+                  <!-- isMax -->
+                  <!-- Date Detail -->
+                  <div class="row mt-5">
+                    <div class="col">
+                      <label style="color: #454545;font-size: 28px;">Approval Plan</label>
+                      <hr>
+                    </div>
+                  </div>
+
+
+
+                  <!-- Date detail -->
+                  <div class="form-group row">
+
+                    <!-- Kickoff Meeting -->
+                    <div class="col-md-6">
+                      <!-- [ngClass]="ps.checkControl(detailPimForm,'PimDetail','kickoffMeeting')"-->
+                      <label for="kickoffMeeting">Kickoff Meeting<span class="text-danger">*</span></label>
+                      <div class="input-group">
+                        <input formControlName="kickoffMeeting" type="text" [bsConfig]="bsConfig" class="form-control"
+                          bsDatepicker #dpKickoff="bsDatepicker" placeholder="DD/MM/YYYY"
+                          [triggers]="viewMode ? '' : 'click:click'"
+                          [ngClass]="{ 'is-invalid': getFormError('kickoffMeeting') }">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpKickoff.isOpen"></i>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="getFormError('kickoffMeeting')">
+                          Kickoff Meeting is required !
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Kickoff Meeting -->
+
+                    <!-- Gate 1 Date -->
+                    <div class="col-md-6" *ngIf="showProjectTeam">
+                      <!-- <ng-container [ngClass]="ps.chps('PimDetail','gate1Date')"> -->
+                      <label for="gate1Date">Gate 1 Date (Plan)</label>
+                      <div class="input-group">
+                        <input formControlName="gate1Date" type="text" [bsConfig]="bsConfig" class="form-control"
+                          bsDatepicker #dpGate1="bsDatepicker" placeholder="DD/MM/YYYY"
+                          [ngClass]="{ 'is-invalid': getFormError('gate1Date') }">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpGate1.isOpen"></i>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="getFormError('gate1Date')">
+                          Gate 1 Date is required !
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Gate 1 Date -->
+                  </div>
+
+
+
+                  <!-- Section A แสดงเฉพาะ MAX PIM -->
+                  <!-- Gate 2 Date (Plan) Gate 3 Date (Plan)  -->
+                  <div class="form-group row">
+
+                    <div class="col-md-6" *ngIf="showProjectTeam">
+                      <!-- <ng-container [ngClass]="ps.chps('PimDetail','gate3Date')"> -->
+
+                      <label for="gate3Date">Gate 3 Date (Plan)<span class="text-danger">*</span></label>
+                      <div class="input-group">
+                        <input formControlName="gate3Date" type="text" [bsConfig]="bsConfig" class="form-control"
+                          bsDatepicker #dpGate3="bsDatepicker" placeholder="DD/MM/YYYY"
+                          [ngClass]="{ 'is-invalid': getFormError('gate3Date') }">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpGate3.isOpen"></i>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="getFormError('gate3Date')">
+                          Gate 3 Date is required !
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Gate 2 Date (Plan) Gate 3 Date (Plan)  -->
+
+
+                    <div class="col-md-6" *ngIf="trackMaxBenefit">
+                      <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','iL3Date')">
+                        <label for="iL3Date">IL3 Date<span class="text-danger">*</span></label>
+                        <div class="input-group">
+                          <input formControlName="iL3Date" type="text" [bsConfig]="bsConfig" class="form-control"
+                            bsDatepicker #dpIl3="bsDatepicker" placeholder="DD/MM/YYYY"
+                            [ngClass]="{ 'is-invalid': getFormError('iL3Date') }">
+                          <div *ngIf="!viewMode" class="input-group-append">
+                            <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpIl3.isOpen"></i>
+                          </div>
+                          <div class="invalid-feedback" *ngIf="getFormError('iL3Date')">
+                            IL3 Date is required !
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="trackMaxBenefit">
+                      <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','iL4Date')">
+                        <label for="iL4Date">IL4 Date<span class="text-danger">*</span></label>
+                        <div class="input-group">
+                          <input formControlName="iL4Date" type="text" [bsConfig]="bsConfig" class="form-control"
+                            bsDatepicker #dpIl4="bsDatepicker" placeholder="DD/MM/YYYY"
+                            [ngClass]="{ 'is-invalid': getFormError('iL4Date') }">
+                          <div *ngIf="!viewMode" class="input-group-append">
+                            <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpIl4.isOpen"></i>
+                          </div>
+                          <div class="invalid-feedback" *ngIf="getFormError('iL4Date')">
+                            IL4 Date is required !
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="trackMaxBenefit">
+                      <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','iL5Date')">
+                        <label for="iL5Date">IL5 Date<span class="text-danger">*</span></label>
+                        <div class="input-group">
+                          <input formControlName="iL5Date" type="text" [bsConfig]="bsConfig" class="form-control"
+                            bsDatepicker #dpIl5="bsDatepicker" placeholder="DD/MM/YYYY"
+                            [ngClass]="{ 'is-invalid': getFormError('iL5Date') }">
+                          <div *ngIf="!viewMode" class="input-group-append">
+                            <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpIl5.isOpen"></i>
+                          </div>
+                          <div class="invalid-feedback" *ngIf="getFormError('iL5Date')">
+                            IL5 Date is required !
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+                  <!-- Highlight Work  hide for prod -->
+                  <div class="form-group row">
+                    <div class="col-md-6" *ngIf="showProjectTeam">
+                      <label>Status</label>
+                      <textarea formControlName="highlightWorkStatus" class="form-control"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-6" *ngIf="showProjectTeam">
+                      <label>Concern</label>
+                      <textarea formControlName="highlightWorkConCern" class="form-control"></textarea>
+                    </div>
+                    <div class="col-md-6" *ngIf="showProjectTeam">
+                      <label>Next Activities</label>
+                      <textarea formControlName="nextActivities" class="form-control"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-6" *ngIf="showProjectTeam && !viewMode">
+
+                      <button class="btn btn-info" (click)="updateHighlightWork()">
+                        <ng-container *ngIf="Updating; else updated">
+                          <i class="fas fa-sync-alt fa-spin"></i> Loading...
+                        </ng-container>
+                        <ng-template #updated>
+                          Update
+                        </ng-template>
+                      </button>
+                    </div>
+                  </div>
+                </ng-template>
+              </ng-container>
+
+              <!-- <div class="row mt-5" *ngIf="showProjectTeam"> -->
+              <!-- E-MOC แสดงทุก Process Not in Capex  and MAX -->
+              <div *ngIf="!isCapex">
+                <!-- E-MOC แสดงทุก Process -->
+                <div *ngIf="((isMax || isPim) && showGate(0)) || (!isMax && !isPim)">
+                  <div class="row mt-5">
+                    <div class="col-md-12">
+                      <label style="color: #454545;font-size: 28px;">E-MOC</label>
+                      <hr>
+                    </div>
+                    <div class="col-md-12">
+                      Request E-MOC
+                    </div>
+                    <div class="col-md-12">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input id="useExternalEmoc" value="true" class="custom-control-input" type="radio"
+                          name="useExternalEmoc" formControlName="useExternalEmoc">
+                        <label class="custom-control-label" for="useExternalEmoc">Yes</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input id="notUseExternalEmoc" value="false" class="custom-control-input" type="radio"
+                          name="useExternalEmoc" formControlName="useExternalEmoc">
+                        <label class="custom-control-label" for="notUseExternalEmoc">No</label>
+                      </div>
+                    </div>
+                    <div class="col-md-12" *ngIf="requestEmoc">
+                      <div class="form-group row">
+                        <div class="col-md-4">
+                          <label>Existing E-MOC No.</label>
+                          <input class="form-control" formControlName="externalEmoc">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="requestEmoc">
+                    <div class="col-md-12">
+                      Create E-MOC
+                    </div>
+                    <div class="col-md-12">
+                      <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','isImpactProduction')">
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input id="impact" value="true" class="custom-control-input" type="radio"
+                            name="isImpactProduction" formControlName="isImpactProduction">
+                          <label class="custom-control-label" for="impact">Yes</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input id="noImpact" value="false" class="custom-control-input" type="radio"
+                            name="isImpactProduction" formControlName="isImpactProduction">
+                          <label class="custom-control-label" for="noImpact">No</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12" *ngIf="this.detailPimForm.controls.isImpactProduction.value === 'true'">
+                      <hr class="mt-3">
+                      <div class="form-group">
+                        <div formArrayName="eMocs"
+                        *ngFor="let eMoc of detailPimForm.get('eMocs')['controls']; let idx = index">
+                        <!-- Main Plant -->
+                        <div class="highlight blue"
+                          style="padding: 1rem;">
+                          <div [formGroup]="eMoc" class="form-group row">
+                            <div class="col-md-12">
+                              <button type="button" class="btn btn-danger btn-sm mr-1 btn-list"
+                                style="margin-left: 100%;" (click)="deleteEMoc(idx)"
+                                *ngIf="!isDisable(eMoc) && !viewMode">
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
+                            </div>
+                            <!-- [ngClass]="{'disabled-emoc': isDisable(eMoc)}" -->
+                            <div class="col-md-6">
+                              <label for="eMocTitle">E-MOC Title <span class="text-danger">*</span> </label>
+                              <input class="form-control" formControlName="eMocTitle" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'eMocTitle') }">
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'eMocTitle')">
+                                E-MOC Title is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label>Goal Achievement <span class="text-danger">*</span> </label>
+                              <ng-select formControlName="goalAchievement" [items]="goalAchievementList" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'goalAchievement') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'goalAchievement')">
+                                Goal Achievement is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4" *ngIf="getIsOther(idx)">
+                              <label>Please Specify</label>
+                              <input class="form-control" formControlName="specifiedGoalAchievement" [readonly]="isDisable(eMoc)">
+                            </div>
+                            <div class="col-md-10">
+                              <label>Assumption of Goal Achievement and Target <span class="text-danger">*</span>
+                              </label>
+                              <textarea formControlName="assumptionOfGoal" class="form-control" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'assumptionOfGoal') }">
+                                </textarea>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'assumptionOfGoal')">
+                                Assumption of Goal Achievement and Target is required !
+                              </div>
+                            </div>
+                            <div class="col-md-10">
+                              <label>Reason for Change <span class="text-danger">*</span> </label>
+                              <textarea formControlName="reasonForChange" class="form-control" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'reasonForChange') }">
+                                </textarea>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'reasonForChange')">
+                                Reason for Change is required !
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="plant"> Plant <span class="text-danger">*</span> : </label>
+                              <ng-select formControlName="plant" [items]="GetPlants()" bindValue="id" bindLabel="name"
+                                placeholder="Choose Plant" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'plant') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'plant')">
+                                Plant is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="areaUnit">Area/Unit <span class="text-danger">*</span> :</label>
+                              <input formControlName="areaUnit" type="text" class="form-control" id="areaUnit +{{idx}}"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'areaUnit') }" [readonly]="isDisable(eMoc)">
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'areaUnit')">
+                                Area/Unit is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="typeOfChange">Type of Change <span class="text-danger">*</span> :</label>
+                              <ng-select [items]="changeTypes" [virtualScroll]="true" bindLabel="name" bindValue="id"
+                                formControlName="typeOfChange" id="typeOfChange + {{idx}}" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'typeOfChange') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'typeOfChange')">
+                                Type of Change is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label>MoC Category <span class="text-danger">*</span> :</label>
+                              <ng-select [items]="mocCategories" [virtualScroll]="true" bindLabel="name" bindValue="id"
+                                formControlName="mocCategory" id="mocCategory + {{idx}}" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'mocCategory') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'mocCategory')">
+                                MoC Category is required !
+                              </div>
+                            </div>
+                            <div class="col-md-2">
+                              <label for="expireDate">Expire Date (DD/MM/YYYY) <span class="text-danger">*</span>
+                                :</label>
+                              <div class="input-group">
+                                <ng-container *ngIf="checkTypeOfChange(idx) || isDisable(eMoc) ; else disableExpirDate">
+                                  <input formControlName="expireDate" type="text" readonly class="form-control">
+                                </ng-container>
+                                <ng-template #disableExpirDate>
+                                  <input formControlName="expireDate" type="text" [bsConfig]="bsConfig"
+                                    class="form-control" bsDatepicker #dpExpireDate="bsDatepicker"
+                                    [triggers]="viewMode ? '' : 'click:click'"
+                                    [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'expireDate') }">
+                                  <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'expireDate')">
+                                    Expire Date (DD/MM/YYYY) is required !
+                                  </div>
+                                  <div *ngIf="!viewMode" class="input-group-append">
+                                    <i class="far fa-calendar right-icon mt-2"
+                                      [attr.aria-expanded]="dpExpireDate.isOpen"></i>
+                                  </div>
+                                </ng-template>
+                              </div>
+                            </div>
+                            <div class="col-md-10">
+                              <label for="detailOfTheChange">Details of the Change (Scope of
+                                MoC) <span class="text-danger">*</span> :</label>
+                              <textarea formControlName="detailOfTheChange" type="text" class="form-control"
+                                id="detailOfTheChange + {{idx}}" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'detailOfTheChange') }">
+                                </textarea>
+                              <!-- <input formControlName="detailOfTheChange" type="text" class="form-control"
+                                  id="detailOfTheChange + {{idx}}"
+                                  [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'detailOfTheChange') }"> -->
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'detailOfTheChange')">
+                                Details of the Change (Scope of MoC) is required !
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="initialListOfPeople">Initial list of People or Assets
+                                Impacted <span class="text-danger">*</span> :</label>
+                              <ng-select formControlName="initialListOfPeople" [items]="owners" bindValue="ownerName"
+                                bindLabel="ownerName" placeholder="Choose Owner" (search)="SearchOwnerName($event)"
+                                (clear)="ClearOwnerName()" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'initialListOfPeople') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'initialListOfPeople')">
+                                Initial list of People or Assets Impacted is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="eMocNo">E-MOC No. :</label>
+                              <input formControlName="emocNo" type="text" class="form-control" id="eMocNo + {{idx}}"
+                                readonly [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'emocNo') }" readonly>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'emocNo')">
+                                E-MOC No. is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="mocChampion">MoC Champion <span class="text-danger">*</span> :</label>
+                              <!-- <input formControlName="mocChampion" type="text" class="form-control" id="mocChampion"> -->
+                              <ng-select formControlName="mocChampion" [items]="owners" bindValue="ownerName"
+                                bindLabel="ownerName" placeholder="Choose Owner" (search)="SearchOwnerName($event)"
+                                (clear)="ClearOwnerName()" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'mocChampion') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'mocChampion')">
+                                MoC Champion is required !
+                              </div>
+                            </div>
+                            <div class="col-md-8 pt-4" >
+                              <div class="custom-control custom-checkbox">
+                                <input [id]="'isMainPlant' + idx" formControlName="isMainPlant" type="checkbox"
+                                  class="custom-control-input" value=false
+                                  [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'isMainPlant') }">
+                                <label class="custom-control-label" for="'isMainPlant' + idx" [attr.for]="'isMainPlant' + idx">Main Plant </label>
+                              </div>
+                              <div class="row">
+                                <label class="text-danger"style="font-size: 12px; padding-left: 38px;">*Please select only one main plant to be create E-MOC</label>
+                              </div>
+                            </div>
+
+                            <!-- MainPlant  -->
+                          </div>
+                          <hr style="margin:30px"  />
+                        </div>
+                      </div>
+                        <div class="form-group row" *ngIf="!viewMode">
+                          <div class="col-md-12">
+                            <button type="button" class="btn btn-primary" (click)="addEMoc()">+ Add New</button>
+                            <!-- <button type="button" class="btn btn-info ml-2" (click)="saveEMoc()">Save</button> -->
+                            <button type="button" class="btn btn-success" style="margin-left: 100%;"
+                              (click)="SubmitEmoc()">Create</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group row mt-5" *ngIf="showProjectTeam"> -->
+                  <!-- PDD แสดงทุก Process -->
+                  <div *ngIf="!isCpi && !isStrategy" class="form-group row mt-5">
+                    <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectDocumentDatabase')">
+                      <div class="col-md-12">
+                        <label style="color: #454545;font-size: 28px;">Project Document Database</label>
+                        <hr>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="projectDocumentDatabase"> Project Document Database : </label>
+                        <!-- <input formControlName="projectDocumentDatabase" type="text" class="form-control"> -->
+                        <span [ngClass]="{'link-text': getPdd() != '-'}" (click)="gotoPddLink()">{{getPdd()}}</span>
+                      </div>
+                    </div>
+                    <hr />
+                  </div>
+                </div>
+              </div>
+              <!-- E-MOC แสดงทุก Process Not in Capex  and MAX -->
+
+              <!-- E-MOC in Capex-->
+              <div *ngIf="isCapex && showEmocCapex">
+                <div *ngIf="((isMax || isPim) && showGate(0)) || (!isMax && !isPim)">
+                  <div class="row mt-5">
+                    <div class="col-md-12">
+                      <label style="color: #454545;font-size: 28px;">E-MOC</label>
+                      <hr>
+                    </div>
+                    <div class="col-md-12">
+                      Request E-MOC
+                    </div>
+                    <div class="col-md-12">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input id="useExternalEmoc" value="true" class="custom-control-input" type="radio"
+                          name="useExternalEmoc" formControlName="useExternalEmoc">
+                        <label class="custom-control-label" for="useExternalEmoc">Yes</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input id="notUseExternalEmoc" value="false" class="custom-control-input" type="radio"
+                          name="useExternalEmoc" formControlName="useExternalEmoc">
+                        <label class="custom-control-label" for="notUseExternalEmoc">No</label>
+                      </div>
+                    </div>
+                    <div class="col-md-12" *ngIf="requestEmoc">
+                      <div class="form-group row">
+                        <div class="col-md-4">
+                          <label>Existing E-MOC No.</label>
+                          <input class="form-control" formControlName="externalEmoc">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" *ngIf="requestEmoc">
+                    <div class="col-md-12">
+                      Create E-MOC
+                    </div>
+                    <div class="col-md-12">
+                      <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','isImpactProduction')">
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input id="impact" value="true" class="custom-control-input" type="radio"
+                            name="isImpactProduction" formControlName="isImpactProduction">
+                          <label class="custom-control-label" for="impact">Yes</label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input id="noImpact" value="false" class="custom-control-input" type="radio"
+                            name="isImpactProduction" formControlName="isImpactProduction">
+                          <label class="custom-control-label" for="noImpact">No</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12" *ngIf="this.detailPimForm.controls.isImpactProduction.value === 'true'">
+                      <hr class="mt-3">
+                      <div class="form-group">
+                        <div formArrayName="eMocs"
+                        *ngFor="let eMoc of detailPimForm.get('eMocs')['controls']; let idx = index">
+                        <!-- Main Plant -->
+                        <div class="highlight blue"
+                          style="padding: 1rem;">
+                          <div [formGroup]="eMoc" class="form-group row">
+                            <div class="col-md-12">
+                              <button type="button" class="btn btn-danger btn-sm mr-1 btn-list"
+                                style="margin-left: 100%;" (click)="deleteEMoc(idx)"
+                                *ngIf="!isDisable(eMoc) && !viewMode">
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
+                            </div>
+                            <!-- [ngClass]="{'disabled-emoc': isDisable(eMoc)}" -->
+                            <div class="col-md-6">
+                              <label for="eMocTitle">E-MOC Title <span class="text-danger">*</span> </label>
+                              <input class="form-control" formControlName="eMocTitle" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'eMocTitle') }">
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'eMocTitle')">
+                                E-MOC Title is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label>Goal Achievement <span class="text-danger">*</span> </label>
+                              <ng-select formControlName="goalAchievement" [items]="goalAchievementList" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'goalAchievement') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'goalAchievement')">
+                                Goal Achievement is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4" *ngIf="getIsOther(idx)">
+                              <label>Please Specify</label>
+                              <input class="form-control" formControlName="specifiedGoalAchievement" [readonly]="isDisable(eMoc)">
+                            </div>
+                            <div class="col-md-10">
+                              <label>Assumption of Goal Achievement and Target <span class="text-danger">*</span>
+                              </label>
+                              <textarea formControlName="assumptionOfGoal" class="form-control" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'assumptionOfGoal') }">
+                                </textarea>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'assumptionOfGoal')">
+                                Assumption of Goal Achievement and Target is required !
+                              </div>
+                            </div>
+                            <div class="col-md-10">
+                              <label>Reason for Change <span class="text-danger">*</span> </label>
+                              <textarea formControlName="reasonForChange" class="form-control" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'reasonForChange') }">
+                                </textarea>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'reasonForChange')">
+                                Reason for Change is required !
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="plant"> Plant <span class="text-danger">*</span> : </label>
+                              <ng-select formControlName="plant" [items]="GetPlants()" bindValue="id" bindLabel="name"
+                                placeholder="Choose Plant" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'plant') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'plant')">
+                                Plant is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="areaUnit">Area/Unit <span class="text-danger">*</span> :</label>
+                              <input formControlName="areaUnit" type="text" class="form-control" id="areaUnit +{{idx}}"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'areaUnit') }" [readonly]="isDisable(eMoc)">
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'areaUnit')">
+                                Area/Unit is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="typeOfChange">Type of Change <span class="text-danger">*</span> :</label>
+                              <ng-select [items]="changeTypes" [virtualScroll]="true" bindLabel="name" bindValue="id"
+                                formControlName="typeOfChange" id="typeOfChange + {{idx}}" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'typeOfChange') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'typeOfChange')">
+                                Type of Change is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label>MoC Category <span class="text-danger">*</span> :</label>
+                              <ng-select [items]="mocCategories" [virtualScroll]="true" bindLabel="name" bindValue="id"
+                                formControlName="mocCategory" id="mocCategory + {{idx}}" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'mocCategory') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'mocCategory')">
+                                MoC Category is required !
+                              </div>
+                            </div>
+                            <div class="col-md-2">
+                              <label for="expireDate">Expire Date (DD/MM/YYYY) <span class="text-danger">*</span>
+                                :</label>
+                              <div class="input-group">
+                                <ng-container *ngIf="checkTypeOfChange(idx) || isDisable(eMoc) ; else disableExpirDate">
+                                  <input formControlName="expireDate" type="text" readonly class="form-control">
+                                </ng-container>
+                                <ng-template #disableExpirDate>
+                                  <input formControlName="expireDate" type="text" [bsConfig]="bsConfig"
+                                    class="form-control" bsDatepicker #dpExpireDate="bsDatepicker"
+                                    [triggers]="viewMode ? '' : 'click:click'"
+                                    [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'expireDate') }">
+                                  <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'expireDate')">
+                                    Expire Date (DD/MM/YYYY) is required !
+                                  </div>
+                                  <div *ngIf="!viewMode" class="input-group-append">
+                                    <i class="far fa-calendar right-icon mt-2"
+                                      [attr.aria-expanded]="dpExpireDate.isOpen"></i>
+                                  </div>
+                                </ng-template>
+                              </div>
+                            </div>
+                            <div class="col-md-10">
+                              <label for="detailOfTheChange">Details of the Change (Scope of
+                                MoC) <span class="text-danger">*</span> :</label>
+                              <textarea formControlName="detailOfTheChange" type="text" class="form-control"
+                                id="detailOfTheChange + {{idx}}" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'detailOfTheChange') }">
+                                </textarea>
+                              <!-- <input formControlName="detailOfTheChange" type="text" class="form-control"
+                                  id="detailOfTheChange + {{idx}}"
+                                  [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'detailOfTheChange') }"> -->
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'detailOfTheChange')">
+                                Details of the Change (Scope of MoC) is required !
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="initialListOfPeople">Initial list of People or Assets
+                                Impacted <span class="text-danger">*</span> :</label>
+                              <ng-select formControlName="initialListOfPeople" [items]="owners" bindValue="ownerName"
+                                bindLabel="ownerName" placeholder="Choose Owner" (search)="SearchOwnerName($event)"
+                                (clear)="ClearOwnerName()" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'initialListOfPeople') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'initialListOfPeople')">
+                                Initial list of People or Assets Impacted is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="eMocNo">E-MOC No. :</label>
+                              <input formControlName="emocNo" type="text" class="form-control" id="eMocNo + {{idx}}"
+                                readonly [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'emocNo') }" readonly>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'emocNo')">
+                                E-MOC No. is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="mocChampion">MoC Champion <span class="text-danger">*</span> :</label>
+                              <!-- <input formControlName="mocChampion" type="text" class="form-control" id="mocChampion"> -->
+                              <ng-select formControlName="mocChampion" [items]="owners" bindValue="ownerName"
+                                bindLabel="ownerName" placeholder="Choose Owner" (search)="SearchOwnerName($event)"
+                                (clear)="ClearOwnerName()" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'mocChampion') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'mocChampion')">
+                                MoC Champion is required !
+                              </div>
+                            </div>
+                            <div class="col-md-8 pt-4" >
+                              <div class="custom-control custom-checkbox">
+                                <input [id]="'isMainPlant' + idx" formControlName="isMainPlant" type="checkbox"
+                                  class="custom-control-input" value=false
+                                  [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'isMainPlant') }">
+                                <label class="custom-control-label" for="'isMainPlant' + idx" [attr.for]="'isMainPlant' + idx">Main Plant </label>
+                              </div>
+                              <div class="row">
+                                <label class="text-danger"style="font-size: 12px; padding-left: 38px;">*Please select only one main plant to be create E-MOC</label>
+                              </div>
+                            </div>
+
+                            <!-- MainPlant  -->
+                          </div>
+                          <hr style="margin:30px"  />
+                        </div>
+                      </div>
+                        <div class="form-group row" *ngIf="!viewMode">
+                          <div class="col-md-12">
+                            <button type="button" class="btn btn-primary" (click)="addEMoc()">+ Add New</button>
+                            <!-- <button type="button" class="btn btn-info ml-2" (click)="saveEMoc()">Save</button> -->
+                            <button type="button" class="btn btn-success" style="margin-left: 100%;"
+                              (click)="SubmitEmoc()">Create</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="form-group row mt-5" *ngIf="showProjectTeam"> -->
+                  <!-- PDD แสดงทุก Process -->
+                  <div *ngIf="!isCpi && !isStrategy" class="form-group row mt-5">
+                    <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectDocumentDatabase')">
+                      <div class="col-md-12">
+                        <label style="color: #454545;font-size: 28px;">Project Document Database</label>
+                        <hr>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="projectDocumentDatabase"> Project Document Database : </label>
+                        <!-- <input formControlName="projectDocumentDatabase" type="text" class="form-control"> -->
+                        <span [ngClass]="{'link-text': getPdd() != '-'}" (click)="gotoPddLink()">{{getPdd()}}</span>
+                      </div>
+                    </div>
+                    <hr />
+                  </div>
+                </div>
+              </div>
+              <!-- E-MOC in Capex-->
+
+
+              <!-- Project Team  แสดงทุก Process Not in Capex  and MAX -->
+              <div *ngIf="!isCapex">
+                <div *ngIf="((isMax || isPim) && showGate(0)) || (!isMax && !isPim)">
+
+                  <ng-container *ngIf="isMax; else isNotMax">
+                    <div class="row mt-5">
+                      <div class="col">
+                        <label style="color: #454545;font-size: 28px;">Project Team</label>
+                        <hr>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                      <div class="col-md-6">
+                        <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectDirector')">
+                          <label for="projectDirector">Project Director :</label>
+                          <ng-select [items]="directorList" [virtualScroll]="true" bindLabel="ownerName"
+                            bindValue="ownerName" (search)="SearchPerson($event,'director')"
+                            (click)="SearchPerson($event,'director')" (clear)="ClearPerson('director')"
+                            formControlName="projectDirector" placeholder="Choose Project Director">
+                          </ng-select>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                      <div class="col-md-6">
+                        <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectManager')">
+                          <label for="projectManager">Project Manager :<span class="text-danger">*</span></label>
+                          <ng-select [items]="projectManagerList" [virtualScroll]="true" bindLabel="ownerName"
+                            bindValue="ownerName" (search)="SearchPerson($event,'projectManager')"
+                            (click)="SearchPerson($event,'projectManager')" (clear)="ClearPerson('projectManager')"
+                            formControlName="projectManager" placeholder="Choose Project Manager"
+                            [ngClass]="{ 'is-invalid': getFormError('projectManager') }">
+                          </ng-select>
+                          <div class="invalid-feedback" *ngIf="getFormError('projectManager')">
+                            Project Manager is required !
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6" *ngIf="showProjectEngineer || showProjectTeam"> -->
+                      <div class="col-md-6">
+                        <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectEngineer')">
+                          <label for="projectEngineer">Project Engineer :<span class="text-danger">*</span></label>
+                          <ng-select [items]="projectEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                            (search)="SearchPerson($event,'projectEngineer')" (clear)="ClearPerson('projectEngineer')"
+                            (click)="SearchPerson($event,'projectEngineer')" (change)="SetResponsiblePerson($event)"
+                            bindValue="ownerName" formControlName="projectEngineer"
+                            placeholder="Choose Project Engineer"
+                            [ngClass]="{ 'is-invalid': getFormError('projectEngineer') }">
+                          </ng-select>
+                          <div class="invalid-feedback" *ngIf="getFormError('projectEngineer')">
+                            Project Engineer is required !
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                      <div class="col-md-6">
+                        <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','processEngineer')">
+                          <label for="processEngineer">Process Engineer :</label>
+                          <ng-select [items]="processEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                            (search)="SearchPerson($event,'processEngineer')" (clear)="ClearPerson('processEngineer')"
+                            (click)="SearchPerson($event,'processEngineer')" bindValue="ownerName"
+                            formControlName="processEngineer" placeholder="Choose Process Engineer">
+                          </ng-select>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                      <div class="col-md-6">
+                        <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','divMgrOfProcessEngineer')">
+                          <label for="divManagerProcessList">Div. Mgr. Process Engineer :</label>
+                          <ng-select [items]="divManagerProcessList" [virtualScroll]="true"
+                            (search)="SearchPerson($event,'divmanagerprocess')"
+                            (clear)="ClearPerson('divmanagerprocess')"
+                            (click)="SearchPerson($event,'divmanagerprocess')" bindLabel="ownerName"
+                            bindValue="ownerName" formControlName="divMgrOfProcessEngineer"
+                            placeholder="Choose Div. Mgr. of Process Engineer">
+                          </ng-select>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                      <div class="col-md-6">
+                        <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectSponsor')">
+                          <label for="sponsorEvp">Sponsor / EVP:</label>
+                          <!-- use ProjectSponsor --old  sponsorEVP-->
+                          <ng-select [items]="directorList" [virtualScroll]="true" bindLabel="ownerName"
+                            (search)="SearchPerson($event,'director')" (clear)="ClearPerson('director')"
+                            (click)="SearchPerson($event,'director')" bindValue="ownerName"
+                            formControlName="projectSponsor" placeholder="Choose Sponsor / EVP">
+                          </ng-select>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-template #isNotMax>
+                    <ng-container *ngIf="showProjectEngineer; else hideSectionProjectTeam">
+                      <div *ngIf="!isCpi && !isStrategy">
+                        <div class="row mt-5">
+                          <div class="col">
+                            <label style="color: #454545;font-size: 28px;">Project Team</label>
+                            <hr>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectEngineer')">
+                            <label for="projectEngineer">Project Engineer :<span class="text-danger">*</span></label>
+                            <ng-select [items]="projectEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                              (search)="SearchPerson($event,'projectEngineer')" (change)="SetResponsiblePerson($event)"
+                              (click)="SearchPerson($event,'projectEngineer')" (clear)="ClearPerson('projectEngineer')"
+                              bindValue="ownerName" formControlName="projectEngineer"
+                              placeholder="Choose Project Engineer"
+                              [ngClass]="{ 'is-invalid': getFormError('projectEngineer') }">
+                            </ng-select>
+                            <div class="invalid-feedback" *ngIf="getFormError('projectEngineer')">
+                              Project Engineer is required !
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                    <ng-template #hideSectionProjectTeam>
+                      <div *ngIf="!isCpi && !isStrategy">
+                        <div class="row mt-5">
+                          <div class="col">
+                            <label style="color: #454545;font-size: 28px;">Project Team</label>
+                            <hr>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                          <div class="col-md-6">
+                            <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectDirector')">
+                              <label for="projectDirector">Project Director :</label>
+                              <ng-select [items]="directorList" [virtualScroll]="true" bindLabel="ownerName"
+                                bindValue="ownerName" (search)="SearchPerson($event,'director')"
+                                (click)="SearchPerson($event,'director')" (clear)="ClearPerson('director')"
+                                formControlName="projectDirector" placeholder="Choose Project Director">
+                              </ng-select>
+                            </div>
+                          </div>
+                          <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                          <div class="col-md-6">
+                            <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectManager')">
+                              <label for="projectManager">Project Manager :<span class="text-danger">*</span></label>
+                              <ng-select [items]="projectManagerList" [virtualScroll]="true" bindLabel="ownerName"
+                                bindValue="ownerName" (search)="SearchPerson($event,'projectManager')"
+                                (click)="SearchPerson($event,'projectManager')" (clear)="ClearPerson('projectManager')"
+                                formControlName="projectManager" placeholder="Choose Project Manager"
+                                [ngClass]="{ 'is-invalid': getFormError('projectManager') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormError('projectManager')">
+                                Project Manager is required !
+                              </div>
+                            </div>
+                          </div>
+                          <!-- <div class="col-md-6" *ngIf="showProjectEngineer || showProjectTeam"> -->
+                          <div class="col-md-6">
+                            <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectEngineer')">
+                              <label for="projectEngineer">Project Engineer :<span class="text-danger">*</span></label>
+                              <ng-select [items]="projectEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                                (search)="SearchPerson($event,'projectEngineer')"
+                                (clear)="ClearPerson('projectEngineer')"
+                                (click)="SearchPerson($event,'projectEngineer')" (change)="SetResponsiblePerson($event)"
+                                bindValue="ownerName" formControlName="projectEngineer"
+                                placeholder="Choose Project Engineer"
+                                [ngClass]="{ 'is-invalid': getFormError('projectEngineer') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormError('projectEngineer')">
+                                Project Engineer is required !
+                              </div>
+                            </div>
+                          </div>
+                          <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                          <div class="col-md-6">
+                            <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','processEngineer')">
+                              <label for="processEngineer">Process Engineer :</label>
+                              <ng-select [items]="processEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                                (search)="SearchPerson($event,'processEngineer')"
+                                (clear)="ClearPerson('processEngineer')"
+                                (click)="SearchPerson($event,'processEngineer')" bindValue="ownerName"
+                                formControlName="processEngineer" placeholder="Choose Process Engineer">
+                              </ng-select>
+                            </div>
+                          </div>
+                          <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                          <div class="col-md-6">
+                            <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','divMgrOfProcessEngineer')">
+                              <label for="divManagerProcessList">Div. Mgr. Process Engineer :</label>
+                              <ng-select [items]="divManagerProcessList" [virtualScroll]="true"
+                                (search)="SearchPerson($event,'divmanagerprocess')"
+                                (clear)="ClearPerson('divmanagerprocess')"
+                                (click)="SearchPerson($event,'divmanagerprocess')" bindLabel="ownerName"
+                                bindValue="ownerName" formControlName="divMgrOfProcessEngineer"
+                                placeholder="Choose Div. Mgr. of Process Engineer">
+                              </ng-select>
+                            </div>
+                          </div>
+                          <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                          <div class="col-md-6">
+                            <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectSponsor')">
+                              <label for="sponsorEvp">Sponsor / EVP:</label>
+                              <!-- use ProjectSponsor --old  sponsorEVP-->
+                              <ng-select [items]="directorList" [virtualScroll]="true" bindLabel="ownerName"
+                                (search)="SearchPerson($event,'director')" (clear)="ClearPerson('director')"
+                                (click)="SearchPerson($event,'director')" bindValue="ownerName"
+                                formControlName="projectSponsor" placeholder="Choose Sponsor / EVP">
+                              </ng-select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                    <!-- Project Team -->
+
+                    <!-- Team Support Type Cim -->
+                    <ng-container *ngIf="isCim && ShowTeamSupportinStage && ishideTeamSupport">
+                      <div class="row mt-4">
+                        <div class=" col-md-12">
+                          <h4> Team Support </h4>
+                          <hr>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-6" [ngClass]="{'disabled-check-main' :  !isOwner || !pmoTPX || !adminCIM }">
+                          <div class="custom-control custom-checkbox custom-control-inline">
+                            <input id="requestTeamSupport" class="custom-control-input" type="checkbox"
+                              formControlName="requestTeamSupport" (change)="RequestTeamSupport()">
+                            <label class="custom-control-label" for="requestTeamSupport"> Request Support
+                              Team(Before BOD1) :
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <ng-container *ngIf="ShowTeamSupport">
+                        <!-- select -->
+                        <div class="form-group row">
+                          <div class="col-md-6">
+                            <!-- [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','projectDirector')"> -->
+                            <label> Support Team : </label>
+                            <ng-select formControlName="teamSupports" [items]="owners" bindValue="ownerName"
+                              bindLabel="ownerName" placeholder="Choose Support Team" [multiple]="true"
+                              (search)="SearchOwnerName($event)" (clear)="ClearOwnerName()"
+                              [ngClass]="{'disabled-check-main' :  !isOwner || !pmoTPX || !adminCIM }">
+                            </ng-select>
+                          </div>
+                        </div>
+                        <!-- request button -->
+                        <div class="form-group row">
+                          <div class="col-md-6">
+                            <button type="button" class="btn btn-success btn-width"
+                              [ngClass]="{'disabled-check-main' :  !isOwner || !pmoTPX || !adminCIM }"
+                              (click)="sendRequestTeamSupport()">
+                              <span class="far fa-check-circle mr-2"></span> Request
+                            </button>
+                          </div>
+                        </div>
+                        <!-- table -->
+                        <!-- Project Background -->
+                        <hr>
+                        <div class="form-group row mt-3">
+                          <div class="col-md-12">
+                            <table class="table table-bordered" id="custom_table">
+                              <thead>
+                                <tr style="background-color: lightgray;">
+                                  <!-- <th scope="col" style="text-align: center;color: black;">No</th> -->
+                                  <th scope="col" style="text-align: center;color: black;">Name</th>
+                                  <th scope="col" style="text-align: center;color: black;">Comment</th>
+                                  <th scope="col" style="text-align: center;color: black;">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody *ngFor="let control of detailPimForm.get('teamSupportComments')['controls']; let
+                            i=index">
+                                <tr [formGroup]="control">
+                                  <!-- <td scope="row" style="text-align: center;">
+                                {{ i + 1 }}
+                              </td> -->
+                                  <td scope="row" style="text-align: center;">
+                                    <input type="text" class="form-control" formControlName="teamSupportName" readonly>
+                                  </td>
+                                  <td style="text-align: center;">
+                                    <input type="text" class="form-control" formControlName="comment"
+                                      [readonly]="canEditComment(i)">
+                                  </td>
+                                  <td style="text-align: center;">
+                                    <button *ngIf="canDeleteComment(i) && !viewMode"
+                                      class="btn btn-danger btn-sm mr-1 text-white btn-list" (click)="deleteComment(i)">
+                                      <i class="far fa-trash-alt"></i>
+                                    </button>
+                                    <!-- <a class="edit" (click)="edit_projectBackground(item, project)">Edit</a> -->
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+
+                          </div>
+                        </div>
+                        <!-- Button-Add-Project -->
+                        <div class="row" *ngIf="!viewMode">
+                          <div class="col-md-6" [ngClass]="{'disabled-check-main' : isNotAddComment }">
+                            <button type="button" class="btn btn-primary" (click)="addComment()" style="width:115px">
+                              <i class="fas fa-plus mr-2"></i> <span style="font-size: 0.9rem;"> Add New </span>
+                            </button>
+                          </div>
+                          <div class="col-md-6"></div>
+                        </div>
+                        <!-- table -->
+                      </ng-container>
+
+                      <hr>
+                      <!-- Handover for Execution -->
+                      <div class="row mt-3">
+                        <div class="col-md-12">
+                          Request Handover for Execution
+                        </div>
+                        <div class="col-md-12">
+                          <ng-container
+                            *ngIf="passStageAndDisableHandoverEx && !adminCIM; else enableHandoverExecution">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="requestHandoverExecution" [value]="true" class="custom-control-input"
+                                type="radio" name="requestHandoverExecution" formControlName="requestHandoverExecution"
+                                [attr.disabled]="true">
+                              <label class="custom-control-label" for="requestHandoverExecution">Yes</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="notRequestHandoverExecution" [value]="false" class="custom-control-input"
+                                type="radio" name="requestHandoverExecution" formControlName="requestHandoverExecution"
+                                [attr.disabled]="true">
+                              <label class="custom-control-label" for="notRequestHandoverExecution">No</label>
+                            </div>
+                          </ng-container>
+                          <ng-template #enableHandoverExecution>
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="requestHandoverExecution" [value]="true" class="custom-control-input"
+                                type="radio" name="requestHandoverExecution" formControlName="requestHandoverExecution">
+                              <label class="custom-control-label" for="requestHandoverExecution">Yes</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="notRequestHandoverExecution" [value]="false" class="custom-control-input"
+                                type="radio" name="requestHandoverExecution" formControlName="requestHandoverExecution">
+                              <label class="custom-control-label" for="notRequestHandoverExecution">No</label>
+                            </div>
+                          </ng-template>
+                        </div>
+                      </div>
+                      <!-- Handover for Execution -->
+                      <ng-container *ngIf="RequestHandoverExecution">
+                        <div class="row mt-4">
+                          <div class=" col-md-12">
+                            <h4>Execution Team </h4>
+                            <hr>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-6">
+                            <label for="projectDirector">Project Director :</label>
+                            <ng-select [items]="directorList" [virtualScroll]="true" bindLabel="ownerName"
+                              bindValue="ownerName" (search)="SearchPerson($event,'director')"
+                              (click)="SearchPerson($event,'director')" (clear)="ClearPerson('director')"
+                              formControlName="projectDirector" placeholder="Choose Project Director"
+                              [readonly]="passStageAndDisableHandoverEx && !adminCIM">
+                            </ng-select>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="projectManager">Project Manager :<span class="text-danger">*</span></label>
+                            <ng-select [items]="projectManagerList" [virtualScroll]="true" bindLabel="ownerName"
+                              bindValue="ownerName" (search)="SearchPerson($event,'projectManager')"
+                              (click)="SearchPerson($event,'projectManager')" (clear)="ClearPerson('projectManager')"
+                              formControlName="projectManager" placeholder="Choose Project Manager"
+                              [readonly]="passStageAndDisableHandoverEx && !adminCIM"
+                              [ngClass]="{ 'is-invalid': getFormError('projectManager') }">
+                            </ng-select>
+                            <div class="invalid-feedback" *ngIf="getFormError('projectManager')">
+                              Project Manager is required !
+                            </div>
+                            <!-- <div class="invalid-feedback" *ngIf="invalidProjectManager">
+                          Project Manager is required !
+                        </div> -->
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-6">
+                            <label for="projectEngineer">Project Engineer :<span class="text-danger">*</span></label>
+                            <ng-select [items]="projectEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                              (search)="SearchPerson($event,'projectEngineer')" (clear)="ClearPerson('projectEngineer')"
+                              (click)="SearchPerson($event,'projectEngineer')" bindValue="ownerName"
+                              formControlName="projectEngineer" placeholder="Choose Project Engineer"
+                              [readonly]="passStageAndDisableHandoverEx && !adminCIM"
+                              [ngClass]="{ 'is-invalid': getFormError('projectEngineer') }">
+                            </ng-select>
+                            <div class="invalid-feedback" *ngIf="getFormError('projectEngineer')">
+                              Project Engineer is required !
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <label> Process Engineer : </label>
+                            <ng-select [items]="processEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                              (search)="SearchPerson($event,'processEngineer')" (clear)="ClearPerson('processEngineer')"
+                              (click)="SearchPerson($event,'processEngineer')" bindValue="ownerName"
+                              formControlName="processEngineer" placeholder="Choose Process Engineer"
+                              [readonly]="passStageAndDisableHandoverEx && !adminCIM">
+                            </ng-select>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-6">
+                            <label for="divManagerProcessList">Div. Mgr. Process Engineer :</label>
+                            <ng-select [items]="divManagerProcessList" [virtualScroll]="true"
+                              (search)="SearchPerson($event,'divmanagerprocess')"
+                              (clear)="ClearPerson('divmanagerprocess')"
+                              (click)="SearchPerson($event,'divmanagerprocess')" bindLabel="ownerName"
+                              bindValue="ownerName" formControlName="divMgrOfProcessEngineer"
+                              placeholder="Choose Div. Mgr. of Process Engineer"
+                              [readonly]="passStageAndDisableHandoverEx && !adminCIM">
+                            </ng-select>
+                          </div>
+                        </div>
+                      </ng-container>
+                      <!-- Handover for Execution -->
+
+                      <hr>
+                      <!-- Handover for Plant Owner -->
+                      <div class="row mt-3">
+                        <div class="col-md-12">
+                          Request Handover for Plant Owner
+                        </div>
+                        <div class="col-md-12">
+                          <ng-container
+                            *ngIf="passStageAndDisableHandoverPlantOwner && !adminCIM; else enableHandoverPlantOwner">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="requestHandoverPlantOwner" [value]="true" class="custom-control-input"
+                                type="radio" name="requestHandoverPlantOwner"
+                                formControlName="requestHandoverPlantOwner" [attr.disabled]="true">
+                              <label class="custom-control-label" for="requestHandoverPlantOwner">Yes</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="notRequestHandoverPlantOwner" [value]="false" class="custom-control-input"
+                                type="radio" name="requestHandoverPlantOwner"
+                                formControlName="requestHandoverPlantOwner" [attr.disabled]="true">
+                              <label class="custom-control-label" for="notRequestHandoverPlantOwner">No</label>
+                            </div>
+                          </ng-container>
+                          <ng-template #enableHandoverPlantOwner>
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="requestHandoverPlantOwner" [value]="true" class="custom-control-input"
+                                type="radio" name="requestHandoverPlantOwner"
+                                formControlName="requestHandoverPlantOwner">
+                              <label class="custom-control-label" for="requestHandoverPlantOwner">Yes</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="notRequestHandoverPlantOwner" [value]="false" class="custom-control-input"
+                                type="radio" name="requestHandoverPlantOwner"
+                                formControlName="requestHandoverPlantOwner">
+                              <label class="custom-control-label" for="notRequestHandoverPlantOwner">No</label>
+                            </div>
+                          </ng-template>
+                        </div>
+                      </div>
+                      <!-- Handover for Plant Owner -->
+                      <ng-container *ngIf="RequestHandoverPlantOwner">
+                        <div class="row mt-4">
+                          <div class=" col-md-12">
+                            <h4>Plant Owner Team </h4>
+                            <hr>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-6">
+                            <label> VP of Plant Owner : </label>
+                            <ng-select [items]="presidentList" [virtualScroll]="true" bindLabel="ownerName"
+                              bindValue="ownerName" (search)="SearchPerson($event,'vp')"
+                              (click)="SearchPerson($event,'vp')" (clear)="ClearPerson('vp')"
+                              formControlName="vpOfPlantOwner" placeholder="Choose VP of Plant Owner"
+                              [readonly]="passStageAndDisableHandoverPlantOwner && !adminCIM">
+                            </ng-select>
+                          </div>
+                          <div class="col-md-6">
+                            <label> DM of Plant Owner : <span class="text-danger">*</span></label>
+                            <ng-select [items]="managerList" [virtualScroll]="true" bindLabel="ownerName"
+                              bindValue="ownerName" (search)="SearchPerson($event,'dm')"
+                              (click)="SearchPerson($event,'dm')" (clear)="ClearPerson('dm')"
+                              formControlName="dmOfPlantOwner" placeholder="Choose DM of Plant Owner"
+                              [readonly]="passStageAndDisableHandoverPlantOwner && !adminCIM">
+                            </ng-select>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-6">
+                            <label> Plant Engineer : <span class="text-danger">*</span></label>
+                            <ng-select [items]="projectEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                              (search)="SearchPerson($event,'projectEngineer')" (clear)="ClearPerson('projectEngineer')"
+                              (click)="SearchPerson($event,'projectEngineer')" bindValue="ownerName"
+                              formControlName="plantEngineer" placeholder="Choose Plant Engineer"
+                              [readonly]="passStageAndDisableHandoverPlantOwner && !adminCIM">
+                            </ng-select>
+                          </div>
+                          <div class="col-md-6">
+                            <label> Plant Process Engineer : </label>
+                            <ng-select [items]="processEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                              (search)="SearchPerson($event,'processEngineer')" (clear)="ClearPerson('processEngineer')"
+                              (click)="SearchPerson($event,'processEngineer')" bindValue="ownerName"
+                              formControlName="plantProcessEngineer" placeholder="Choose Plant Process Engineer"
+                              [readonly]="passStageAndDisableHandoverPlantOwner && !adminCIM">
+                            </ng-select>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-6">
+                            <label> Div. Mgr. of Plant Process Engineer : </label>
+                            <ng-select [items]="divManagerProcessList" [virtualScroll]="true"
+                              (search)="SearchPerson($event,'divmanagerprocess')"
+                              (clear)="ClearPerson('divmanagerprocess')"
+                              (click)="SearchPerson($event,'divmanagerprocess')" bindLabel="ownerName"
+                              bindValue="ownerName" formControlName="divMgrOfPlantProcessEngineer"
+                              placeholder="Choose Div. Mgr. of Plant Process Engineer"
+                              [readonly]="passStageAndDisableHandoverPlantOwner && !adminCIM">
+                            </ng-select>
+                          </div>
+                        </div>
+                      </ng-container>
+                      <!-- Handover for Plant Owner -->
+                    </ng-container>
+                  </ng-template>
+                </div>
+              </div>
+              <!-- Project Team  แสดงทุก Process Not in Capex  and MAX -->
+
+              <!-- Project Team in Capex -->
+              <div *ngIf="isCapex && showProjectTeamCapex">
+                <div *ngIf="((isMax || isPim) && showGate(0)) || (!isMax && !isPim)">
+                  <ng-container *ngIf="isMax; else isNotMax">
+                    <div class="row mt-5">
+                      <div class="col">
+                        <label style="color: #454545;font-size: 28px;">Project Team</label>
+                        <hr>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                      <div class="col-md-6">
+                        <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectDirector')">
+                          <label for="projectDirector">Project Director :</label>
+                          <ng-select [items]="directorList" [virtualScroll]="true" bindLabel="ownerName"
+                            bindValue="ownerName" (search)="SearchPerson($event,'director')"
+                            (click)="SearchPerson($event,'director')" (clear)="ClearPerson('director')"
+                            formControlName="projectDirector" placeholder="Choose Project Director">
+                          </ng-select>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                      <div class="col-md-6">
+                        <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectManager')">
+                          <label for="projectManager">Project Manager :<span class="text-danger">*</span></label>
+                          <ng-select [items]="projectManagerList" [virtualScroll]="true" bindLabel="ownerName"
+                            bindValue="ownerName" (search)="SearchPerson($event,'projectManager')"
+                            (click)="SearchPerson($event,'projectManager')" (clear)="ClearPerson('projectManager')"
+                            formControlName="projectManager" placeholder="Choose Project Manager"
+                            [ngClass]="{ 'is-invalid': getFormError('projectManager') }">
+                          </ng-select>
+                          <div class="invalid-feedback" *ngIf="getFormError('projectManager')">
+                            Project Manager is required !
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6" *ngIf="showProjectEngineer || showProjectTeam"> -->
+                      <div class="col-md-6">
+                        <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectEngineer')">
+                          <label for="projectEngineer">Project Engineer :<span class="text-danger">*</span></label>
+                          <ng-select [items]="projectEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                            (search)="SearchPerson($event,'projectEngineer')" (clear)="ClearPerson('projectEngineer')"
+                            (click)="SearchPerson($event,'projectEngineer')" (change)="SetResponsiblePerson($event)"
+                            bindValue="ownerName" formControlName="projectEngineer"
+                            placeholder="Choose Project Engineer"
+                            [ngClass]="{ 'is-invalid': getFormError('projectEngineer') }">
+                          </ng-select>
+                          <div class="invalid-feedback" *ngIf="getFormError('projectEngineer')">
+                            Project Engineer is required !
+                          </div>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                      <div class="col-md-6">
+                        <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','processEngineer')">
+                          <label for="processEngineer">Process Engineer :</label>
+                          <ng-select [items]="processEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                            (search)="SearchPerson($event,'processEngineer')" (clear)="ClearPerson('processEngineer')"
+                            (click)="SearchPerson($event,'processEngineer')" bindValue="ownerName"
+                            formControlName="processEngineer" placeholder="Choose Process Engineer">
+                          </ng-select>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                      <div class="col-md-6">
+                        <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','divMgrOfProcessEngineer')">
+                          <label for="divManagerProcessList">Div. Mgr. Process Engineer :</label>
+                          <ng-select [items]="divManagerProcessList" [virtualScroll]="true"
+                            (search)="SearchPerson($event,'divmanagerprocess')"
+                            (clear)="ClearPerson('divmanagerprocess')"
+                            (click)="SearchPerson($event,'divmanagerprocess')" bindLabel="ownerName"
+                            bindValue="ownerName" formControlName="divMgrOfProcessEngineer"
+                            placeholder="Choose Div. Mgr. of Process Engineer">
+                          </ng-select>
+                        </div>
+                      </div>
+                      <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                      <div class="col-md-6">
+                        <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectSponsor')">
+                          <label for="sponsorEvp">Sponsor / EVP:</label>
+                          <!-- use ProjectSponsor --old  sponsorEVP-->
+                          <ng-select [items]="directorList" [virtualScroll]="true" bindLabel="ownerName"
+                            (search)="SearchPerson($event,'director')" (clear)="ClearPerson('director')"
+                            (click)="SearchPerson($event,'director')" bindValue="ownerName"
+                            formControlName="projectSponsor" placeholder="Choose Sponsor / EVP">
+                          </ng-select>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <ng-template #isNotMax>
+                    <ng-container *ngIf="showProjectEngineer; else hideSectionProjectTeam">
+                      <div *ngIf="!isCpi && !isStrategy">
+                        <div class="row mt-5">
+                          <div class="col">
+                            <label style="color: #454545;font-size: 28px;">Project Team</label>
+                            <hr>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectEngineer')">
+                            <label for="projectEngineer">Project Engineer :<span class="text-danger">*</span></label>
+                            <ng-select [items]="projectEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                              (search)="SearchPerson($event,'projectEngineer')" (change)="SetResponsiblePerson($event)"
+                              (click)="SearchPerson($event,'projectEngineer')" (clear)="ClearPerson('projectEngineer')"
+                              bindValue="ownerName" formControlName="projectEngineer"
+                              placeholder="Choose Project Engineer"
+                              [ngClass]="{ 'is-invalid': getFormError('projectEngineer') }">
+                            </ng-select>
+                            <div class="invalid-feedback" *ngIf="getFormError('projectEngineer')">
+                              Project Engineer is required !
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+                    <ng-template #hideSectionProjectTeam>
+                      <div *ngIf="!isCpi && !isStrategy">
+                        <div class="row mt-5">
+                          <div class="col">
+                            <label style="color: #454545;font-size: 28px;">Project Team</label>
+                            <hr>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                          <div class="col-md-6">
+                            <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectDirector')">
+                              <label for="projectDirector">Project Director :</label>
+                              <ng-select [items]="directorList" [virtualScroll]="true" bindLabel="ownerName"
+                                bindValue="ownerName" (search)="SearchPerson($event,'director')"
+                                (click)="SearchPerson($event,'director')" (clear)="ClearPerson('director')"
+                                formControlName="projectDirector" placeholder="Choose Project Director">
+                              </ng-select>
+                            </div>
+                          </div>
+                          <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                          <div class="col-md-6">
+                            <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectManager')">
+                              <label for="projectManager">Project Manager :<span class="text-danger">*</span></label>
+                              <ng-select [items]="projectManagerList" [virtualScroll]="true" bindLabel="ownerName"
+                                bindValue="ownerName" (search)="SearchPerson($event,'projectManager')"
+                                (click)="SearchPerson($event,'projectManager')" (clear)="ClearPerson('projectManager')"
+                                formControlName="projectManager" placeholder="Choose Project Manager"
+                                [ngClass]="{ 'is-invalid': getFormError('projectManager') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormError('projectManager')">
+                                Project Manager is required !
+                              </div>
+                            </div>
+                          </div>
+                          <!-- <div class="col-md-6" *ngIf="showProjectEngineer || showProjectTeam"> -->
+                          <div class="col-md-6">
+                            <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectEngineer')">
+                              <label for="projectEngineer">Project Engineer :<span class="text-danger">*</span></label>
+                              <ng-select [items]="projectEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                                (search)="SearchPerson($event,'projectEngineer')"
+                                (clear)="ClearPerson('projectEngineer')"
+                                (click)="SearchPerson($event,'projectEngineer')" (change)="SetResponsiblePerson($event)"
+                                bindValue="ownerName" formControlName="projectEngineer"
+                                placeholder="Choose Project Engineer"
+                                [ngClass]="{ 'is-invalid': getFormError('projectEngineer') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormError('projectEngineer')">
+                                Project Engineer is required !
+                              </div>
+                            </div>
+                          </div>
+                          <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                          <div class="col-md-6">
+                            <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','processEngineer')">
+                              <label for="processEngineer">Process Engineer :</label>
+                              <ng-select [items]="processEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                                (search)="SearchPerson($event,'processEngineer')"
+                                (clear)="ClearPerson('processEngineer')"
+                                (click)="SearchPerson($event,'processEngineer')" bindValue="ownerName"
+                                formControlName="processEngineer" placeholder="Choose Process Engineer">
+                              </ng-select>
+                            </div>
+                          </div>
+                          <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                          <div class="col-md-6">
+                            <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','divMgrOfProcessEngineer')">
+                              <label for="divManagerProcessList">Div. Mgr. Process Engineer :</label>
+                              <ng-select [items]="divManagerProcessList" [virtualScroll]="true"
+                                (search)="SearchPerson($event,'divmanagerprocess')"
+                                (clear)="ClearPerson('divmanagerprocess')"
+                                (click)="SearchPerson($event,'divmanagerprocess')" bindLabel="ownerName"
+                                bindValue="ownerName" formControlName="divMgrOfProcessEngineer"
+                                placeholder="Choose Div. Mgr. of Process Engineer">
+                              </ng-select>
+                            </div>
+                          </div>
+                          <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                          <div class="col-md-6">
+                            <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectSponsor')">
+                              <label for="sponsorEvp">Sponsor / EVP:</label>
+                              <!-- use ProjectSponsor --old  sponsorEVP-->
+                              <ng-select [items]="directorList" [virtualScroll]="true" bindLabel="ownerName"
+                                (search)="SearchPerson($event,'director')" (clear)="ClearPerson('director')"
+                                (click)="SearchPerson($event,'director')" bindValue="ownerName"
+                                formControlName="projectSponsor" placeholder="Choose Sponsor / EVP">
+                              </ng-select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </ng-template>
+                </div>
+              </div>
+              <!-- Project Team in Capex -->
+
+              <!-- gate section -->
+              <ng-container>
+                <!-- gate 1 -->
+                <hr>
+                <div class="form-initiative" style="margin-top: 3rem;" *ngIf="showGate(1)">
+                  <app-pim-gate1 [formGroup]="formGroup"></app-pim-gate1>
+                  <!--formGroup-->
+                  <hr>
+                </div>
+                <!-- gate 2 -->
+                <div class="form-initiative" style="margin-top: 3rem;" *ngIf="showGate(2) && !isMax">
+                  <app-pim-gate2 [formGroup]="formGroup"></app-pim-gate2>
+                  <hr>
+                </div>
+                <!-- gate 3 -->
+                <div class="form-initiative" style="margin-top: 3rem;" *ngIf="showGate(3)">
+                  <app-pim-gate3 [formGroup]="formGroup"></app-pim-gate3>
+                  <!-- <app-progress-form [formGroup]="formGroup" [id]="id"></app-progress-form> -->
+                  <hr>
+                </div>
+                <!-- gate 4 -->
+                <div class="form-initiative" style="margin-top: 3rem;" *ngIf="showGate(4)">
+                  <app-pim-gate4 [formGroup]="formGroup"></app-pim-gate4>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ---------------------------------------------------------- Flow Max --------------------------------------------------------------------------------- -->
+<div *ngIf="isMax">
+  <div [formGroup]="detailPimForm">
+    <div class="row">
+      <div class="col-md-12" style="padding-left: inherit;padding-right: inherit;">
+        <div class=" card text card-initiative">
+          <div class="card-body">
+            <!-- <div class="form-initiative">
+              <label for="" style="font-size: 28px;color: #454545;">PIM Detailed Information</label>
+              <hr>
+            </div> -->
+            <div class="form-initiative">
+              <app-initiative-info [id]="id"></app-initiative-info>
+            </div>
+            <div class="form-initiative">
+              <!-- Max Benefit -->
+              <!-- Change chps to checkControl or checkNotControl -->
+              <ng-container *ngIf="isMax">
+                <!-- Date detail -->
+                <div *ngIf="RequestCapex || RequestOpex" class="form-group row mt-5">
+                  <div class="col-md-12">
+                    <label style="color: #454545;font-size: 28px;">Approval Plan</label>
+                    <hr>
+                  </div>
+                  <!-- Kickoff Meeting -->
+                  <div class="col-md-6">
+                    <!-- [ngClass]="ps.checkControl(detailPimForm,'PimDetail','kickoffMeeting')"-->
+                    <label for="kickoffMeeting">Kickoff Meeting<span class="text-danger">*</span></label>
+                    <div class="input-group">
+                      <input formControlName="kickoffMeeting" type="text" [bsConfig]="bsConfig" class="form-control"
+                        bsDatepicker #dpKickoff="bsDatepicker" placeholder="DD/MM/YYYY"
+                        [triggers]="viewMode ? '' : 'click:click'"
+                        [ngClass]="{ 'is-invalid': getFormError('kickoffMeeting') }">
+                      <div *ngIf="!viewMode" class="input-group-append">
+                        <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpKickoff.isOpen"></i>
+                      </div>
+                      <div class="invalid-feedback" *ngIf="getFormError('kickoffMeeting')">
+                        Kickoff Meeting is required !
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Kickoff Meeting -->
+                </div>
+
+                <!-- Key Attachments -->
+                <div *ngIf="RequestCapex || RequestOpex" class="form-group row mt-5">
+                  <!-- Date Detail -->
+                  <div class="col-md-12">
+                    <label style="color: #454545;font-size: 28px;">Key Attachments</label>
+                    <hr>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                      <input formControlName="attachProcess" type="checkbox" class="custom-control-input"
+                        id="attachProcess">
+                      <label for="attachProcess" class="custom-control-label">
+                        Attachment 1) Process Description/Blockflow diagram/PFD/Marked-up P&ID
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                      <input formControlName="attachPlotPlanSite" type="checkbox" class="custom-control-input"
+                        id="attachPlotPlanSite">
+                      <label for="attachPlotPlanSite" class="custom-control-label">
+                        Attachment 2) Plot Plan/Site Photos
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                      <input formControlName="attachReference" type="checkbox" class="custom-control-input"
+                        id="attachReference">
+                      <label for="attachReference" class="custom-control-label">
+                        Attachment 3) Reference Incident Case (for J-Factor)
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                      <input formControlName="attachBenefit" type="checkbox" class="custom-control-input"
+                        id="attachBenefit">
+                      <label for="attachBenefit" class="custom-control-label">
+                        Attachment 4) Benefit Calculation (for %IRR)
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Key Attachments -->
+                <div *ngIf="RequestCapex || RequestOpex" class="form-group row">
+                  <!-- Gate 1 Date -->
+                  <div class="col-md-6" *ngIf="showProjectTeam">
+                    <!-- <ng-container [ngClass]="ps.chps('PimDetail','gate1Date')"> -->
+                    <label for="gate1Date">Gate 1 Date (Plan)</label>
+                    <div class="input-group">
+                      <input formControlName="gate1Date" type="text" [bsConfig]="bsConfig" class="form-control"
+                        bsDatepicker #dpGate1="bsDatepicker" placeholder="DD/MM/YYYY"
+                        [ngClass]="{ 'is-invalid': getFormError('gate1Date') }">
+                      <div *ngIf="!viewMode" class="input-group-append">
+                        <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpGate1.isOpen"></i>
+                      </div>
+                      <div class="invalid-feedback" *ngIf="getFormError('gate1Date')">
+                        Gate 1 Date is required !
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Gate 1 Date -->
+                </div>
+
+                <!-- Section A แสดงเฉพาะ MAX PIM -->
+                <!-- Gate 2 Date (Plan) Gate 3 Date (Plan)  -->
+                <div class="form-group row">
+
+                  <div class="col-md-6" *ngIf="showProjectTeam">
+                    <!-- <ng-container [ngClass]="ps.chps('PimDetail','gate3Date')"> -->
+
+                    <label for="gate3Date">Gate 3 Date (Plan)<span class="text-danger">*</span></label>
+                    <div class="input-group">
+                      <input formControlName="gate3Date" type="text" [bsConfig]="bsConfig" class="form-control"
+                        bsDatepicker #dpGate3="bsDatepicker" placeholder="DD/MM/YYYY"
+                        [ngClass]="{ 'is-invalid': getFormError('gate3Date') }">
+                      <div *ngIf="!viewMode" class="input-group-append">
+                        <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpGate3.isOpen"></i>
+                      </div>
+                      <div class="invalid-feedback" *ngIf="getFormError('gate3Date')">
+                        Gate 3 Date is required !
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Gate 2 Date (Plan) Gate 3 Date (Plan)  -->
+
+
+                  <div class="col-md-6" *ngIf="trackMaxBenefit">
+                    <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','iL3Date')">
+                      <label for="iL3Date">IL3 Date<span class="text-danger">*</span></label>
+                      <div class="input-group">
+                        <input formControlName="iL3Date" type="text" [bsConfig]="bsConfig" class="form-control"
+                          bsDatepicker #dpIl3="bsDatepicker" placeholder="DD/MM/YYYY"
+                          [ngClass]="{ 'is-invalid': getFormError('iL3Date') }">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpIl3.isOpen"></i>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="getFormError('iL3Date')">
+                          IL3 Date is required !
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6" *ngIf="trackMaxBenefit">
+                    <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','iL4Date')">
+                      <label for="iL4Date">IL4 Date<span class="text-danger">*</span></label>
+                      <div class="input-group">
+                        <input formControlName="iL4Date" type="text" [bsConfig]="bsConfig" class="form-control"
+                          bsDatepicker #dpIl4="bsDatepicker" placeholder="DD/MM/YYYY"
+                          [ngClass]="{ 'is-invalid': getFormError('iL4Date') }">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpIl4.isOpen"></i>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="getFormError('iL4Date')">
+                          IL4 Date is required !
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6" *ngIf="trackMaxBenefit">
+                    <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','iL5Date')">
+                      <label for="iL5Date">IL5 Date<span class="text-danger">*</span></label>
+                      <div class="input-group">
+                        <input formControlName="iL5Date" type="text" [bsConfig]="bsConfig" class="form-control"
+                          bsDatepicker #dpIl5="bsDatepicker" placeholder="DD/MM/YYYY"
+                          [ngClass]="{ 'is-invalid': getFormError('iL5Date') }">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpIl5.isOpen"></i>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="getFormError('iL5Date')">
+                          IL5 Date is required !
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Highlight Work  hide for prod -->
+                <!-- <div *ngIf="RequestCapex || RequestOpex">
+
+                </div> -->
+                <div class="form-group row">
+                  <div class="col-md-6" *ngIf="showProjectTeam">
+                    <label>Status</label>
+                    <textarea formControlName="highlightWorkStatus" class="form-control"></textarea>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-6" *ngIf="showProjectTeam">
+                    <label>Concern</label>
+                    <textarea formControlName="highlightWorkConCern" class="form-control"></textarea>
+                  </div>
+                  <div class="col-md-6" *ngIf="showProjectTeam">
+                    <label>Next Activities</label>
+                    <textarea formControlName="nextActivities" class="form-control"></textarea>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-6" *ngIf="showProjectTeam && !viewMode">
+
+                    <button class="btn btn-info" (click)="updateHighlightWork()">
+                      <ng-container *ngIf="Updating; else updated">
+                        <i class="fas fa-sync-alt fa-spin"></i> Loading...
+                      </ng-container>
+                      <ng-template #updated>
+                        Update
+                      </ng-template>
+                    </button>
+                  </div>
+                </div>
+              </ng-container>
+
+              <!-- Ta E-MOC NO RequestCapex and No RequestOpex -->
+              <div *ngIf="RequestCapex == false && RequestOpex == false">
+                <!-- <div *ngIf="((isMax || isPim) && showGate(0)) || (!isMax && !isPim)">
+                </div> -->
+                <div class="row mt-5">
+                  <div class="col-md-12">
+                    <label style="color: #454545;font-size: 28px;">E-MOC</label>
+                    <hr>
+                  </div>
+                  <div class="col-md-12">
+                    Request E-MOC
+                  </div>
+                  <div class="col-md-12">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input id="useExternalEmoc" value="true" class="custom-control-input" type="radio"
+                        name="useExternalEmoc" formControlName="useExternalEmoc">
+                      <label class="custom-control-label" for="useExternalEmoc">Yes</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input id="notUseExternalEmoc" value="false" class="custom-control-input" type="radio"
+                        name="useExternalEmoc" formControlName="useExternalEmoc">
+                      <label class="custom-control-label" for="notUseExternalEmoc">No</label>
+                    </div>
+                  </div>
+                  <div class="col-md-12" *ngIf="requestEmoc">
+                    <div class="form-group row">
+                      <div class="col-md-4">
+                        <label>Existing E-MOC No.</label>
+                        <input class="form-control" formControlName="externalEmoc">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" *ngIf="requestEmoc">
+                  <div class="col-md-12">
+                    Create E-MOC
+                  </div>
+                  <div class="col-md-12">
+                    <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','isImpactProduction')">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input id="impact" value="true" class="custom-control-input" type="radio"
+                          name="isImpactProduction" formControlName="isImpactProduction">
+                        <label class="custom-control-label" for="impact">Yes</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input id="noImpact" value="false" class="custom-control-input" type="radio"
+                          name="isImpactProduction" formControlName="isImpactProduction">
+                        <label class="custom-control-label" for="noImpact">No</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12" *ngIf="this.detailPimForm.controls.isImpactProduction.value === 'true'">
+                    <hr class="mt-3">
+                    <div class="form-group">
+                      <div formArrayName="eMocs"
+                        *ngFor="let eMoc of detailPimForm.get('eMocs')['controls']; let idx = index">
+                        <!-- Main Plant -->
+                        <div class="highlight blue"
+                          style="padding: 1rem;">
+                          <div [formGroup]="eMoc" class="form-group row">
+                            <div class="col-md-12">
+                              <button type="button" class="btn btn-danger btn-sm mr-1 btn-list"
+                                style="margin-left: 100%;" (click)="deleteEMoc(idx)"
+                                *ngIf="!isDisable(eMoc) && !viewMode">
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
+                            </div>
+                            <!-- [ngClass]="{'disabled-emoc': isDisable(eMoc)}" -->
+                            <div class="col-md-6">
+                              <label for="eMocTitle">E-MOC Title <span class="text-danger">*</span> </label>
+                              <input class="form-control" formControlName="eMocTitle" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'eMocTitle') }">
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'eMocTitle')">
+                                E-MOC Title is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label>Goal Achievement <span class="text-danger">*</span> </label>
+                              <ng-select formControlName="goalAchievement" [items]="goalAchievementList" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'goalAchievement') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'goalAchievement')">
+                                Goal Achievement is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4" *ngIf="getIsOther(idx)">
+                              <label>Please Specify</label>
+                              <input class="form-control" formControlName="specifiedGoalAchievement" [readonly]="isDisable(eMoc)">
+                            </div>
+                            <div class="col-md-10">
+                              <label>Assumption of Goal Achievement and Target <span class="text-danger">*</span>
+                              </label>
+                              <textarea formControlName="assumptionOfGoal" class="form-control" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'assumptionOfGoal') }">
+                                </textarea>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'assumptionOfGoal')">
+                                Assumption of Goal Achievement and Target is required !
+                              </div>
+                            </div>
+                            <div class="col-md-10">
+                              <label>Reason for Change <span class="text-danger">*</span> </label>
+                              <textarea formControlName="reasonForChange" class="form-control" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'reasonForChange') }">
+                                </textarea>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'reasonForChange')">
+                                Reason for Change is required !
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="plant"> Plant <span class="text-danger">*</span> : </label>
+                              <ng-select formControlName="plant" [items]="GetPlants()" bindValue="id" bindLabel="name"
+                                placeholder="Choose Plant" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'plant') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'plant')">
+                                Plant is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="areaUnit">Area/Unit <span class="text-danger">*</span> :</label>
+                              <input formControlName="areaUnit" type="text" class="form-control" id="areaUnit +{{idx}}"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'areaUnit') }" [readonly]="isDisable(eMoc)">
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'areaUnit')">
+                                Area/Unit is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="typeOfChange">Type of Change <span class="text-danger">*</span> :</label>
+                              <ng-select [items]="changeTypes" [virtualScroll]="true" bindLabel="name" bindValue="id"
+                                formControlName="typeOfChange" id="typeOfChange + {{idx}}" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'typeOfChange') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'typeOfChange')">
+                                Type of Change is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label>MoC Category <span class="text-danger">*</span> :</label>
+                              <ng-select [items]="mocCategories" [virtualScroll]="true" bindLabel="name" bindValue="id"
+                                formControlName="mocCategory" id="mocCategory + {{idx}}" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'mocCategory') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'mocCategory')">
+                                MoC Category is required !
+                              </div>
+                            </div>
+                            <div class="col-md-2">
+                              <label for="expireDate">Expire Date (DD/MM/YYYY) <span class="text-danger">*</span>
+                                :</label>
+                              <div class="input-group">
+                                <ng-container *ngIf="checkTypeOfChange(idx) || isDisable(eMoc) ; else disableExpirDate">
+                                  <input formControlName="expireDate" type="text" readonly class="form-control">
+                                </ng-container>
+                                <ng-template #disableExpirDate>
+                                  <input formControlName="expireDate" type="text" [bsConfig]="bsConfig"
+                                    class="form-control" bsDatepicker #dpExpireDate="bsDatepicker"
+                                    [triggers]="viewMode ? '' : 'click:click'"
+                                    [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'expireDate') }">
+                                  <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'expireDate')">
+                                    Expire Date (DD/MM/YYYY) is required !
+                                  </div>
+                                  <div *ngIf="!viewMode" class="input-group-append">
+                                    <i class="far fa-calendar right-icon mt-2"
+                                      [attr.aria-expanded]="dpExpireDate.isOpen"></i>
+                                  </div>
+                                </ng-template>
+                              </div>
+                            </div>
+                            <div class="col-md-10">
+                              <label for="detailOfTheChange">Details of the Change (Scope of
+                                MoC) <span class="text-danger">*</span> :</label>
+                              <textarea formControlName="detailOfTheChange" type="text" class="form-control"
+                                id="detailOfTheChange + {{idx}}" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'detailOfTheChange') }">
+                                </textarea>
+                              <!-- <input formControlName="detailOfTheChange" type="text" class="form-control"
+                                  id="detailOfTheChange + {{idx}}"
+                                  [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'detailOfTheChange') }"> -->
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'detailOfTheChange')">
+                                Details of the Change (Scope of MoC) is required !
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="initialListOfPeople">Initial list of People or Assets
+                                Impacted <span class="text-danger">*</span> :</label>
+                              <ng-select formControlName="initialListOfPeople" [items]="owners" bindValue="ownerName"
+                                bindLabel="ownerName" placeholder="Choose Owner" (search)="SearchOwnerName($event)"
+                                (clear)="ClearOwnerName()" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'initialListOfPeople') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'initialListOfPeople')">
+                                Initial list of People or Assets Impacted is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="eMocNo">E-MOC No. :</label>
+                              <input formControlName="emocNo" type="text" class="form-control" id="eMocNo + {{idx}}"
+                                readonly [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'emocNo') }" readonly>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'emocNo')">
+                                E-MOC No. is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="mocChampion">MoC Champion <span class="text-danger">*</span> :</label>
+                              <!-- <input formControlName="mocChampion" type="text" class="form-control" id="mocChampion"> -->
+                              <ng-select formControlName="mocChampion" [items]="owners" bindValue="ownerName"
+                                bindLabel="ownerName" placeholder="Choose Owner" (search)="SearchOwnerName($event)"
+                                (clear)="ClearOwnerName()" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'mocChampion') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'mocChampion')">
+                                MoC Champion is required !
+                              </div>
+                            </div>
+                            <div class="col-md-8 pt-4" >
+                              <div class="custom-control custom-checkbox">
+                                <input [id]="'isMainPlant' + idx" formControlName="isMainPlant" type="checkbox"
+                                  class="custom-control-input" value=false
+                                  [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'isMainPlant') }">
+                                <label class="custom-control-label" for="'isMainPlant' + idx" [attr.for]="'isMainPlant' + idx">Main Plant </label>
+                              </div>
+                              <div class="row">
+                                <label class="text-danger"style="font-size: 12px; padding-left: 38px;">*Please select only one main plant to be create E-MOC</label>
+                              </div>
+                            </div>
+
+                            <!-- MainPlant  -->
+                          </div>
+                          <hr style="margin:30px"  />
+                        </div>
+                      </div>
+                      <div class="form-group row" *ngIf="!viewMode">
+                        <div class="col-md-12">
+                          <button type="button" class="btn btn-primary" (click)="addEMoc()">+ Add New</button>
+                          <!-- <button type="button" class="btn btn-info ml-2" (click)="saveEMoc()">Save</button> -->
+                          <button type="button" class="btn btn-success" style="margin-left: 100%;"
+                            (click)="SubmitEmoc()">Create</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Ta E-MOC NO RequestCapex and RequestOpex -->
+
+              <!-- Ta E-MOC RequestCapex or RequestOpex -->
+              <div *ngIf="(RequestCapex || RequestOpex) && showEmocMax">
+                <div class="row mt-5">
+                  <div class="col-md-12">
+                    <label style="color: #454545;font-size: 28px;">E-MOC</label>
+                    <hr>
+                  </div>
+                  <div class="col-md-12">
+                    Request E-MOC
+                  </div>
+                  <div class="col-md-12">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input id="useExternalEmoc" value="true" class="custom-control-input" type="radio"
+                        name="useExternalEmoc" formControlName="useExternalEmoc">
+                      <label class="custom-control-label" for="useExternalEmoc">Yes</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input id="notUseExternalEmoc" value="false" class="custom-control-input" type="radio"
+                        name="useExternalEmoc" formControlName="useExternalEmoc">
+                      <label class="custom-control-label" for="notUseExternalEmoc">No</label>
+                    </div>
+                  </div>
+                  <div class="col-md-12" *ngIf="requestEmoc">
+                    <div class="form-group row">
+                      <div class="col-md-4">
+                        <label>Existing E-MOC No.</label>
+                        <input class="form-control" formControlName="externalEmoc">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row" *ngIf="requestEmoc">
+                  <div class="col-md-12">
+                    Create E-MOC
+                  </div>
+                  <div class="col-md-12">
+                    <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','isImpactProduction')">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input id="impact" value="true" class="custom-control-input" type="radio"
+                          name="isImpactProduction" formControlName="isImpactProduction">
+                        <label class="custom-control-label" for="impact">Yes</label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input id="noImpact" value="false" class="custom-control-input" type="radio"
+                          name="isImpactProduction" formControlName="isImpactProduction">
+                        <label class="custom-control-label" for="noImpact">No</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-12" *ngIf="this.detailPimForm.controls.isImpactProduction.value === 'true'">
+                    <hr class="mt-3">
+                    <div class="form-group">
+                      <div formArrayName="eMocs"
+                        *ngFor="let eMoc of detailPimForm.get('eMocs')['controls']; let idx = index">
+                        <!-- Main Plant -->
+                        <div class="highlight blue"
+                          style="padding: 1rem;">
+                          <div [formGroup]="eMoc" class="form-group row">
+                            <div class="col-md-12">
+                              <button type="button" class="btn btn-danger btn-sm mr-1 btn-list"
+                                style="margin-left: 100%;" (click)="deleteEMoc(idx)"
+                                *ngIf="!isDisable(eMoc) && !viewMode">
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
+                            </div>
+                            <!-- [ngClass]="{'disabled-emoc': isDisable(eMoc)}" -->
+                            <div class="col-md-6">
+                              <label for="eMocTitle">E-MOC Title <span class="text-danger">*</span> </label>
+                              <input class="form-control" formControlName="eMocTitle" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'eMocTitle') }">
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'eMocTitle')">
+                                E-MOC Title is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label>Goal Achievement <span class="text-danger">*</span> </label>
+                              <ng-select formControlName="goalAchievement" [items]="goalAchievementList" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'goalAchievement') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'goalAchievement')">
+                                Goal Achievement is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4" *ngIf="getIsOther(idx)">
+                              <label>Please Specify</label>
+                              <input class="form-control" formControlName="specifiedGoalAchievement" [readonly]="isDisable(eMoc)">
+                            </div>
+                            <div class="col-md-10">
+                              <label>Assumption of Goal Achievement and Target <span class="text-danger">*</span>
+                              </label>
+                              <textarea formControlName="assumptionOfGoal" class="form-control" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'assumptionOfGoal') }">
+                                </textarea>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'assumptionOfGoal')">
+                                Assumption of Goal Achievement and Target is required !
+                              </div>
+                            </div>
+                            <div class="col-md-10">
+                              <label>Reason for Change <span class="text-danger">*</span> </label>
+                              <textarea formControlName="reasonForChange" class="form-control" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'reasonForChange') }">
+                                </textarea>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'reasonForChange')">
+                                Reason for Change is required !
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="plant"> Plant <span class="text-danger">*</span> : </label>
+                              <ng-select formControlName="plant" [items]="GetPlants()" bindValue="id" bindLabel="name"
+                                placeholder="Choose Plant" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'plant') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'plant')">
+                                Plant is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="areaUnit">Area/Unit <span class="text-danger">*</span> :</label>
+                              <input formControlName="areaUnit" type="text" class="form-control" id="areaUnit +{{idx}}"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'areaUnit') }" [readonly]="isDisable(eMoc)">
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'areaUnit')">
+                                Area/Unit is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="typeOfChange">Type of Change <span class="text-danger">*</span> :</label>
+                              <ng-select [items]="changeTypes" [virtualScroll]="true" bindLabel="name" bindValue="id"
+                                formControlName="typeOfChange" id="typeOfChange + {{idx}}" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'typeOfChange') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'typeOfChange')">
+                                Type of Change is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label>MoC Category <span class="text-danger">*</span> :</label>
+                              <ng-select [items]="mocCategories" [virtualScroll]="true" bindLabel="name" bindValue="id"
+                                formControlName="mocCategory" id="mocCategory + {{idx}}" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'mocCategory') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'mocCategory')">
+                                MoC Category is required !
+                              </div>
+                            </div>
+                            <div class="col-md-2">
+                              <label for="expireDate">Expire Date (DD/MM/YYYY) <span class="text-danger">*</span>
+                                :</label>
+                              <div class="input-group">
+                                <ng-container *ngIf="checkTypeOfChange(idx) || isDisable(eMoc) ; else disableExpirDate">
+                                  <input formControlName="expireDate" type="text" readonly class="form-control">
+                                </ng-container>
+                                <ng-template #disableExpirDate>
+                                  <input formControlName="expireDate" type="text" [bsConfig]="bsConfig"
+                                    class="form-control" bsDatepicker #dpExpireDate="bsDatepicker"
+                                    [triggers]="viewMode ? '' : 'click:click'"
+                                    [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'expireDate') }">
+                                  <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'expireDate')">
+                                    Expire Date (DD/MM/YYYY) is required !
+                                  </div>
+                                  <div *ngIf="!viewMode" class="input-group-append">
+                                    <i class="far fa-calendar right-icon mt-2"
+                                      [attr.aria-expanded]="dpExpireDate.isOpen"></i>
+                                  </div>
+                                </ng-template>
+                              </div>
+                            </div>
+                            <div class="col-md-10">
+                              <label for="detailOfTheChange">Details of the Change (Scope of
+                                MoC) <span class="text-danger">*</span> :</label>
+                              <textarea formControlName="detailOfTheChange" type="text" class="form-control"
+                                id="detailOfTheChange + {{idx}}" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'detailOfTheChange') }">
+                                </textarea>
+                              <!-- <input formControlName="detailOfTheChange" type="text" class="form-control"
+                                  id="detailOfTheChange + {{idx}}"
+                                  [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'detailOfTheChange') }"> -->
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'detailOfTheChange')">
+                                Details of the Change (Scope of MoC) is required !
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <label for="initialListOfPeople">Initial list of People or Assets
+                                Impacted <span class="text-danger">*</span> :</label>
+                              <ng-select formControlName="initialListOfPeople" [items]="owners" bindValue="ownerName"
+                                bindLabel="ownerName" placeholder="Choose Owner" (search)="SearchOwnerName($event)"
+                                (clear)="ClearOwnerName()" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'initialListOfPeople') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'initialListOfPeople')">
+                                Initial list of People or Assets Impacted is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="eMocNo">E-MOC No. :</label>
+                              <input formControlName="emocNo" type="text" class="form-control" id="eMocNo + {{idx}}"
+                                readonly [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'emocNo') }" readonly>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'emocNo')">
+                                E-MOC No. is required !
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <label for="mocChampion">MoC Champion <span class="text-danger">*</span> :</label>
+                              <!-- <input formControlName="mocChampion" type="text" class="form-control" id="mocChampion"> -->
+                              <ng-select formControlName="mocChampion" [items]="owners" bindValue="ownerName"
+                                bindLabel="ownerName" placeholder="Choose Owner" (search)="SearchOwnerName($event)"
+                                (clear)="ClearOwnerName()" [readonly]="isDisable(eMoc)"
+                                [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'mocChampion') }">
+                              </ng-select>
+                              <div class="invalid-feedback" *ngIf="getFormArrayEmocError(idx,'mocChampion')">
+                                MoC Champion is required !
+                              </div>
+                            </div>
+                            <div class="col-md-8 pt-4" >
+                              <div class="custom-control custom-checkbox">
+                                <input [id]="'isMainPlant' + idx" formControlName="isMainPlant" type="checkbox"
+                                  class="custom-control-input" value=false
+                                  [ngClass]="{ 'is-invalid': getFormArrayEmocError(idx, 'isMainPlant') }">
+                                <label class="custom-control-label" for="'isMainPlant' + idx" [attr.for]="'isMainPlant' + idx">Main Plant </label>
+                              </div>
+                              <div class="row">
+                                <label class="text-danger"style="font-size: 12px; padding-left: 38px;">*Please select only one main plant to be create E-MOC</label>
+                              </div>
+                            </div>
+
+                            <!-- MainPlant  -->
+                          </div>
+                          <hr style="margin:30px"  />
+                        </div>
+                      </div>
+                      <div class="form-group row" *ngIf="!viewMode">
+                        <div class="col-md-12">
+                          <button type="button" class="btn btn-primary" (click)="addEMoc()">+ Add New</button>
+                          <!-- <button type="button" class="btn btn-info ml-2" (click)="saveEMoc()">Save</button> -->
+                          <button type="button" class="btn btn-success" style="margin-left: 100%;"
+                            (click)="SubmitEmoc()">Create</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div class="form-group row mt-5" *ngIf="showProjectTeam"> -->
+                <!-- PDD แสดงทุก Process -->
+                <div class="form-group row mt-5">
+                  <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectDocumentDatabase')">
+                    <div class="col-md-12">
+                      <label style="color: #454545;font-size: 28px;">Project Document Database</label>
+                      <hr>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="projectDocumentDatabase"> Project Document Database : </label>
+                      <!-- <input formControlName="projectDocumentDatabase" type="text" class="form-control"> -->
+                      <span [ngClass]="{'link-text': getPdd() != '-'}" (click)="gotoPddLink()">{{getPdd()}}</span>
+                    </div>
+                  </div>
+                  <hr />
+                </div>
+              </div>
+              <!-- Ta E-MOC RequestCapex or RequestOpex -->
+
+              <!-- Ta Project Team RequestCapex or RequestOpex -->
+              <div *ngIf="(RequestCapex || RequestOpex) && showProjectTeamMax">
+                <ng-container *ngIf="isMax">
+                  <div class="row mt-5">
+                    <div class="col">
+                      <label style="color: #454545;font-size: 28px;">Project Team</label>
+                      <hr>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                    <div class="col-md-6">
+                      <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectDirector')">
+                        <label for="projectDirector">Project Director :</label>
+                        <ng-select [items]="directorList" [virtualScroll]="true" bindLabel="ownerName"
+                          bindValue="ownerName" (search)="SearchPerson($event,'director')"
+                          (click)="SearchPerson($event,'director')" (clear)="ClearPerson('director')"
+                          formControlName="projectDirector" placeholder="Choose Project Director">
+                        </ng-select>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                    <div class="col-md-6">
+                      <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectManager')">
+                        <label for="projectManager">Project Manager :<span class="text-danger">*</span></label>
+                        <ng-select [items]="projectManagerList" [virtualScroll]="true" bindLabel="ownerName"
+                          bindValue="ownerName" (search)="SearchPerson($event,'projectManager')"
+                          (click)="SearchPerson($event,'projectManager')" (clear)="ClearPerson('projectManager')"
+                          formControlName="projectManager" placeholder="Choose Project Manager"
+                          [ngClass]="{ 'is-invalid': getFormError('projectManager') }">
+                        </ng-select>
+                        <div class="invalid-feedback" *ngIf="getFormError('projectManager')">
+                          Project Manager is required !
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-6" *ngIf="showProjectEngineer || showProjectTeam"> -->
+                    <div class="col-md-6">
+                      <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectEngineer')">
+                        <label for="projectEngineer">Project Engineer :<span class="text-danger">*</span></label>
+                        <ng-select [items]="projectEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                          (search)="SearchPerson($event,'projectEngineer')" (clear)="ClearPerson('projectEngineer')"
+                          (click)="SearchPerson($event,'projectEngineer')" (change)="SetResponsiblePerson($event)"
+                          bindValue="ownerName" formControlName="projectEngineer" placeholder="Choose Project Engineer"
+                          [ngClass]="{ 'is-invalid': getFormError('projectEngineer') }">
+                        </ng-select>
+                        <div class="invalid-feedback" *ngIf="getFormError('projectEngineer')">
+                          Project Engineer is required !
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                    <div class="col-md-6">
+                      <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','processEngineer')">
+                        <label for="processEngineer">Process Engineer :</label>
+                        <ng-select [items]="processEngineerList" [virtualScroll]="true" bindLabel="ownerName"
+                          (search)="SearchPerson($event,'processEngineer')" (clear)="ClearPerson('processEngineer')"
+                          (click)="SearchPerson($event,'processEngineer')" bindValue="ownerName"
+                          formControlName="processEngineer" placeholder="Choose Process Engineer">
+                        </ng-select>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                    <div class="col-md-6">
+                      <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','divMgrOfProcessEngineer')">
+                        <label for="divManagerProcessList">Div. Mgr. Process Engineer :</label>
+                        <ng-select [items]="divManagerProcessList" [virtualScroll]="true"
+                          (search)="SearchPerson($event,'divmanagerprocess')" (clear)="ClearPerson('divmanagerprocess')"
+                          (click)="SearchPerson($event,'divmanagerprocess')" bindLabel="ownerName" bindValue="ownerName"
+                          formControlName="divMgrOfProcessEngineer" placeholder="Choose Div. Mgr. of Process Engineer">
+                        </ng-select>
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-6" *ngIf="showProjectTeam"> -->
+                    <div class="col-md-6">
+                      <div [ngClass]="ps.checkControl(detailPimForm,'PimDetail','projectSponsor')">
+                        <label for="sponsorEvp">Sponsor / EVP:</label>
+                        <!-- use ProjectSponsor --old  sponsorEVP-->
+                        <ng-select [items]="directorList" [virtualScroll]="true" bindLabel="ownerName"
+                          (search)="SearchPerson($event,'director')" (clear)="ClearPerson('director')"
+                          (click)="SearchPerson($event,'director')" bindValue="ownerName"
+                          formControlName="projectSponsor" placeholder="Choose Sponsor / EVP">
+                        </ng-select>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+              <!-- Ta Project Team RequestCapex or RequestOpex -->
+
+              <!-- gate section -->
+              <ng-container>
+                <!-- gate 1 -->
+
+                <hr>
+                <div class="form-initiative" style="margin-top: 3rem;" *ngIf="showGate(1)">
+                  <app-pim-gate1 [formGroup]="formGroup"></app-pim-gate1>
+                  <!--formGroup-->
+                  <hr>
+                </div>
+
+                <!-- gate 3 -->
+
+                <div class="form-initiative" style="margin-top: 3rem;" *ngIf="showGate(3)">
+                  <app-pim-gate3 [formGroup]="formGroup"></app-pim-gate3>
+                  <!-- <app-progress-form [formGroup]="formGroup" [id]="id"></app-progress-form> -->
+                  <hr>
+                </div>
+
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

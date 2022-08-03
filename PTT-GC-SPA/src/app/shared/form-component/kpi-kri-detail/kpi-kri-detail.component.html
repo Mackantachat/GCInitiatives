@@ -1,0 +1,193 @@
+<div class="row" style="margin-top:-40px;">
+    <div class="col-12" style="padding-left: inherit;padding-right: inherit;">
+        <div class="card text border-0">
+            <!-- <a [routerLink]="['/initiative/kpi-maintain']" type="button" class="btn-sm btn-default" 
+            style="max-width: 80px;background:#0090dd;color:#FFFFFF;margin-left: 35px;">&nbsp;&nbsp;<i class="fa fa-backward"></i> Back
+            </a> -->
+            <div class="card-body">
+                <ng-container [formGroup]="kpikriFrom">
+                <div class="row">
+                    <div class="col-12">
+                        <span class=" page-header-title" style="padding-left: 15px;">Corporate KPI / KRI / Long-term</span>
+                        <!-- <h5>{{ year }}</h5> -->
+                        <span class="float-right page-header-title">
+                            {{kpikriFrom.get('statusKri').value + ' : ' + kpikriFrom.get('dateKri').value }}
+                        </span>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col-3" style="padding-left: 30px;">
+                      <div class="form-group">
+                        <!-- <label for="month_date_picker">Month</label> -->
+                        <div class="input-group">
+                          <!-- <input type="text" bsDatepicker class="form-control" #dpFinish="bsDatepicker"
+                            name="calendarYear" [bsConfig]="yearViewDateFormart" value="{{ year }}" (bsValueChange)="yearChanged($event)"/> 
+                         <div class="input-group-prepend">
+                            <span class="input-group-text">
+                              <i class="far fa-calendar"></i>
+                            </span>
+                          </div>
+                        -->
+                        </div>
+                        <select class="form-control" formControlName="calendarYear" (change)="yearChanged($event)">
+                            <option [value]="y" *ngFor="let y of years">{{ y }}</option>
+                          </select>
+                      </div>
+                    </div>
+                  </div>
+                
+                <div class="col-12">
+                    <div class="wrapper">
+                        <table class="table table-bordered" style="width: max-content;">
+                            <thead>
+                                <tr>
+                                    <th class="name-col sticky-col first-col" style="box-shadow: 1px 1px 1px 1px #888888; z-index: 300;"></th>
+                                    <th class="month-col" *ngFor="let month of months"> {{month | titlecase }}
+                                    </th>
+                                    <th class="action-col" *ngIf="isAdmin">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let item of kpikriFrom.get('kriProgressMitigation')['controls']; let i = index ">
+                                    <tr [formGroup]="item">
+                                        <td style="box-shadow: 1px 1px 1px 1px #888888;" class="name-col sticky-col first-col">{{ item.get('kriType').value  == 'progress' ? 'Progress Detail' : 'Mitigation' }}
+                                            <input type="hidden" class="form-control" formControlName="kpiMaintainId"> 
+                                        </td>
+                                        <!------------------------  Progress and Mitigation ---------------------------------------------------->
+                                        <td class="month-col" *ngFor="let month of months">
+                                           <textarea  class="form-control" formControlName="{{ month }}" rows="4" cols="50" [readonly]="(isViewer && !isEditor && !isOwner)"></textarea>
+                                        </td>
+                                        <td class="action-col" *ngIf="isAdmin"></td>
+                                    </tr>
+                                </ng-container>
+                              
+                               <!---------------------------------------------------------------------------->
+                               <ng-container *ngFor="let item of kpikriFrom.get('kriDetailMonth')['controls']; let i = index ">
+                               <tr [formGroup]="item">
+                                <td class="name-col sticky-col first-col" style="box-shadow: 1px 1px 1px 1px #888888;">
+                                    <div>
+                                        <div class="form-group">
+                                            <span> {{ 
+                                                item.get('kriType').value == 'kpi_name' ? 'KPI Name' : 
+                                                item.get('kriType').value == 'external_kri' ?  'External KRI' :
+                                                item.get('kriType').value == 'execution_kri' ?  'Execution KRI' : 'Long Term Target'
+                                            }} </span>
+                                            <button class="btn btn-sm btn-primary float-right" (click) = "clickHelp(item,i, item.get('kpiMaintainId').value, isFreeze)"
+                                            [ngClass]="{'freeze-controls': item.get('kriType').value == 'kpi_name' && item.get('isAction').value == false }">
+                                                Help
+                                            </button>
+                                        </div>
+                                        <div class="form-group mb-0">
+                                            <input type="hidden" class="form-control" formControlName="kpiMaintainId">
+                                            <textarea rows="4" class="form-control"  formControlName="kriDetail" [readonly]="true" ></textarea>
+                                            <!-- <input type="text" class="form-control" formControlName="target1" style="background: #fcd1d1;max-width:300px">  -->
+                                        </div>
+                                    </div>
+                                </td>   
+                                <!-----------------------------  Start Month  --------------------------------------------------------------------------->
+                                <td class="month-col" *ngFor="let month of months">
+                                    <div class="vertical-center" style="z-index: 700;">
+                                        <div class="form-inline form-group mb-0"   [ngClass]="{'freeze-control': item.get('isAction').value == false || ((isViewer && !isEditor && !isOwner))  }">
+                                            <label class="col-form-label-sm pr-1"> Score </label>
+                                            <ng-select style="width: 50px;" formControlName="{{ month }}Score" [clearable]="false" (change)="chageNameColor(i,item.get('kriType').value, $event, month+'Color',item.get('kpiMaintainId').value)" 
+                                            [items]="item.get('kriType').value == 'kpi_name' ? scoreItem5 : scoreItem3" bindValue="value" bindLabel="name"> <!-- [ngClass]="{'freeze-control': isFreeze }"-->
+                                            </ng-select>
+                                            <div class="customselect" style="padding-left: 15px;">
+                                                <select class="form-control form-control-sm ml-auto"
+                                                formControlName="{{ month }}Color" style="width: 60px;height:38px;pointer-events: none;border:none;"
+                                                [ngStyle]="{'background-color': item.get(month+'Color').value}"
+                                                [ngClass]="">
+                                                <option *ngFor="let co of ['red', 'green', 'yellow']"
+                                                    [ngStyle]="{'background-color': co}" [ngValue]="co">
+                                                </option>
+                                            </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                
+                                <td class="action-col" *ngIf="isAdmin">
+                                    <div class="form-group invisible"> action</div>
+                                    <div class="form-inline form-group mb-0">
+                                        <input type="checkbox" class="form-check-input" formControlName="isAction"  [ngClass]="{'freeze-control': isFreeze }">
+                                        <i class="btn btn-light fas fa-caret-down" (click)="shiftDownAction(i)" ></i>
+                                        <i class="btn btn-light fas fa-caret-up" (click)="shiftUpAtion(i)"></i>
+                                        <i class="btn btn-light fas fa-trash-alt" (click)="delete(item.get('year').value, i)" *ngIf="item.get('kriType').value != 'kpi_name'" [ngClass]="{ 'freeze-control': isFreeze }" style="color:red"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-12" style="padding-top: 10px;">
+                            <div class="btn-group" [ngClass]="{'freeze-control': isFreeze }">
+                                <button type="button" class="btn btn-primary dropdown-toggle"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-plus"></i> Add
+                                </button>
+                                <div class="dropdown-menu">
+                                    <button class="dropdown-item"
+                                        (click)="addRowArray('external_kri')">External KRI</button>
+                                    <button class="dropdown-item"
+                                        (click)="addRowArray('execution_kri')">Execution KRI</button>
+                                    <button class="dropdown-item"
+                                        (click)="addRowArray('long_term_target')">Long-term Target
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group" [ngClass]="{'freeze-control': (isViewer && !isEditor && !isOwner)  }"> <!--[ngClass]="{'freeze-control': isFreeze && (isEditor === false || isOwner === true )}-->
+                        <label for="" class="col-sm-2 control-label">Inform:</label>
+                          <div class="col-sm-12">
+                            <ng-select formControlName="informName" [items]="coDevelopers" loadingText="Loading"
+                                [multiple]="true" (search)="SearchCoDeveloper($event)" (remove)="RemoveCoDeveloper()"
+                                bindValue="ownerName" bindLabel="ownerName" placeholder="Choose Name" [readonly]="false">
+                            </ng-select>
+                          </div>
+                      </div>
+                      <div class="form-group" [ngClass]="{'freeze-control': isFreeze }">
+                        <label class="col-sm-2 control-label">Editable: </label>
+                          <div class="col-sm-12">
+                            <ng-select formControlName="editableName" [items]="coDevelopers" loadingText="Loading"
+                                [multiple]="true" (search)="SearchCoDeveloper($event)" (remove)="RemoveCoDeveloper()"
+                                bindValue="ownerName" bindLabel="ownerName" placeholder="Choose Name">
+                            </ng-select>
+                          </div>
+                      </div>
+                </div>
+                <hr>
+            </ng-container>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="float-left" style="color:#dddddd" *ngIf="isAdmin != true">
+                            Login name : {{ loginName }} <br>
+                            Admin : {{ isAdmin }} / 
+                            Owner : {{ isOwner }} / 
+                            Viewer : {{ isViewer }} / 
+                            Editor : {{ isEditor }} /
+                            Freeze : {{ isFreeze }}
+                        </div>
+                        <div class="float-right" [ngClass]="{'freeze-control': (isViewer && !isEditor && !isOwner)  }">
+                            <button type="button" class="btn btn-primary mr-1" (click)="save()">
+                                <i class="far fa-save mr-2"></i> Save
+                            </button>&nbsp;&nbsp;
+                            <button type="button" class="btn btn-primary" (click)="inform()">
+                                <i class="fa fa-paper-plane" aria-hidden="true"></i> Inform
+                            </button>
+                            <button type="button" class="btn btn-primary mr-1" (click)="logForm()" style="display: none;"> <!---->
+                                LogForm
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

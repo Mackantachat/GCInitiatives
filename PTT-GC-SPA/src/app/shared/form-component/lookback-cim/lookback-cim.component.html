@@ -1,0 +1,401 @@
+<div>
+  <!-- CIM Lookback -->
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label>
+        <h4 class="title">CIM Lookback</h4>
+      </label>
+    </div>
+    <div class="col-md-6">
+    </div>
+  </div>
+
+  <!-- row-1 -->
+  <ng-container>
+    <div class="form-group row">
+      <div class="col-md-6">
+        <label> MC Endorse Date </label>
+      </div>
+
+      <div class="col-md-6">
+        <label> Business Plan As of Date </label>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- row-2 -->
+  <ng-container [formGroup]="cimForm">
+    <div class="form-group row">
+      <div class="col-md-5">
+        <div class="input-group">
+          <input type="text" [bsConfig]="MCEndorse" class="form-control" formControlName="McEndorseDate" bsDatepicker
+            #dpStart="bsDatepicker" [triggers]="viewMode ? '' : 'click:click'">
+          <div *ngIf="!viewMode" class="input-group-append">
+            <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpStart.isOpen"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="input-group">
+          <input type="text" [bsConfig]="BusinessPlanStart" class="form-control" formControlName="BusinessPlanAsOfDate"
+            bsDatepicker #dpStart="bsDatepicker" [triggers]="viewMode ? '' : 'click:click'">
+          <div *ngIf="!viewMode" class="input-group-append">
+            <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpStart.isOpen"></i>
+          </div>
+        </div>
+      </div>
+      <h4 style="font: large; font-weight: bold; color: black;"><B>/</B></h4>
+      <div class="col-md-3">
+        <div class="input-group">
+          <input type="text" [bsConfig]="BusinessPlanEnd" class="form-control" formControlName="BusinessPlanAsOfDate2"
+            bsDatepicker #dpStart="bsDatepicker" [triggers]="viewMode ? '' : 'click:click'">
+          <div *ngIf="!viewMode" class="input-group-append">
+            <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpStart.isOpen"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <br />
+
+  <!-- Project Background -->
+  <div>
+    <div><B>Project Background</B></div>
+    <div style="margin-top: 20px;">
+      <table class="table table-bordered" id="custom_table">
+        <thead>
+          <tr style="background-color: lightgray;">
+            <th scope="col" style="text-align: center;color: black;">Aspect</th>
+            <th scope="col" style="text-align: center;color: black;">Approve</th>
+            <th scope="col" style="text-align: center;color: black;">Actual</th>
+            <th scope="col" style="text-align: center;color: black;">Difference/Note</th>
+            <th scope="col" style="text-align: center;color: black;">Business Plan</th>
+            <th scope="col" style="text-align: center;color: black;">Responsible Person</th>
+            <th scope="col" style="text-align: center;color: black;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataProjectBackground; let i = index">
+            <td scope="row" style="text-align: center;">
+              <input type="text" class="form-control" name="Aspect{{i}}" [(ngModel)]="item.Aspect">
+            </td>
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="Approve{{i}}" [(ngModel)]="item.Approve">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="Actual{{i}}" [(ngModel)]="item.Actual">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="DifferenceNote{{i}}" [(ngModel)]="item.DifferenceNote">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="BusinessPlan{{i}}" [(ngModel)]="item.BusinessPlan">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="ResponsiblePerson{{i}}"
+                [(ngModel)]="item.ResponsiblePerson">
+            </td>
+
+            <td style="text-align: center;">
+              <button class="btn btn-danger btn-sm mr-1 text-white btn-list" (click)="deleteProjectBackground(i)"
+                [disabled]="IsProjectBackgroundDisable">
+                <i class="far fa-trash-alt"></i>
+              </button>
+              <!-- <a class="edit" (click)="edit_projectBackground(item, project)">Edit</a> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Button-Add-Project -->
+      <div class="row">
+        <div class="col-md-6">
+          <button type="button" class="btn btn-primary" (click)="add_row_ProjectBackground()" style="width:115px">
+            <i class="fas fa-plus mr-2"></i> <span style="font-size: 0.9rem;"> Add New </span>
+          </button>
+        </div>
+        <div class="col-md-6"></div>
+      </div>
+    </div>
+  </div>
+
+  <br />
+
+  <!-- Project Cost -->
+  <div>
+    <div><B>Project Cost</B></div>
+    <div style="margin-top: 20px;">
+      <table class="table table-bordered" id="custom_table">
+        <thead>
+          <tr style="background-color: lightgray;">
+            <th scope="col" style="text-align: center;color: black;">Aspect</th>
+            <th scope="col" style="text-align: center;color: black;">Approve</th>
+            <th scope="col" style="text-align: center;color: black;">Actual</th>
+            <th scope="col" style="text-align: center;color: black;">Difference/Note</th>
+            <th scope="col" style="text-align: center;color: black;">Business Plan</th>
+            <th scope="col" style="text-align: center;color: black;">Responsible Person</th>
+            <th scope="col" style="text-align: center;color: black;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataProjectCost; let i = index">
+            <td scope="row" style="text-align: center;">
+              <input type="text" class="form-control" name="Aspect{{i}}" value="{{item.Aspect}}"
+                [(ngModel)]="item.Aspect">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="Approve{{i}}" [(ngModel)]="item.Approve">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="Actual{{i}}" [(ngModel)]="item.Actual">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="DifferenceNote{{i}}" [(ngModel)]="item.DifferenceNote">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="BusinessPlan{{i}}" [(ngModel)]="item.BusinessPlan">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="ResponsiblePerson{{i}}"
+                [(ngModel)]="item.ResponsiblePerson">
+            </td>
+
+            <td style="text-align: center;">
+              <button class="btn btn-danger btn-sm mr-1 text-white btn-list" (click)="deleteProjectCost(i)"
+                [disabled]="IsProjectCostDisable">
+                <i class="far fa-trash-alt"></i>
+              </button>
+              <!-- <a class="edit" (click)="edit_projectCost(item,cost)">Edit</a> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Button-Add -->
+    <div class="row">
+      <div class="col-md-6">
+        <button type="button" class="btn btn-primary" (click)="add_row_ProjectCost()" style="width:115px">
+          <i class="fas fa-plus mr-2"></i> <span style="font-size: 0.9rem;"> Add New </span>
+        </button>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+
+  <br />
+
+
+  <!-- Schedule of Completion & Commercial Run -->
+  <div>
+    <div><B>Schedule of Completion & Commercial Run</B></div>
+    <div style="margin-top: 20px;">
+      <table class="table table-bordered" id="custom_table">
+        <thead>
+          <tr style="background-color: lightgray;">
+            <th scope="col" style="text-align: center;color: black;">Aspect</th>
+            <th scope="col" style="text-align: center;color: black;">Approve</th>
+            <th scope="col" style="text-align: center;color: black;">Actual</th>
+            <th scope="col" style="text-align: center;color: black;">Difference/Note</th>
+            <th scope="col" style="text-align: center;color: black;">Business Plan</th>
+            <th scope="col" style="text-align: center;color: black;">Responsible Person</th>
+            <th scope="col" style="text-align: center;color: black;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataSchedule; let i = index">
+            <td scope="row" style="text-align: center;">
+              <input type="text" class="form-control" name="Aspect{{i}}" [(ngModel)]="item.Aspect">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="Approve{{i}}" [(ngModel)]="item.Approve">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="Actual{{i}}" [(ngModel)]="item.Actual">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="DifferenceNote{{i}}" [(ngModel)]="item.DifferenceNote">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="BusinessPlan{{i}}" [(ngModel)]="item.BusinessPlan">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="ResponsiblePerson{{i}}"
+                [(ngModel)]="item.ResponsiblePerson">
+            </td>
+
+            <td style="text-align: center;">
+              <button class="btn btn-danger btn-sm mr-1 text-white btn-list" (click)="deleteSchedule(i)"
+                [disabled]="IsScheduleDisable">
+                <i class="far fa-trash-alt"></i>
+              </button>
+              <!-- <a class="edit" (click)="edit_schedule(item,schedule)">Edit</a> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Button-Add -->
+    <div class="row">
+      <div class="col-md-6">
+        <button type="button" class="btn btn-primary" (click)="add_row_Schedule()" style="width:115px">
+          <i class="fas fa-plus mr-2"></i> <span style="font-size: 0.9rem;"> Add New </span>
+        </button>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+
+  <br />
+
+  <!-- Key Assumption -->
+  <div>
+    <div><B>Key Assumption</B></div>
+    <div style="margin-top: 20px;">
+      <table class="table table-bordered" id="custom_table">
+        <thead>
+          <tr style="background-color: lightgray;">
+            <th scope="col" style="text-align: center;color: black;">Aspect</th>
+            <th scope="col" style="text-align: center;color: black;">Approve</th>
+            <th scope="col" style="text-align: center;color: black;">Actual</th>
+            <th scope="col" style="text-align: center;color: black;">Difference/Note</th>
+            <th scope="col" style="text-align: center;color: black;">Business Plan</th>
+            <th scope="col" style="text-align: center;color: black;">Responsible Person</th>
+            <th scope="col" style="text-align: center;color: black;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataKeyAssumption; let i = index">
+            <td scope="row" style="text-align: center;">
+              <input type="text" class="form-control" name="Aspect{{i}}" [(ngModel)]="item.Aspect">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="Approve{{i}}" [(ngModel)]="item.Approve">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="Actual{{i}}" [(ngModel)]="item.Actual">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="DifferenceNote{{i}}" [(ngModel)]="item.DifferenceNote">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="BusinessPlan{{i}}" [(ngModel)]="item.BusinessPlan">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="ResponsiblePerson{{i}}"
+                [(ngModel)]="item.ResponsiblePerson">
+            </td>
+
+            <td style="text-align: center;">
+              <button class="btn btn-danger btn-sm mr-1 text-white btn-list" (click)="deleteKeyAssumption(i)"
+                [disabled]="IsKeyAssumptionDisable">
+                <i class="far fa-trash-alt"></i>
+              </button>
+              <!-- <a class="edit" (click)="edit_keyAssumption(item,keyAssumption)">Edit</a> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Button-Add -->
+    <div class="row">
+      <div class="col-md-6">
+        <button type="button" class="btn btn-primary" (click)="add_row_KeyAssumption()" style="width:115px">
+          <i class="fas fa-plus mr-2"></i> <span style="font-size: 0.9rem;"> Add New </span>
+        </button>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+
+  <br />
+
+  <!-- Economic Return -->
+  <div>
+    <div><B>Economic Return</B></div>
+    <div style="margin-top: 20px;">
+      <table class="table table-bordered" id="custom_table">
+        <thead>
+          <tr style="background-color: lightgray;">
+            <th scope="col" style="text-align: center;color: black;">Aspect</th>
+            <th scope="col" style="text-align: center;color: black;">Approve</th>
+            <th scope="col" style="text-align: center;color: black;">Actual</th>
+            <th scope="col" style="text-align: center;color: black;">Difference/Note</th>
+            <th scope="col" style="text-align: center;color: black;">Business Plan</th>
+            <th scope="col" style="text-align: center;color: black;">Responsible Person</th>
+            <th scope="col" style="text-align: center;color: black;">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataEconomicReturn; let i = index">
+            <td scope="row" style="text-align: center;">
+              <input type="text" class="form-control" name="Aspect{{i}}" [(ngModel)]="item.Aspect">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="Approve{{i}}" [(ngModel)]="item.Approve">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="Actual{{i}}" [(ngModel)]="item.Actual">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="DifferenceNote{{i}}" [(ngModel)]="item.DifferenceNote">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="BusinessPlan{{i}}" [(ngModel)]="item.BusinessPlan">
+            </td>
+
+            <td style="text-align: center;">
+              <input type="text" class="form-control" name="ResponsiblePerson{{i}}"
+                [(ngModel)]="item.ResponsiblePerson">
+            </td>
+
+            <td style="text-align: center;">
+              <button class="btn btn-danger btn-sm mr-1 text-white btn-list" (click)="deleteEconomicReturn(i)"
+                [disabled]="IsEconomicReturnDisable">
+                <i class="far fa-trash-alt"></i>
+              </button>
+              <!-- <a class="edit" (click)="edit_economicReturn(item,economicReturn)">Edit</a> -->
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Button-Add -->
+    <div class="row">
+      <div class="col-md-6">
+        <button type="button" class="btn btn-primary" (click)="add_row_EconomicReturn()" style="width:115px">
+          <i class="fas fa-plus mr-2"></i> <span style="font-size: 0.9rem;"> Add New </span>
+        </button>
+      </div>
+      <div class="col-md-6"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="modal-body">
+    <div class="wrapper">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center" rowspan="2">KPI Name</th>
+                    <th scope="col" class="text-center" colspan="10">Score</th>
+                </tr>
+                <tr>
+                    <th scope="col" class="text-center">1 &nbsp;&nbsp;
+                        <input class="" readonly [ngClass]="'level-'+ GetColor(kriNameForm.value.scoreLevel1)" style="min-width:40px;max-width: 40px;border:none">
+                    </th>
+                    <!-- <th scope="col"></th> -->
+                    <th scope="col" class="text-center">2 &nbsp;&nbsp;
+                        <input class="" readonly [ngClass]="'level-'+ GetColor(kriNameForm.value.scoreLevel2)" style="min-width:40px;max-width: 40px;border:none">
+                    </th>
+                    <!-- <th scope="col"></th> -->
+                    <th scope="col" class="text-center">3 &nbsp;&nbsp;
+                        <input class="" readonly [ngClass]="'level-'+ GetColor(kriNameForm.value.scoreLevel3)" style="min-width:40px;max-width: 40px;border:none">
+                    </th>
+                    <!-- <th scope="col"></th> -->
+                    <th scope="col" class="text-center">4 &nbsp;&nbsp;
+                        <input class="" readonly [ngClass]="'level-'+ GetColor(kriNameForm.value.scoreLevel4)" style="min-width:40px;max-width: 40px;border:none">
+                    </th>
+                    <!-- <th scope="col"></th> -->
+                    <th scope="col" class="text-center">5 &nbsp;&nbsp;
+                        <input class="" readonly [ngClass]="'level-'+ GetColor(kriNameForm.value.scoreLevel5)" style="min-width:40px;max-width: 40px;border:none">
+                    </th>
+                    <!-- <th scope="col"></th> -->
+                </tr>
+            </thead>
+            <tbody [formGroup]="kriNameForm">
+                <tr>
+                    <td><textarea class="form-control"  rows="15" cols="50" style="background-color: rgb(241, 241, 241);"  readonly >{{kriNameForm.value.kpiName}}</textarea></td>
+                    <td><textarea class="form-control"  rows="15" cols="50" style="background-color: rgb(241, 241, 241);"  readonly >{{kriNameForm.value.scoreText1}}</textarea></td>
+                    <td><textarea class="form-control"  rows="15" cols="50" style="background-color: rgb(241, 241, 241);"  readonly >{{kriNameForm.value.scoreText2}}</textarea></td>
+                    <td><textarea class="form-control"  rows="15" cols="50" style="background-color: rgb(241, 241, 241);"  readonly >{{kriNameForm.value.scoreText3}}</textarea></td>
+                    <td><textarea class="form-control"  rows="15" cols="50" style="background-color: rgb(241, 241, 241);"  readonly >{{kriNameForm.value.scoreText4}}</textarea></td>
+                    <td><textarea class="form-control"  rows="15" cols="50" style="background-color: rgb(241, 241, 241);" readonly >{{kriNameForm.value.scoreText5}}</textarea></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  
+
+    <div class="row">
+        <div class="col-12">
+            <div class="float-right">
+                <button type="button" class="btn btn-primary" (click)="close()">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

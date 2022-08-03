@@ -1,0 +1,221 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card text card-initiative">
+      <div class="card-body">
+        <form>
+          <div class="form-initiative">
+            <app-initiative-info [id]="id"></app-initiative-info>
+          </div>
+          <div class="form-initiative">
+            <label>
+              <h4>Project Lookback</h4>
+            </label>
+            <hr>
+          </div>
+
+          <br />
+
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label>
+                <h4 class="title">Plan Lookback</h4>
+              </label>
+            </div>
+            <div class="col-md-6">
+            </div>
+          </div>
+
+          <br />
+
+          <!-- row-1 -->
+          <!-- Finishing date -->
+          <div class="form-group row">
+            <div class="col-md-2">
+              <label> Finishing date
+                <span class="text-danger">*</span>
+              </label>
+            </div>
+
+            <div class="col-md-3" [formGroup]="lookbackForm">
+              <div class="input-group">
+                <input type="text" [bsConfig]="Finishing" class="form-control" formControlName="FinishingDate"
+                  bsDatepicker #dpStart="bsDatepicker" [triggers]="viewMode ? '' : 'click:click'">
+                <div *ngIf="!viewMode" class="input-group-append">
+                  <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpStart.isOpen"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-1"></div>
+
+            <!-- Plan Lookback Date -->
+            <div class="col-md-2">
+              <label> Plan Lookback Date
+                <span class="text-danger">*</span> </label>
+            </div>
+
+            <div class="col-md-3" [formGroup]="lookbackForm">
+              <div class="input-group">
+                <input type="text" [bsConfig]="PlanLookback" class="form-control" formControlName="PlanLookbackDate"
+                  bsDatepicker #dpStart="bsDatepicker" [maxDate]="maxDateNextYear"
+                  [triggers]="viewMode ? '' : 'click:click'">
+                <div *ngIf="!viewMode" class="input-group-append">
+                  <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpStart.isOpen"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <!-- row-4 -->
+          <!-- Project Background -->
+          <ng-container>
+            <div class="form-group row" [formGroup]="lookbackForm">
+              <div class="col-md-6">
+                <label> Project Background
+                  <span class="text-danger">*</span> :
+                </label>
+                <textarea type="text" class="form-control" formControlName="ProjectBackground" readonly></textarea>
+              </div>
+              <div class="col-md-6">
+                <label> Scope of Initiative
+                  <span class="text-danger">*</span> :
+                </label>
+                <textarea type="text" class="form-control" formControlName="ScopeOfInitiative" readonly></textarea>
+              </div>
+            </div>
+          </ng-container>
+
+          <br />
+
+          <!-- row-5 -->
+          <!-- Project Objective -->
+          <div class="form-group row" [formGroup]="lookbackForm">
+            <div class="col-md-6">
+              <label> Project Objective
+                <span class="text-danger">*</span> :
+              </label>
+              <textarea type="text" class="form-control" formControlName="ProjectObjective" readonly></textarea>
+            </div>
+            <div class="col-md-6">
+            </div>
+          </div>
+
+          <!-- row-6 -->
+          <!-- check-box -->
+          <!-- <div class="form-group row">
+            <div class="col-md-12 mt-4">
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="custom-control custom-checkbox custom-control-inline">
+                    <input id="Execution" class="custom-control-input" type="checkbox" name="execution"
+                      [(ngModel)]="ExecutionLookbackProcess" (ngModelChange)="check_execution($event)">
+                    <label class="custom-control-label" for="Execution">
+                      Execution Lookback
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="custom-control custom-checkbox custom-control-inline">
+                    <input id="Performance" class="custom-control-input" type="checkbox" name="performance"
+                      [(ngModel)]="PerformanceLookback" (ngModelChange)="check_performance($event)">
+                    <label class="custom-control-label" for="Performance">
+                      Performance Lookback
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="custom-control custom-checkbox custom-control-inline">
+                    <input id="Environment" class="custom-control-input" type="checkbox" name="environment"
+                      [(ngModel)]="EnvironmentLookback" (ngModelChange)="check_environment($event)">
+                    <label class="custom-control-label" for="Environment">
+                      Environment Lookback
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-md-3">
+                  <div class="custom-control custom-checkbox custom-control-inline">
+                    <input id="CIM" class="custom-control-input" type="checkbox" name="CIM" [(ngModel)]="CimLookback"
+                      (ngModelChange)="check_cim($event)">
+                    <label class="custom-control-label" for="CIM">
+                      CIM Lookback
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <br />
+
+          <!-- row-7 -->
+          <!-- Process -->
+          <!-- <div class="form-group row">
+            <div class="col-md-3">
+              Process = PIM/ER/ <span style="color: red;">MAX</span> /DIM
+            </div>
+            <div class="col-md-3">
+              Process = Sustain Core
+            </div>
+            <div class="col-md-3">
+              Process = Environment
+            </div>
+            <div class="col-md-3">
+              Process = CIM
+            </div>
+          </div> -->
+        </form>
+
+
+
+
+        <!-- <app-lookback-execution *ngIf="ExecutionLookbackProcess" [lookbackForm]="lookbackForm">
+        </app-lookback-execution>
+        <app-lookback-performance *ngIf="PerformanceLookback" [lookbackForm]="lookbackForm">
+        </app-lookback-performance>
+
+        <app-lookback-environment *ngIf="EnvironmentLookback" [EnvironmentLookbackInput]="EnvironmentLookbackInput"
+          (lookbackEnvironmentOutput)="lookbackEnvironment($event)">
+        </app-lookback-environment>
+
+        <app-lookback-cim *ngIf="CimLookback" [lookbackForm]="lookbackForm" [CimLookbackInput]="CimLookbackInput"
+          (lookbackCIMOutput)="lookbackCIM($event)">
+        </app-lookback-cim> -->
+
+
+
+        <ng-container *ngIf="isCim; else notCim">
+          <app-lookback-cim [lookbackForm]="lookbackForm" [CimLookbackInput]="CimLookbackInput"
+            (lookbackCIMOutput)="lookbackCIM($event)">
+          </app-lookback-cim>
+        </ng-container>
+        <ng-template #notCim>
+          <app-lookback-execution [lookbackForm]="lookbackForm">
+          </app-lookback-execution>
+
+          <app-lookback-performance *ngIf="showPerformanceLookback" [lookbackForm]="lookbackForm">
+          </app-lookback-performance>
+
+          <app-lookback-environment *ngIf="showEnvironmentLookback" [lookbackForm]="lookbackForm"
+            [EnvironmentLookbackInput]="EnvironmentLookbackInput"
+            (lookbackEnvironmentOutput)="lookbackEnvironment($event)">
+          </app-lookback-environment>
+        </ng-template>
+
+
+
+        <!-- <div style="text-align: right; margin-top:15px;">
+  <button type="button" class="btn btn-primary" style="margin-right:10px; width: 95px;" (click)="onClickSave()"> Save
+  </button>
+  <button type="button" class="btn btn-warning" style="width: 95px;"> Cancel </button>
+</div> -->
+
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@models/*": ["app/core/models/*"],
+      "@pages/*": ["app/pages/*"],
+      "@components/*": ["app/shared/components/*"],
+      "@resolvers/*": ["app/shared/resolvers/*"],
+      "@views/*": ["app/shared/views/*"],
+      "@services/*": ["app/core/services/*"],
+      "@templates/*": ["app/shared/templates/*"],
+      "@layouts/*": ["app/shared/layouts/*"],
+      "@tools/*": ["app/shared/tools/*"],
+      "@utils/*": ["app/shared/utils/*"],
+      "@settings/*": ["app/core/settings/*"],
+      "@environments/*": ["environments/*"],
+      "@guards/*": ["app/core/guards/*"],
+      "@configs/*": ["app/core/configs/*"],
+      "@errors/*": ["app/core/errors/*"],
+      "@containers/*": ["app/containers/*"],
+      "@actions/*": ["app/store/actions/*"],
+      "@effects/*": ["app/store/effects/*"],
+      "@reducers/*": ["app/store/reducers/*"],
+      "@selectors/*": ["app/store/selectors/*"],
+      "@states/*": ["app/store/states/*"],
+    },
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true
+  }
+}

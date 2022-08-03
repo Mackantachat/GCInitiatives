@@ -1,0 +1,76 @@
+<form [formGroup]='lookbackForm'>
+  <!-- <div class="row">
+    <div class="col-md-12" style="padding-left: inherit;padding-right: inherit;">
+      <div class=" card text card-initiative">
+        <div class="card-body"> -->
+  <br />
+  <!-- Execution Lookback -->
+  <div class="form-group row">
+    <div class="col-md-6">
+      <label>
+        <h4 class="title">Execution Lookback</h4>
+      </label>
+    </div>
+    <div class="col-md-6">
+    </div>
+  </div>
+  <!-- Table -->
+  <div style="margin-top: 20px;">
+    <table class="table table-bordered" id="custom_table">
+      <thead>
+        <tr style="background-color: lightgray;">
+          <th scope="col" style="text-align: center;color: black;">Knowledge Area (Area of Learning)</th>
+          <th scope="col" style="text-align: center;color: black;">
+            Plan</th>
+          <th scope="col" style="text-align: center;color: black;">
+            Actual</th>
+          <th scope="col" style="text-align: center;color: black;">
+            Issue(What actually happen)</th>
+          <th scope="col" style="text-align: center;color: black;">
+            Background(What lead to the issue happening)</th>
+          <th scope="col" style="text-align: center;color: black;">Lesson learned</th>
+          <th scope="col" style="text-align: center;color: black;">Remark</th>
+          <th scope="col" style="text-align: center;color: black;">Comment</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let control of lookbackForm.get('ExecutionLookback')['controls'];let i = index">
+        <tr [formGroup]="control">
+          <td scope="row" style="background-color: lightgray;"><B>{{control.value.KnowledgeArea}}</B></td>
+          <td style="text-align: center;">
+            <ng-container *ngIf="readOnlyPlan(control); else planNotDate">
+              <input class="form-control" type="text" [value]="convertPlan(control)" [readonly]="readOnlyPlan(control)">
+            </ng-container>
+            <ng-template #planNotDate>
+              <input class="form-control" type="text" formControlName="Plan" [value]="convertPlan(control)"
+                [readonly]="readOnlyPlan(control)">
+            </ng-template>
+
+          </td>
+          <td style="text-align: center;">
+            <ng-container *ngIf="readOnlyPlan(control); else actualNotDate">
+              <input class="form-control" type="text" [value]="convertActual(control)"
+                [readonly]="readOnlyPlan(control)">
+            </ng-container>
+            <ng-template #actualNotDate>
+              <input class="form-control" type="text" formControlName="Actual" [value]="convertActual(control)"
+                [readonly]="readOnlyActual(control)">
+            </ng-template>
+
+          </td>
+          <td style="text-align: center;"><input class="form-control" formControlName="Issue"
+              [ngClass]="{'is-invalid': getFormError(control,'Issue') }"></td>
+          <td style="text-align: center;"><input class="form-control" formControlName="Background"
+              [ngClass]="{'is-invalid': getFormError(control,'Background') }"></td>
+          <td style="text-align: center;"><input class="form-control" formControlName="LessonLearned"
+              [ngClass]="{'is-invalid': getFormError(control,'LessonLearned') }"></td>
+          <td style="text-align: center;"><input class="form-control" formControlName="Remark"></td>
+          <td style="text-align: center;"><input class="form-control" formControlName="Comment"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!-- </div>
+      </div>
+    </div>
+  </div> -->
+</form>

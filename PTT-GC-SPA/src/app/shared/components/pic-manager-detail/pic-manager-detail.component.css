@@ -1,0 +1,185 @@
+.btn-width-default {
+  width: 150px;
+}
+
+.checkbox-custom {
+  width: 20px;
+  height: 20px;
+}
+
+:host>>>.tooltip-inner {
+  background-color: transparent !important;
+  color: black;
+}
+
+:host>>>.tooltip.top .tooltip-arrow:before, :host>>>.tooltip.top .tooltip-arrow {
+  border-top-color: transparent !important;
+}
+
+/* .table-active, .table-active>td, .table-active>th {
+  background-color: white;
+  color: black;
+}
+
+th, td {
+  color: black;
+  text-align: left;
+}
+
+table {
+  display: block;
+  max-width: 100%;
+}
+
+table th {
+  overflow-wrap: anywhere;
+} */
+
+/* table td, table th { overflow-wrap: anywhere; } */
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: rgb(176, 210, 245);
+}
+
+.td-single {
+  color: black;
+}
+
+.td-double {
+  color: black;
+}
+
+th.th-action, td.td-action {
+  color: #777777;
+  text-align: right;
+}
+
+.action-size {
+  width: 20px;
+  height: 20px;
+}
+
+.has-search {
+  margin-top: 12px;
+  margin-left: 10px;
+  display: block;
+  position: absolute;
+}
+
+.action-span {
+  display: block;
+  margin-left: -6px;
+  margin-top: -1px;
+  font-size: 12px;
+  color: white;
+}
+
+.action-span-button {
+  display: block;
+  margin-left: -7px;
+  margin-top: -1px;
+  font-size: 12px;
+  color: white;
+}
+
+.action-anchor {
+  width: 24px;
+  height: 24px;
+  margin-left: 1px;
+}
+
+.btn-width-default {
+  width: 150px;
+}
+
+.fa-spin {
+  -webkit-animation: fa-spin 0.5s infinite linear;
+  animation: fa-spin 0.5s infinite linear;
+}
+
+.fa-pulse {
+  -webkit-animation: fa-spin 1s infinite steps(8);
+  animation: fa-spin 1s infinite steps(8);
+}
+
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+
+.search {
+  height: 39px;
+  border: solid 1px black;
+  border-radius: 5px;
+}
+
+.table-initiative {
+  font-size: 14px !important;
+}
+
+.table thead th {
+  vertical-align: middle;
+}
+
+.card-layout {
+  height: 400px;
+}
+
+.title-NoData {
+  margin-top: 170px !important;
+}
+
+.modal-search {
+  margin-top: 4%;
+}
+
+.fa-spin {
+  -webkit-animation: fa-spin 0.5s infinite linear;
+  animation: fa-spin 0.5s infinite linear;
+}
+
+.fa-pulse {
+  -webkit-animation: fa-spin 1s infinite steps(8);
+  animation: fa-spin 1s infinite steps(8);
+}
+
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+

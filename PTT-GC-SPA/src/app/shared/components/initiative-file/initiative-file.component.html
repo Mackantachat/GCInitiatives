@@ -1,0 +1,51 @@
+<ng-container *ngIf="file.length">
+  <div class="row my-3">
+    <div class="col-md-12">
+      <button class="btn btn-primary btn-block" (click)="OpenFile()"> <i class="fas fa-file-alt mr-2"></i> Attachment </button>
+    </div>
+  </div>
+
+  <div bsModal #FileModal="bs-modal" class="modal fade modal-File" [config]="{ backdrop: 'static'}">
+    <div class="modal-dialog modal-xl" [ngStyle]="{ 'margin-bottom' : '10%' }">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title pull-left">
+            <i class="fas fa-file-alt mr-2"></i> Files
+          </h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="CloseModal()">
+            <i class="fas fa-times-circle"></i>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row mt-4">
+            <div class="col-md-12">
+              <div class="table-wrapper-scroll-y table-custom-scrollbar">
+                <ul>
+                  <li *ngFor="let item of file" class="my-4">
+                    <div class="row">
+                      <div class="col-11">
+                        {{ item.name }}
+                      </div>
+                      <div class="col-1">
+                        <button type="button" class="btn btn-success mr-2"
+                          (click)="DownloadAttachment(item.name, item.fileName)">
+                          <i class="fas fa-download"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="CloseModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+
+

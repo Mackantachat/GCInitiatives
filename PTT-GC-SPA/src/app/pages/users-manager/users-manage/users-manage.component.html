@@ -1,0 +1,88 @@
+<div class="animated fadeIn">
+
+    <div class="form-group row mt-3">
+        <div class="col-md-12">
+            <h2>Assign User Role</h2>
+        </div>
+    </div>
+    <hr>
+    <br>
+
+    <div class="form-group row" [formGroup]="form">
+        <div class="col-12 col-md-4 mt-4">
+            <div class="row">
+                <div class="col-3"><span class="span-scale">First Name</span></div>
+                <div class="col-9"><input type="text" class="form-control ml-2" formControlName="firstName" /></div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 mt-4">
+            <div class="row">
+                <div class="col-3"><span class="span-scale">Last Name</span></div>
+                <div class="col-9"><input type="text" class="form-control ml-2" formControlName="lastName" /></div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 mt-4">
+            <div class="row">
+                <div class="col-3"><span class="span-scale">Position</span></div>
+                <div class="col-9">
+                    <!-- <input type="text" class="form-control ml-2" formControlName="positionID" /> -->
+                    <ng-select [multiple]="false" formControlName="positionID">
+                        <ng-option *ngFor="let item of positionList" [value]="item.positionID">{{item.positionTextEN}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 mt-4">
+            <div class="row">
+                <div class="col-3"><span class="span-scale">BU</span></div>
+                <div class="col-9">
+                    <!-- <input type="text" class="form-control ml-2" formControlName="buid" /> -->
+                    <ng-select [multiple]="false" formControlName="buid">
+                        <ng-option *ngFor="let item of buList" [value]="item.buid">{{item.buText}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 mt-4">
+            <div class="row">
+                <div class="col-3"><span class="span-scale">Email</span></div>
+                <div class="col-9"><input type="text" class="form-control ml-2" formControlName="email" /></div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 mt-4">
+            <div class="row">
+                <div class="col-3"><span class="span-scale">Workstream</span></div>
+                <div class="col-9">
+                    <!-- <input type="text" class="form-control ml-2" formControlName="workstreamID" /> -->
+                    <ng-select [multiple]="false" formControlName="workstreamID">
+                        <ng-option *ngFor="let item of workStreamList" [value]="item.workstreamID">
+                            {{item.workstreamTitle}}
+                        </ng-option>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mt-4">
+            <div class="row">
+                <div class="col-12 col-sm-4 col-md-3 col-lg-2"><span class="span-scale">Role</span></div>
+                <div class="col-12 col-sm-8 col-md-9 col-lg-10">
+                    <ng-select [multiple]="true" formControlName="roleID">
+                        <ng-option *ngFor="let item of roleList" [value]="item.roleId">{{item.roleName}}</ng-option>
+                    </ng-select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mt-5">
+        <div class="col-12">
+            <button type="button" class="btn btn-outline-dark btn-width-default ml-4 float-right"
+                (click)="initialData()">Cancel</button>
+            <button type="button" class="btn btn-outline-primary btn-width-default float-right"
+                (click)="saveData()">Save</button>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,144 @@
+<ng-template [ngIf]="isLoading" [ngIfElse]="Success">
+  <!-- <div class="container text-center loader-layout">
+  <ngx-spinner bdColor="#fffffff" color= "#105bac" size="medium" type="ball-spin" [fullScreen]="false"></ngx-spinner>
+</div>
+<br> -->
+</ng-template>
+
+<ng-template #Success>
+  <div data-aos="fade-up">
+    <div class="row">
+      <div class="col-md-12">
+        <p style="font-size: 42px;color: #454545;">My Dashboard</p>
+        <hr style="background-color: #000000;">
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="col-md-4" style="text-align:center">
+        <img src="assets/images/idea-many.png" alt="" style="width:300px">
+      </div>
+      <div class="col-md-4">
+        <div class="card border-primary mb-3">
+          <div class="card-header">My Tasks</div>
+          <div class="card-body text-primary">
+            <h5 class="card-title" style="color:#0276D0"><i class="fa fa-spinner" aria-hidden="true"></i>
+              {{ MyTaskInProgress }} In Progress</h5>
+            <!-- <h5 class="card-title" style="color:#DA1ADA"><i class="fa fa-hourglass-start" aria-hidden="true">&nbsp;</i>
+              {{ MyTaskNotStarted }} Not Started</h5> -->
+          </div>
+        </div>
+        <div class="card border-primary mb-3">
+          <div class="card-header">My Own Initiatives</div>
+          <div class="card-body text-primary">
+            <h5 class="card-title" style="color:#FFA500"><i class="far fa-save mr-2" aria-hidden="true">&nbsp;</i>{{
+              MyInitiativeDraft }} Drafts</h5>
+            <h5 class="card-title" style="color:#0276D0"><i class="fa fa-spinner" aria-hidden="true">&nbsp;</i>
+              {{ MyInitiativeInProgress }} In Progress</h5>
+            <h5 class="card-title" style="color:#008000"><i class="fa fa-check" aria-hidden="true">&nbsp;</i>
+              {{ MyInitiativeCompleted }} Completed</h5>
+            <h5 class="card-title" style="color:#4D4D4D"><i class="fa fa-times" aria-hidden="true">&nbsp;&nbsp;</i>
+              {{ MyInitiativeCanceled }} Cancelled</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-primary mb-3">
+          <div class="card-header">Create</div>
+        </div>
+        <div class="card border-primary mb-3">
+          <a (click)="createInitiative()" style="cursor: pointer;">
+            <div class="card-header" style="background-color: #ffffff;">
+              <span class="fa fa-plus" aria-hidden="true" style="color: #185CAB;margin-right: 1rem;"></span>
+              <span style="color: #313131;">New Initiative</span>
+            </div>
+          </a>
+        </div>
+        <div class="card border-primary mb-3">
+          <a [ngClass]="{'disabled': isAvailableBudgetPool}" (click)="RequestPool()" style="cursor: pointer;">
+            <div class="card-header link-button" [ngClass]="{'disabled': isAvailableBudgetPool}">
+              <span class="fa fa-plus" aria-hidden="true" style="color: #185CAB;margin-right: 1rem;"></span>
+              <span style="color: #313131;">New Request Pool</span>
+            </div>
+          </a>
+        </div>
+        <div class="card border-primary mb-3">
+          <a [ngClass]="{'disabled': isActiveITBudgetSurvey}" [routerLink]="['/initiative/create-survey']">
+            <div class="card-header link-button" [ngClass]="{'disabled': isActiveITBudgetSurvey}">
+              <span class="fa fa-plus" aria-hidden="true" style="color: #185CAB;margin-right: 1rem;"></span>
+              <span style="color: #313131;">New IT & Digital Budget Survey</span>
+            </div>
+          </a>
+        </div>
+        <div class="card border-primary mb-3">
+          <a>
+            <div class="card-header">Download Training Material</div>
+          </a>
+          <div class="card-body text-primary pl-0 pr-0">
+            <div class="col-md-12">
+              <div class="row">
+                <button type="button" class="col-md-12 btn btn-outline-primary" style="text-align: left; border: none;"
+                  (click)="DownloadAnnualCAPEXProject('Annual CAPEX Project 2022')">
+                  <ng-container *ngIf="isDownloadAnnualCAPEXProject; else isnotDownloadAnnualCAPEXProject">
+                    <div style="text-align: center;">
+                      <i class="fas fa-sync-alt fa-spin"></i> Downloading...
+                    </div>
+                  </ng-container>
+                  <ng-template #isnotDownloadAnnualCAPEXProject>
+                    <span><i class="fas fa-book"></i></span>
+                    <span> 01 Annual CAPEX Project 2022</span>
+                  </ng-template>
+                </button>
+              </div>
+              <div class="row">
+                <button type="button" class="col-md-12 btn btn-outline-primary" style="text-align: left; border: none;"
+                  (click)="DownloadRequestCAPEXandCreateWBS('Request CAPEX and Create WBS')">
+                  <ng-container *ngIf="isDownloadRequestCAPEXandCreateWBS; else isnotDownloadRequestCAPEXandCreateWBS">
+                    <div style="text-align: center;">
+                      <i class="fas fa-sync-alt fa-spin"></i> Downloading...
+                    </div>
+                  </ng-container>
+                  <ng-template #isnotDownloadRequestCAPEXandCreateWBS>
+                    <span><i class="fas fa-book"></i></span>
+                    <span> 02 Request CAPEX and Create WBS</span>
+                  </ng-template>
+                </button>
+              </div>
+              <div class="row">
+                <button type="button" class="col-md-12 btn btn-outline-primary" style="text-align: left; border: none;"
+                  (click)="DownloadApprovalFlowandDetailInformation('Approval Flow and Detail Information')">
+                  <ng-container
+                    *ngIf="isDownloadApprovalFlowandDetailInformation; else isnotDownloadApprovalFlowandDetailInformation">
+                    <div style="text-align: center;">
+                      <i class="fas fa-sync-alt fa-spin"></i> Downloading...
+                    </div>
+                  </ng-container>
+                  <ng-template #isnotDownloadApprovalFlowandDetailInformation>
+                    <span><i class="fas fa-book"></i></span>
+                    <span> 03 Approval Flow and Detail Information</span>
+                  </ng-template>
+                </button>
+              </div>
+              <div class="row">
+                <button type="button" class="col-md-12 btn btn-outline-primary" style="text-align: left; border: none;"
+                  (click)="DownloadNoInvestmentProject('No Investment Project')">
+                  <ng-container *ngIf="isDownloadNoInvestmentProject; else isnotDownloadNoInvestmentProject">
+                    <div style="text-align: center;">
+                      <i class="fas fa-sync-alt fa-spin"></i> Downloading...
+                    </div>
+                  </ng-container>
+                  <ng-template #isnotDownloadNoInvestmentProject>
+                    <span><i class="fas fa-book "></i></span>
+                    <span> 04 No Investment Project</span>
+                  </ng-template>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <br>
+</ng-template>

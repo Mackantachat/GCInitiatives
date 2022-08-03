@@ -1,0 +1,22 @@
+[
+  {
+    "Name": "BarStacked",
+    "Value": "BarStacked",
+    "OrderBy": 1
+  },
+  {
+    "Name": "Bar",
+    "Value": "Bar",
+    "OrderBy": 2
+  },
+  {
+    "Name": "Pie",
+    "Value": "Pie",
+    "OrderBy": 3
+  },
+  {
+    "Name": "Donut",
+    "Value": "Donut",
+    "OrderBy": 4
+  }
+]

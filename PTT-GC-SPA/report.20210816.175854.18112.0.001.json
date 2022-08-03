@@ -1,0 +1,468 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20210816.175854.18112.0.001.json",
+    "dumpEventTime": "2021-08-16T17:58:54Z",
+    "dumpEventTimeStamp": "1629111534082",
+    "processId": 18112,
+    "cwd": "E:\\GCInitiatives\\PTT-GC-SPA",
+    "commandLine": [
+      "node",
+      "C:\\Users\\krits\\AppData\\Roaming\\npm\\\\node_modules\\@angular\\cli\\bin\\ng",
+      "s"
+    ],
+    "nodejsVersion": "v12.16.1",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.16.1",
+      "v8": "7.8.279.23-node.31",
+      "uv": "1.34.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.40.0",
+      "napi": "5",
+      "llhttp": "2.0.4",
+      "http_parser": "2.9.3",
+      "openssl": "1.1.1d",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019c",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "lts": "Erbium",
+      "headersUrl": "https://nodejs.org/download/release/v12.16.1/node-v12.16.1-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.16.1/node-v12.16.1.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.16.1/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.19043",
+    "osVersion": "Windows 10 Home",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "AMD Ryzen 5 2600X Six-Core Processor           ",
+        "speed": 3793,
+        "user": 1670828,
+        "nice": 0,
+        "sys": 2176875,
+        "idle": 21520781,
+        "irq": 102390
+      },
+      {
+        "model": "AMD Ryzen 5 2600X Six-Core Processor           ",
+        "speed": 3793,
+        "user": 952156,
+        "nice": 0,
+        "sys": 757281,
+        "idle": 23658812,
+        "irq": 15718
+      },
+      {
+        "model": "AMD Ryzen 5 2600X Six-Core Processor           ",
+        "speed": 3793,
+        "user": 2519140,
+        "nice": 0,
+        "sys": 1792140,
+        "idle": 21056968,
+        "irq": 27562
+      },
+      {
+        "model": "AMD Ryzen 5 2600X Six-Core Processor           ",
+        "speed": 3793,
+        "user": 1410781,
+        "nice": 0,
+        "sys": 918312,
+        "idle": 23039156,
+        "irq": 15765
+      },
+      {
+        "model": "AMD Ryzen 5 2600X Six-Core Processor           ",
+        "speed": 3793,
+        "user": 1763281,
+        "nice": 0,
+        "sys": 1634296,
+        "idle": 21970671,
+        "irq": 26031
+      },
+      {
+        "model": "AMD Ryzen 5 2600X Six-Core Processor           ",
+        "speed": 3793,
+        "user": 1013812,
+        "nice": 0,
+        "sys": 654031,
+        "idle": 23700406,
+        "irq": 13406
+      },
+      {
+        "model": "AMD Ryzen 5 2600X Six-Core Processor           ",
+        "speed": 3793,
+        "user": 2115515,
+        "nice": 0,
+        "sys": 1550703,
+        "idle": 21702031,
+        "irq": 20203
+      },
+      {
+        "model": "AMD Ryzen 5 2600X Six-Core Processor           ",
+        "speed": 3793,
+        "user": 1261937,
+        "nice": 0,
+        "sys": 802718,
+        "idle": 23303593,
+        "irq": 13484
+      },
+      {
+        "model": "AMD Ryzen 5 2600X Six-Core Processor           ",
+        "speed": 3793,
+        "user": 1951234,
+        "nice": 0,
+        "sys": 1416515,
+        "idle": 22000500,
+        "irq": 22171
+      },
+      {
+        "model": "AMD Ryzen 5 2600X Six-Core Processor           ",
+        "speed": 3793,
+        "user": 1074937,
+        "nice": 0,
+        "sys": 628218,
+        "idle": 23665078,
+        "irq": 9453
+      },
+      {
+        "model": "AMD Ryzen 5 2600X Six-Core Processor           ",
+        "speed": 3793,
+        "user": 1653984,
+        "nice": 0,
+        "sys": 1046953,
+        "idle": 22667296,
+        "irq": 16078
+      },
+      {
+        "model": "AMD Ryzen 5 2600X Six-Core Processor           ",
+        "speed": 3793,
+        "user": 1161812,
+        "nice": 0,
+        "sys": 613234,
+        "idle": 23593187,
+        "irq": 9312
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "b0:a4:60:6d:ba:b4",
+        "address": "2001:44c8:4300:66:49a3:6238:f0ae:18cf",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "b0:a4:60:6d:ba:b4",
+        "address": "2001:44c8:4300:66:4de:4f40:baa1:145d",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "b0:a4:60:6d:ba:b4",
+        "address": "fe80::49a3:6238:f0ae:18cf",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 14
+      },
+      {
+        "name": "Wi-Fi",
+        "internal": false,
+        "mac": "b0:a4:60:6d:ba:b4",
+        "address": "192.168.43.207",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      }
+    ],
+    "host": "DESKTOP-QEFRIEB"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff64b2319f9",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+10873"
+    },
+    {
+      "pc": "0x00007ff64b235e1c",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+28316"
+    },
+    {
+      "pc": "0x00007ff64b234dd8",
+      "symbol": "std::basic_ostream<char,std::char_traits<char> >::operator<<+24152"
+    },
+    {
+      "pc": "0x00007ff64b3334cb",
+      "symbol": "v8::base::CPU::has_sse+38363"
+    },
+    {
+      "pc": "0x00007ff64bb49f4e",
+      "symbol": "v8::Isolate::ReportExternalAllocationLimitReached+94"
+    },
+    {
+      "pc": "0x00007ff64bb32021",
+      "symbol": "v8::SharedArrayBuffer::Externalize+833"
+    },
+    {
+      "pc": "0x00007ff64b9fe57c",
+      "symbol": "v8::internal::Heap::EphemeronKeyWriteBarrierFromCode+1436"
+    },
+    {
+      "pc": "0x00007ff64ba097d0",
+      "symbol": "v8::internal::Heap::ProtectUnprotectedMemoryChunks+1312"
+    },
+    {
+      "pc": "0x00007ff64ba062f4",
+      "symbol": "v8::internal::Heap::PageFlagsAreConsistent+3204"
+    },
+    {
+      "pc": "0x00007ff64b9fbb13",
+      "symbol": "v8::internal::Heap::CollectGarbage+1283"
+    },
+    {
+      "pc": "0x00007ff64b9fa184",
+      "symbol": "v8::internal::Heap::AddRetainedMap+2452"
+    },
+    {
+      "pc": "0x00007ff64ba1b36d",
+      "symbol": "v8::internal::Factory::NewFillerObject+61"
+    },
+    {
+      "pc": "0x00007ff64b780c51",
+      "symbol": "v8::internal::interpreter::JumpTableTargetOffsets::iterator::operator=+1665"
+    },
+    {
+      "pc": "0x00007ff64bf94ddd",
+      "symbol": "v8::internal::SetupIsolateDelegate::SetupHeap+546637"
+    },
+    {
+      "pc": "0x0000031d9690dd7f",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 2179096576,
+    "totalCommittedMemory": 2179096576,
+    "usedMemory": 2120287672,
+    "availableMemory": 47566128,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 32808,
+        "used": 32808,
+        "available": 0
+      },
+      "new_space": {
+        "memorySize": 29360128,
+        "committedMemory": 29360128,
+        "capacity": 14664384,
+        "used": 560432,
+        "available": 14103952
+      },
+      "old_space": {
+        "memorySize": 1915109376,
+        "committedMemory": 1915109376,
+        "capacity": 1901679336,
+        "used": 1901600264,
+        "available": 79072
+      },
+      "code_space": {
+        "memorySize": 6721536,
+        "committedMemory": 6721536,
+        "capacity": 5866368,
+        "used": 5866368,
+        "available": 0
+      },
+      "map_space": {
+        "memorySize": 18092032,
+        "committedMemory": 18092032,
+        "capacity": 3421520,
+        "used": 3421520,
+        "available": 0
+      },
+      "large_object_space": {
+        "memorySize": 208928768,
+        "committedMemory": 208928768,
+        "capacity": 208261992,
+        "used": 208261992,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 622592,
+        "committedMemory": 622592,
+        "capacity": 544288,
+        "used": 544288,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 14664384,
+        "used": 0,
+        "available": 14664384
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 320.406,
+    "kernelCpuSeconds": 14.578,
+    "cpuConsumptionPercent": 58.4614,
+    "maxRss": 2419056640,
+    "pageFaults": {
+      "IORequired": 1819675,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 8517,
+      "writes": 8
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "=E:": "E:\\GCInitiatives\\PTT-GC-SPA",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "APPDATA": "C:\\Users\\krits\\AppData\\Roaming",
+    "BROWSERSLIST_IGNORE_OLD_DATA": "1",
+    "CHROME_CRASHPAD_PIPE_NAME": "\\\\.\\pipe\\crashpad_9760_IIXIRFCVHQPJOCBJ",
+    "CommonProgramFiles": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "DESKTOP-QEFRIEB",
+    "ComSpec": "C:\\WINDOWS\\system32\\cmd.exe",
+    "dp0": "C:\\Users\\krits\\AppData\\Roaming\\npm\\",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
+    "FPS_BROWSER_USER_PROFILE_STRING": "Default",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\krits",
+    "INTEL_DEV_REDIST": "C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\",
+    "LOCALAPPDATA": "C:\\Users\\krits\\AppData\\Local",
+    "LOGONSERVER": "\\\\DESKTOP-QEFRIEB",
+    "MIC_LD_LIBRARY_PATH": "C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\compiler\\lib\\mic",
+    "NUMBER_OF_PROCESSORS": "12",
+    "OneDrive": "C:\\Users\\krits\\OneDrive",
+    "ORIGINAL_XDG_CURRENT_DESKTOP": "undefined",
+    "OS": "Windows_NT",
+    "Path": "C:\\Program Files (x86)\\Common Files\\Intel\\Shared Libraries\\redist\\intel64\\compiler;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PostgreSQL\\9.4\\bin;C:\\xampp\\php;C:\\ProgramData\\ComposerSetup\\bin;C:\\Program Files\\PuTTY\\;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;C:\\Program Files\\dotnet\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\;C:\\flutter\\bin\\;C:\\Program Files (x86)\\dotnet\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\Tools\\Binn\\;C:\\Program Files\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\DTS\\Binn\\;C:\\Program Files\\Azure Data Studio\\bin;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Users\\krits\\AppData\\Local\\Microsoft\\WindowsApps;C:\\Users\\krits\\AppData\\Roaming\\Composer\\vendor\\bin;C:\\Users\\krits\\AppData\\Local\\Programs\\Microsoft VS Code\\bin;C:\\Users\\krits\\AppData\\Roaming\\npm;C:\\Users\\krits\\.dotnet\\tools;C:\\Program Files\\Azure Data Studio\\bin",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JSE;.WSF;.WSH;.MSC;.CPL",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "AMD64 Family 23 Model 8 Stepping 2, AuthenticAMD",
+    "PROCESSOR_LEVEL": "23",
+    "PROCESSOR_REVISION": "0802",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PROMPT": "$P$G",
+    "PSModulePath": "C:\\Users\\krits\\Documents\\WindowsPowerShell\\Modules;C:\\Program Files\\WindowsPowerShell\\Modules;C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules;C:\\Program Files (x86)\\Microsoft SQL Server\\150\\Tools\\PowerShell\\Modules\\",
+    "PUBLIC": "C:\\Users\\Public",
+    "SESSIONNAME": "Console",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\krits\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\krits\\AppData\\Local\\Temp",
+    "USERDOMAIN": "DESKTOP-QEFRIEB",
+    "USERDOMAIN_ROAMINGPROFILE": "DESKTOP-QEFRIEB",
+    "USERNAME": "lmwking",
+    "USERPROFILE": "C:\\Users\\krits",
+    "WEBPACK_DEV_SERVER": "true",
+    "windir": "C:\\WINDOWS",
+    "TERM_PROGRAM": "vscode",
+    "TERM_PROGRAM_VERSION": "1.59.0",
+    "LANG": "en_US.UTF-8",
+    "COLORTERM": "truecolor",
+    "VSCODE_GIT_IPC_HANDLE": "\\\\.\\pipe\\vscode-git-9b81c73fce-sock",
+    "GIT_ASKPASS": "c:\\Users\\krits\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass.sh",
+    "VSCODE_GIT_ASKPASS_NODE": "C:\\Users\\krits\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+    "VSCODE_GIT_ASKPASS_MAIN": "c:\\Users\\krits\\AppData\\Local\\Programs\\Microsoft VS Code\\resources\\app\\extensions\\git\\dist\\askpass-main.js",
+    "_prog": "node"
+  },
+  "sharedObjects": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\powrprof.dll",
+    "C:\\WINDOWS\\SYSTEM32\\UMPDC.dll",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\SYSTEM32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\System32\\bcryptprimitives.dll",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\WINDOWS\\System32\\fwpuclnt.dll",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\system32\\wshbth.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll"
+  ]
+}

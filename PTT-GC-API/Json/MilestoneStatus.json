@@ -1,0 +1,26 @@
+[
+    {
+        "MilestoneStatusId": "On_plan",
+        "MilestoneStatusName": "On plan"
+    },
+    {
+        "MilestoneStatusId": "May_delay",
+        "MilestoneStatusName": "May deley"
+    },
+    {
+        "MilestoneStatusId": "Delay",
+        "MilestoneStatusName": "Delay"
+    },
+    {
+        "MilestoneStatusId": "Pending",
+        "MilestoneStatusName": "Pending"
+    },
+    {
+        "MilestoneStatusId": "Finished",
+        "MilestoneStatusName": "Finished"
+    },
+    {
+        "MilestoneStatusId": "Cancelled",
+        "MilestoneStatusName": "Cancelled"
+    }
+]

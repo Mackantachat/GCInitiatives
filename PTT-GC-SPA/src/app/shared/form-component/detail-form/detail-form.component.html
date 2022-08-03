@@ -1,0 +1,1261 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card text card-initiative">
+      <div class="card-body">
+        <div [formGroup]="initiativesDetailForm">
+          <div class="form-initiative">
+            <app-initiative-info [id]="id"></app-initiative-info>
+          </div>
+          <div class="row mt-4">
+            <div class=" col-md-12">
+              <h4> Investment Detail </h4>
+              <hr>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card text card-initiative">
+                <div class="form-initiative">
+                  <!-- <div class="form-group row">
+            <div class=" col-md-6">
+              <label for="name"> Initiative Year <span class="text-danger">*</span> : </label>
+              <input type="text" class="form-control" readonly value="{{ initiativeYear }}">
+            </div>
+          </div> -->
+
+                  <!-- <div class="form-group row">
+            <div class="col-md-6">
+              <label for="strategicObjective"> Strategic Objective <span class="text-danger">*</span> : </label>
+              <select formControlName="strategicObjective" class="form-control" (change)="OnChangeStrategic($event)"
+                [ngClass]="{ 'is-invalid': invalidStrategicObjective }">
+                <option value="" selected disabled> Choose Strategic Objective </option>
+                <option *ngFor="let strategic of strategicObjectives" value="{{ strategic.id }}">
+                  {{strategic.strategicObjectiveTitle}}
+                </option>
+              </select>
+              <div class="invalid-feedback" *ngIf="invalidStrategicObjective">
+                Strategic Objective is required !
+              </div>
+            </div>
+            <div class=" col-md-6">
+              <label for="strategyDetail"> Strategy <span class="text-danger">*</span> : </label>
+              <select formControlName="strategyDetail" class="form-control"
+                [ngClass]="{ 'is-invalid': invalidStrategyDetail }">
+                <option value="" selected>Choose Strategy</option>
+                <option *ngFor="let strategy of strategies" value="{{strategy.strategyId}}">
+                  {{strategy.strategyTitle}}
+                </option>
+              </select>
+              <div class="invalid-feedback" *ngIf="invalidStrategyDetail">
+                Strategy is required !
+              </div>
+            </div>
+          </div> -->
+                  <!-- Change chps to checkControl or checkNotControl -->
+                  <div class="form-group row" *ngIf="Cim">
+                    <div class="col-md-6" [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','entryMode')">
+                      <label for="entryMode"> Entry mode <span class="text-danger">*</span> : </label>
+                      <select formControlName="entryMode" class="form-control" (change)="OnChangeEntryMode()"
+                        [ngClass]="{ 'is-invalid': invalidEntryMode }">
+                        <option value="" selected disabled>Choose Entry mode</option>
+                        <option *ngFor="let entryMode of entryModes" value="{{entryMode.entryModeId}}">
+                          {{entryMode.entryModeTitle}}
+                        </option>
+                        <!-- <option value="E009">Other</option> -->
+                      </select>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="invalidEntryMode">
+                      Entry Mode is required !
+                    </div>
+                    <ng-container *ngIf="showSpecify">
+                      <div class="col-md-6" [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','specify')">
+                        <label for="entryMode"> Please Specify <span class="text-danger">*</span> : </label>
+                        <input class="form-control" type="text" formControlName="specify"
+                          [ngClass]="{ 'is-invalid': invalidSpecify }">
+                        <div class="invalid-feedback" *ngIf="invalidSpecify">
+                          Specify is required !
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-6" [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','entity')">
+                      <label for="entity"> Entity <span class="text-danger">*</span> : </label>
+                      <select formControlName="entity" class="form-control" (change)="OnChangeEntity()"
+                        [ngClass]="{ 'is-invalid': invalidEntity }">
+                        <option value="" selected disabled>Choose Entity </option>
+                        <option value="bsa">BSA </option>
+                        <option value="international">GC International </option>
+                        <option value="transport">Eastern Fluid Transport </option>
+                        <option value="EOM">Emery (EOM) </option>
+                        <option value="ESC">Emery (ESC) </option>
+                        <option value="innovationAmerica">GC Innovation America </option>
+                        <option value="oxirane">GC Oxirane </option>
+                        <option value="polyols">GC Polyols </option>
+                        <option value="ventures">GC Ventures </option>
+                        <option value="venturesAmerica">GC Ventures America </option>
+                        <option value="estate">GC Estate </option>
+                        <option value="treasury">GC Treasury </option>
+                        <option value="GGC">GGC </option>
+                        <option value="GPSC">GPSC </option>
+                        <option value="HMC">HMC </option>
+                        <option value="kuraray">Kuraray GC </option>
+                        <option value="natureWorks">NatureWorks </option>
+                        <option value="NPC">NPC S&E </option>
+                        <option value="phenol">PTT Phenol </option>
+                        <option value="asahi">PTT Asahi </option>
+                        <option value="digitalSolution">PTT Digital Solution </option>
+                        <option value="PTTES">PTTES </option>
+                        <option value="GC">GC </option>
+                        <option value="netherlands">PTTGC (Netherlands) </option>
+                        <option value="USA">PTTGC (USA) </option>
+                        <option value="america">PTTGC America </option>
+                        <option value="PTTMCC">PTTMCC </option>
+                        <option value="GCME">GCME </option>
+                        <option value="logistics">GC Logistics </option>
+                        <option value="marketing">GC Marketing </option>
+                        <option value="solutionCreation">Solution Creation </option>
+                        <option value="glycol">GC Glycol </option>
+                        <option value="styrenics">GC Styrenics </option>
+                        <option value="TTT">TTT </option>
+                        <option value="vencorex">Vencorex </option>
+                        <option value="VNT">VNT </option>
+                        <option value="GCM PTA">GCM PTA </option>
+                        <option value="TPRC">TPRC </option>
+                        <option value="revolve">Revolve Group (RGL) </option>
+                        <option value="other">Other (Please specify) </option>
+                      </select>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="invalidEntity">
+                      Entity is required !
+                    </div>
+                    <ng-container *ngIf="isShowEntity()">
+                      <div class="col-md-6"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','entitySpecify')">
+                        <label for="entitySpecify"> Please Specify <span class="text-danger">*</span> : </label>
+                        <input class="form-control" type="text" formControlName="entitySpecify"
+                          [ngClass]="{ 'is-invalid': invalidEntitySpecify }">
+                        <div class="invalid-feedback" *ngIf="invalidEntitySpecify">
+                          Specify is required !
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                  <ng-container>
+                    <div class="form-group row">
+                      <div class="col-md-6"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','geography')">
+                        <label for="entryMode"> Geography <span class="text-danger">*</span>: </label>
+                        <select formControlName="geography" class="form-control" (change)="OnChangeGeography()"
+                          [ngClass]="{'is-invalid': InvalidGeography}">
+                          <option value="" selected disabled>Choose Geography</option>
+                          <option value="china">China</option>
+                          <option value="france">France</option>
+                          <option value="german">German</option>
+                          <option value="indonesia">Indonesia</option>
+                          <option value="malaysia">Malaysia</option>
+                          <option value="singapore">Singapore</option>
+                          <option value="thailand">Thailand</option>
+                          <option value="usa">USA</option>
+                          <option value="vietnam">Vietnam</option>
+                          <option value="uk">UK</option>
+                          <option value="poland">Poland</option>
+                          <option value="australia">Australia</option>
+                          <option value="newZealand">New Zealand</option>
+                          <option value="oman">Oman</option>
+                          <option value="other">Other (Please specify) </option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="InvalidGeography">
+                          Geography is required !
+                        </div>
+                      </div>
+                      <ng-container *ngIf="showGeography">
+                        <div class="col-md-6"
+                          [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','geographySpecify')">
+                          <label for="entryMode"> Please Specify <span class="text-danger">*</span> : </label>
+                          <input class="form-control" type="text" formControlName="geographySpecify"
+                            [ngClass]="{ 'is-invalid': invalidGeographySpecify }">
+                          <div class="invalid-feedback" *ngIf="invalidGeographySpecify">
+                            Specify is required !
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+
+                    <div class="form-group row" *ngIf="Cim">
+                      <div class=" col-md-6"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','businessModel')">
+                        <label for="businessModel"> Business Model : </label>
+                        <select formControlName="businessModel" class="form-control"
+                          [ngClass]="{'is-invalid': InvalidBusinessModel}">
+                          <option value="" selected disabled>Choose Business Model </option>
+                          <option value="Financial Investor">Financial Investor </option>
+                          <option value="Operator"> Operator </option>
+                          <option value="Strategic Director">Strategic Director </option>
+                          <option value="Strategic Owner"> Strategic Owner </option>
+                        </select>
+                        <!-- <div class="invalid-feedback" *ngIf="InvalidBusinessModel">
+                          Business Model is required !
+                        </div> -->
+                      </div>
+                      <div class="col-md-6"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','shareOfInvestment')">
+                        <label> % Share of Investment <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" formControlName="shareOfInvestment"
+                          thousandSeparator="," placeholder="0.00" mask="separator.2"
+                          (input)="OnChangeShareOfInvestment()" [ngClass]="{ 'is-invalid': invalidShare }">
+                        <div class="invalid-feedback" *ngIf="invalidShare">
+                          % Share of Investment is required !
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+
+                </div>
+
+
+
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row mt-5">
+            <div class=" col-md-12">
+              <h4> Approval Detail </h4>
+              <hr>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-6" [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','president')">
+              <label for="cfo"> Vice President of Owner (VP) <span class="text-danger">*</span> </label>
+              <ng-select formControlName="president" [items]="presidentList" bindValue="ownerName" bindLabel="ownerName"
+                placeholder="Choose Vice President of Owner" (search)="SearchPerson($event,'VP')"
+                (clear)="ClearPerson('VP')">
+              </ng-select>
+              <div class="text-feedback" *ngIf="invalidPresident">
+                Vice President of Owner (VP) is required !
+              </div>
+            </div>
+
+            <ng-container *ngIf="Cim">
+              <div class="col-md-6" [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','manager')">
+                <label for="cfo"> Division Manager of Owner (DM) <span class="text-danger">*</span> </label>
+                <ng-select formControlName="manager" [items]="managerList" bindValue="ownerName" bindLabel="ownerName"
+                  placeholder="Choose Vice President of Owner" (search)="SearchPerson($event,'DM')"
+                  (clear)="ClearPerson('DM')">
+                </ng-select>
+                <div class="text-feedback" *ngIf="invalidManager">
+                  Division Manager of Owner (DM) is required !
+                </div>
+              </div>
+            </ng-container>
+          </div>
+
+          <br>
+
+          <div class="row mt-4" *ngIf="Cim">
+            <div class=" col-md-12">
+              <h4> Date Detail </h4>
+              <hr>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="Cim">
+            <div class="col-md-12">
+              <div class="card text card-initiative">
+                <div class="form-group row"
+                  [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','requireBOD1')">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="custom-control custom-checkbox custom-control-inline">
+                          <input id="requireBOD1" class="custom-control-input" type="checkbox"
+                            formControlName="requireBOD1" (click)="RequireBOD1($event)">
+                          <label class="custom-control-label" for="requireBOD1"> Require BOD1 </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <ng-container *ngIf="ShowBOD">
+                    <div class="col-md-6" [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','boD1')">
+                      <label> BOD # 1 : </label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" formControlName="boD1" [bsConfig]="bsBOD1" bsDatepicker
+                          #dpBOD1="bsDatepicker" (ngModelChange)="ChangeBOD1($event)" (onShown)="OnShowBOD1()"
+                          [minDate]="bsBOD1.minDate" [maxDate]="bsBOD1.maxDate" (onHidden)="OnHiddenBOD1()"
+                          [ngClass]="{ 'is-invalid': invalidBOD1 }" (click)="ClickBODDate()"
+                          [triggers]="viewMode ? '' : 'click:click'">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" (click)="dpBOD1.toggle()"
+                            [attr.aria-expanded]="dpBOD1.isOpen"></i>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="invalidBOD1">
+                          BOD # 1 is required !
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+                  <div class="col-md-6" [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','boD2')">
+                    <label> BOD # 2 <span class="text-danger">*</span> : </label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" formControlName="boD2" [bsConfig]="bsBOD2" bsDatepicker
+                        #dpBOD2="bsDatepicker" (ngModelChange)="ChangeBOD2($event)" (click)="ClickBODDate()"
+                        [minDate]="bsBOD2.minDate" [maxDate]="bsBOD2.maxDate" [ngClass]="{ 'is-invalid': invalidBod2 }"
+                        [triggers]="viewMode ? '' : 'click:click'">
+                      <div *ngIf="!viewMode" class="input-group-append">
+                        <i class="far fa-calendar right-icon mt-2" (click)="dpBOD2.toggle()"
+                          [attr.aria-expanded]="dpBOD2.isOpen"></i>
+                      </div>
+                      <div class="invalid-feedback" *ngIf="invalidBod2">
+                        BoD2 is required !
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+          <br>
+        </div>
+
+        <br>
+        <ng-container>
+          <div class="row mt-5" *ngIf="Cim">
+            <div class=" col-md-12">
+              <h4> Product </h4>
+              <hr>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="Cim">
+            <div class="col-md-12">
+              <div class="card text card-initiative">
+                <div class="form-initiative">
+
+                  <div class="card text card-initiative ml-5">
+                    <div [formGroup]="initiativesDetailForm">
+                      <span class="mr-4"> Does this initiative have product? </span>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input id="isHaveProduct" class="custom-control-input" type="radio" value="true"
+                          name="haveProduct" formControlName="haveProduct" (change)="ChangeHaveProduct($event)">
+                        <label class="custom-control-label" for="isHaveProduct"> Yes </label>
+                      </div>
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input id="isNotHaveProduct" class="custom-control-input" type="radio" value="false"
+                          name="haveProduct" formControlName="haveProduct" (change)="ChangeHaveProduct($event)">
+                        <label class="custom-control-label" for="isNotHaveProduct"> No </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <br>
+
+                  <div *ngIf="isHaveProduct == 'true'">
+                    <div class="col-md-12">
+                      <div class="card text card-initiative">
+                        <div class="form-initiative">
+                          <div class="form-row align-items-center">
+                            <div [formGroup]="productForm">
+                              <table class="table table-bordered">
+                                <thead class="text-center bg-light">
+                                  <th width="5%">No.</th>
+                                  <th width="18%">Product</th>
+                                  <th width="18%">Capacity</th>
+                                  <th width="18%">Unit</th>
+                                  <th width="18%">Unit (Other) </th>
+                                  <th width="18%">Product Type</th>
+                                  <th width="5%"></th>
+                                </thead>
+                                <tbody *ngFor="let control of productForm.get('products')['controls']; let i=index">
+                                  <tr [formGroup]="control">
+                                    <td class="text-center"> {{ i+1 }} </td>
+                                    <td class="form-group">
+                                      <input type="text" class="form-control"
+                                        [ngClass]="{'is-invalid': InvalidProduct(i) }" formControlName="name">
+                                      <div class="invalid-feedback" *ngIf="InvalidProduct(i)">
+                                        Product Name is required
+                                      </div>
+                                    </td>
+                                    <td class="form-group">
+                                      <input type="text" class="form-control" formControlName="capacity"
+                                        placeholder="0.00" mask="separator.2" thousandSeparator=","
+                                        [ngClass]="{'is-invalid': InvalidCapacity(i) }">
+                                    </td>
+                                    <td class="form-group">
+                                      <select type="text" class="form-control" formControlName="productUnit"
+                                        [ngClass]="{'is-invalid': InvalidProductUnit(i) }" (change)="OnChangeUnit(i)">
+                                        <option value="" selected disabled>Choose Unit</option>
+                                        <option *ngFor="let unit of productUnits" value="{{unit.productUnitId}}">
+                                          {{unit.productUnitTitle}}
+                                        </option>
+                                      </select>
+                                    </td>
+                                    <td class="form-group">
+                                      <input type="text" class="form-control" formControlName="other"
+                                        [ngClass]="{'is-invalid': InvalidOtherProduct(i) }">
+                                    </td>
+                                    <td class="form-group">
+                                      <select class="form-control" formControlName="type"
+                                        [ngClass]="{'is-invalid': InvalidTypeProduct(i) }">
+                                        <option value="" selected disabled>Choose Type</option>
+                                        <option value="Base">Base</option>
+                                        <option value="Performance">Performance</option>
+                                        <option value="Specialty">Specialty</option>
+                                      </select>
+                                    </td>
+                                    <td class="text-center">
+                                      <button *ngIf="!viewMode" (click)="RemoveProduct(i)" class="btn btn-danger btn-sm"
+                                        [disabled]="isDisabledProduct">
+                                        <i class="fas fa-trash-alt"></i>
+                                      </button>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              <button *ngIf="!viewMode" (click)="AddProduct()" class="btn btn-primary mr-5">
+                                <i class="fas fa-plus-square mr-2"></i> Add New
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <br *ngIf="isHaveProduct == 'true'">
+        </ng-container>
+        <ng-container>
+          <ng-container *ngIf="!haveProgressForm">
+            <div class="row mt-5">
+              <div class=" col-md-12">
+                <h4> Milestones </h4>
+                <hr>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="card text card-initiative">
+                <div class="form-initiative">
+                  <div class="form-row align-items-center">
+                    <div [formGroup]="milestoneForm">
+                      <table class="table table-bordered">
+                        <thead class="text-center bg-light">
+                          <th width="2%">No.</th>
+                          <th width="20%">Milestone/Deliverable <span class="text-danger">*</span></th>
+                          <!-- <th width="18%">Key Deliverable</th> -->
+                          <th width="15%">Start </th>
+                          <th width="15%">Planned Finish <span class="text-danger">*</span></th>
+                          <th width="15%">Actual Finish</th>
+                          <th width="15%">Activity</th>
+                          <th width="12%">Status</th>
+                          <th width="5%"></th>
+                        </thead>
+                        <tbody *ngFor="let control of milestoneForm.get('progressDetails')['controls']; let i=index">
+                          <tr [formGroup]="control">
+                            <td class="text-center"> {{i+1}} </td>
+                            <td class="form-group">
+                              <!-- <input type="text" class="form-control" [ngClass]="{'is-invalid': InvalidMilestone(i) }"
+                                formControlName="milestone"> -->
+                              <textarea formControlName="milestone" class="form-control" rows="3"
+                                [ngClass]="{ 'is-invalid': InvalidMilestone(i) }"></textarea>
+                              <div class="invalid-feedback" *ngIf="InvalidMilestone(i)">
+                                Milestone/Deliverable is required
+                              </div>
+                            </td>
+                            <!-- <td class="form-group">
+                              <textarea rows="1" class="form-control milestone-textarea"
+                                formControlName="keyDeliverable"
+                                [ngClass]="{'is-invalid': InvalidKeyDeliverable(i) }"></textarea>
+                            </td> -->
+                            <td class="form-group">
+                              <div class="input-group">
+                                <input formControlName="start" (bsValueChange)="setRequestDate($event,'start',i)"
+                                  type="text" class="form-control" [bsConfig]="bsConfig" bsDatepicker
+                                  #dpStart="bsDatepicker" [ngClass]="{'is-invalid': InvalidStartDate(i) }"
+                                  [triggers]="viewMode ? '' : 'click:click'" />
+
+                                <div *ngIf="!viewMode" class="input-group-append">
+                                  <i class="far fa-calendar right-icon mt-2" (click)="dpStart.toggle()"
+                                    [attr.aria-expanded]="dpStart.isOpen"></i>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="form-group">
+                              <div class="input-group">
+                                <input formControlName="planFinish"
+                                  (bsValueChange)="setRequestDate($event,'planFinish',i)" type="text"
+                                  class="form-control" [bsConfig]="bsConBetween" bsDatepicker
+                                  #dpPlantFinish="bsDatepicker" [ngClass]="{'is-invalid': InvalidPlanFinish(i) }"
+                                  [triggers]="viewMode ? '' : 'click:click'" />
+
+                                <div *ngIf="!viewMode" class="input-group-append">
+                                  <i class="far fa-calendar right-icon mt-2" (click)="dpPlantFinish.toggle()"
+                                    [attr.aria-expanded]="dpPlantFinish.isOpen"></i>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="form-group">
+                              <div class="input-group">
+                                <input formControlName="actualFinish" (blur)="changeActualFinish(i)"
+                                  (bsValueChange)="setRequestDate($event,'actualFinish',i)" type="text"
+                                  class="form-control" [bsConfig]="bsConBetween" bsDatepicker
+                                  #dpActualFinish="bsDatepicker" [triggers]="viewMode ? '' : 'click:click'" />
+
+                                <div *ngIf="!viewMode" class="input-group-append">
+                                  <i class="far fa-calendar right-icon mt-2" (click)="dpActualFinish.toggle()"
+                                    [attr.aria-expanded]="dpActualFinish.isOpen"></i>
+                                </div>
+                              </div>
+                            </td>
+                            <td class="form-group">
+                              <select type="text" class="form-control" formControlName="activity">
+                                <option value="Critical"> Critical </option>
+                                <option value="Non-Critical"> Non-Critical </option>
+                              </select>
+                            </td>
+                            <td class="text-center">
+                              <ng-container *ngIf="planStatus[i]">
+                                <i class="fas fa-circle text-success icon-LI mt-2" *ngIf="planStatus[i] == 'min'"></i>
+                                <i class="fas fa-circle text-danger  icon-LI mt-2" *ngIf="planStatus[i] == 'max'"></i>
+                                <i class="fas fa-circle text-secondary  icon-LI mt-2"
+                                  *ngIf="planStatus[i] == 'actual'"></i>
+                              </ng-container>
+                            </td>
+                            <td class="text-center">
+                              <button *ngIf="!viewMode" (click)="RemoveMilestone(i)" class="btn btn-danger btn-sm"
+                                [disabled]="isDisabledMilestone">
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <button *ngIf="!viewMode" (click)="AddMilestone()" class="btn btn-primary mr-5"
+                        [disabled]="StageIL5">
+                        <i class="fas fa-plus-square mr-2"></i> Add New
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+          </ng-container>
+          <hr>
+          <div class="contailner" [formGroup]="initiativesDetailForm">
+            <div class="row" [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','progressStatus')">
+              <div class="col-md-4">
+                <div class="card text card-initiative">
+                  <div class="form-initiative">
+                    <label> Status </label>
+                    <select type="text" class="form-control" formControlName="progressStatus">
+                      <option value="" disabled>Choose status</option>
+                      <option value="Not started">Not started</option>
+                      <option value="Onplan">Onplan</option>
+                      <option value="May delay">May delay</option>
+                      <option value="Delay">Delay</option>
+                      <option value="Pending">Pending</option>
+                      <option value="Finished">Finished</option>
+                      <option value="Cancelled">Cancelled</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','progressUpdate')">
+              <div class="col-md-12">
+                <div class="card text card-initiative">
+
+                  <div class="form-initiative">
+                    <label> Progress Update </label>
+                    <textarea class="form-control" formControlName="progressUpdate" rows="3"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+
+        <div class="row mt-5">
+          <div class=" col-md-12">
+            <h4> Financial Indicator</h4>
+            <!-- <hr> -->
+          </div>
+        </div>
+
+        <div [formGroup]="initiativesDetailForm">
+          <div *ngIf="!Strategy" class="row">
+            <div class="col-md-12">
+              <div class="card text card-initiative">
+                <div class="card-body">
+                  <div class="form-initiative">
+                    <div class="form-group row">
+                      <div class="col-md-6" [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','irr')">
+                        <label> IRR (%) </label>
+                        <input type="text" class="form-control" formControlName="irr" thousandSeparator=","
+                          placeholder="0.00" mask="separator.2">
+                        <!-- <input type="text" class="form-control" formControlName="shareOfInvestment" thousandSeparator=","
+                  placeholder="0.00" mask="separator.2" (input)="OnChangeShareOfInvestment()"
+                  [ngClass]="{ 'is-invalid': invalidShare }"> -->
+                      </div>
+                      <div class="col-md-6" [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','npv')">
+                        <label> NPV (M USD) </label>
+                        <input type="number" class="form-control" formControlName="npv">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-6" [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','fx')">
+                        <label> FX (Baht/USD) <span class="text-danger">*</span>
+                        </label>
+                        <input type="number" class="form-control" formControlName="fx"
+                          [ngClass]="{'is-invalid': InvalidFx }">
+                      </div>
+                      <div class="invalid-feedback" *ngIf="InvalidFx">
+                        Fx is required
+                      </div>
+                      <div class="col-md-6"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','firstBudgetYear')">
+                        <label> First Budget Year <span class="text-danger">*</span></label>
+                        <div class="input-group">
+                          <input type="text" class="form-control" formControlName="firstBudgetYear"
+                            [bsConfig]="bsConfigYear" bsDatepicker #dpYear="bsDatepicker"
+                            [triggers]="viewMode ? '' : 'click:click'" (bsValueChange)="ChangeYear($event)"
+                            [ngClass]="{'is-invalid': InvalidBudgetYear }">
+                          <div *ngIf="!viewMode" class="input-group-append">
+                            <i class="far fa-calendar right-icon mt-2" (click)="dpYear.toggle()"
+                              [attr.aria-expanded]="dpYear.isOpen"></i>
+                          </div>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="InvalidBudgetYear">
+                          First Budget Year is required
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card text card-initiative">
+              <div class="form-initiative">
+                <ng-container *ngIf="!Strategy; else isStrategy">
+                  <div class="form-row align-items-center">
+                    <div [formGroup]="financialForm">
+                      <label> Unit = M. USD </label>
+                      <BR>
+                      <label> 100% Share of Investment <span class="text-danger">*</span> </label>
+                      <table class="table table-bordered">
+                        <thead class="text-center bg-light">
+                          <th width="12%">Year</th>
+                          <th width="12%">Revenue</th>
+                          <th width="12%">EBITDA</th>
+                          <th width="12%">CAPEX</th>
+                          <th width="12%">OPEX</th>
+                          <th width="12%">Valuation</th>
+                          <th width="5%"></th>
+                        </thead>
+                        <tbody *ngFor="let control of financialForm.get('financials')['controls']; let i=index">
+                          <tr [formGroup]="control">
+                            <td class="form-group">
+                              <input type="text" class="form-control text-center" formControlName="year" readonly>
+                            </td>
+                            <td class="form-group">
+                              <input type="text" class="form-control" formControlName="revenue"
+                                (input)="RevenueChange()" thousandSeparator="," mask="separator.2">
+                            </td>
+                            <td class="form-group">
+                              <input type="text" class="form-control" formControlName="ebitda" (input)="EbitdaChange()"
+                                thousandSeparator="," mask="separator.2" 
+                                [patterns]="ebitdaNumberPattern" [dropSpecialCharacters]="false">
+                            </td>
+                            <td class="form-group">
+                              <input type="text" class="form-control" formControlName="capex" (input)="CapexChange()"
+                                thousandSeparator="," mask="separator.2">
+                            </td>
+                            <td class="form-group">
+                              <input type="text" class="form-control" formControlName="opex" (input)="OpexChange()"
+                                thousandSeparator="," mask="separator.2">
+                            </td>
+                            <td class="form-group">
+                              <input type="text" class="form-control" formControlName="valuation"
+                                (input)="ValuationChange()" thousandSeparator="," mask="separator.2">
+                            </td>
+                            <td class="text-center">
+                              <button (click)="RemoveFinancial(i)" class="btn btn-danger btn-sm"
+                                [disabled]="isRemoveFinancial" *ngIf="(i + 1) == financialLength && !viewMode">
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="form-row align-items-center">
+                    <div [formGroup]="financialAvgForm">
+                      <table class="table table-borderless">
+                        <thead class="text-center">
+                          <tr>
+                            <th width="12%">
+                              Total
+                            </th>
+                            <th width="12%">Avg.Revenue</th>
+                            <th width="12%">Avg.EBITDA</th>
+                            <th width="12%">Total CAPEX</th>
+                            <th width="12%">Total OPEX</th>
+                            <th width="12%">Total valution</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <td class="text-center">
+                            <button *ngIf="!viewMode" (click)="AddFinancial()" class="btn btn-primary btn-block"
+                              [disabled]="isAddFinancial">
+                              <i class="fas fa-plus-square mr-2"></i> Add New
+                            </button>
+                          </td>
+                          <td class="form-group">
+                            <input type="text" class="form-control" formControlName="avgRevenue" thousandSeparator=","
+                              mask="separator.2" readonly>
+                          </td>
+                          <td class="form-group">
+                            <input type="text" class="form-control" formControlName="avgEbitda" readonly
+                              [ngClass]="{ 'is-invalid': invalidAvgEbitda }" thousandSeparator="," mask="separator.2">
+                            <div class="invalid-feedback" *ngIf="invalidAvgEbitda">
+                              AvgEbitda is required!
+                            </div>
+                          </td>
+                          <td class="form-group">
+                            <input type="text" class="form-control" formControlName="totalCapex" readonly
+                              [ngClass]="{ 'is-invalid': invalidTotalCapex }" thousandSeparator="," mask="separator.2">
+                            <div class="invalid-feedback" *ngIf="invalidTotalCapex">
+                              TotalCapex is required!
+                            </div>
+                          </td>
+                          <td class="form-group">
+                            <input type="text" class="form-control" formControlName="totalOpex" thousandSeparator=","
+                              mask="separator.2" readonly>
+                          </td>
+                          <td class="form-group">
+                            <input type="text" class="form-control" formControlName="totalValuation" readonly
+                              [ngClass]="{ 'is-invalid': invalidTotalValuation }" thousandSeparator=","
+                              mask="separator.2">
+                            <div class="invalid-feedback" *ngIf="invalidTotalValuation">
+                              Valuation is required!
+                            </div>
+                          </td>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </ng-container>
+                <ng-template #isStrategy>
+                  <div class="form-row align-items-center">
+                    <div [formGroup]="financialForm">
+                      <label> Unit = M. USD (FX = corporate assumption) </label>
+                      <table class="table table-bordered">
+                        <thead class="text-center bg-light">
+                          <th width="12%">Year</th>
+                          <th width="12%">EBITDA</th>
+                          <th width="12%">OPEX</th>
+                          <th width="5%"></th>
+                        </thead>
+                        <tbody *ngFor="let control of financialForm.get('financials')['controls']; let i=index">
+                          <tr [formGroup]="control">
+                            <td class="form-group">
+                              <input type="text" class="form-control text-center" formControlName="year" readonly>
+                            </td>
+                            <td class="form-group">
+                              <input type="text" class="form-control" formControlName="ebitda" (input)="EbitdaChange()"
+                                thousandSeparator="," mask="separator.2">
+                            </td>
+                            <td class="form-group">
+                              <input type="text" class="form-control" formControlName="opex" (input)="OpexChange()"
+                                thousandSeparator="," mask="separator.2">
+                            </td>
+                            <td class="text-center">
+                              <button (click)="RemoveFinancial(i)" class="btn btn-danger btn-sm"
+                                [disabled]="isRemoveFinancial" *ngIf="(i + 1) == financialLength && !viewMode">
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="form-row align-items-center">
+                    <div [formGroup]="financialAvgForm">
+                      <table class="table table-borderless">
+                        <thead class="text-center">
+                          <tr>
+                            <th width="12%">
+                              Total
+                            </th>
+                            <th width="12%">Avg.EBITDA</th>
+                            <th width="12%">Total OPEX</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <td class="text-center">
+                            <button *ngIf="!viewMode" (click)="AddFinancial()" class="btn btn-primary btn-block"
+                              [disabled]="isAddFinancial">
+                              <i class="fas fa-plus-square mr-2"></i> Add New
+                            </button>
+                          </td>
+                          <td class="form-group">
+                            <input type="text" class="form-control" formControlName="avgEbitda" readonly
+                              [ngClass]="{ 'is-invalid': invalidAvgEbitda }" thousandSeparator="," mask="separator.2">
+                            <div class="invalid-feedback" *ngIf="invalidAvgEbitda">
+                              AvgEbitda is required!
+                            </div>
+                          </td>
+                          <td class="form-group">
+                            <input type="text" class="form-control" formControlName="totalOpex" thousandSeparator=","
+                              mask="separator.2" readonly>
+                          </td>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </ng-template>
+                <div [formGroup]="initiativesDetailForm"
+                  [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','note')">
+                  <div class="form-group row mt-3">
+                    <div class="col-md-12">
+                      <label> Note: </label>
+                      <textarea type="text" class="form-control" rows="5" formControlName="note"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ng-container *ngIf="AfterApprove === true">
+          <br>
+          <div class="bg-light">
+            <div [formGroup]="initiativesDetailForm">
+              <div id="Investment">
+                <div class="card-header">
+                  <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                    data-target="#collapseInvestment" aria-expanded="true">
+                    <div class="float-left">
+                      Investment Framework
+                    </div>
+                    <i class="fas fa-chevron-circle-down float-right"></i>
+                  </button>
+                </div>
+                <div id="collapseInvestment" class="collapse bg-white" aria-labelledby="headingOne"
+                  data-parent="#Investment">
+                  <div class="card-body">
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','productionProcess')">
+                      <div class="col-md-12">
+                        <label for="productionProcess"> Production Process of Project : </label>
+                        <textarea class="form-control" formControlName="productionProcess" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','listOfEquipment')">
+                      <div class="col-md-12">
+                        <label for="listOfEquipment"> List of equipment & Leadtime : </label>
+                        <textarea class="form-control" formControlName="listOfEquipment" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','comparison')">
+                      <div class="col-md-12">
+                        <label for="comparison"> Comparison with other alternatives : </label>
+                        <textarea class="form-control" formControlName="comparison" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','otherInvestment')">
+                      <div class="col-md-12">
+                        <label for="otherInvestment"> Other : </label>
+                        <textarea class="form-control" formControlName="otherInvestment" rows="3"></textarea>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+              <div id="strategic">
+                <div class="card-header">
+                  <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                    data-target="#collapseStrategic" aria-expanded="true">
+                    <div class="float-left">
+                      Strategic Analysis
+                    </div>
+                    <i class="fas fa-chevron-circle-down float-right"></i>
+                  </button>
+                </div>
+                <div id="collapseStrategic" class="collapse bg-white" aria-labelledby="headingOne"
+                  data-parent="#strategic">
+                  <div class="card-body">
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','keySuccessFactor')">
+                      <div class="col-md-12">
+                        <label for="consistent"> Key Success Factor : </label>
+                        <textarea class="form-control" formControlName="keySuccessFactor" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','synergyBenefit')">
+                      <div class="col-md-12">
+                        <label for="consistent"> Synergy Benefit :</label>
+
+                        <textarea class="form-control" formControlName="synergyBenefit" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','othersStrategic')">
+                      <div class="col-md-12">
+                        <label for="consistent"> Others </label>
+                        <textarea class="form-control" formControlName="othersStrategic" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="business">
+                <div class="card-header">
+                  <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                    data-target="#collapseBusiness" aria-expanded="true">
+                    <div class="float-left">
+                      Business Analysis
+                    </div>
+                    <i class="fas fa-chevron-circle-down float-right"></i>
+                  </button>
+                </div>
+                <div id="collapseBusiness" class="collapse bg-white" aria-labelledby="headingOne"
+                  data-parent="#business">
+                  <div class="card-body">
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','marketOverview')">
+                      <div class="col-md-12">
+                        <label for="marketOverview"> Market overview</label>
+                        <textarea class="form-control" formControlName="marketOverview" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','potentialCustomer')">
+                      <div class="col-md-12">
+                        <label for="potentialCustomer"> Potential Customer</label>
+                        <textarea class="form-control" formControlName="potentialCustomer" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','salesPlan')">
+                      <div class="col-md-12">
+                        <label for="salesPain"> Sales Plan </label>
+                        <textarea class="form-control" formControlName="salesPlan" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','sourceOfFeedback')">
+                      <div class="col-md-12">
+                        <label for="sourceOfFeedback"> Source of Feedback </label>
+                        <textarea class="form-control" formControlName="sourceOfFeedback" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','otherBusiness')">
+                      <div class="col-md-12">
+                        <label for="other"> Other </label>
+                        <textarea class="form-control" formControlName="otherBusiness" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="quality">
+                <div class="card-header">
+                  <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                    data-target="#collapseQuality" aria-expanded="true">
+                    <div class="float-left">
+                      Quality Index
+                    </div>
+                    <i class="fas fa-chevron-circle-down float-right"></i>
+                  </button>
+                </div>
+                <div id="collapseQuality" class="collapse bg-white" aria-labelledby="headingOne" data-parent="#quality">
+                  <div class="card-body">
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','safetyIndex')">
+                      <div class="col-md-12">
+                        <label for="safetyIndex"> Safety index</label>
+                        <textarea class="form-control" formControlName="safetyIndex" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','corporateImageIndex')">
+                      <div class="col-md-12">
+                        <label for="CorporateImageIndex"> Corporate image index</label>
+                        <textarea class="form-control" formControlName="corporateImageIndex" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','otherQuality')">
+                      <div class="col-md-12">
+                        <label for="other"> Other </label>
+                        <textarea class="form-control" formControlName="otherQuality" rows="3"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="return">
+                <div class="card-header">
+                  <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                    data-target="#collapseReturn" aria-expanded="true">
+                    <div class="float-left">
+                      Return of Investment
+                    </div>
+                    <i class="fas fa-chevron-circle-down float-right"></i>
+                  </button>
+                </div>
+                <div id="collapseReturn" class="collapse bg-white" aria-labelledby="headingOne" data-parent="#return">
+                  <div class="card-body">
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','baseCase')">
+                      <div class="col-md-12">
+                        <label for="baseCase"> Base Case (Please specify assumption) <span
+                            class='text-danger'>*</span></label>
+                        <textarea class="form-control" formControlName="baseCase" rows="3"
+                          [ngClass]="{ 'is-invalid': invalidBaseCase }"></textarea>
+                        <div class="invalid-feedback" *ngIf="invalidBaseCase">
+                          Base Case (Please specify assumption) is required !
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-3"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','projectIrrBaseCase')">
+                        <label for="projectIrrBaseCase"> Project IRR(%) <span class='text-danger'>*</span></label>
+                        <input class="form-control" type="number" formControlName="projectIrrBaseCase"
+                          [ngClass]="{ 'is-invalid': invalidProjectIrrBaseCase }">
+                        <div class="invalid-feedback" *ngIf="invalidProjectIrrBaseCase">
+                          Project IRR(%) is required !
+                        </div>
+                      </div>
+                      <div class="col-md-3"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','npvBaseCase')">
+                        <label for="npvBaseCase"> NPV (M THB) <span class='text-danger'>*</span></label>
+                        <input class="form-control" type="number" formControlName="npvBaseCase"
+                          [ngClass]="{ 'is-invalid': invalidNpvBaseCase }">
+                        <div class="invalid-feedback" *ngIf="invalidNpvBaseCase">
+                          NPV (M THB) is required !
+                        </div>
+                      </div>
+                      <div class="col-md-3"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','paybackBaseCase')">
+                        <label for="paybackBaseCase"> Payback(Year) <span class='text-danger'>*</span></label>
+                        <input class="form-control" type="number" formControlName="paybackBaseCase"
+                          [ngClass]="{ 'is-invalid': invalidPaybackBaseCase }">
+                        <div class="invalid-feedback" *ngIf="invalidPaybackBaseCase">
+                          Payback(Year) is required !
+                        </div>
+                      </div>
+                      <div class="col-md-3"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','ebitdaBaseCase')">
+                        <label for="ebitdaUpLiftBaseCase"> EBITDA Uplift ( M.THB) <span
+                            class='text-danger'>*</span></label>
+                        <input class="form-control" type="number" formControlName="ebitdaBaseCase"
+                          [ngClass]="{ 'is-invalid': invalidEbitdaBaseCase }">
+                        <div class="invalid-feedback" *ngIf="invalidEbitdaBaseCase">
+                          Payback(Year) is required !
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','optimisticCase')">
+                      <div class="col-md-12">
+                        <label for="optimisticCase"> Optimistic Case (Please specify assumption) </label>
+                        <textarea class="form-control" formControlName="optimisticCase" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-3"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','projectIrrOptimisticCase')">
+                        <label for="projectIrrOptimisticCase"> Project IRR(%) </label>
+                        <input class="form-control" type="number" formControlName="projectIrrOptimisticCase">
+                      </div>
+                      <div class="col-md-3"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','npvOptimisticCase')">
+                        <label for="npvOptimisticCase"> NPV (M THB) </label>
+                        <input class="form-control" type="number" formControlName="npvOptimisticCase">
+                      </div>
+                      <div class="col-md-3"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','paybackOptimisticCase')">
+                        <label for="paybackOptimisticCase"> Payback(Year) </label>
+                        <input class="form-control" type="number" formControlName="paybackOptimisticCase">
+                      </div>
+                      <div class="col-md-3"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','ebitdaOptimisticCase')">
+                        <label for="ebitdaUpLiftOptimisticCase"> EBITDA Uplift ( M.THB) </label>
+                        <input class="form-control" type="number" formControlName="ebitdaOptimisticCase">
+                      </div>
+                    </div>
+                    <br>
+                    <hr>
+                    <br>
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','pessimisticCase')">
+                      <div class="col-md-12">
+                        <label for="pessimisticCase"> Pessimistic Case (Please specify assumption) </label>
+                        <textarea class="form-control" formControlName="pessimisticCase" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-3"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','projectIrrPessimisticCase')">
+                        <label for="projectIrrPessimisticCase"> Project IRR(%) </label>
+                        <input class="form-control" type="number" formControlName="projectIrrPessimisticCase">
+                      </div>
+                      <div class="col-md-3"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','npvPessimisticCase')">
+                        <label for="npvPessimisticCase"> NPV (M THB) </label>
+                        <input class="form-control" type="number" formControlName="npvPessimisticCase">
+                      </div>
+                      <div class="col-md-3"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','paybackPessimisticCase')">
+                        <label for="paybackPessimisticCase"> Payback(Year) </label>
+                        <input class="form-control" type="number" formControlName="paybackPessimisticCase">
+                      </div>
+                      <div class="col-md-3"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','ebitdaPessimisticCase')">
+                        <label for="ebitdaUpLiftPessimisticCase"> EBITDA Uplift ( M.THB) </label>
+                        <input class="form-control" type="number" formControlName="ebitdaPessimisticCase">
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </ng-container>
+        <div [formGroup]="initiativesDetailForm">
+          <!-- open Team Support Cim -->
+          <!-- <ng-container *ngIf="getStage && Cim "> -->
+          <ng-container *ngIf="false">
+            <div class="row mt-4">
+              <div class=" col-md-12">
+                <h4> Team Support </h4>
+                <hr>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card text card-initiative">
+                    <div class="form-group row"
+                      [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','requireProject')">
+                      <div class="col-md-12">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                              <input id="requireProject" class="custom-control-input" type="checkbox"
+                                formControlName="requireProject" (click)="RequireProject()">
+                              <label class="custom-control-label" for="requireProject"> Require Project Engineer :
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <ng-container *ngIf="ShowProject">
+                      <div class="form-group row">
+                        <div class="col-md-6"
+                          [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','projectDirector')">
+                          <label> Project Director : </label>
+                          <ng-select formControlName="projectDirector" [items]="directorList" bindValue="ownerName"
+                            bindLabel="ownerName" placeholder="Choose Project Director"
+                            (search)="SearchPerson($event,'director')" (clear)="ClearPerson('director')">
+                          </ng-select>
+                        </div>
+                        <div class="col-md-6"
+                          [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','projectManager')">
+                          <label> Project Manager : <span class="text-danger">*</span></label>
+                          <ng-select formControlName="projectManager" [items]="projectManagerList" bindValue="ownerName"
+                            bindLabel="ownerName" placeholder="Choose Project Manager"
+                            (search)="SearchPerson($event,'projectManager')" (clear)="ClearPerson('projectManager')">
+                          </ng-select>
+                          <div class="invalid-feedback" *ngIf="invalidProjectManager">
+                            Project Manager is required !
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-6"
+                          [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','projectEngineer')">
+                          <label> Project Engineer : <span class="text-danger">*</span></label>
+
+                          <ng-select formControlName="projectEngineer" [items]="projectEngineerList"
+                            bindValue="ownerName" bindLabel="ownerName" placeholder="Choose Project Engineer"
+                            (search)="SearchPerson($event,'projectEngineer')" (clear)="ClearPerson('projectEngineer')">
+                          </ng-select>
+
+
+                          <div class="invalid-feedback" *ngIf="invalidProjectEngineer">
+                            Project Engineer is required !
+                          </div>
+                        </div>
+                        <div class="col-md-6"
+                          [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','processEngineer')">
+                          <label> Process Engineer : </label>
+                          <ng-select formControlName="processEngineer" [items]="processEngineerList"
+                            bindValue="ownerName" bindLabel="ownerName" placeholder="Choose Process Engineer"
+                            (search)="SearchPerson($event,'processEngineer')" (clear)="ClearPerson('processEngineer')">
+                          </ng-select>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(initiativesDetailForm,'Detail-Form','mgrOfProcessEngineer')">
+                        <div class="col-md-6">
+                          <label> Div. Mgr of Process Engineer : </label>
+                          <ng-select formControlName="mgrOfProcessEngineer" [items]="divManagerProcessList"
+                            bindValue="ownerName" bindLabel="ownerName" placeholder="Choose Div. Mgr of Process Enginee"
+                            (search)="SearchPerson($event,'divmanagerprocess')"
+                            (clear)="ClearPerson('divmanagerprocess')">
+                          </ng-select>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

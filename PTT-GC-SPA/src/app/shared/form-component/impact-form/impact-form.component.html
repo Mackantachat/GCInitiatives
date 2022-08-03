@@ -1,0 +1,1143 @@
+<div [formGroup]="ImpactForm">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card text card-initiative">
+        <!-- <div class="header" (elasticSticky)="onElastic($event)">
+          <div class="form-initiative">
+            <header [style.height.px]="height">
+              <div class="wrapper" [style.transform]="transform">
+                <app-initiative-info style="width: 100%;" [id]="id"></app-initiative-info>
+              </div>
+            </header>
+          </div>
+        </div> -->
+        <div class="form-initiative sticky-content" id="sticky-content" (scroll)="onWindowScroll();">
+          <app-initiative-info [id]="id"></app-initiative-info>
+        </div>
+        <br>
+        <div class="form-initiative" [style.margin-top.px]="height"
+          *ngIf="!ImapactService.RequireIndirectBenefit ||(ImapactService.RequireIndirectBenefit && ImapactService.RequireDirectBenefit)">
+          <label style="color: #454545;font-size: 28px;"> Initiative Details </label>
+          <hr>
+        </div>
+
+        <!-- <form [formGroup]="financialImpactArea"> -->
+        <div class="form-group row"
+          *ngIf="!ImapactService.RequireIndirectBenefit ||(ImapactService.RequireIndirectBenefit && ImapactService.RequireDirectBenefit)"
+          [ngClass]="permissionService.chps('impact','financialImpactArea')">
+          <div class="col-md-3">
+            <label for="financial"> Financial Impact Area <span class="text-danger" *ngIf="StageIL1">*</span> </label>
+          </div>
+          <div class="col-md-8">
+            <select formControlName="financialImpactArea" class="form-control"
+              [ngClass]="{'is-invalid': invalidFinancialImpactArea }">
+              <option value="" disabled> Choose Financial Impact Area</option>
+              <option value="P&L"> P&L </option>
+              <option value="Balance sheet - Capex"> Balance sheet - CAPEX </option>
+              <option value="Balance sheet - WC items"> Balance sheet - WC items </option>
+              <option value="Group company related"> Group company related </option>
+            </select>
+            <div class="invalid-feedback" *ngIf="invalidFinancialImpactArea">
+              Financial Impact Area is required !
+            </div>
+          </div>
+        </div>
+        <!-- </form> -->
+
+        <ng-container
+          *ngIf="showSection == true && !ImapactService.RequireIndirectBenefit || (ImapactService.RequireIndirectBenefit && ImapactService.RequireDirectBenefit)">
+          <!-- <form [formGroup]="HaveShareBenefit"> -->
+          <!-- <div class="mb-3 mt-4"
+            [ngClass]="{ 'disabled-check': permissionService.isDisabled?.includes('Does Workstream') || permissionService.isEnabled?.indexOf('Does Workstream') < 1 }"> -->
+          <div class="mb-3 mt-4"
+            [ngClass]="{ 'disabled-check': CheckPermissionImpact(permissionServiceStaticVar.SHARE_BENEFIT_CONTROL) }">
+            <span class="mr-4"> Does this initiative require to share the benefit among workstreams ? </span>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input id="haveShareBenefit_yes" class="custom-control-input" type="radio" value="true"
+                name="haveShareBenefit" formControlName="haveShareBenefit" (change)="ChangeHaveShareBenefit($event)">
+              <label class="custom-control-label" for="haveShareBenefit_yes"> Yes </label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input id="haveShareBenefit_no" class="custom-control-input" type="radio" value="false"
+                name="haveShareBenefit" formControlName="haveShareBenefit" (change)="ChangeHaveShareBenefit($event)">
+              <label class="custom-control-label" for="haveShareBenefit_no"> No </label>
+            </div>
+          </div>
+          <!-- </form> -->
+        </ng-container>
+
+        <ng-container *ngIf="isHaveShareBenefit == 'true'">
+          <!-- <form [formGroup]="ShareBenefitFrom" (keydown.enter)="$event.preventDefault()"> -->
+          <div class="form-group row mb-5"
+            [ngClass]="{ 'disabled-check': CheckPermissionImpact(permissionServiceStaticVar.SHARE_BENEFIT_CONTROL) }">
+            <div class="col-md-3">
+              <label for="financial"> Related workstreams for benefit sharing </label>
+            </div>
+            <div class="col-md-8">
+              <table class="table table-bordered">
+                <thead class="text-center bg-light">
+                  <th width="60%"> Workstream </th>
+                  <th width="30%"> % </th>
+                  <th width="10%"></th>
+                </thead>
+                <tbody *ngFor="let control of ShareBenefitFrom.get('shareBenefitWorkstreams')['controls']; let i=index">
+                  <tr [formGroup]="control">
+                    <td>
+                      <select formControlName="workstream" class="form-control">
+                        <option value="" selected disabled> Choose.. </option>
+                        <option [disabled]="checkWorkstream(subWorkStream,i)"
+                          *ngFor="let subWorkStream of subWorkstreams" value="{{subWorkStream}}">
+                          {{subWorkStream}}
+                        </option>
+                      </select>
+                    </td>
+                    <td>
+                      <input formControlName="percent" type="text" class="form-control" [allowNegativeNumbers]="true"
+                        mask="separator.3" thousandSeparator="," (input)="ChangePercent(i)">
+                    </td>
+                    <td class="text-center">
+                      <button *ngIf="!viewMode" class="btn btn-sm btn-danger" (click)="RemovedShareBenefit(i)"
+                        [disabled]="isRemoveShareBenefit">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <button *ngIf="!viewMode" class="btn btn-sm btn-block btn-primary mt-2" (click)="AddShareBenefit()"> Add
+                Row </button>
+            </div>
+          </div>
+          <!-- </form> -->
+        </ng-container>
+
+        <div class="row"
+          *ngIf="!ImapactService.RequireIndirectBenefit || (ImapactService.RequireIndirectBenefit && ImapactService.RequireDirectBenefit)">
+          <div class=" col-md-12">
+            <h5> Show only stage SIL4 or above </h5>
+            <hr>
+          </div>
+        </div>
+
+        <!-- <form [formGroup]="iLForm"> -->
+        <div class="card bg-light"
+          *ngIf="!ImapactService.RequireIndirectBenefit || (ImapactService.RequireIndirectBenefit && ImapactService.RequireDirectBenefit)">
+          <div class="card-body">
+            <div class="form-group row mt-3">
+              <ng-container *ngIf="IsIL4; else notShowRRIL4">
+                <div class="col-md-4">
+                  <label for="iL4RunRateRecurring"> IL4 Run Rate Recurring </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input formControlName="iL4RunRateRecurring" type="text" class="form-control"
+                        [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator="," readonly>
+                    </div>
+                    <div class="col-md-3">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="iL4RunRateRecurring"> IL4 Run Rate One-time </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input formControlName="iL4RunRateOnetime" type="text" class="form-control"
+                        [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator="," readonly>
+                    </div>
+                    <div class="col-md-3">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #notShowRRIL4>
+                <div class="col-md-4">
+                  <label for="iL4RunRateRecurring"> IL4 Run Rate Recurring </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-3">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="iL4RunRateRecurring"> IL4 Run Rate One-time </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-3">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+            <div class="form-group row mt-2">
+              <ng-container *ngIf="IsIL5; else notSHowRRIL5">
+                <div class="col-md-4">
+                  <label for="iL5RunRateRecurring"> IL5 Run Rate Recurring </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input formControlName="iL5RunRateRecurring" type="text" class="form-control"
+                        [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator="," readonly>
+                    </div>
+                    <div class="col-md-3">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="iL5RunRateOnetime"> IL5 Run Rate One-time </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input formControlName="iL5RunRateOnetime" type="text" class="form-control"
+                        [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator="," readonly>
+                    </div>
+                    <div class="col-md-3">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+              <ng-template #notSHowRRIL5>
+                <div class="col-md-4">
+                  <label for="iL5RunRateRecurring"> IL5 Run Rate Recurring </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-3">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="iL5RunRateOnetime"> IL5 Run Rate One-time </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-3">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <div class="row"
+          *ngIf="!ImapactService.RequireIndirectBenefit || (ImapactService.RequireIndirectBenefit && ImapactService.RequireDirectBenefit)">
+          <div class=" col-md-12">
+            <h5> TO Finance only </h5>
+            <hr>
+          </div>
+        </div>
+
+        <div class="card bg-light"
+          *ngIf="!ImapactService.RequireIndirectBenefit || (ImapactService.RequireIndirectBenefit && ImapactService.RequireDirectBenefit)">
+          <ng-container *ngIf="IsIL5; else isNotIL5">
+            <div class="card-body">
+              <div class="form-group row mt-3">
+                <div class="col-md-4" [ngClass]="permissionService.chps('impact','iL5FixedFxRecurring')">
+                  <label for="iL4RunRateRecurring"> IL5 (Actual Price - Fixed FX) : Recurring </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input formControlName="iL5FixedFxRecurring" type="text" class="form-control "
+                        [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator="," readonly>
+                    </div>
+                    <div class="col-md-4">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4" [ngClass]="permissionService.chps('impact','iL5FixedFxOnetime')">
+                  <label for="iL4RunRateRecurring"> IL5 (Actual Price - Fixed FX) : One-time </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input formControlName="iL5FixedFxOnetime" type="text" class="form-control"
+                        [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator="," readonly>
+                    </div>
+                    <div class="col-md-3">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row mt-2">
+                <div class="col-md-4" [ngClass]="permissionService.chps('impact','iL5FloatFxRecurring')">
+                  <label for="iL4RunRateRecurring"> IL5 (Actual Price - Floated FX) : Recurring </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input formControlName="iL5FloatFxRecurring" type="text" class="form-control"
+                        [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator="," readonly>
+                    </div>
+                    <div class="col-md-3">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4" [ngClass]="permissionService.chps('impact','iL5FloatFxOnetime')">
+                  <label for="iL4RunRateRecurring"> IL5 (Actual Price - Floated FX) : One-time </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input formControlName="iL5FloatFxOnetime" type="text" class="form-control"
+                        [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator="," readonly>
+                    </div>
+                    <div class="col-md-4">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #isNotIL5>
+            <div class="card-body">
+              <div class="form-group row mt-3">
+                <div class="col-md-4" [ngClass]="permissionService.chps('impact','iL5FixedFxRecurring')">
+                  <label for="iL4RunRateRecurring"> IL5 (Actual Price - Fixed FX) : Recurring </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-3">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4" [ngClass]="permissionService.chps('impact','iL5FixedFxOnetime')">
+                  <label for="iL4RunRateRecurring"> IL5 (Actual Price - Fixed FX) : One-time </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-3">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="form-group row mt-2">
+                <div class="col-md-4" [ngClass]="permissionService.chps('impact','iL5FloatFxRecurring')">
+                  <label for="iL4RunRateRecurring"> IL5 (Actual Price - Floated FX) : Recurring </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-3">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4" [ngClass]="permissionService.chps('impact','iL5FloatFxOnetime')">
+                  <label for="iL4RunRateRecurring"> IL5 (Actual Price - Floated FX) : One-time </label>
+                  <div class="row g-3 align-items-center">
+                    <div class="col-md-9">
+                      <input type="text" class="form-control" readonly>
+                    </div>
+                    <div class="col-md-3">
+                      <span id="passwordHelpInline" class="form-text">
+                        M.(THB)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+
+
+
+        <!-- </form> -->
+
+        <div class="row">
+          <div class=" col-md-12">
+            <ng-container *ngIf="newFeature; else OldImpactName">
+              <h5> Direct Benefit </h5>
+            </ng-container>
+            <ng-template #OldImpactName>
+              <h5> Impact Tracking </h5>
+            </ng-template>
+            <hr>
+          </div>
+        </div>
+
+        <!-- <form [formGroup]="monthForm"> -->
+        <div class="form-group row" [ngClass]="permissionService.chps('impact','firstRunRateMonth')">
+          <label for="month" class="col-sm-3 col-form-label"> First Run Rate (Month - Year)
+          </label>
+          <div class="col-sm-7">
+            <div class="input-group">
+              <input type="text" class="form-control" formControlName="firstRunRateMonth" [bsConfig]="bsConfig"
+                bsDatepicker #dpMonth="bsDatepicker" (bsValueChange)="ChangeMonth($event)"
+                [triggers]="viewMode ? '' : 'click:click'">
+              <div *ngIf="!viewMode" class="input-group-append">
+                <i class="far fa-calendar right-icon mt-2" (click)="dpMonth.toggle()"
+                  [attr.aria-expanded]="dpMonth.isOpen"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2 text-center mt-2">
+            <strong> {{ monthName }} </strong>
+          </div>
+        </div>
+        <!-- </form> -->
+
+        <div class="form-initiative">
+          <div class="row justify-content-between"
+            *ngIf="(!ImapactService.RequireIndirectBenefit) || (ImapactService.RequireIndirectBenefit && ImapactService.RequireDirectBenefit)">
+            <div class="col-6" [ngClass]="permissionService.chps('impact','autoCalculate')">
+              <!-- <form [formGroup]="CalculateForm"> -->
+              <div class="custom-control custom-checkbox custom-control-inline mt-2 mb-4">
+                <input id="calculate" formControlName="autoCalculate" class="custom-control-input" type="checkbox"
+                  (click)="ChangeAutoCalculate($event)">
+                <label class="custom-control-label" for="calculate"> Auto Calculate for Recurring Benefit </label>
+              </div>
+              <!-- </form> -->
+            </div>
+            <div class="col-6">
+              <button *ngIf="!viewMode" class="btn btn-info float-right" (click)="CopyTable()" [disabled]="isOpenCopy">
+                <i class="far fa-clipboard"></i>
+              </button>
+            </div>
+          </div>
+
+          <ng-template [ngIf]="IsFirstRunRate" [ngIfElse]="FirstRunRateSuccess">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card card-layout">
+                  <div class="card-body">
+                    <ngx-spinner bdColor="#fffffff" color="#105bac" size="medium" type="ball-spin" [fullScreen]="false">
+                    </ngx-spinner>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+
+          <ng-template #FirstRunRateSuccess>
+            <div class="form-row align-items-center"
+              *ngIf="(!ImapactService.RequireIndirectBenefit) || (ImapactService.RequireIndirectBenefit && ImapactService.RequireDirectBenefit)">
+              <div class="table-responsive">
+                <table class="table table-bordered impact-table">
+                  <thead class="text-center bg-light">
+                    <th class="impact-col-1 fixedBenefit"> Type Of Benefit </th>
+                    <th class="impact-col-2 fixed"> Version (Price) </th>
+                    <th class="impact-col-3 fixed"> Run Rate (M.THB) </th>
+                    <th *ngFor="let month of itemsMonth" class="fixedMonth" style="font-size:12px"> {{ month }} </th>
+                  </thead>
+                  <ng-container
+                    *ngFor="let control of FirstRunRateForm.get('firstRunRateTable')['controls']; let i=index">
+                    <tbody>
+                      <ng-container [formGroup]="control">
+                        <tr>
+                          <td rowspan="3" [ngStyle]="{'font-size' : '14px'}" class="impact-col-1">
+                            <div class="text-center my-3 mt-4">
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions"
+                                  id="Recurring{{i}}" value="recurring" name="typeOfBenefitGroup[{{i}}]"
+                                  (change)="ChangeTypeOfBenefitGroup($event, i)" [checked]="getRecurring(i)"
+                                  [attr.disabled]="GetInitiativeService().viewMode || checkStageActual() ? true : null">
+                                <label class="form-check-label" for="Recurring{{i}}"> Recurring </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Onetime{{i}}"
+                                  value="onetime" name="typeOfBenefitGroup[{{i}}]"
+                                  (change)="ChangeTypeOfBenefitGroup($event, i)" [checked]="getOneTime(i)"
+                                  [attr.disabled]="GetInitiativeService().viewMode || checkStageActual()  ? true : null">
+                                <label class="form-check-label" for="Onetime{{i}}"> Onetime </label>
+                              </div>
+                            </div>
+                            <div data-toggle="tooltip" title="{{ titleBenefit[i] }}">
+                              <ng-select class="dropSelect" formControlName="typeOfBenefit"
+                                [items]="recurringAndOneTimeArray[i]" bindValue="typeOfBenefitCode"
+                                bindLabel="typeOfBenefitTitle" placeholder="Choose Type Of Benefit"
+                                (change)="ChangeTypeOfBenefit(i)" required
+                                [readonly]="GetInitiativeService().viewMode  || checkStageActual()">
+                                <ng-template ng-option-tmp let-item="item">
+                                  <div title="{{item.typeOfBenefitTitle}}"> {{ item.typeOfBenefitTitle }} </div>
+                                </ng-template>
+                              </ng-select>
+                            </div>
+                            <div class="text-center text-danger mt-2" *ngIf="TypeOfBenefit">
+                              <span style="font-size: 12px;"> Type Of Benefit is required </span>
+                            </div>
+                            <div class="text-center">
+                              <button *ngIf="!viewMode && !checkStageActual()" type="button"
+                                class="btn btn-danger btn-sm mr-1 my-3" [disabled]="isRemoveFirstRunRate"
+                                (click)="RemoveRow(i)"> <i class="fas fa-trash-alt"></i>
+                              </button>
+                            </div>
+                          </td>
+                          <ng-container formGroupName="versionPrice">
+                            <td class="impact-col-2">
+                              <input type="text" formControlName="row1" class="form-control" readonly>
+                            </td>
+                          </ng-container>
+                          <ng-container formGroupName="runRate">
+                            <td class="impact-col-3">
+                              <input type="text" formControlName="row1" class="form-control"
+                                [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                                (input)="CalculateRunRateTotal('row1', $event)"
+                                [ngClass]="{'is-invalid': InvalidRunRate(i) }"
+                                [readonly]="disableRunrateStageTarget(i)">
+                              <div class="invalid-feedback" *ngIf="InvalidRunRate(i)">
+                                Target is required!
+                              </div>
+                            </td>
+                          </ng-container>
+                          <ng-container formGroupName="monthRows1">
+                            <td *ngFor="let month of monthArray; let num=index">
+                              <input type="text" [formControlName]="month" class="form-control"
+                                [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                                (input)="CalculateMonthTotal(i, 'row1', 'monthRows1', $event)"
+                                (blur)="UpdatePatch(i, 'row1', 'monthRows1', month, num)"
+                                [ngClass]="{'is-invalid': InvalidMonthRows1(i, month) }"
+                                [readonly]="disableRunrateStageTarget(i)">
+                            </td>
+                          </ng-container>
+                        </tr>
+                        <tr>
+                          <ng-container formGroupName="versionPrice">
+                            <td class="impact-col-2">
+                              <input type="text" formControlName="row2" class="form-control" readonly>
+                            </td>
+                          </ng-container>
+                          <ng-container formGroupName="runRate">
+                            <td class="impact-col-3">
+                              <input type="text" formControlName="row2" class="form-control"
+                                [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                                (input)="CalculateRunRateTotal('row2' , $event)"
+                                [ngClass]="{'is-invalid': InvalidRevise(i) }" [readonly]="disableRunrateStageRevise(i)">
+                              <div class="invalid-feedback" *ngIf="InvalidRevise(i)">
+                                Revise is required!
+                              </div>
+                            </td>
+                          </ng-container>
+                          <ng-container formGroupName="monthRows2">
+                            <td *ngFor="let month of monthArray; let num=index">
+                              <input type="text" [formControlName]="month" class="form-control"
+                                [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                                (input)="CalculateMonthTotal(i, 'row2', 'monthRows2', $event)"
+                                (blur)="UpdatePatch(i, 'row2', 'monthRows2', month, num)"
+                                [readonly]="disableRunrateStageReviseMonth(i)">
+                            </td>
+                          </ng-container>
+                        </tr>
+                        <tr>
+                          <ng-container formGroupName="versionPrice">
+                            <td class="impact-col-2">
+                              <input type="text" formControlName="row3" class="form-control" readonly>
+                            </td>
+                          </ng-container>
+                          <ng-container formGroupName="runRate">
+                            <td class="impact-col-3">
+                              <input type="text" formControlName="row3" class="form-control"
+                                [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                                (input)="CalculateRunRateTotal('row3', $event)"
+                                [ngClass]="{'is-invalid': InvalidActual(i) }" onFocus="4"
+                                [readonly]="disableRunrateStageActual(i)">
+                              <div class="invalid-feedback" *ngIf="InvalidActual(i)">
+                                Actual is required!
+                              </div>
+                            </td>
+                          </ng-container>
+                          <ng-container formGroupName="monthRows3">
+                            <td *ngFor="let month of monthArray; let num=index">
+                              <input type="text" [formControlName]="month" class="form-control"
+                                [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                                (input)="CalculateMonthTotal(i, 'row3', 'monthRows3', $event)"
+                                (blur)="UpdatePatch(i, 'row3', 'monthRows3', month, num)"
+                                [readonly]="disableRunrateStageActualByMonth(i,num)">
+                            </td>
+                          </ng-container>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </ng-container>
+                  <ng-container *ngIf="monthRowTableLength > 1">
+                    <tbody class="text-center" [formGroup]="FirstRunRateTotalForm">
+                      <tr>
+                        <td rowspan="3" class="impact-col-1"> <strong> Total </strong> </td>
+                        <ng-container formGroupName="versionPrice">
+                          <td class="impact-col-2">
+                            <input type="text" formControlName="row1" class="form-control" readonly>
+                          </td>
+                        </ng-container>
+                        <ng-container formGroupName="runRate">
+                          <td class="impact-col-3">
+                            <input type="text" formControlName="row1" class="form-control" [allowNegativeNumbers]="true"
+                              mask="separator.3" thousandSeparator="," readonly>
+                          </td>
+                        </ng-container>
+                        <ng-container formGroupName="monthRows1">
+                          <td *ngFor="let month of monthArray">
+                            <input type="text" [formControlName]="month" class="form-control"
+                              [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator="," readonly>
+                          </td>
+                        </ng-container>
+                      </tr>
+                      <tr>
+                        <ng-container formGroupName="versionPrice">
+                          <td class="impact-col-2">
+                            <input type="text" formControlName="row2" class="form-control" readonly>
+                          </td>
+                        </ng-container>
+                        <ng-container formGroupName="runRate">
+                          <td class="impact-col-3">
+                            <input type="text" formControlName="row2" class="form-control" [allowNegativeNumbers]="true"
+                              mask="separator.3" thousandSeparator="," readonly>
+                          </td>
+                        </ng-container>
+                        <ng-container formGroupName="monthRows2">
+                          <td *ngFor="let month of monthArray">
+                            <input type="text" [formControlName]="month" class="form-control"
+                              [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator="," readonly>
+                          </td>
+                        </ng-container>
+                      </tr>
+                      <tr>
+                        <ng-container formGroupName="versionPrice">
+                          <td class="impact-col-2">
+                            <input type="text" formControlName="row3" class="form-control" readonly>
+                          </td>
+                        </ng-container>
+                        <ng-container formGroupName="runRate">
+                          <td class="impact-col-3">
+                            <input type="text" formControlName="row3" class="form-control" [allowNegativeNumbers]="true"
+                              mask="separator.3" thousandSeparator="," readonly>
+                          </td>
+                        </ng-container>
+                        <ng-container formGroupName="monthRows3">
+                          <td *ngFor="let month of monthArray">
+                            <input type="text" [formControlName]="month" class="form-control"
+                              [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator="," readonly>
+                          </td>
+                        </ng-container>
+                      </tr>
+                    </tbody>
+                  </ng-container>
+                </table>
+              </div>
+              <button *ngIf="!viewMode && !checkStageActual()" class="btn btn-primary btn-sm btn-block mt-2 mb-2"
+                (click)="AddMonthRow()"> <i class="fas fa-plus-square mr-2"></i> Add Row </button>
+              <br>
+            </div>
+          </ng-template>
+
+        </div>
+
+        <div class="form-initiative">
+          <div class="form-row align-items-center">
+            <!-- <form [formGroup]="IndirectBenefit"> -->
+            <!-- <div class="col-md-12 mb-3" *ngIf="false">
+              <span class="mr-4"> Does this Initiative require to gain Indirect benefit</span>
+              <div class="custom-control custom-radio custom-control-inline"
+                [ngClass]="permissionService.chps('impact','indirectBenefit')">
+                <input id="trueIndirectBenefit" class="custom-control-input" type="radio" value="true"
+                  name="indirectBenefit" formControlName="indirectBenefit" (change)="ChangeIndirectBenefit($event)">
+                <label class="custom-control-label" for="trueIndirectBenefit"> Yes </label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline"
+                [ngClass]="permissionService.chps('impact','indirectBenefit')">
+                <input id="falseIndirectBenefit" class="custom-control-input" type="radio" value="false"
+                  name="indirectBenefit" formControlName="indirectBenefit" (change)="ChangeIndirectBenefit($event)">
+                <label class="custom-control-label" for="falseIndirectBenefit"> No </label>
+              </div>
+            </div> -->
+            <!-- </form> -->
+            <ng-container *ngIf="ImapactService.RequireIndirectBenefit">
+              <h5>Indirect benefit
+              </h5>
+              <div class="col-md-12 table">
+                <table class="table table-bordered impact-table">
+                  <thead class="text-center bg-light">
+                    <th class="impact-col-1 fixedBenefit"> Type Of Benefit </th>
+                    <th class="impact-col-2 fixed"> Version (Price) </th>
+                    <th class="impact-col-3 fixed"> Run Rate (M.THB) </th>
+                  </thead>
+                  <ng-container *ngFor="let control of IndirectForm.get('indirectTable')['controls']; let i=index">
+                    <tbody>
+                      <ng-container [formGroup]="control">
+                        <tr>
+                          <td rowspan="2" [ngStyle]="{'font-size' : '14px'}" class="impact-col-1">
+                            <div class="text-center my-3 mt-4">
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptionsIndirect"
+                                  id="RecurringIndirect{{i}}" value="recurring" name="IndirectGroup[{{i}}]"
+                                  (change)="ChangeIndirectGroup($event, i)" [checked]="getInDirectRecurring(i)"
+                                  [attr.disabled]="GetInitiativeService().viewMode || checkStageActual()  ? true : null">
+                                <label class="form-check-label" for="RecurringIndirect{{i}}"> Recurring </label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptionsIndirect"
+                                  id="OnetimeIndirect{{i}}" value="onetime" name="IndirectGroup[{{i}}]"
+                                  (change)="ChangeIndirectGroup($event, i)" [checked]="getInDirectOneTime(i)"
+                                  [attr.disabled]="GetInitiativeService().viewMode || checkStageActual()  ? true : null">
+                                <label class="form-check-label" for="OnetimeIndirect{{i}}"> Onetime </label>
+                              </div>
+                            </div>
+                            <div data-toggle="tooltip" title="{{ titleIndirect[i] }}">
+                              <ng-select class="dropSelect" formControlName="typeOfBenefit"
+                                [items]="recurringAndOneTimeIndirect[i]" bindValue="typeOfBenefitCode"
+                                bindLabel="typeOfBenefitTitle" placeholder="Choose Type Of Benefit"
+                                (change)="ChangeIndirect(i)"
+                                [readonly]="GetInitiativeService().viewMode  || checkStageActual()">
+                                <ng-template ng-option-tmp let-item="item">
+                                  <div title="{{item.typeOfBenefitTitle}}"> {{ item.typeOfBenefitTitle }} </div>
+                                </ng-template>
+                              </ng-select>
+                            </div>
+                            <div class="text-center">
+                              <button *ngIf="!viewMode || checkStageActual()" type="button"
+                                class="btn btn-danger btn-sm mr-1 my-3" [disabled]="isRemoveIndirect"
+                                (click)="RemoveIndirect(i)"> <i class="fas fa-trash-alt"></i> </button>
+                            </div>
+                          </td>
+                          <ng-container formGroupName="versionPrice">
+                            <td class="impact-col-2">
+                              <input type="text" formControlName="row1" class="form-control" readonly>
+                            </td>
+                          </ng-container>
+                          <ng-container formGroupName="runRate">
+                            <td class="impact-col-3">
+                              <input type="text" formControlName="row1" class="form-control"
+                                [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                                (input)="OnChangeIndirectValue($event)">
+                            </td>
+                          </ng-container>
+                        </tr>
+                        <tr>
+                          <ng-container formGroupName="versionPrice">
+                            <td class="impact-col-2">
+                              <input type="text" formControlName="row2" class="form-control" readonly>
+                            </td>
+                          </ng-container>
+                          <ng-container formGroupName="runRate">
+                            <td class="impact-col-3">
+                              <input type="text" formControlName="row2" class="form-control"
+                                [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                                (input)="OnChangeIndirectValue($event)">
+                            </td>
+                          </ng-container>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </ng-container>
+                </table>
+              </div>
+              <button *ngIf=" !viewMode  || checkStageActual()" class="btn btn-primary btn-sm btn-block mt-2 mb-2"
+                (click)="AddIndirect()"> <i class="fas fa-plus-square mr-2"></i> Add Row </button>
+              <br>
+            </ng-container>
+          </div>
+        </div>
+
+        <br>
+
+        <ng-container *ngIf="isShowTable">
+          <div class="row mb-3">
+            <div class="col-12">
+              <div class="table-responsive" [ngStyle]="{'opacity' : '0', 'max-height' : '0px !important'}">
+                <table class="table table-bordered" id="CopyFirstRunRateForm">
+                  <thead class="text-center bg-light">
+                    <th class="fixedBenefit"> Type Of Benefit </th>
+                    <th class="fixed"> Version (Price) </th>
+                    <th class="fixed"> Run Rate (M.THB) </th>
+                    <th *ngFor="let month of itemsMonth" class="fixedMonth" style="font-size:12px"> {{ month }} </th>
+                  </thead>
+                  <ng-container
+                    *ngFor="let control of FirstRunRateForm.get('firstRunRateTable')['controls']; let i=index">
+                    <tbody>
+                      <ng-container>
+                        <tr class="text-center">
+                          <td rowspan="3" [ngStyle]="{'font-size' : '14px'}">
+                            <span [innerHTML]="typeOfBenefitTable(i)"></span>
+                          </td>
+                          <td> <span [innerHTML]="VersionPriceTable(i, 'row1')"></span> </td>
+                          <td> <span [innerHTML]="RunRateTable(i, 'row1')"></span> </td>
+                          <td *ngFor="let month of monthArray">
+                            <span [innerHTML]="MonthTable(i, 'monthRows1', month)"></span>
+                          </td>
+                        </tr>
+                        <tr class="text-center">
+                          <td> <span [innerHTML]="VersionPriceTable(i, 'row2')"></span> </td>
+                          <td> <span [innerHTML]="RunRateTable(i, 'row2')"></span> </td>
+                          <td *ngFor="let month of monthArray">
+                            <span [innerHTML]="MonthTable(i, 'monthRows2', month)"></span>
+                          </td>
+                        </tr>
+                        <tr class="text-center">
+                          <td> <span [innerHTML]="VersionPriceTable(i, 'row3')"></span> </td>
+                          <td> <span [innerHTML]="RunRateTable(i, 'row3')"></span> </td>
+                          <td *ngFor="let month of monthArray">
+                            <span [innerHTML]="MonthTable(i, 'monthRows3', month)"></span>
+                          </td>
+                        </tr>
+                      </ng-container>
+                    </tbody>
+                  </ng-container>
+                  <ng-container *ngIf="monthRowTableLength > 1">
+                    <tbody>
+                      <tr class="text-center">
+                        <td rowspan="3"> <strong> Total </strong> </td>
+                        <td> <span [innerHTML]="VersionPriceTotal('row1')"></span> </td>
+                        <td> <span [innerHTML]="RunRateTotal('row1')"></span> </td>
+                        <td *ngFor="let month of monthArray"> <span
+                            [innerHTML]="MonthTotal('monthRows1', month)"></span>
+                        </td>
+                      </tr>
+                      <tr class="text-center">
+                        <td> <span [innerHTML]="VersionPriceTotal('row2')"></span> </td>
+                        <td> <span [innerHTML]="RunRateTotal('row2')"></span> </td>
+                        <td *ngFor="let month of monthArray"> <span
+                            [innerHTML]="MonthTotal('monthRows2', month)"></span>
+                        </td>
+                      </tr>
+                      <tr class="text-center">
+                        <td> <span [innerHTML]="VersionPriceTotal('row3')"></span> </td>
+                        <td> <span [innerHTML]="RunRateTotal('row3')"></span> </td>
+                        <td *ngFor="let month of monthArray"> <span
+                            [innerHTML]="MonthTotal('monthRows3', month)"></span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </ng-container>
+                </table>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- <form [formGroup]="explanationForm"> -->
+        <div class="row" [ngClass]="permissionService.chps('impact','explanation')">
+          <div class="col-md-12">
+            <label for="explanation">Explanation of impact validation methodology and results (including assumptions
+              and key calculation drivers)</label>
+            <textarea formControlName="explanation" class="form-control" rows="5"></textarea>
+          </div>
+        </div>
+        <!-- </form> -->
+
+        <div class="form-initiative">
+          <div class="form-row align-items-center">
+            <!-- <form [formGroup]="HaveImpiemantCost"> -->
+            <div class="mb-3"
+              *ngIf="ImapactService.RequireIndirectBenefit || (ImapactService.RequireIndirectBenefit && ImapactService.RequireDirectBenefit)">
+              <span class="mr-4"> One-time Implementation Cost (OPEX) </span>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="haveImpiemantCost_true" class="custom-control-input" type="radio" value="true"
+                  name="impiemantCost" formControlName="impiemantCost" (change)="ChangeHaveImpiemantCost($event)">
+                <label class="custom-control-label" for="haveImpiemantCost_true"> Yes </label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="haveImpiemantCost_false" class="custom-control-input" type="radio" value="false"
+                  name="impiemantCost" formControlName="impiemantCost" (change)="ChangeHaveImpiemantCost($event)">
+                <label class="custom-control-label" for="haveImpiemantCost_false"> No </label>
+              </div>
+            </div>
+            <!-- </form> -->
+
+            <ng-container *ngIf="isHaveImpiemantCost == 'true'">
+              <div class="table-responsive">
+                <form [formGroup]="getImpiemantCostForm()">
+                  <!-- <table class="table table-bordered impact-table"
+                    [ngClass]="{ 'disabled-check': CheckPermissionImpact(permissionServiceStaticVar.IMPLEMENTATIONCOST_CONTROL) }"> -->
+                  <table class="table table-bordered impact-table">
+                    <thead class="text-center bg-light">
+                      <th class="impact-col-1 fixedBenefit"> </th>
+                      <th class="impact-col-2 fixed"> </th>
+                      <th class="impact-col-3 fixed"> Total (M.THB) </th>
+                      <th *ngFor="let month of itemsMonth" class="fixedMonth" style="font-size:12px"> {{ month }}
+                      </th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td rowspan="2" [ngStyle]="{'font-size' : '14px'}" class="text-center impact-col-1">
+                          One-time Implementation Cost (OPEX)
+                        </td>
+                        <ng-container formGroupName="versionPrice">
+                          <td class="impact-col-2">
+                            <input type="text" formControlName="row1" class="form-control" readonly
+                              [ngStyle]="{ 'font-size': '14px' }">
+                          </td>
+                        </ng-container>
+                        <ng-container formGroupName="runRate">
+                          <td class="impact-col-3">
+                            <input type="text" formControlName="row1" (blur)="updateTotalCostOpex()"
+                              class="form-control" [allowNegativeNumbers]="true" mask="separator.3"
+                              thousandSeparator=",">
+                          </td>
+                        </ng-container>
+                        <ng-container formGroupName="monthRows1">
+                          <td *ngFor="let month of monthArray">
+                            <input type="text" [formControlName]="month" class="form-control"
+                              [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                              (input)="CalculateImpiemantCostTotal('row1', 'monthRows1')">
+                          </td>
+                        </ng-container>
+                      </tr>
+                      <tr>
+                        <ng-container formGroupName="versionPrice">
+                          <td class="impact-col-2">
+                            <input type="text" formControlName="row2" class="form-control" readonly
+                              [ngStyle]="{ 'font-size': '14px' }">
+                          </td>
+                        </ng-container>
+                        <ng-container formGroupName="runRate">
+                          <td class="impact-col-3">
+                            <input type="text" formControlName="row2" (blur)="updateTotalCostOpex()"
+                              class="form-control" [allowNegativeNumbers]="true" mask="separator.3"
+                              thousandSeparator=",">
+                          </td>
+                        </ng-container>
+                        <ng-container formGroupName="monthRows2">
+                          <td *ngFor="let month of monthArray">
+                            <input type="text" [formControlName]="month" class="form-control"
+                              [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                              (input)="CalculateImpiemantCostTotal('row2', 'monthRows2')">
+                          </td>
+                        </ng-container>
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+              </div>
+            </ng-container>
+
+          </div>
+        </div>
+
+        <div class="row"
+          *ngIf="!ImapactService.RequireIndirectBenefit || (ImapactService.RequireIndirectBenefit && ImapactService.RequireDirectBenefit)">
+          <div class=" col-md-12"
+            [ngClass]="{ 'disabled-check': CheckPermissionImpact(permissionServiceStaticVar.TOFINANCEONLY_CONTROL) }">
+            <h4> TO Finance only </h4>
+            <hr>
+          </div>
+        </div>
+
+        <div class="form-initiative"
+          *ngIf="!ImapactService.RequireIndirectBenefit || (ImapactService.RequireIndirectBenefit && ImapactService.RequireDirectBenefit)">
+          <!--TO Finance only-->
+          <!-- <div class="form-row align-items-center"
+            [ngClass]="{ 'disabled-check': permissionService.isDisabled?.indexOf('TO Finance only') !== -1 || permissionService.isEnabled?.indexOf('TO Finance only') < 1 }"> -->
+          <div class="table-responsive">
+            <table class="table table-bordered finance-table">
+              <thead class="text-center table-primary">
+                <th class="impact-col-1 fixedBenefit"> Type of Benefit </th>
+                <th class="impact-col-2 fixed"> Version <br> (Actual Price) </th>
+                <th class="impact-col-3 fixed"> Run Rate (M.THB) </th>
+                <th *ngFor="let month of itemsMonth" class="fixedMonth" style="font-size:12px"> {{ month }} </th>
+              </thead>
+              <ng-container *ngFor="let control of TypeBenefitForm.get('typeBenefitTable')['controls']; let i=index">
+                <tbody>
+                  <ng-container [formGroup]="control">
+                    <tr>
+                      <td rowspan="2" [ngStyle]="{'font-size' : '14px'}" class="impact-col-1">
+                        <div>
+                          <ng-select formControlName="currencyFloatFx" [items]="currencyFloatFxList" bindValue="value"
+                            bindLabel="name" placeholder="Choose Type Of Currency"
+                            [readonly]="viewMode || CheckPermissionImpact(permissionServiceStaticVar.TOFINANCEONLY_CONTROL)"
+                            appendTo="body">
+                          </ng-select>
+                        </div>
+                        <p class="text-center">{{ groupBenefit[i] }}</p>
+                        <div data-toggle="tooltip" title="{{ titleBenefit[i] }}">
+                          <ng-select formControlName="typeOfBenefit" [items]="recurringAndOneTime"
+                            bindValue="typeOfBenefitCode" bindLabel="typeOfBenefitTitle"
+                            placeholder="Choose Type Of Benefit" groupBy="typeOfBenefitGroup" [readonly]="true">
+                          </ng-select>
+                        </div>
+                      </td>
+                      <ng-container formGroupName="versionPrice">
+                        <td class="text-center impact-col-2">
+                          <label for="Fixed Fx" [ngStyle]="{'font-size':'15px'}"> Fixed FX </label>
+                          <input type="text" formControlName="row1" class="form-control mb-2"
+                            [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                            [readonly]="viewMode || CheckPermissionImpact(permissionServiceStaticVar.TOFINANCEONLY_CONTROL)">
+                        </td>
+                      </ng-container>
+                      <ng-container formGroupName="runRate">
+                        <td class="impact-col-3">
+                          <input type="text" formControlName="row1" class="form-control mt-4"
+                            [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                            (input)="CalculateBenefitTotal('row1', $event)"
+                            [readonly]="viewMode || CheckPermissionImpact(permissionServiceStaticVar.TOFINANCEONLY_CONTROL)">
+                        </td>
+                      </ng-container>
+                      <ng-container formGroupName="monthRows1">
+                        <td *ngFor="let month of monthArray; let num=index">
+                          <input type="text" [formControlName]="month" class="form-control mt-4"
+                            [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                            (input)="CalculateMonthBenefitTotal(i, 'row1', 'monthRows1', $event)"
+                            [readonly]="viewMode || CheckPermissionImpact(permissionServiceStaticVar.TOFINANCEONLY_CONTROL)">
+                        </td>
+                      </ng-container>
+                    </tr>
+                    <tr>
+                      <ng-container formGroupName="versionPrice">
+                        <td class="text-center impact-col-2">
+                          <p class="mt-3">Float FX</p>
+                        </td>
+                      </ng-container>
+                      <ng-container formGroupName="runRate">
+                        <td class="impact-col-3">
+                          <input type="text" formControlName="row2" class="form-control mt-1"
+                            [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                            (input)="CalculateBenefitTotal('row2', $event)"
+                            [readonly]="viewMode || CheckPermissionImpact(permissionServiceStaticVar.TOFINANCEONLY_CONTROL)">
+                        </td>
+                      </ng-container>
+                      <ng-container formGroupName="monthRows2">
+                        <td *ngFor="let month of monthArray; let num=index">
+                          <input type="text" [formControlName]="month" class="form-control mt-1"
+                            [allowNegativeNumbers]="true" mask="separator.3" thousandSeparator=","
+                            (input)="CalculateMonthBenefitTotal(i, 'row2', 'monthRows2', $event)"
+                            [readonly]="viewMode || CheckPermissionImpact(permissionServiceStaticVar.TOFINANCEONLY_CONTROL)">
+                        </td>
+                      </ng-container>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </ng-container>
+              <ng-container *ngIf="monthRowTableLength > 1">
+                <tbody class="text-center" [formGroup]="TypeBenefitTotalForm">
+                  <tr>
+                    <td rowspan="2" class="impact-col-1"> <strong> Total </strong> </td>
+                    <ng-container formGroupName="versionPrice">
+                      <td class="impact-col-2">
+                        <input type="text" value="Target" class="form-control" readonly>
+                      </td>
+                    </ng-container>
+                    <ng-container formGroupName="runRate">
+                      <td class="impact-col-3">
+                        <input type="text" formControlName="row1" class="form-control" [allowNegativeNumbers]="true"
+                          mask="separator.3" thousandSeparator="," readonly>
+                      </td>
+                    </ng-container>
+                    <ng-container formGroupName="monthRows1">
+                      <td *ngFor="let month of monthArray">
+                        <input type="text" [formControlName]="month" class="form-control" [allowNegativeNumbers]="true"
+                          mask="separator.3" thousandSeparator="," readonly>
+                      </td>
+                    </ng-container>
+                  </tr>
+                  <tr>
+                    <ng-container formGroupName="versionPrice">
+                      <td class="impact-col-2">
+                        <input type="text" value="Actual" class="form-control" readonly>
+                      </td>
+                    </ng-container>
+                    <ng-container formGroupName="runRate">
+                      <td class="impact-col-3">
+                        <input type="text" formControlName="row2" class="form-control" [allowNegativeNumbers]="true"
+                          mask="separator.3" thousandSeparator="," readonly>
+                      </td>
+                    </ng-container>
+                    <ng-container formGroupName="monthRows2">
+                      <td *ngFor="let month of monthArray">
+                        <input type="text" [formControlName]="month" class="form-control" [allowNegativeNumbers]="true"
+                          mask="separator.3" thousandSeparator="," readonly>
+                      </td>
+                    </ng-container>
+                  </tr>
+                </tbody>
+              </ng-container>
+            </table>
+          </div>
+          <!-- </div> -->
+        </div>
+
+        <br><br>
+
+        <!-- <form [formGroup]="toCommentForm"> -->
+        <!--TO Comment-->
+        <div class="form-group row">
+          <div class="col-md-12"
+            [ngClass]="{ 'disabled-check': CheckPermissionImpact(permissionServiceStaticVar.TOCOMMENT_CONTROL) }">
+            <label for="toComment">TO Comment</label>
+            <textarea formControlName="toComment" class="form-control" rows="5"></textarea>
+          </div>
+        </div>
+        <!-- </form> -->
+
+        <hr>
+
+        <!-- <form [formGroup]="remarkForm"> -->
+        <div class="form-group row mt-3">
+          <div class="col-md-4" [ngClass]="permissionService.chps('impact','remark1')">
+            <label for=""> Remark 1</label>
+            <input formControlName="remark1" type="text" class="form-control">
+            <!--[ngClass]="permissionService.chps('remark1')"-->
+          </div>
+          <div class="col-md-4" [ngClass]="permissionService.chps('impact','remark2')">
+            <label for=""> Remark 2</label>
+            <input formControlName="remark2" type="text" class="form-control">
+          </div>
+          <div class="col-md-4" [ngClass]="permissionService.chps('impact','remark3')">
+            <label for=""> Remark 3</label>
+            <input formControlName="remark3" type="text" class="form-control">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="col-md-4" [ngClass]="permissionService.chps('impact','remark4')">
+            <label for=""> Remark 4</label>
+            <input formControlName="remark4" type="text" class="form-control">
+          </div>
+          <div class="col-md-4" [ngClass]="permissionService.chps('impact','remark5')">
+            <label for=""> Remark 5</label>
+            <input formControlName="remark5" type="text" class="form-control">
+          </div>
+        </div>
+        <!-- </form> -->
+      </div>
+    </div>
+  </div>
+</div>

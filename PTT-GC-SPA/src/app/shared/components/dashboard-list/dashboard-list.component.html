@@ -1,0 +1,76 @@
+<div class="row justify-content-between">
+  <div class="col-md-6">
+    <app-dashboard-search (OnRefreshData)="RefreshDataClick($event)" (OnSearchClick)="SearchClick($event)">
+    </app-dashboard-search>
+  </div>
+  <div class="col-md text-right">
+    <form class="form-inline float-right">
+      <label class="my-1 mr-2" for="PageLenght">Show</label>
+      <select class="custom-select my-1 mr-sm-2" (change)="ChangePageLength($event)">
+        <option *ngFor="let item of length" value="{{item}}">{{item}}</option>
+      </select>
+      <label class="my-1 mr-2" for="PageLenght">entries</label>
+    </form>
+  </div>
+  <div class="col-md text-right" *ngIf="dashboardType != 'builtin'">
+    <button class="form-group btn btn-primary" type="button" (click)="showModal('create', null)">Create</button>
+  </div>
+</div>
+
+
+
+
+<table class="table table-hover">
+  <thead>
+    <tr class="table-active table-initiative">
+      <th class="text-left" width="40%"> Report Name </th>
+      <th class="text-left" width="40%"> Report Format </th>
+      <th class="text-center" width="20%"> Action </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of allHeadersReport; let i = index;" class="table-initiative">
+      <td>
+        <!-- <div style="text-align: center;">  -->
+        <div class="text-left"> {{ item.reportName }}</div>
+        <!-- </div> -->
+      </td>
+      <td class="text-left">{{ item.graphType }}</td>
+      <td class="text-center">
+        <ng-container *ngIf="dashboardType == 'builtin'">
+          <a type="button" style="font-size:x-small;" class="btn btn-info btn-sm mr-1 text-white"
+            (click)="showModal('edit',item.reportID)">
+            <i class="fas fa-eye"></i>
+          </a>
+        </ng-container>
+        <ng-container *ngIf="dashboardType != 'builtin'">
+          <a type="button" style="font-size:x-small;" class="btn btn-info btn-sm mr-1 text-white"
+            (click)="SaveAndView(item.reportID)">
+            <i class="fas fa-eye"></i>
+          </a>
+          <a type="button" style="font-size:x-small;" class="btn btn-warning btn-sm mr-1 text-white"
+            (click)="showModal('edit',item.reportID)">
+            <i class="fas fa-pencil-alt"></i>
+          </a>
+          <button type="button" style="font-size:x-small;" class="btn btn-danger btn-sm mr-1"
+            (click)="DeleteCustomReport(item.reportID)">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </ng-container>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+
+<div class="d-flex justify-content-center">
+  <pagination [boundaryLinks]="true" [(ngModel)]="pagination.currentPage" [totalItems]="pagination.totalItems"
+    [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="PageChanged($event)" previousText="&lsaquo;"
+    nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+  </pagination>
+</div>
+<div class="container text-center loader-layout">
+  <ngx-spinner bdColor="rgba(255,255,255,0.7)" color="#105bac" size="medium" type="ball-spin" [fullScreen]="true">
+    <p>Downloading...</p>
+  </ngx-spinner>
+</div>

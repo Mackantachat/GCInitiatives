@@ -1,0 +1,950 @@
+<!-- modal form -->
+
+<!-- <ng-container>
+  <div bsModal #AttachmentModal="bs-modal" class="modal fade modal-Attachment" [config]="{ backdrop: 'static'}">
+    <app-initiative-attachment (modelClose)="CloseAttachment()" [id]="id">
+    </app-initiative-attachment>
+  </div>
+</ng-container> -->
+
+<!-- header -->
+<div class="form-group row">
+  <div class="col-md-12">
+    <label style="font-size: 28px;">Initiatives Information <span class="fa fa-angle-right" aria-hidden="true"></span>
+      {{getInitiativeName()}}</label>
+  </div>
+</div>
+<!-- end header -->
+<ng-container *ngIf="SuggestStatusMain && !isITDigitalBudgetSurvey">
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#general" role="tab" aria-controls="home"
+        aria-selected="true">
+        <span>
+          General Information(dup)
+        </span>
+      </a>
+    </li>
+  </ul>
+
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="home-tab">
+      <app-general-form [formGroup]="formGroup" [id]="GetId()" [page]="page"></app-general-form>
+    </div>
+  </div>
+</ng-container>
+
+
+<!-- type Cim and Strategy -->
+<ng-container *ngIf="isCimAndStrategy">
+  <!-- tab section -->
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#general" role="tab" aria-controls="home"
+        aria-selected="true">
+        <span>
+          General Information
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="profile"
+        aria-selected="false">
+        <span>
+          Detailed Information
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail-pim" role="tab" aria-controls="detail-dim"
+        aria-selected="false">
+        <span>
+          E-MOC
+        </span>
+      </a>
+    </li>
+    <!-- <li class="nav-item" *ngIf="isRequestProjectEngineer">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail-pim" role="tab" aria-controls="detail-dim"
+        aria-selected="false">
+        <span>
+          Detailed Information (Pim)
+        </span>
+      </a>
+    </li> -->
+    <li class="nav-item" *ngIf="Showtabs.riskTabStatus && Showtabs.riskTabStatus > 0">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#risk" role="tab" aria-controls="profile"
+        aria-selected="false">
+        <span>
+          Risk
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="Showtabs.resourceTabStatus && Showtabs.resourceTabStatus > 0">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#resourceNeeded" role="tab" aria-controls="profile"
+        aria-selected="false">
+        <span>
+          Resource Needed
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="ShowTabCapex">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#request-capex" role="tab"
+        aria-controls="request-capex" aria-selected="false">
+        <span>
+          CAPEX Information
+        </span>
+      </a>
+    </li>
+    <!--Progress-Tab-->
+    <li class="nav-item" *ngIf="ShowTabCapex || (Showtabs.progressTabStatus && Showtabs.progressTabStatus > 0)">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#progress" role="tab" aria-controls="request-capex"
+        aria-selected="false">
+        <span>
+          Progress
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="!isCim || (Showtabs.lessonLearnTabStatus && Showtabs.lessonLearnTabStatus > 0)">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#lesson-learn" role="tab"
+        aria-controls="request-capex" aria-selected="false">
+        <span>
+          Lesson Learn
+        </span>
+      </a>
+    </li>
+    <li class="nav-item"
+      *ngIf="(isLookBack && isCim)   || (Showtabs.lookbackTabStatus && Showtabs.lookbackTabStatus > 0)">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#Lookback" role="tab" aria-controls="profile"
+        aria-selected="false">
+        <span>
+          Lookback
+        </span>
+      </a>
+    </li>
+    <li class="nav-item"
+      *ngIf="showTabByCondition('best-practice')   || (Showtabs.bestPracticeTabStatus && Showtabs.bestPracticeTabStatus > 0)">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#best-practice" role="tab"
+        aria-controls="best-practice" aria-selected="false">
+        <span>
+          Best Practice
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status"
+        aria-selected="false">
+        <span>
+          Status
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="approveAdmin" [ngClass]="{'ml-auto': Impact != true}">
+      <a class="nav-link" (click)="ShowViewLogHistory()" style="color: #0078B8;cursor: pointer;">
+        View Log History
+      </a>
+    </li>
+
+
+
+  </ul>
+
+  <!-- page section -->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="home-tab">
+      <app-general-form [formGroup]="formGroup" [id]="GetId()" [page]="page"></app-general-form>
+    </div>
+
+    <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="profile-tab">
+      <app-detail-form [formGroup]="formGroup" [id]="GetId()" [generalData]="generalData"></app-detail-form>
+    </div>
+    <div class="tab-pane fade" id="detail-pim" role="tabpanel" aria-labelledby="detail-pim-tab">
+      <app-detail-pim-form [formGroup]="formGroup" [id]="GetId()"></app-detail-pim-form>
+    </div>
+
+    <!-- <div class="tab-pane fade" id="detail-pim" role="tabpanel" aria-labelledby="detail-pim-tab"
+      *ngIf="isRequestProjectEngineer">
+      <app-detail-pim-form [formGroup]="formGroup" [id]="GetId()"></app-detail-pim-form>
+    </div> -->
+
+
+    <div class="tab-pane fade" id="risk" role="tabpanel" aria-labelledby="profile-tab"
+      *ngIf="Showtabs.riskTabStatus && Showtabs.riskTabStatus > 0">
+      <app-risk [formGroup]="formGroup"></app-risk>
+    </div>
+
+    <div class="tab-pane fade" id="resourceNeeded" role="tabpanel" aria-labelledby="profile-tab"
+      *ngIf="Showtabs.resourceTabStatus && Showtabs.resourceTabStatus > 0">
+      <app-resource-need-form [formGroup]="formGroup" [id]="GetId()"></app-resource-need-form>
+    </div>
+    <div class="tab-pane fade" id="request-capex" role="tabpanel" aria-labelledby="request-capex-tab"
+      *ngIf="ShowTabCapex">
+      <app-capex-information-form [formGroup]="formGroup" [id]="GetId()" [generalData]="generalData">
+      </app-capex-information-form>
+    </div>
+    <!--Progress-Body-->
+    <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab"
+      *ngIf="ShowTabCapex  || (Showtabs.progressTabStatus && Showtabs.progressTabStatus > 0)">
+      <app-progress-form [formGroup]="formGroup" [id]="GetId()">
+      </app-progress-form>
+    </div>
+    <div *ngIf="!isCim || (Showtabs.lessonLearnTabStatus && Showtabs.lessonLearnTabStatus > 0)" class="tab-pane fade"
+      id="lesson-learn" role="tabpanel" aria-labelledby="lesson-learn-tab">
+      <app-lesson-learn [formGroup]="formGroup"></app-lesson-learn>
+    </div>
+    <div class="tab-pane fade" id="Lookback" role="tabpanel" aria-labelledby="profile-tab"
+      *ngIf="(isLookBack && isCim)   || (Showtabs.lookbackTabStatus && Showtabs.lookbackTabStatus > 0)">
+      <app-lookback-form></app-lookback-form>
+    </div>
+    <div
+      *ngIf="showTabByCondition('best-practice')  || (Showtabs.bestPracticeTabStatus && Showtabs.bestPracticeTabStatus > 0)"
+      class="tab-pane fade" id="best-practice" role="tabpanel" aria-labelledby="best-practice-tab">
+      <app-best-practice-form [formGroup]="formGroup"></app-best-practice-form>
+    </div>
+
+    <div class="tab-pane fade" id="status" role="tabpanel" aria-labelledby="status-tab">
+      <app-status-form [id]="GetId()"></app-status-form>
+    </div>
+  </div>
+</ng-container>
+<!-- end type Cim and Strategy -->
+
+
+
+<!-- type MAX -->
+<ng-container *ngIf="isMax && !isDim">
+  <!-- tab section -->
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general"
+        aria-selected="true">
+        <span>
+          General Information
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail"
+        aria-selected="false">
+        <span>
+          Detailed Information
+        </span>
+      </a>
+    </li>
+    <!-- <li class="nav-item" *ngIf="isMaxPimGate || (Showtabs.detailPimTabStatus && Showtabs.detailPimTabStatus > 0)">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail-pim" role="tab" aria-controls="detail-dim"
+        aria-selected="false">
+        <span>
+          E-MOC
+        </span>
+      </a>
+    </li> -->
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail-pim" role="tab" aria-controls="detail-dim"
+        aria-selected="false">
+        <span>
+          E-MOC
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="ShowTabCapex">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#request-capex" role="tab"
+        aria-controls="request-capex" aria-selected="false">
+        <span>
+          CAPEX Information
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="approveAdmin   || (Showtabs.progressTabStatus && Showtabs.progressTabStatus > 0)">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#progress" role="tab" aria-controls="progress"
+        aria-selected="false">
+        <span>
+          Progress
+        </span>
+      </a>
+    </li>
+    <!-- max approve -->
+    <li class="nav-item" *ngIf="approveAdmin   || (Showtabs.impactTabStatus && Showtabs.impactTabStatus > 0)">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#impact-tracking" role="tab"
+        aria-controls="impact-tracking" aria-selected="false">
+        <span>
+          Impact Tracking
+        </span>
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="approveAdmin || (Showtabs.lessonLearnTabStatus && Showtabs.lessonLearnTabStatus > 0)">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#lesson-learn" role="tab"
+        aria-controls="request-capex" aria-selected="false">
+        <span>
+          Lesson Learn
+        </span>
+      </a>
+    </li>
+
+    <li class="nav-item"
+      *ngIf="(approveAdmin && stageIL5) || (Showtabs.bestPracticeTabStatus && Showtabs.bestPracticeTabStatus > 0) ">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#best-practice" role="tab"
+        aria-controls="best-practice" aria-selected="false">
+        <span>
+          Best Practice
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="approveAdmin">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status"
+        aria-selected="false">
+        <span>
+          Status
+        </span>
+      </a>
+    </li>
+    <!-- contract IO and view-history  -->
+    <!-- pull right nav -->
+    <li class="nav-item ml-auto" *ngIf="approveAdmin && Impact">
+      <!-- <a class="nav-link" (click)="ShowContactIO()" style="color: #0078B8;cursor: pointer;">Contact IO</a> -->
+      <a class="nav-link" (click)="ShowContactIO()" style="color: #0078B8;cursor: pointer;">Contact IO</a>
+    </li>
+    <li class="nav-item" *ngIf="approveAdmin" [ngClass]="{'ml-auto': Impact != true}">
+      <a class="nav-link" (click)="ShowViewLogHistory()" style="color: #0078B8;cursor: pointer;">
+        View Log History
+      </a>
+    </li>
+  </ul>
+
+  <!-- page section -->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+      <app-general-form [formGroup]="formGroup" [id]="GetId()" [page]="page"></app-general-form>
+    </div>
+    <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+      <app-detail-max-form [formGroup]="formGroup" [id]="GetId()"></app-detail-max-form>
+    </div>
+    <!-- Ta 30/8/2021 fix E-MOC Template  -->
+    <!-- <div *ngIf="isMaxPimGate  || (Showtabs.detailPimTabStatus && Showtabs.detailPimTabStatus > 0)" class="tab-pane fade"
+      id="detail-pim" role="tabpanel" aria-labelledby="detail-pim-tab">
+      <app-detail-pim-form [formGroup]="formGroup" [id]="GetId()"></app-detail-pim-form>
+    </div> -->
+    <div class="tab-pane fade"
+      id="detail-pim" role="tabpanel" aria-labelledby="detail-pim-tab">
+      <app-detail-pim-form [formGroup]="formGroup" [id]="GetId()"></app-detail-pim-form>
+    </div>
+  <!-- Ta 30/8/2021 fix E-MOC Template  -->
+    <div class="tab-pane fade" id="request-capex" role="tabpanel" aria-labelledby="request-capex-tab"
+      *ngIf="ShowTabCapex">
+      <app-capex-information-form [formGroup]="formGroup" [id]="GetId()" [generalData]="generalData">
+      </app-capex-information-form>
+    </div>
+    <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab" *ngIf="approveAdmin">
+      <app-progress-form [formGroup]="formGroup" [id]="GetId()"></app-progress-form>
+    </div>
+    <!-- approve max -->
+    <div class="tab-pane fade" id="impact-tracking" role="tabpanel" aria-labelledby="impact-tracking-tab"
+      *ngIf="approveAdmin || (Showtabs.impactTabStatus && Showtabs.impactTabStatus > 0)">
+      <!-- Impact-form -->
+      <app-impact-form [formGroup]="formGroup" [id]="GetId()"></app-impact-form>
+    </div>
+    <div class="tab-pane fade" id="lesson-learn" role="tabpanel" aria-labelledby="lesson-learn-tab"
+      *ngIf="approveAdmin || (Showtabs.lessonLearnTabStatus && Showtabs.lessonLearnTabStatus > 0)">
+      <app-lesson-learn [formGroup]="formGroup"></app-lesson-learn>
+    </div>
+
+    <div class="tab-pane fade" id="best-practice" role="tabpanel" aria-labelledby="best-practice-tab"
+      *ngIf="(approveAdmin && stageIL5) || (Showtabs.bestPracticeTabStatus && Showtabs.bestPracticeTabStatus > 0)">
+      <app-best-practice-form [formGroup]="formGroup" [generalData]="generalData"></app-best-practice-form>
+    </div>
+    <div class="tab-pane fade" id="status" role="tabpanel" aria-labelledby="status-tab" *ngIf="approveAdmin">
+      <app-status-form [id]="GetId()"></app-status-form>
+    </div>
+  </div>
+</ng-container>
+<!-- end type MAX -->
+
+<!-- type CAPEX -->
+<ng-container *ngIf="isCapex">
+  <!-- tab section -->
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#general" role="tab" aria-controls="home"
+        aria-selected="true">
+        <span>
+          General Information
+        </span>
+      </a>
+    </li>
+    <li *ngIf="showTabEMOC" class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail-pim" role="tab" aria-controls="detail-dim"
+        aria-selected="false">
+        <span>
+          E-MOC
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="profile"
+        aria-selected="false">
+        <span>
+          Detailed Information (Request CAPEX)
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="ShowTabCapex">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#request-capex" role="tab"
+        aria-controls="request-capex" aria-selected="false">
+        <span>
+          CAPEX Information
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="ShowTabCapex">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#progress" role="tab" aria-controls="best-practice"
+        aria-selected="false">
+        <span>
+          Progress
+        </span>
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="Showtabs.lessonLearnTabStatus && Showtabs.lessonLearnTabStatus > 0">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#lesson-learn" role="tab"
+        aria-controls="request-capex" aria-selected="false">
+        <span>
+          Lesson Learn
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="Showtabs.bestPracticeTabStatus && Showtabs.bestPracticeTabStatus > 0">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#best-practice" role="tab"
+        aria-controls="best-practice" aria-selected="false">
+        <span>
+          Best Practice
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status"
+        aria-selected="false">
+        <span>
+          Status
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="approveAdmin" [ngClass]="{'ml-auto': Impact != true}">
+      <a class="nav-link" (click)="ShowViewLogHistory()" style="color: #0078B8;cursor: pointer;">
+        View Log History
+      </a>
+    </li>
+  </ul>
+
+  <!-- page section -->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="home-tab">
+      <app-general-form [formGroup]="formGroup" [id]="GetId()" [page]="page"></app-general-form>
+    </div>
+    <div *ngIf="showTabEMOC" class="tab-pane fade" id="detail-pim" role="tabpanel" aria-labelledby="detail-pim-tab">
+      <app-detail-pim-form [formGroup]="formGroup" [id]="GetId()"></app-detail-pim-form>
+    </div>
+    <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+      <app-detail-max-form [formGroup]="formGroup" [id]="GetId()"></app-detail-max-form>
+    </div>
+    <div *ngIf="ShowTabCapex" class="tab-pane fade" id="request-capex" role="tabpanel"
+      aria-labelledby="request-capex-tab">
+      <app-capex-information-form [formGroup]="formGroup" [id]="GetId()" [page]="page" [generalData]="generalData">
+      </app-capex-information-form>
+    </div>
+    <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab" *ngIf="ShowTabCapex">
+      <app-progress-form [formGroup]="formGroup"></app-progress-form>
+    </div>
+    <div *ngIf="Showtabs.lessonLearnTabStatus && Showtabs.lessonLearnTabStatus > 0" class="tab-pane fade"
+      id="lesson-learn" role="tabpanel" aria-labelledby="lesson-learn-tab">
+      <app-lesson-learn [formGroup]="formGroup"></app-lesson-learn>
+    </div>
+    <div *ngIf="Showtabs.bestPracticeTabStatus && Showtabs.bestPracticeTabStatus > 0" class="tab-pane fade"
+      id="best-practice" role="tabpanel" aria-labelledby="best-practice-tab">
+      <app-best-practice-form [formGroup]="formGroup"></app-best-practice-form>
+    </div>
+    <div class="tab-pane fade" id="status" role="tabpanel" aria-labelledby="status-tab">
+      <app-status-form [id]="GetId()"></app-status-form>
+    </div>
+  </div>
+</ng-container>
+<!-- end type CAPEX -->
+
+
+<!-- type CPI -->
+<ng-container *ngIf="isCpi">
+  <!-- tab section -->
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general"
+        aria-selected="true">
+        <span>
+          General Information
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail-cpi" role="tab" aria-controls="detail-cpi"
+        aria-selected="false">
+        <span>
+          Detailed Information
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail-pim" role="tab" aria-controls="detail-dim"
+        aria-selected="false">
+        <span>
+          E-MOC
+        </span>
+      </a>
+    </li>
+    <!-- <li class="nav-item" *ngIf="approveAdmin">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#progress" role="tab" aria-controls="progress"
+        aria-selected="false">
+        <span [ngClass]="{'nav-required': tabProgressRequire }">
+          Progress
+        </span>
+      </a>
+    </li> -->
+    <li class="nav-item" *ngIf="Showtabs.lessonLearnTabStatus && Showtabs.lessonLearnTabStatus > 0">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#lesson-learn" role="tab"
+        aria-controls="request-capex" aria-selected="false">
+        <span [ngClass]="{'nav-required': tabLessonLearnRequire }">
+          Lesson Learn
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="Showtabs.bestPracticeTabStatus && Showtabs.bestPracticeTabStatus > 0">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#best-practice" role="tab"
+        aria-controls="best-practice" aria-selected="false">
+        <span [ngClass]="{'nav-required': tabBestPracticeRequire }">
+          Best Practice
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status"
+        aria-selected="false">
+        <span>Status</span>
+      </a>
+    </li>
+    <!-- contract IO and view-history  -->
+    <!-- pull right nav -->
+    <li class="nav-item" *ngIf="approveAdmin" [ngClass]="{'ml-auto': Impact != true}">
+      <a class="nav-link" (click)="ShowViewLogHistory()" style="color: #0078B8;cursor: pointer;">
+        View Log History
+      </a>
+    </li>
+  </ul>
+
+  <!-- page section -->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+      <app-general-form [formGroup]="formGroup" [id]="GetId()" [page]="page"></app-general-form>
+    </div>
+    <div class="tab-pane fade" id="detail-cpi" role="tabpanel" aria-labelledby="detail-cpi-tab">
+      <app-detail-cpi-form [formGroup]="formGroup"></app-detail-cpi-form>
+    </div>
+    <div class="tab-pane fade" id="detail-pim" role="tabpanel" aria-labelledby="detail-pim-tab">
+      <app-detail-pim-form [formGroup]="formGroup" [id]="GetId()"></app-detail-pim-form>
+    </div>
+    <!-- <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab" *ngIf="approveAdmin">
+      <app-progress-form [formGroup]="formGroup" [id]="GetId()"></app-progress-form>
+    </div> -->
+    <div *ngIf="Showtabs.lessonLearnTabStatus && Showtabs.lessonLearnTabStatus > 0" class="tab-pane fade"
+      id="lesson-learn" role="tabpanel" aria-labelledby="lesson-learn-tab">
+      <app-lesson-learn [formGroup]="formGroup"></app-lesson-learn>
+    </div>
+    <div *ngIf="Showtabs.bestPracticeTabStatus && Showtabs.bestPracticeTabStatus > 0" class="tab-pane fade"
+      id="best-practice" role="tabpanel" aria-labelledby="best-practice-tab">
+      <app-best-practice-form [formGroup]="formGroup"></app-best-practice-form>
+    </div>
+    <div class="tab-pane fade" id="status" role="tabpanel" aria-labelledby="status-tab">
+      <app-status-form [id]="GetId()"></app-status-form>
+    </div>
+  </div>
+</ng-container>
+<!-- end type CPI -->
+
+
+<!-- type DIM -->
+<ng-container *ngIf="isDim">
+  <!-- tab section -->
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general"
+        aria-selected="true">
+        <span>
+          General Information
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail-pim" role="tab" aria-controls="detail-dim"
+        aria-selected="false">
+        <span>
+          E-MOC
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail-dim" role="tab" aria-controls="detail-dim"
+        aria-selected="false">
+        <span>
+          Detailed Information (DIM)
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="ShowTabCapex">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#request-capex" role="tab"
+        aria-controls="request-capex" aria-selected="false">
+        <span>
+          CAPEX Information
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="ShowTabCapex">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#progress" role="tab" aria-controls="progress"
+        aria-selected="false">
+        <span>
+          Progress
+        </span>
+      </a>
+    </li>
+    <li class="nav-item"
+      *ngIf="typeBenefit !== 'NON-FINANCIAL' || (Showtabs.impactTabStatus && Showtabs.impactTabStatus > 0)">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#impact-tracking" role="tab"
+        aria-controls="impact-tracking" aria-selected="false">
+        <span>
+          Impact Tracking
+        </span>
+      </a>
+    </li>
+
+    <li class="nav-item" *ngIf="Showtabs.lessonLearnTabStatus && Showtabs.lessonLearnTabStatus > 0">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#lesson-learn" role="tab"
+        aria-controls="request-capex" aria-selected="false">
+        <span>
+          Lesson Learn
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="stageAdopt || (Showtabs.bestPracticeTabStatus && Showtabs.bestPracticeTabStatus > 0)">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#best-practice" role="tab"
+        aria-controls="best-practice" aria-selected="false">
+        <span>
+          Best Practice
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="isDimLookBack || (Showtabs.lookbackTabStatus && Showtabs.lookbackTabStatus > 0)">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#Lookback" role="tab" aria-controls="profile"
+        aria-selected="false">
+        <span>
+          Lookback
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status"
+        aria-selected="false">
+        <span>Status</span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="approveAdmin" [ngClass]="{'ml-auto': Impact != true}">
+      <a class="nav-link" (click)="ShowViewLogHistory()" style="color: #0078B8;cursor: pointer;">
+        View Log History
+      </a>
+    </li>
+  </ul>
+
+  <!-- page section -->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+      <app-general-form [formGroup]="formGroup" [id]="GetId()" [page]="page"></app-general-form>
+    </div>
+    <div class="tab-pane fade" id="detail-pim" role="tabpanel" aria-labelledby="detail-pim-tab">
+      <app-detail-pim-form [formGroup]="formGroup" [id]="GetId()"></app-detail-pim-form>
+    </div>
+    <div class="tab-pane fade" id="detail-dim" role="tabpanel" aria-labelledby="detail-dim-tab">
+      <app-detail-max-form [formGroup]="formGroup" [id]="GetId()"></app-detail-max-form>
+    </div>
+    <div class="tab-pane fade" id="request-capex" role="tabpanel" aria-labelledby="request-capex-tab"
+      *ngIf="ShowTabCapex">
+      <app-capex-information-form [formGroup]="formGroup" [id]="GetId()" [page]="page" [generalData]="generalData">
+      </app-capex-information-form>
+    </div>
+    <div class="tab-pane fade" id="progress" role="tabpanel" aria-labelledby="progress-tab" *ngIf="ShowTabCapex">
+      <app-progress-form [formGroup]="formGroup" [id]="GetId()"></app-progress-form>
+    </div>
+    <div class="tab-pane fade" id="impact-tracking" role="tabpanel" aria-labelledby="impact-tracking-tab"
+      *ngIf="typeBenefit !== 'NON-FINANCIAL' || (Showtabs.impactTabStatus && Showtabs.impactTabStatus > 0)">
+      <!-- Impact-form -->
+      <app-impact-form [formGroup]="formGroup" [id]="GetId()"></app-impact-form>
+    </div>
+    <div *ngIf="Showtabs.lessonLearnTabStatus && Showtabs.lessonLearnTabStatus > 0" class="tab-pane fade"
+      id="lesson-learn" role="tabpanel" aria-labelledby="lesson-learn-tab">
+      <app-lesson-learn [formGroup]="formGroup"></app-lesson-learn>
+    </div>
+    <div class="tab-pane fade" id="best-practice" role="tabpanel" aria-labelledby="best-practice-tab"
+      *ngIf="stageAdopt || (Showtabs.bestPracticeTabStatus && Showtabs.bestPracticeTabStatus > 0)">
+      <app-best-practice-form [formGroup]="formGroup" [generalData]="generalData"></app-best-practice-form>
+    </div>
+    <div class="tab-pane fade" id="Lookback" role="tabpanel" aria-labelledby="profile-tab"
+      *ngIf="isDimLookBack || (Showtabs.lookbackTabStatus && Showtabs.lookbackTabStatus > 0)">
+      <app-lookback-form [formGroup]="formGroup"></app-lookback-form>
+    </div>
+    <div class="tab-pane fade" id="status" role="tabpanel" aria-labelledby="status-tab">
+      <app-status-form [id]="GetId()"></app-status-form>
+    </div>
+
+  </div>
+</ng-container>
+<!-- end type DIM -->
+
+
+<!-- type PIM -->
+<ng-container *ngIf="isPim">
+  <!-- tab section -->
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general"
+        aria-selected="true">
+        <span>
+          General Information
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail-pim" role="tab" aria-controls="detail-dim"
+        aria-selected="false">
+        <span>
+          Detailed Information (PIM)
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="ShowTabCapex">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail-capex" role="tab" aria-controls="detail"
+        aria-selected="false">
+        <span [ngClass]="{'nav-required': tabDetailRequire }">
+          Detailed Information (CAPEX)
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="ShowTabCapex">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#capex-pim" role="tab" aria-controls="detail-dim"
+        aria-selected="false" *ngIf="isStagePimCapexInfo">
+        <span>
+          CAPEX Information
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="ShowTabCapex || (Showtabs.progressTabStatus && Showtabs.progressTabStatus > 0)">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#progress-pim" role="tab" aria-controls="detail-dim"
+        aria-selected="false">
+        <span>
+          Progress
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="Showtabs.riskTabStatus && Showtabs.riskTabStatus > 0">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#risk" role="tab" aria-controls="profile"
+        aria-selected="false">
+        <span [ngClass]="{'nav-required': tabRiskRequire }">
+          Risk
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="Showtabs.resourceTabStatus && Showtabs.resourceTabStatus > 0">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#resourceNeeded" role="tab" aria-controls="profile"
+        aria-selected="false">
+        <span [ngClass]="{'nav-required': tabResourceNeedRequire }">
+          Resource Needed
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="Showtabs.lessonLearnTabStatus && Showtabs.lessonLearnTabStatus > 0">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#lesson-learn" role="tab"
+        aria-controls="request-capex" aria-selected="false">
+        <span [ngClass]="{'nav-required': tabLessonLearnRequire }">
+          Lesson Learn
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="Showtabs.bestPracticeTabStatus && Showtabs.bestPracticeTabStatus > 0">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#best-practice" role="tab"
+        aria-controls="best-practice" aria-selected="false">
+        <span [ngClass]="{'nav-required': tabBestPracticeRequire }">
+          Best Practice
+        </span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="Showtabs.lookbackTabStatus && Showtabs.lookbackTabStatus > 0">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#Lookback" role="tab" aria-controls="profile"
+        aria-selected="false">
+        <span>
+          Lookback
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status"
+        aria-selected="false">
+        <span>Status</span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="approveAdmin" [ngClass]="{'ml-auto': Impact != true}">
+      <a class="nav-link" (click)="ShowViewLogHistory()" style="color: #0078B8;cursor: pointer;">
+        View Log History
+      </a>
+    </li>
+  </ul>
+
+  <!-- page section -->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+      <app-general-form [formGroup]="formGroup" [id]="GetId()" [page]="page"></app-general-form>
+    </div>
+    <div class="tab-pane fade" id="detail-pim" role="tabpanel" aria-labelledby="detail-pim-tab">
+      <app-detail-pim-form [formGroup]="formGroup" [id]="GetId()"></app-detail-pim-form>
+    </div>
+    <div class="tab-pane fade" id="detail-capex" role="tabpanel" aria-labelledby="detail-tab" *ngIf="ShowTabCapex">
+      <app-detail-max-form [formGroup]="formGroup" [id]="GetId()"></app-detail-max-form>
+    </div>
+    <div class="tab-pane fade" id="capex-pim" role="tabpanel" aria-labelledby="capex-pim-tab" *ngIf="ShowTabCapex">
+      <app-capex-information-form [formGroup]="formGroup" [id]="GetId()" [page]="page" [generalData]="generalData">
+      </app-capex-information-form>
+    </div>
+    <div class="tab-pane fade" id="progress-pim" role="tabpanel" aria-labelledby="progress-pim-tab"
+      *ngIf="ShowTabCapex || (Showtabs.progressTabStatus && Showtabs.progressTabStatus > 0)">
+      <app-progress-form [formGroup]="formGroup" [id]="GetId()">
+      </app-progress-form>
+    </div>
+    <div *ngIf="Showtabs.riskTabStatus && Showtabs.riskTabStatus > 0" class="tab-pane fade" id="risk" role="tabpanel"
+      aria-labelledby="profile-tab">
+      <app-risk [formGroup]="formGroup"></app-risk>
+    </div>
+
+    <div class="tab-pane fade" id="resourceNeeded" role="tabpanel" aria-labelledby="profile-tab"
+      *ngIf="Showtabs.resourceTabStatus && Showtabs.resourceTabStatus > 0">
+      <app-resource-need-form [formGroup]="formGroup" [id]="GetId()"></app-resource-need-form>
+    </div>
+    <div class="tab-pane fade" id="lesson-learn" role="tabpanel" aria-labelledby="lesson-learn-tab"
+      *ngIf="Showtabs.lessonLearnTabStatus && Showtabs.lessonLearnTabStatus > 0">
+      <app-lesson-learn [formGroup]="formGroup"></app-lesson-learn>
+    </div>
+
+    <div class="tab-pane fade" id="best-practice" role="tabpanel" aria-labelledby="best-practice-tab"
+      *ngIf="Showtabs.bestPracticeTabStatus && Showtabs.bestPracticeTabStatus > 0">
+      <app-best-practice-form [formGroup]="formGroup" [generalData]="generalData"></app-best-practice-form>
+    </div>
+    <div class="tab-pane fade" id="Lookback" role="tabpanel" aria-labelledby="profile-tab"
+      *ngIf="Showtabs.lookbackTabStatus && Showtabs.lookbackTabStatus > 0">
+      <app-lookback-form [formGroup]="formGroup"></app-lookback-form>
+    </div>
+    <div class="tab-pane fade" id="status" role="tabpanel" aria-labelledby="status-tab">
+      <app-status-form [id]="GetId()"></app-status-form>
+    </div>
+  </div>
+</ng-container>
+
+<!-- type Digital -->
+<ng-container *ngIf="isITDigitalBudgetSurvey">
+  <!-- tab section -->
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general"
+        aria-selected="true">
+        <span>
+          IT & digital Budget Survey
+        </span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status"
+        aria-selected="false">
+        <span>Status</span>
+      </a>
+    </li>
+    <li class="nav-item" *ngIf="page == 'edit' && approveAdmin" [ngClass]="{'ml-auto': Impact != true}">
+      <a class="nav-link" (click)="ShowViewLogHistory()" style="color: #0078B8;cursor: pointer;">
+        View Log History
+      </a>
+    </li>
+  </ul>
+
+  <!-- page section -->
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="general-tab">
+      <app-digital-and-it-form [formGroup]="formGroup" [id]="GetId()"></app-digital-and-it-form>
+    </div>
+    <div class="tab-pane fade" id="status" role="tabpanel" aria-labelledby="status-tab">
+      <app-status-form [id]="GetId()"></app-status-form>
+    </div>
+  </div>
+</ng-container>
+<!-- end type Digital -->
+
+<ng-container *ngIf="isMax && !isApprove && IsViewSubmitto">
+  <div [formGroup]="submitToForm">
+    <div class="form-group row my-3">
+      <div class="col-md-4">
+        <label for="submitToItems"> Submit to </label>
+        <select formControlName="status" class="form-control" (change)="OnChangeStatus()">
+          <option *ngFor="let item of submitToItems" value="{{item.attribute01}}">
+            {{item.attribute02}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <ng-container *ngIf="Comment">
+      <div class="form-group row my-3">
+        <div class="col-md-12">
+          <textarea formControlName="commentCancelled" rows="3" class="form-control comment"></textarea>
+          <div class="invalid-feedback">
+            Comment is required !
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+<div class="row" (keydown.enter)="$event.preventDefault()">
+  <div class="col-md-6" *ngIf="isMax && !isApprove && IsViewSubmitto">
+    <button [disabled]="!isTestLoading" type="button" class="btn btn-success btn-width" (click)="Submit()">
+      <span class="far fa-check-circle mr-2"></span> Submit
+    </button>
+    <button type="button" class="btn btn-white btn-width ml-2" [routerLink]="['/initiative/my-own']">
+      <span class="fas fa-ban mr-2"></span> Cancel
+    </button>
+  </div>
+  <div class="col-md-6">
+    <!-- <div class="col-md-6" style="text-align:right"> -->
+    <!-- <button *ngIf="showRequestCapexButton && !ShowTabCapex" type="button" class="btn btn-white"
+        (click)="submitRequestCapex()">
+        <span class="far fa-money-bill-alt mr-2"></span> Request CAPEX
+      </button>
+      <button type="button" class="btn btn-white btn-width ml-2" (click)="Draft()">
+        <span class="far fa-save mr-2"></span> Save
+      </button> -->
+    <button type="button" class="btn btn-white btn-width ml-2" (click)="Duplicate()">
+      <span class="far fa-copy  mr-2"></span> Duplicate
+    </button>
+    <button type="button" class="btn btn-white btn-width ml-2" (click)="Print()"
+      *ngIf="page != 'overview-approve' && page != 'approve' && newFeature">
+      <span class="fas fa-print mr-2"></span> Print
+    </button>
+    <!-- <button type="button" class="btn btn-white btn-width ml-2" (click)="Print()">
+        <span class="fas fa-print mr-2"></span> Print
+      </button>
+      <button type="button" class="btn btn-white btn-width ml-2" (click)="ShowAttachment()">
+        <span class="fas fa-paperclip mr-2"></span> <span style="font-size: 0.9rem;"> Attachment </span>
+      </button> -->
+  </div>
+</div>
+
+<div *ngIf="IsFileAttach">
+  <app-initiative-show-attachment (modelClose)="CloseAttachment()" [id]="id">
+  </app-initiative-show-attachment>
+</div>
+<!-- end type PIM -->

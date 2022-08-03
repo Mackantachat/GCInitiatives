@@ -1,0 +1,1765 @@
+<div class="row mt-3">
+  <div class="col-md-6">
+    <h3>{{ name }}</h3>
+  </div>
+  <div *ngIf="IsShowRevisionButton" class="col-md-6">
+    <div class="w-20 float-right">
+      <button data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-primary ">
+        Revision
+      </button>
+      <div class="dropdown-menu mt-3" aria-labelledby="addmore">
+        <ul class="p-0" *ngFor="let controls of capexInformationList; let i=index">
+          <li class="dropdown-item list" value="controls" (click)="Revision(controls)">
+            Revision No.{{i}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <hr />
+  </div>
+
+  <div class="col-md-12">
+    <div class="card text card-initiative">
+      <div class="form-initiative">
+        <app-initiative-info [id]="id"></app-initiative-info>
+      </div>
+
+      <form *ngIf="Initiative_tmp" [formGroup]="capexInformationForm">
+        <div class="row mt-5">
+          <div class="col-md-12">
+            <h4>Initiative Detail</h4>
+            <hr />
+          </div>
+          <!-- <div class="col-md-6">
+              <label for="StartingDate">
+                Starting Date <span class="text-danger">*</span> :
+              </label>
+
+              <div class="input-group">
+                <input formControlName="StartingDate" type="text" class="form-control" readonly />
+                <div class="input-group-append">
+                  <i class="far fa-calendar right-icon mt-2"></i>
+                </div>
+                <div class="invalid-feedback" *ngIf="invalidStartingDate">
+                  Starting Date is required !
+                </div>
+              </div>
+            </div> -->
+          <div class="col-md-6">
+            <label for="RequestIniNoDate">
+              Request Project No. Date (Budget Start Date)
+              <span class="text-danger">*</span> :
+            </label>
+            <div class="input-group">
+              <input formControlName="RequestIniNoDate" class="form-control" type="text" readonly />
+              <div *ngIf="!viewMode" class="input-group-append">
+                <i class="far fa-calendar right-icon mt-2"></i>
+              </div>
+              <div class="invalid-feedback" *ngIf="invalidRequestIniNoDate">
+                Request Project No. Date (Budget Start Date) is required !
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="ProjecctComRun">
+              Finish Date <span class="text-danger">*</span> :
+            </label>
+            <div class="input-group">
+              <input formControlName="ProjecctComRun" (bsValueChange)="setFinishDate(ProjecctComRun_1.value)"
+                type="text" #ProjecctComRun_1 class="form-control" [bsConfig]="bsConfigFinish" bsDatepicker
+                name="ProjecctComRun_1" #dpFinish="bsDatepicker" [ngClass]="{ 'is-invalid': invalidFinishingDate }"
+                readonly [triggers]="viewMode ? '' : 'click:click'" />
+
+              <div *ngIf="!viewMode" class="input-group-append">
+                <i class="far fa-calendar right-icon mt-2" (click)="dpFinish.toggle()"
+                  [attr.aria-expanded]="dpFinish.isOpen"></i>
+              </div>
+              <div class="invalid-feedback" *ngIf="invalidFinishingDate">
+                Finish Date is required !
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <label for="finishDate">
+              Project Execution Period <span class="text-danger">*</span> :
+            </label>
+            <div class="row">
+              <div class="col-md-3">
+                <input type="text" class="form-control" value="ProjectExePeriodYear"
+                  formControlName="ProjectExePeriodYear" readonly />
+              </div>
+              <div class="col-md-3 p-2">
+                <span>Year</span>
+              </div>
+              <div class="col-md-3">
+                <input type="text" class="form-control" value="ProjectExePeriodMonth"
+                  formControlName="ProjectExePeriodMonth" readonly />
+              </div>
+              <div class="col-md-3 p-2">
+                <span>Month</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <label for="CostCenterOfVP">
+              Cost Center of VP (Asset Owner)
+              <span class="text-danger">*</span> :
+            </label>
+
+            <!-- <ng-select formControlName="CostCenterOfVP" [items]="owners" bindValue="ownerName" bindLabel="ownerName"
+                placeholder="Choose Owner" (search)="SearchOwnerName($event)" (clear)="ClearOwnerName()"
+                [readonly]="true">
+              </ng-select> -->
+
+            <input formControlName="CostCenterOfVP" type="text" placeholder="Choose Owner"
+              [ngClass]="{ 'is-invalid': invalidOrganization }" readonly class="form-control" />
+
+            <div class="text-feedback" *ngIf="invalidOrganization">
+              Cost Center of VP is required !
+            </div>
+          </div>
+          <div class="col-md-6">
+            <label for="finishDate">
+              Code Of Cost Center of VP (Asset Owner)
+              <span class="text-danger">*</span> :
+            </label>
+
+            <input formControlName="CodeCostCenterOfVP" type="text" name="CodeCostCenterOfVP" class="form-control"
+              placeholder="" [ngClass]="{ 'is-invalid': invalidCodeCostCenterOfVP }" readonly />
+
+            <div class="invalid-feedback" *ngIf="invalidCodeCostCenterOfVP">
+              Code Of Cost Center of VP is required !
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="row mt-3">
+            <div class="col-md-4">
+              <label for="ExistingCost">
+                Existing Cost (MTHB) <span class="text-danger">*</span> :
+              </label>
+              <input formControlName="ExistingCost" type="text" name="ExistingCost" class="form-control" placeholder=""
+                step="0.01" placeholder="0.00" mask="separator.2" thousandSeparator="," readonly>
+
+            </div>
+            <div class="col-md-4">
+              <label for="AdditionalCost">
+                Additional Cost (MTHB) <span class="text-danger">*</span> :
+              </label>
+              <input formControlName="AdditionalCost" type="text" name="AdditionalCost" class="form-control"
+                placeholder="" step="0.01" placeholder="0.00" mask="separator.2" thousandSeparator=","
+                #AdditionalCost_tmp (blur)="setAdditionalCost(AdditionalCost_tmp.value)">
+
+            </div>
+            <div class="col-md-4">
+              <label for="finishDate">
+                Project Cost (MTHB) <span class="text-danger">*</span> :
+              </label>
+              <input formControlName="ProjectCost" #ProjectCost_tmp (blur)="setProjectCost(ProjectCost_tmp.value)"
+                type="text" name="ProjectCost" class="form-control" placeholder="" step="0.01" placeholder="0.00"
+                mask="separator.2" thousandSeparator="," [ngClass]="{ 'is-invalid': invalidCostEstCapex }" readonly>
+
+              <div class="invalid-feedback" *ngIf="invalidCostEstCapex">
+                Project Cost (MTHB) is required !
+              </div>
+            </div>
+          </div> -->
+
+        <div class="row mt-3">
+          <div class="col-md-12" *ngIf="RemarkShow == true">
+            <label for="finishDate">
+              Reason of changing Project Cost
+              <span class="text-danger">*</span>
+              :
+            </label>
+            <textarea class="form-control" id="ReasonOfChanging" rows="2" name="ReasonOfChanging"
+              formControlName="ReasonOfChanging">
+              </textarea>
+          </div>
+          <!-- <div class="invalid-feedback" *ngIf="invalidProjectCost">
+                Reason of changing Project Cost is required !
+              </div> -->
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-2">
+            <label for="BudgetForm">
+              Budget Period <span class="text-danger">*</span> :
+            </label>
+          </div>
+          <div class="col-md-10">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input id="Annual" value="Annual" disabled class="custom-control-input" type="radio" name="BudgetForm"
+                formControlName="BudgetForm" (change)="OnChangeRequestOPEX($event.target.value)" />
+              <label class="custom-control-label" for="Annual">
+                Annual ({{ year_next }})
+              </label>
+            </div>
+          </div>
+          <div class="col-md-2"></div>
+          <div class="col-md-10 mt-1">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input id="MidYear" value="Mid Year" disabled class="custom-control-input" type="radio" name="BudgetForm"
+                formControlName="BudgetForm" (change)="OnChangeRequestOPEX($event.target.value)" />
+              <label class="custom-control-label" for="MidYear">
+                Mid Year ({{ year_now }})
+              </label>
+            </div>
+          </div>
+          <div class="col-md-2"></div>
+          <div class="col-md-10 mt-1">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input id="Between" value="Current year" disabled class="custom-control-input" type="radio"
+                name="BudgetForm" formControlName="BudgetForm" (change)="OnChangeRequestOPEX($event.target.value)" />
+              <label class="custom-control-label" for="Between">
+                Current year
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3 sub-Between" *ngIf="showContingency">
+          <div class="col-md-12">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input id="Contingency" value="Contingency" disabled class="custom-control-input" type="radio"
+                name="BetweenYear" formControlName="BetweenYear" (change)="OnChangeBetweenYear($event.target.value)" />
+              <label class="custom-control-label" for="Contingency">
+                Contingency ({{ year_now }})
+              </label>
+            </div>
+          </div>
+          <div class="col-md-12 mt-2">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input id="Transfer" value="Transfer" disabled class="custom-control-input" type="radio"
+                name="BetweenYear" formControlName="BetweenYear" (change)="OnChangeBetweenYear($event.target.value)" />
+              <label class="custom-control-label" for="Transfer">
+                Transfer ({{ year_now }})
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2 sub-Between" *ngIf="inshow">
+          <div class="col-md-12">
+            <label for="TransferForm">
+              Transfer Form <span class="text-danger">*</span> :
+            </label>
+            <div class="input-group" id="Form" style="width: 50%;">
+              <select formControlName="TransferForm" name="TransferForm" value="TransferForm" class="form-control"
+                (change)="transfer($event.target.value)" [attr.disabled]="true">
+                <option value="" selected disabled> Choose...</option>
+                <option value="OPEX">OPEX</option>
+                <option value="RMA">RMA</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-2 sub-Between" *ngIf="showContingency">
+          <div class="col-md-12">
+            <div class="custom-control custom-radio custom-control-inline">
+              <input id="Pool" value="Pool Budget" disabled class="custom-control-input" type="radio" name="BetweenYear"
+                formControlName="BetweenYear" (change)="OnChangeBetweenYear($event.target.value)" />
+              <label class="custom-control-label" for="Pool">
+                Pool Budget ({{ year_now }})
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-2 sub-Transfer" *ngIf="ferPool">
+          <div class="col-md-5 mt-2">
+            <label for="TransferForm">
+              Pool Budget From <span class="text-danger">*</span> :
+            </label>
+            <!-- <div class="input-group" id="Form" style="width: 50%;"> -->
+            <select class="form-control" formControlName="PoolBudgetForm" name="PoolBudgetForm" value="PoolBudgetForm"
+              (change)="pool($event.target.value)" [attr.disabled]="true">
+              <option value="" selected disabled> Choose...</option>
+              <option value="Digital CAPEX">Digital CAPEX</option>
+              <option value="IT CAPEX">IT CAPEX</option>
+              <option value="PIM">PIM</option>
+              <option value="MAX">MAX</option>
+              <option value="ER">ER</option>
+              <option value="MTPi">MTPi</option>
+            </select>
+            <!-- </div> -->
+          </div>
+          <div class="col-md-5 mt-2"></div>
+
+          <div class="col-md-2 mt-2"></div>
+          <div class="col-md-5 mt-2">
+            <label> Pool Year </label>
+            <div class="input-group">
+              <input type="text" class="form-control" formControlName="PoolYear" [bsConfig]="bsConfigYear" bsDatepicker
+                #dpYear="bsDatepicker" (bsValueChange)="ChangeYear($event)" disabled triggers="" [attr.disabled]="true">
+              <div *ngIf="!viewMode" class="input-group-append">
+                <i class="far fa-calendar right-icon mt-2"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 mt-2">
+            <label for="TransferForm">
+              Pool ID<span class="text-danger">*</span> :
+            </label>
+            <!-- <input formControlName="PoolID" type="text" name="" class="form-control" placeholder="" /> -->
+            <ng-select formControlName="PoolID" [items]="PoolID_list" bindValue="id" bindLabel="name"
+              placeholder="Choose PoolID" [(ngModel)]="pool_id" (change)="getPoolAva()" disabled>
+            </ng-select>
+          </div>
+
+          <div class="col-md-2 mt-2"></div>
+          <div class="col-md-5 mt-2">
+            <label for="AvailableBudget">
+              Available Budget (MTHB)<span class="text-danger">*</span> :
+            </label>
+            <input formControlName="AvailableBudget" type="text" name="" class="form-control" placeholder="" disabled />
+          </div>
+        </div>
+
+        <!-- Start Table -->
+        <!---->
+        <div class="row mt-5">
+          <div class="col-md-12">
+            <h4>Annual Investment Plan</h4>
+            <hr />
+          </div>
+          <div class="row mt-3">
+            <div class="col-md-3">
+              <label for="ExistingCost">
+                Existing Budget (MTHB) <span class="text-danger">*</span> :
+              </label>
+              <input formControlName="ExistingCost" type="text" name="ExistingCost" class="form-control" placeholder=""
+                step="0.01" placeholder="0.00" mask="separator.2" thousandSeparator="," readonly />
+            </div>
+            <div class="col-md-3">
+              <label for="SpendingActual">
+                Spending Actual (MTHB) <span class="text-danger">*</span> :
+              </label>
+              <input formControlName="SpendingActual" type="text" name="SpendingActual" class="form-control"
+                placeholder="" step="0.01" placeholder="0.00" mask="separator.2" thousandSeparator="," #SpendingActual
+                (blur)="setSpendingActual(SpendingActual.value)" readonly />
+            </div>
+            <div class="col-md-3">
+              <label for="finishDate">
+                Budget Available (MTHB) <span class="text-danger">*</span> :
+              </label>
+              <input formControlName="BudgetAvailable" #BudgetAvailable type="text" name="BudgetAvailable"
+                class="form-control" placeholder="" step="0.01" placeholder="0.00" mask="separator.2"
+                thousandSeparator="," [ngClass]="{ 'is-invalid': invalidCostEstCapex }" readonly />
+
+              <div class="invalid-feedback" *ngIf="invalidCostEstCapex">
+                Budget Available (MTHB) is required !
+              </div>
+            </div>
+            <div class="col-md-3">
+              <label for="finishDate">
+                Additional (MTHB) <span class="text-danger">*</span> :
+              </label>
+              <input formControlName="AdditionalCost" type="text" name="AdditionalCost" class="form-control"
+                placeholder="" step="0.01" placeholder="0.00" mask="separator.2" thousandSeparator=","
+                #AdditionalCost_tmp (blur)="setAdditionalCost(AdditionalCost_tmp.value)" readonly />
+
+              <div class="invalid-feedback" *ngIf="invalidCostEstCapex">
+                Additional (MTHB) is required !
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-3 w-100">
+            <div class="col-md-3">
+              <label for="ExistingCost">
+                Project Cost (MTHB) <span class="text-danger">*</span> :
+              </label>
+              <input formControlName="ProjectCost" type="text" name="ProjectCost" class="form-control" placeholder=""
+                step="0.01" placeholder="0.00" mask="separator.2" thousandSeparator="," readonly />
+            </div>
+            <div class="col-md-3">
+              <label for="ExistingCost">
+                Total Available (MTHB) <span class="text-danger">*</span> :
+              </label>
+              <input formControlName="TotalAvailable" type="text" name="TotalAvailable" class="form-control"
+                placeholder="" step="0.01" placeholder="0.00" mask="separator.2" thousandSeparator="," readonly />
+            </div>
+          </div>
+        </div>
+
+        <form *ngIf="AnnualForm" [formGroup]="AnnualForm">
+          <div class="row mt-5">
+            <div class="col-md-12">
+              <div class="card text card-initiative">
+                <div class="form-initiative">
+                  <div class="form-row align-items-center">
+                    <div class="w-100">
+                      <div class="table-responsive">
+                        <table class="table table-bordered">
+                          <thead class="text-center bg-light">
+                            <tr>
+                              <th width="200px">Investment Plan</th>
+                              <th width="100px">Overall</th>
+                              <th width="100px" *ngFor="
+                                      let column of YearTable;
+                                      let i = index
+                                    ">
+                                {{ column.columnname }}
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr formArrayName="annualForm_list" *ngFor="
+                                    let cd of annualForm_.controls;
+                                    let i = index
+                                  ">
+                              <td class="text-center" [formGroupName]="i">
+                                <!-- <select class="form-control">
+                                        <option>{{i.currencyTitle}}</option>
+                                      </select> -->
+
+                                <select class="form-control" *ngIf="i == 0" formControlName="currencyTitle" (change)="
+                                        changeRate($event.target.value, i)
+                                      " disabled="flagFirst_row">
+                                  <option *ngFor="let t of typeTransaction" [value]="t.code">{{ t.chooes }}</option>
+                                </select>
+
+                                <select class="form-control" *ngIf="i != 0" formControlName="currencyTitle" (change)="
+                                        changeRate($event.target.value, i)
+                                      " disabled>
+                                  <option *ngFor="let t of typeTransaction" [value]="t.code">{{ t.chooes }}</option>
+                                </select>
+                                <label class="mt-3" for="finishDate" *ngIf="i != 0">
+                                  FX
+                                </label>
+                                <input formControlName="fx" (change)="ChangingValue_fx(i)" class="form-control"
+                                  type="text" *ngIf="i != 0" readonly />
+
+                                <button [formGroupName]="i" *ngIf="i != 0" class="btn btn-danger btn-sm mt-3"
+                                  (click)="deleteSellingPoint(i)" disabled>
+                                  <i class="fas fa-trash-alt"></i>
+                                </button>
+                              </td>
+                              <td [formGroupName]="i">
+                                <input class="form-control" type="text" formControlName="overall" mask="separator.2"
+                                  step="0.01" thousandSeparator="," [readonly]="true" />
+                              </td>
+                              <td [formGroupName]="i" *ngFor="
+                                      let column of YearTable;
+                                      let j = index
+                                    ">
+                                <input class="form-control" (change)="
+                                        ChangingValue($event.target.value)
+                                      " formControlName="y{{ j + 1 }}" [readonly]="true" mask="separator.2" step="0.01"
+                                  thousandSeparator="," />
+                              </td>
+                            </tr>
+                          </tbody>
+                          <tfoot>
+                            <tr>
+                              <td>
+                                <label for="finishDate">
+                                  Total Million Baht
+                                </label>
+                              </td>
+                              <td>
+                                <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                  thousandSeparator="," formControlName="AnnualTotal_overall" />
+                              </td>
+
+                              <td *ngFor="
+                                      let column of YearTable;
+                                      let j = index
+                                    ">
+                                <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                  thousandSeparator="," formControlName="AnnualTotal{{ j + 1 }}" />
+                              </td>
+                            </tr>
+                          </tfoot>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- <div *ngIf="capexStatus != 'Submit'">
+              <button type="button" class="btn btn-primary mt-3" (click)="addSellingPoint()">
+                Add New
+              </button>
+            </div> -->
+        </form>
+
+        <div *ngFor="let ym of year_m; let i = index">
+          <form *ngIf="i == 0" [formGroup]="monthForm0">
+            <div class="row mt-5">
+              <div class="col-md-11">
+                <h4>Monthly Investment Plan ({{ ym }})</h4>
+                <hr />
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-info" data-toggle="collapse" data-target="#M1">
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div class="collapse" id="M1">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card text card-initiative">
+                    <div class="form-initiative">
+                      <div class="form-row align-items-center">
+                        <div class="w-100">
+                          <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead class="text-center bg-light">
+                                <tr>
+                                  <th width="200px">Investment Plan</th>
+                                  <th width="180px">Overall</th>
+                                  <th width="180px" *ngFor="let m of monthList_1">
+                                    {{ m.columnname }}
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr formArrayName="monthForm_list" *ngFor="
+                                      let cd of monthForm0_.controls;
+                                      let j = index
+                                    ">
+                                  <td [formGroupName]="j">
+                                    <select class="form-control" formControlName="currencyTitle"
+                                      disabled="flagFirst_row">
+                                      <option *ngFor="
+                                            let t of typeTransaction_month
+                                          " [value]="t.code">{{ t.chooes }}
+                                      </option>
+                                    </select>
+                                    <label class="mt-3" for="finishDate" *ngIf="j != 0">
+                                      FX
+                                    </label>
+                                    <input formControlName="fx" class="form-control" type="text" *ngIf="j != 0"
+                                      readonly="true" />
+                                  </td>
+                                  <td [formGroupName]="j">
+                                    <input class="form-control" type="text" formControlName="overall" mask="separator.2"
+                                      thousandSeparator="," [readonly]="true" />
+                                  </td>
+                                  <td [formGroupName]="j" *ngFor="
+                                        let column of monthList_1;
+                                        let jj = index
+                                      ">
+                                    <!-- <input *ngIf="
+                                          cd.get('flag_alert').value == true
+                                        " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                      [readonly]="column.readOnly" (change)="
+                                          ChangingValue_month_table1(ym)
+                                        " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                      thousandSeparator="," value="" /> -->
+                                    <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                      [readonly]="column.readOnly" (change)="
+                                          ChangingValue_month_table1(ym)
+                                        " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                      thousandSeparator="," />
+                                  </td>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td>
+                                    <label for="finishDate">
+                                      Total Baht
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <input class="form-control" type="text" [readonly]="true"
+                                      formControlName="monthTotal_overall" mask="separator.2" thousandSeparator="," />
+                                  </td>
+                                  <td *ngFor="
+                                        let column of monthList_1;
+                                        let j = index
+                                      ">
+                                    <input class="form-control" type="text" [readonly]="true"
+                                      formControlName="monthTotal{{ j + 1 }}" mask="separator.2"
+                                      thousandSeparator="," />
+                                  </td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <form *ngIf="i == 1" [formGroup]="monthForm1">
+            <div class="row mt-5">
+              <div class="col-md-11">
+                <h4>Monthly Investment Plan ({{ ym }})</h4>
+                <hr />
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-info" data-toggle="collapse" data-target="#M2">
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div class="collapse" id="M2">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card text card-initiative">
+                    <div class="form-initiative">
+                      <div class="form-row align-items-center">
+                        <div class="w-100">
+                          <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead class="text-center bg-light">
+                                <tr>
+                                  <th width="200px">Investment Plan</th>
+                                  <th width="180px">Overall</th>
+
+                                  <ng-container *ngIf="i != diffYear">
+                                    <th width="180px" *ngFor="let m of monthList_x">
+                                      {{ m.columnname }}
+                                    </th>
+                                  </ng-container>
+                                  <ng-container *ngIf="i == diffYear">
+                                    <th width="180px" *ngFor="let m of monthList_last">
+                                      {{ m.columnname }}
+                                    </th>
+                                  </ng-container>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr formArrayName="monthForm_list" *ngFor="
+                                      let cd of monthForm1_.controls;
+                                      let j = index
+                                    ">
+                                  <td [formGroupName]="j">
+                                    <select class="form-control" formControlName="currencyTitle"
+                                      disabled="flagFirst_row">
+                                      <option *ngFor="
+                                            let t of typeTransaction_month
+                                          " [value]="t.code">{{ t.chooes }}
+                                      </option>
+                                    </select>
+                                    <label class="mt-3" for="finishDate" *ngIf="j != 0">
+                                      FX
+                                    </label>
+                                    <input formControlName="fx" class="form-control" type="text" *ngIf="j != 0"
+                                      readonly="true" />
+                                  </td>
+                                  <td [formGroupName]="j">
+                                    <input class="form-control" type="text" formControlName="overall" [readonly]="true"
+                                      mask="separator.2" thousandSeparator="," />
+                                  </td>
+                                  <ng-container *ngIf="i != diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_x;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table2(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" pattern="[0-9]*"
+                                        mask="separator" thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table2(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" pattern="[0-9]*"
+                                        mask="separator" thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                  <ng-container *ngIf="i == diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_last;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table2(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table2(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td>
+                                    <label for="finishDate">
+                                      Total Baht
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <input class="form-control" type="text" [readonly]="true"
+                                      formControlName="monthTotal_overall" mask="separator.2" thousandSeparator="," />
+                                  </td>
+                                  <td *ngFor="
+                                        let column of monthList_1;
+                                        let j = index
+                                      ">
+                                    <input class="form-control" type="text" [readonly]="true"
+                                      formControlName="monthTotal{{ j + 1 }}" mask="separator.2"
+                                      thousandSeparator="," />
+                                  </td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <form *ngIf="i == 2" [formGroup]="monthForm2">
+            <div class="row mt-5">
+              <div class="col-md-11">
+                <h4>Monthly Investment Plan ({{ ym }})</h4>
+                <hr />
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-info" data-toggle="collapse" data-target="#M3">
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div class="collapse" id="M3">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card text card-initiative">
+                    <div class="form-initiative">
+                      <div class="form-row align-items-center">
+                        <div class="w-100">
+                          <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead class="text-center bg-light">
+                                <tr>
+                                  <th width="200px">Investment Plan</th>
+                                  <th width="180px">Overall</th>
+                                  <th width="180px" *ngFor="let m of monthList_x">
+                                    {{ m.columnname }}
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr formArrayName="monthForm_list" *ngFor="
+                                      let cd of monthForm2_.controls;
+                                      let j = index
+                                    ">
+                                  <td [formGroupName]="j">
+                                    <select class="form-control" formControlName="currencyTitle"
+                                      disabled="flagFirst_row">
+                                      <option *ngFor="
+                                            let t of typeTransaction_month
+                                          " [value]="t.code">{{ t.chooes }}
+                                      </option>
+                                    </select>
+                                    <label class="mt-3" for="finishDate" *ngIf="j != 0">
+                                      FX
+                                    </label>
+                                    <input formControlName="fx" class="form-control" type="text" *ngIf="j != 0"
+                                      readonly="true" />
+                                  </td>
+                                  <td [formGroupName]="j">
+                                    <input class="form-control" type="text" formControlName="overall" mask="separator.2"
+                                      thousandSeparator="," [readonly]="true" />
+                                  </td>
+                                  <ng-container *ngIf="i != diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_x;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table3(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table3(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                  <ng-container *ngIf="i == diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_last;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table3(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table3(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td>
+                                    <label for="finishDate">
+                                      Total Baht
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <input class="form-control" type="text" [readonly]="true"
+                                      formControlName="monthTotal_overall" mask="separator.2" thousandSeparator="," />
+                                  </td>
+                                  <td *ngFor="
+                                        let column of monthList_1;
+                                        let j = index
+                                      ">
+                                    <input class="form-control" type="text" [readonly]="true"
+                                      formControlName="monthTotal{{ j + 1 }}" mask="separator.2"
+                                      thousandSeparator="," />
+                                  </td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <form *ngIf="i == 3" [formGroup]="monthForm3">
+            <div class="row mt-5">
+              <div class="col-md-11">
+                <h4>Monthly Investment Plan ({{ ym }})</h4>
+                <hr />
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-info" data-toggle="collapse" data-target="#M4">
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div class="collapse" id="M4">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card text card-initiative">
+                    <div class="form-initiative">
+                      <div class="form-row align-items-center">
+                        <div class="w-100">
+                          <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead class="text-center bg-light">
+                                <tr>
+                                  <th width="200px">Investment Plan</th>
+                                  <th width="180px">Overall</th>
+                                  <th width="180px" *ngFor="let m of monthList_x">
+                                    {{ m.columnname }}
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr formArrayName="monthForm_list" *ngFor="
+                                      let cd of monthForm3_.controls;
+                                      let j = index
+                                    ">
+                                  <td [formGroupName]="j">
+                                    <select class="form-control" formControlName="currencyTitle"
+                                      disabled="flagFirst_row">
+                                      <option *ngFor="
+                                            let t of typeTransaction_month
+                                          " [value]="t.code">{{ t.chooes }}
+                                      </option>
+                                    </select>
+                                    <label class="mt-3" for="finishDate" *ngIf="j != 0">
+                                      FX
+                                    </label>
+                                    <input formControlName="fx" class="form-control" type="text" *ngIf="j != 0"
+                                      readonly="true" />
+                                  </td>
+                                  <td [formGroupName]="j">
+                                    <input class="form-control" type="text" formControlName="overall" mask="separator.2"
+                                      thousandSeparator="," [readonly]="true" />
+                                  </td>
+                                  <ng-container *ngIf="i != diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_x;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table4(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table4(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                  <ng-container *ngIf="i == diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_last;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table4(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*"
+                                        mask="separator.2" thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table4(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*"
+                                        mask="separator.2" thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td>
+                                    <label for="finishDate">
+                                      Total Baht
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                      thousandSeparator="," formControlName="monthTotal_overall" />
+                                  </td>
+                                  <td *ngFor="
+                                        let column of monthList_1;
+                                        let j = index
+                                      ">
+                                    <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                      thousandSeparator="," formControlName="monthTotal{{ j + 1 }}" />
+                                  </td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <form *ngIf="i == 4" [formGroup]="monthForm4">
+            <div class="row mt-5">
+              <div class="col-md-11">
+                <h4>Monthly Investment Plan ({{ ym }})</h4>
+                <hr />
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-info" data-toggle="collapse" data-target="#M5">
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div class="collapse" id="M5">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card text card-initiative">
+                    <div class="form-initiative">
+                      <div class="form-row align-items-center">
+                        <div class="w-100">
+                          <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead class="text-center bg-light">
+                                <tr>
+                                  <th width="200px">Investment Plan</th>
+                                  <th width="180px">Overall</th>
+                                  <th width="180px" *ngFor="let m of monthList_x">
+                                    {{ m.columnname }}
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr formArrayName="monthForm_list" *ngFor="
+                                      let cd of monthForm4_.controls;
+                                      let j = index
+                                    ">
+                                  <td [formGroupName]="j">
+                                    <select class="form-control" formControlName="currencyTitle"
+                                      disabled="flagFirst_row">
+                                      <option *ngFor="
+                                            let t of typeTransaction_month
+                                          " [value]="t.code">{{ t.chooes }}
+                                      </option>
+                                    </select>
+                                    <label class="mt-3" for="finishDate" *ngIf="j != 0">
+                                      FX
+                                    </label>
+                                    <input formControlName="fx" class="form-control" type="text" *ngIf="j != 0"
+                                      readonly="true" />
+                                  </td>
+                                  <td [formGroupName]="j">
+                                    <input class="form-control" type="text" formControlName="overall" mask="separator.2"
+                                      thousandSeparator="," [readonly]="true" />
+                                  </td>
+                                  <ng-container *ngIf="i != diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_x;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table5(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table5(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                  <ng-container *ngIf="i == diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_last;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table5(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table5(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td>
+                                    <label for="finishDate">
+                                      Total Baht
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                      thousandSeparator="," formControlName="monthTotal_overall" />
+                                  </td>
+                                  <td *ngFor="
+                                        let column of monthList_1;
+                                        let j = index
+                                      ">
+                                    <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                      thousandSeparator="," formControlName="monthTotal{{ j + 1 }}" />
+                                  </td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <form *ngIf="i == 5" [formGroup]="monthForm5">
+            <div class="row mt-5">
+              <div class="col-md-11">
+                <h4>Monthly Investment Plan ({{ ym }})</h4>
+                <hr />
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-info" data-toggle="collapse" data-target="#M6">
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div class="collapse" id="M6">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card text card-initiative">
+                    <div class="form-initiative">
+                      <div class="form-row align-items-center">
+                        <div class="w-100">
+                          <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead class="text-center bg-light">
+                                <tr>
+                                  <th width="200px">Investment Plan</th>
+                                  <th width="180px">Overall</th>
+                                  <th width="180px" *ngFor="let m of monthList_x">
+                                    {{ m.columnname }}
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr formArrayName="monthForm_list" *ngFor="
+                                      let cd of monthForm5_.controls;
+                                      let j = index
+                                    ">
+                                  <td [formGroupName]="j">
+                                    <select class="form-control" formControlName="currencyTitle"
+                                      disabled="flagFirst_row">
+                                      <option *ngFor="
+                                            let t of typeTransaction_month
+                                          " [value]="t.code">{{ t.chooes }}
+                                      </option>
+                                    </select>
+                                    <label class="mt-3" for="finishDate" *ngIf="j != 0">
+                                      FX
+                                    </label>
+                                    <input formControlName="fx" class="form-control" type="text" *ngIf="j != 0"
+                                      readonly="true" />
+                                  </td>
+                                  <td [formGroupName]="j">
+                                    <input class="form-control" type="text" formControlName="overall" mask="separator.2"
+                                      thousandSeparator="," [readonly]="true" />
+                                  </td>
+                                  <ng-container *ngIf="i != diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_x;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table6(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table6(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                  <ng-container *ngIf="i == diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_last;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table6(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table6(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td>
+                                    <label for="finishDate">
+                                      Total Baht
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                      thousandSeparator="," formControlName="monthTotal_overall" />
+                                  </td>
+                                  <td *ngFor="
+                                        let column of monthList_1;
+                                        let j = index
+                                      ">
+                                    <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                      thousandSeparator="," formControlName="monthTotal{{ j + 1 }}" />
+                                  </td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <form *ngIf="i == 6" [formGroup]="monthForm6">
+            <div class="row mt-5">
+              <div class="col-md-11">
+                <h4>Monthly Investment Plan ({{ ym }})</h4>
+                <hr />
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-info" data-toggle="collapse" data-target="#M7">
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div class="collapse" id="M7">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card text card-initiative">
+                    <div class="form-initiative">
+                      <div class="form-row align-items-center">
+                        <div class="w-100">
+                          <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead class="text-center bg-light">
+                                <tr>
+                                  <th width="200px">Investment Plan</th>
+                                  <th width="180px">Overall</th>
+                                  <th width="180px" *ngFor="let m of monthList_x">
+                                    {{ m.columnname }}
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr formArrayName="monthForm_list" *ngFor="
+                                      let cd of monthForm6_.controls;
+                                      let j = index
+                                    ">
+                                  <td [formGroupName]="j">
+                                    <select class="form-control" formControlName="currencyTitle"
+                                      disabled="flagFirst_row">
+                                      <option *ngFor="
+                                            let t of typeTransaction_month
+                                          " [value]="t.code">{{ t.chooes }}
+                                      </option>
+                                    </select>
+                                    <label class="mt-3" for="finishDate" *ngIf="j != 0">
+                                      FX
+                                    </label>
+                                    <input formControlName="fx" class="form-control" type="text" *ngIf="j != 0"
+                                      readonly="true" />
+                                  </td>
+                                  <td [formGroupName]="j">
+                                    <input class="form-control" type="text" formControlName="overall" mask="separator.2"
+                                      thousandSeparator="," [readonly]="true" />
+                                  </td>
+                                  <ng-container *ngIf="i != diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_x;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table7(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table7(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                  <ng-container *ngIf="i == diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_last;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table7(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table7(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td>
+                                    <label for="finishDate">
+                                      Total Baht
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                      thousandSeparator="," formControlName="monthTotal_overall" />
+                                  </td>
+                                  <td *ngFor="
+                                        let column of monthList_1;
+                                        let j = index
+                                      ">
+                                    <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                      thousandSeparator="," formControlName="monthTotal{{ j + 1 }}" />
+                                  </td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <form *ngIf="i == 7" [formGroup]="monthForm7">
+            <div class="row mt-5">
+              <div class="col-md-11">
+                <h4>Monthly Investment Plan ({{ ym }})</h4>
+                <hr />
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-info" data-toggle="collapse" data-target="#M8">
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div class="collapse" id="M8">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card text card-initiative">
+                    <div class="form-initiative">
+                      <div class="form-row align-items-center">
+                        <div class="w-100">
+                          <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead class="text-center bg-light">
+                                <tr>
+                                  <th width="200px">Investment Plan</th>
+                                  <th width="180px">Overall</th>
+                                  <th width="180px" *ngFor="let m of monthList_x">
+                                    {{ m.columnname }}
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr formArrayName="monthForm_list" *ngFor="
+                                      let cd of monthForm7_.controls;
+                                      let j = index
+                                    ">
+                                  <td [formGroupName]="j">
+                                    <select class="form-control" formControlName="currencyTitle"
+                                      disabled="flagFirst_row">
+                                      <option *ngFor="
+                                            let t of typeTransaction_month
+                                          " [value]="t.code">{{ t.chooes }}
+                                      </option>
+                                    </select>
+                                    <label class="mt-3" for="finishDate" *ngIf="j != 0">
+                                      FX
+                                    </label>
+                                    <input formControlName="fx" class="form-control" type="text" *ngIf="j != 0"
+                                      readonly="true" />
+                                  </td>
+                                  <td [formGroupName]="j">
+                                    <input class="form-control" type="text" formControlName="overall" mask="separator.2"
+                                      thousandSeparator="," [readonly]="true" />
+                                  </td>
+                                  <ng-container *ngIf="i != diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_x;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table8(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table8(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                  <ng-container *ngIf="i == diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_last;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table8(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table8(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td>
+                                    <label for="finishDate">
+                                      Total Baht
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                      thousandSeparator="," formControlName="monthTotal_overall" />
+                                  </td>
+                                  <td *ngFor="
+                                        let column of monthList_1;
+                                        let j = index
+                                      ">
+                                    <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                      thousandSeparator="," formControlName="monthTotal{{ j + 1 }}" />
+                                  </td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <form *ngIf="i == 8" [formGroup]="monthForm8">
+            <div class="row mt-5">
+              <div class="col-md-11">
+                <h4>Monthly Investment Plan ({{ ym }})</h4>
+                <hr />
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-info" data-toggle="collapse" data-target="#M9">
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div class="collapse" id="M9">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card text card-initiative">
+                    <div class="form-initiative">
+                      <div class="form-row align-items-center">
+                        <div class="w-100">
+                          <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead class="text-center bg-light">
+                                <tr>
+                                  <th width="200px">Investment Plan</th>
+                                  <th width="180px">Overall</th>
+                                  <th width="180px" *ngFor="let m of monthList_x">
+                                    {{ m.columnname }}
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr formArrayName="monthForm_list" *ngFor="
+                                      let cd of monthForm8_.controls;
+                                      let j = index
+                                    ">
+                                  <td [formGroupName]="j">
+                                    <select class="form-control" formControlName="currencyTitle"
+                                      disabled="flagFirst_row">
+                                      <option *ngFor="
+                                            let t of typeTransaction_month
+                                          " [value]="t.code">{{ t.chooes }}
+                                      </option>
+                                    </select>
+                                    <label class="mt-3" for="finishDate" *ngIf="j != 0">
+                                      FX
+                                    </label>
+                                    <input formControlName="fx" class="form-control" type="text" *ngIf="j != 0"
+                                      readonly="true" />
+                                  </td>
+                                  <td [formGroupName]="j">
+                                    <input class="form-control" type="text" formControlName="overall" mask="separator.2"
+                                      thousandSeparator="," [readonly]="true" />
+                                  </td>
+                                  <ng-container *ngIf="i != diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_x;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table9(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table9(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                  <ng-container *ngIf="i == diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_last;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table9(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table9(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td>
+                                    <label for="finishDate">
+                                      Total Baht
+                                    </label>
+                                  </td>
+                                  <td *ngFor="
+                                        let column of monthList_1;
+                                        let j = index
+                                      ">
+                                    <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                      thousandSeparator="," formControlName="monthTotal{{ j + 1 }}" />
+                                  </td>
+                                  <td>
+                                    <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                      thousandSeparator="," formControlName="monthTotal_overall" />
+                                  </td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <form *ngIf="i == 9" [formGroup]="monthForm9">
+            <div class="row mt-5">
+              <div class="col-md-11">
+                <h4>Monthly Investment Plan ({{ ym }})</h4>
+                <hr />
+              </div>
+              <div class="col-md-1">
+                <button class="btn btn-info" data-toggle="collapse" data-target="#M10">
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div class="collapse" id="M10">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="card text card-initiative">
+                    <div class="form-initiative">
+                      <div class="form-row align-items-center">
+                        <div class="w-100">
+                          <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead class="text-center bg-light">
+                                <tr>
+                                  <th width="200px">Investment Plan</th>
+                                  <th width="180px">Overall</th>
+                                  <th width="180px" *ngFor="let m of monthList_x">
+                                    {{ m.columnname }}
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr formArrayName="monthForm_list" *ngFor="
+                                      let cd of monthForm9_.controls;
+                                      let j = index
+                                    ">
+                                  <td [formGroupName]="j">
+                                    <select class="form-control" formControlName="currencyTitle"
+                                      disabled="flagFirst_row">
+                                      <option *ngFor="
+                                            let t of typeTransaction_month
+                                          " [value]="t.code">{{ t.chooes }}
+                                      </option>
+                                    </select>
+                                    <label class="mt-3" for="finishDate" *ngIf="j != 0">
+                                      FX
+                                    </label>
+                                    <input formControlName="fx" class="form-control" type="text" *ngIf="j != 0"
+                                      readonly="true" />
+                                  </td>
+
+                                  <td [formGroupName]="j">
+                                    <input class="form-control" type="text" formControlName="overall" mask="separator.2"
+                                      thousandSeparator="," [readonly]="true" />
+                                  </td>
+                                  <ng-container *ngIf="i != diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_x;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table10(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table10(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                  <ng-container *ngIf="i == diffYear">
+                                    <td [formGroupName]="j" *ngFor="
+                                          let column of monthList_last;
+                                          let jj = index
+                                        ">
+                                      <!-- <input *ngIf="
+                                            cd.get('flag_alert').value == true
+                                          " class="form-control ; border-danger" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table10(ym)
+                                          " (keypress)="keyPress($event)" type="test" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," /> -->
+                                      <input class="form-control" formControlName="m{{ jj + 1 }}"
+                                        [readonly]="column.readOnly" (change)="
+                                            ChangingValue_month_table10(ym)
+                                          " (keypress)="keyPress($event)" type="text" pattern="[0-9]*" mask="separator"
+                                        thousandSeparator="," />
+                                    </td>
+                                  </ng-container>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td>
+                                    <label for="finishDate">
+                                      Total Baht
+                                    </label>
+                                  </td>
+                                  <td>
+                                    <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                      thousandSeparator="," formControlName="monthTotal_overall" />
+                                  </td>
+                                  <td *ngFor="
+                                        let column of monthList_1;
+                                        let j = index
+                                      ">
+                                    <input class="form-control" type="text" [readonly]="true" mask="separator.2"
+                                      thousandSeparator="," formControlName="monthTotal{{ j + 1 }}" />
+                                  </td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- End Table -->
+      </form>
+
+      <br />
+      <br />
+      <br />
+      <div class="row mt-5 d-none">
+        <div class="col-md-12" *ngIf="capexStatus != 'Submit'">
+          <button class="btn btn-success">Attach files/View files</button>
+        </div>
+      </div>
+
+      <div class="row mt-5 d-none">
+        <div class="col-sm-12 col-md-6">
+          <span>Total Million Baht </span>
+          <select class="form-control mt-2">
+            <option value="Million Baht">Choose ...</option>
+            <option></option>
+          </select>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

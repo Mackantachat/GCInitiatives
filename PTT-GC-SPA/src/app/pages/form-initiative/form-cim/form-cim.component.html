@@ -1,0 +1,113 @@
+<ng-container>
+  <!-- <div bsModal #ViewLogHistoryModal="bs-modal" class="modal fade modal-ViewLog" [config]="{ backdrop: 'static' }">
+        <app-view-log-history (modelClose)="CloseViewLogHistory()" [id]="id"></app-view-log-history>
+      </div>
+    
+      <div bsModal #HistoryStatus="bs-modal" class="modal fade modal-ViewLog" [config]="{ backdrop: 'static' }">
+        <app-history-status (modelClose)="CloseHistoryStatus()" [id]="id" [stage]="history"></app-history-status>
+      </div>
+    </ng-container>
+    
+    <ng-container *ngIf="Impact">
+      <div bsModal #ContactIO="bs-modal" class="modal fade modal-ViewLog" [config]="{ backdrop: 'static' }">
+        <app-contact-io (modelClose)="CloseContactIO()" [id]="id"></app-contact-io>
+      </div>
+    </ng-container> -->
+
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#general" role="tab" aria-controls="home"
+        aria-selected="true"> <span [ngClass]="{'nav-required': tabGeneralRequire }">General Information</span></a>
+    </li>
+    <li class="nav-item" *ngIf="page == 'edit'">
+      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="profile"
+        aria-selected="false"><span [ngClass]="{'nav-required': tabDetailRequire }">Detailed Information</span></a>
+    </li>
+    <!-- <li class="nav-item">
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+      </li> -->
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="home-tab">
+      <app-general-form [formGroup]="formGroup" [id]="GetId()" [page]="page"></app-general-form>
+    </div>
+    <div class="tab-pane fade" id="detail" role="tabpanel" aria-labelledby="profile-tab" *ngIf="page == 'edit'">
+      <app-detail-form [formGroup]="formGroup" [id]="GetId()"></app-detail-form>
+    </div>
+    <!-- <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div> -->
+  </div>
+  <hr>
+  <div class="container top">
+    <!-- <ng-template [ngIf]="CheckSubmitTo">
+        <form [formGroup]="submitToForm">
+          <div class="form-group row my-3">
+            <div class="col-md-4">
+              <label for="submitTo"> Submit to </label>
+              <select formControlName="status" class="form-control" (change)="OnChangeStatus()">
+                <option value="forward"> Submitted Forward </option>
+                <option value="backward"> Submitted Backward </option>
+                <option value="cancelled"> Submitted Cancelled </option>
+              </select>
+            </div>
+          </div>
+          <ng-container *ngIf="Comment">
+            <div class="form-group row my-3">
+              <div class="col-md-12">
+                <textarea formControlName="commentCancelled" rows="3" class="form-control comment"></textarea>
+                <div class="invalid-feedback">
+                  Comment is required !
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </form>
+      </ng-template> -->
+
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <ng-container>
+          <button type="button" class="btn btn-success btn-width" (click)="Submit()">
+            <i class="far fa-check-circle mr-2"></i> Submit
+          </button>
+        </ng-container>
+
+        <!-- <ng-container *ngIf="SuggestStatus">
+            <button type="button" class="btn btn-primary btn-width" (click)="Submit()" *ngIf="CheckButton">
+              <i class="far fa-check-circle mr-2"></i> Next
+            </button>
+            <button type="button" class="btn btn-success btn-width" (click)="Submit()" *ngIf="!CheckButton"
+              [disabled]="StageIL5 || DisabledSubmit">
+              <i class="far fa-check-circle mr-2"></i> Submit
+            </button>
+          </ng-container>
+          <button type="button" class="btn btn-white btn-width ml-2" [routerLink]="['/initiative/my-own']">
+            <i class="fas fa-ban mr-2"></i> Cancel
+          </button>
+          <br /> -->
+        <!-- <input type="text" [ngModel]="txtLastTime" style="min-width:300px;border:none;margin-top:10px;color:#E5E5E5"
+            readonly />
+  
+          <input type="text" [ngModel]="txtLastTime" style="min-width:300px;border:none;margin-top:10px;color:#E5E5E5"
+            readonly /> -->
+
+      </div>
+      <div class="col-md-6" style="text-align:right">
+        <!-- <button type="button" class="btn btn-white" (click)="SubmitRequestCapex()">
+            <i class="far fa-money-bill-alt mr-2"></i> Request CAPEX
+          </button> -->
+        <button type="button" class="btn btn-white btn-width ml-2" (click)="Draft()">
+          <i class="far fa-save mr-2"></i> Save Draft
+        </button>
+        <!-- <button type="button" class="btn btn-white btn-width ml-2">
+            <i class="far fa-copy  mr-2"></i> Duplicate
+          </button>
+          <button type="button" class="btn btn-white btn-width ml-2">
+            <i class="fas fa-print mr-2"></i> Print
+          </button>
+          <button type="button" class="btn btn-white btn-width ml-2" (click)="ShowAttachment()">
+            <i class="fas fa-paperclip mr-2"></i> <span style="font-size: 0.9rem;"> Attachment </span>
+          </button> -->
+      </div>
+    </div>
+  </div>

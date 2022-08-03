@@ -1,0 +1,17 @@
+.card {
+    border: inherit;
+}
+
+.table-active, .table-active>td, .table-active>th {
+    background-color: #ffffff;
+  }
+  
+  th, td {
+    color: #777777;
+    text-align: left;
+  }
+  
+  th.th-action, td.td-action {
+    color: #777777;
+    text-align: right;
+  }

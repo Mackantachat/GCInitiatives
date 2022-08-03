@@ -1,0 +1,104 @@
+table {
+  table-layout: fixed;
+}
+
+.fixed {
+  width: 200px;
+  overflow: hidden;
+}
+
+.kpi-col-1 {
+  left: 0;
+  position: sticky;
+}
+
+.table td,
+.table th {
+  vertical-align: middle;
+}
+
+[data-toggle="collapse"] .fa:before {
+  content: "\f139";
+}
+
+[data-toggle="collapse"].collapsed .fa:before {
+  content: "\f13a";
+}
+
+.name-col {
+  width: 400px;
+}
+
+.month-col {
+  width: 400px;
+}
+
+.action-col {
+  width: 155px;
+}
+
+.pointer-events-none {
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.freeze-control {
+  pointer-events: none;
+  opacity: 70%;
+}
+
+.wrapper {
+  position: relative;
+  overflow: auto;
+  border: 0px solid black;
+  white-space: nowrap;
+  max-height: 600px;
+}
+
+.sticky-col {
+  position: -webkit-sticky;
+  position: sticky;
+  background-color: rgb(252, 252, 252);
+  z-index: 201;
+}
+
+.first-col {
+  min-width: 400px;
+  left: 0px;
+  z-index: 201;
+}
+
+.second-col {
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+  left: 100px;
+}
+
+.customselect {
+  width: 70px;
+  overflow: hidden;
+}
+
+.customselect select {
+  width: 100px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.vertical-center {
+  margin: auto;
+  width: 50%;
+  /* padding-left: 10px; */
+}
+
+th {
+  z-index: 101;
+  background: white;
+  position: sticky;
+  top: 0;
+  min-height: 200px;
+  box-shadow: 1px 1px 1px 1px #adadad;
+}

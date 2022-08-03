@@ -1,0 +1,902 @@
+<!-- <div bsModal #AttachmentModal="bs-modal" class="modal fade modal-Attachment" [config]="{ backdrop: 'static'}">
+  <app-initiative-attachment (modelClose)="CloseAttachment()" [id]="id"></app-initiative-attachment>
+</div> -->
+
+<!-- <div bsModal #ViewLogHistoryModal="bs-modal" class="modal fade modal-ViewLog" [config]="{ backdrop: 'static' }">
+    <app-view-log-history (modelClose)="CloseViewLogHistory()" [id]="id"></app-view-log-history>
+</div>
+
+<div bsModal #HistoryStatus="bs-modal" class="modal fade modal-ViewLog" [config]="{ backdrop: 'static' }">
+    <app-history-status (modelClose)="CloseHistoryStatus()" [id]="id" [stage]="history"></app-history-status>
+</div> -->
+
+<div>
+    <div class="form-group row mt-3">
+        <div class="col-md-12">
+            <h3> {{ name }} </h3>
+            <hr>
+        </div>
+    </div>
+    <form [formGroup]="initiativesForm">
+        <!-- (keydown.enter)="$event.preventDefault()"-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card text card-initiative">
+                    <div class="card-body">
+                        <div class="form-initiative">
+                            <!-- Initiative No -->
+                            <ng-container *ngIf="page == 'edit' || getInitiativeService.initiativeCode">
+                                <div class="form-group row">
+                                    <div class="col-md-6">
+                                        <label for="name"> Initiative No. <span class="text-danger">*</span> : </label>
+                                        <input value="{{getInitiativeService.initiativeCode}}" id="initiativeCode"
+                                            type="text" class="form-control" readonly>
+                                    </div>
+                                    <div class="col-md-6" *ngIf="getInitiativeService.legacyInitiativeCode">
+                                        <label for="name">Legacy Initiative No. <span class="text-danger">*</span> :
+                                        </label>
+                                        <input value="{{getInitiativeService.legacyInitiativeCode}}"
+                                            id="legacyInitiativeCode" type="text" class="form-control" readonly>
+                                    </div>
+                                </div>
+                            </ng-container>
+
+                            <!-- Initiative Name -->
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="name"> Initiative Name <span class="text-danger">*</span> : </label>
+                                    <input formControlName="name" type="text" class="form-control"
+                                        [ngClass]="{'is-invalid': getFormError('name') }">
+                                    <div class="invalid-feedback" *ngIf="getFormError('name')">
+                                        Initiative Name is required !
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 row">
+                                    <div class="col-md-6">
+                                        <label for="OwnerName"> Owner Name <span class="text-danger">*</span> : </label>
+                                        <ng-select formControlName="ownerName" [items]="owners" bindValue="ownerName"
+                                            bindLabel="ownerName" placeholder="Choose Owner"
+                                            (search)="SearchOwnerName($event)" (clear)="ClearOwnerName()"
+                                            [ngClass]="{'is-invalid': getFormError('ownerName') }">
+                                        </ng-select>
+                                        <div class="text-feedback" *ngIf="getFormError('ownerName')">
+                                            OwnerName is required !
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label for="CreatorName"> Creator Name <span class="text-danger">*</span> :
+                                        </label>
+                                        <input value="{{creatorName}}" id="creatorName" type="text" class="form-control"
+                                            readonly>
+                                    </div>
+                                    <!-- Co-Developer -->
+                                    <div class="col-md-12">
+                                        <label for="coDevelopers"> Co-Developer : </label>
+                                        <ng-select formControlName="coDeveloper" [items]="coDevelopers"
+                                            loadingText="Loading" [multiple]="true" (search)="SearchCoDeveloper($event)"
+                                            (remove)="RemoveCoDeveloper()" bindValue="coDeveloperName"
+                                            bindLabel="coDeveloperName" placeholder="Choose CoDevelopers">
+                                        </ng-select>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Company && SpecifyCompany -->
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="company"> Company <span class="text-danger">*</span> : </label>
+                                    <ng-select formControlName="company" [items]="companyList" bindValue="value"
+                                        bindLabel="name" placeholder="Choose Company" (change)="onChangeCompany()"
+                                        (focus)="onChangeCompany()" [readonly]="haveCompany"
+                                        [ngClass]="{'is-invalid': getFormError('company') }">
+                                    </ng-select>
+                                    <div class="text-feedback" *ngIf="getFormError('company')">
+                                        Company is required !
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <ng-template [ngIf]="IsOtherCompany">
+                                        <label for="specifyCompany"> Please Specify : Company</label>
+                                        <input formControlName="specifyCompany" type="text" class="form-control">
+                                    </ng-template>
+                                </div>
+                                <!-- Plant&&SpecifyPlant -->
+                                <div class="col-md-6">
+                                    <label for="plant"> Plant <span class="text-danger">*</span> : </label>
+                                    <ng-select formControlName="plant" [items]="GetPlants()" bindValue="id"
+                                        bindLabel="name" placeholder="Choose Plant"
+                                        [ngClass]="{'is-invalid': getFormError('plant') }">
+                                    </ng-select>
+                                    <div class="text-feedback" *ngIf="getFormError('plant')">
+                                        Plant is required !
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="organization"> Organization (Asset Owner) <span
+                                            class="text-danger">*</span> : </label>
+                                    <ng-select formControlName="organization" [items]="GetOrganizations()"
+                                        bindValue="name" bindLabel="name" placeholder="Choose Organization"
+                                        [ngClass]="{'is-invalid': getFormError('organization') }">
+                                    </ng-select>
+                                    <div class="text-feedback" *ngIf="getFormError('organization')">
+                                        Organization (Asset Owner) is required !
+                                    </div>
+                                </div>
+                                <div class="col-3 mt-4 pt-3 mtp">
+                                    <div class="custom-control custom-checkbox custom-control-inline">
+                                        <input id="integration" class="custom-control-input" type="checkbox"
+                                            formControlName="integration">
+                                        <label class="custom-control-label" for="integration"> MTP Integration </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="registerDate"> Register Date <span class="text-danger">*</span> :
+                                    </label>
+                                    <div class="input-group">
+                                        <input formControlName="registeringDate" type="text" [bsConfig]="bsConfigStart"
+                                            class="form-control" bsDatepicker [isDisabled]="true" readonly triggers="">
+                                        <!-- <input formControlName=" registeringDate" type="text" class="form-control"
+                                                        style="background-color:#B9B9B9" readonly> -->
+                                        <div *ngIf="!viewMode" class="input-group-append">
+                                            <i class="far fa-calendar right-icon mt-2"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Starting Date & Finish Date -->
+                            <div class="form-group row">
+                                <div class="col-md-3">
+                                    <label for="registerDate"> Start Date <span class="text-danger">*</span> : </label>
+                                    <div class="input-group">
+                                        <input formControlName="startingDate" type="text" [bsConfig]="bsConfigStart"
+                                            class="form-control" bsDatepicker #dpStart="bsDatepicker"
+                                            (bsValueChange)="StartDateChange($event)"
+                                            [ngClass]="{ 'is-invalid': getFormError('startingDate') }"
+                                            [triggers]="viewMode ? '' : 'click:click'">
+                                        <div *ngIf="!viewMode" class="input-group-append">
+                                            <i class="far fa-calendar right-icon mt-2" (click)="dpStart.toggle()"
+                                                [attr.aria-expanded]="dpStart.isOpen"></i>
+                                        </div>
+                                        <div class="invalid-feedback" *ngIf="getFormError('startingDate')">
+                                            Start Date is required !
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="FinishDate"> Finish Date <span class="text-danger">*</span> : </label>
+                                    <div class="input-group">
+                                        <input formControlName="finishingDate" type="text" [bsConfig]="bsConfigFinish"
+                                            class="form-control" bsDatepicker #dpFinish="bsDatepicker"
+                                            [ngClass]="{ 'is-invalid': getFormError('finishingDate') }"
+                                            (bsValueChange)="FinishChange($event)" (onShown)="OnShowFinish()"
+                                            (onHidden)="OnHiddenFinish()">
+                                        <div class="input-group-append">
+                                            <i class="far fa-calendar right-icon mt-2" (click)="dpFinish.toggle()"
+                                                [attr.aria-expanded]="dpFinish.isOpen"></i>
+                                        </div>
+                                        <div class="invalid-feedback" *ngIf="getFormError('finishingDate')">
+                                            Finish Date is required !
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Initiative Detail -->
+                            <div class="form-group row ">
+                                <div class="col-md-6">
+                                    <label for="background"> Background <span class="text-danger">*</span> : </label>
+                                    <textarea formControlName="background" class="form-control" rows="3"
+                                        [ngClass]="{ 'is-invalid': getFormError('background') }"></textarea>
+                                    <div class="invalid-feedback" *ngIf="getFormError('background')">
+                                        Background is required !
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="resultObjective"> Objective/Expected Result <span
+                                            class="text-danger">*</span> : </label>
+                                    <textarea formControlName="resultObjective" class="form-control" rows="3"
+                                        [ngClass]="{'is-invalid': getFormError('resultObjective') }"></textarea>
+                                    <div class="invalid-feedback" *ngIf="getFormError('resultObjective')">
+                                        Objective/Expected Result is required !
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- ScopeOfWork -->
+                            <div class="form-group row ">
+                                <div class="col-md-6">
+                                    <label for="scopeOfWork"> Scope of Work <span class="text-danger">*</span> :
+                                    </label>
+                                    <textarea formControlName="scopeOfWork" class="form-control" rows="3"
+                                        [ngClass]="{'is-invalid': getFormError('scopeOfWork') }"></textarea>
+                                    <div class="invalid-feedback" *ngIf="getFormError('scopeOfWork')">
+                                        ScopeOfWork is required !
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+
+
+                                <div class="col-md-6">
+                                    <label for="costEstCapex"> Cost Estimated (CAPEX) M.THB <span class="text-danger">
+                                            *
+                                        </span> :
+                                    </label>
+                                    <input formControlName="costEstCapex" type="text" class="form-control" step='0.01'
+                                        placeholder='0.00' mask="separator.2" thousandSeparator=","
+                                        (input)="RequestCapexHideShowCheck()"
+                                        [ngClass]="{ 'is-invalid': getFormError('costEstCapex') }" readonly>
+                                    <div class="invalid-feedback" *ngIf="getFormError('costEstCapex')">
+                                        Cost Estimated (CAPEX) is required !
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="costEstOpex"> Cost Estimated (OPEX) M.THB <span
+                                            class="text-danger">*</span>
+                                        :
+                                    </label>
+                                    <input formControlName="costEstOpex" type="text" class="form-control" step='0.01'
+                                        placeholder='0.00' mask="separator.2" thousandSeparator=","
+                                        [ngClass]="{ 'is-invalid': getFormError('costEstOpex') }" readonly>
+                                    <div class="invalid-feedback" *ngIf="getFormError('costEstOpex')">
+                                        Cost Estimated (OPEX) is required !
+                                    </div>
+                                </div>
+                                <!------------------------------------------------------------------------------------------------------------>
+                            </div>
+
+                            <div class="form-group row">
+                                <!-- Type of Benefit & RAM-->
+                                <div class="col-md-2">
+                                    <label> Type of Benefit <span class="text-danger">*</span> : </label>
+                                    <select class="form-control" formControlName="typeBenefit"
+                                        [ngClass]="{ 'is-invalid': getFormError('typeBenefit') }"
+                                        (change)="RequestCapexHideShowCheck()">
+                                        <option value="" selected disabled>Choose Type of Benefit</option>
+                                        <option value="FINANCIAL">FINANCIAL</option>
+                                        <option value="NON-FINANCIAL">NON-FINANCIAL</option>
+                                    </select>
+                                    <div class="invalid-feedback" *ngIf="getFormError('typeBenefit')">
+                                        Type of Benefit is required !
+                                    </div>
+                                </div>
+                                <!-- Benefit Amount & PayBack Period -->
+                                <ng-container *ngIf="showBenefit">
+
+                                    <div class="col-md-6">
+                                        <label> Benefit Amount <span class="text-danger">*</span> : </label>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <input formControlName="benefitAmount" type="text" class="form-control"
+                                                    step='0.001' placeholder='' mask="separator.3" thousandSeparator=","
+                                                    [ngClass]="{ 'is-invalid': getFormError('benefitAmount') }"
+                                                    (blur)="CalculatePayBackPeriod()">
+                                                <!-- <input type="text" class="form-control" formControlName="benefitAmount"
+                                                (keypress)="keyPress($event)"
+                                                [value]="typeBenefitValue | number:'1.3-3'"
+                                                [ngClass]="{ 'is-invalid': getFormError('benefitAmount') }" key
+                                                (blur)="convertBenefit()"> -->
+                                                <div class="invalid-feedback" *ngIf="getFormError('benefitAmount')">
+                                                    Benefit Amount is required !
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <select type="text" class="form-control"
+                                                    formControlName="benefitAmountType">
+                                                    <option value="THB" selected> M.THB / Year </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label> Pay Back Period <span class="text-danger">*</span> : </label>
+                                        <input type="text" class="form-control" formControlName="payBackPeriod"
+                                            step='0.01' placeholder='0.00' mask="separator.2" thousandSeparator=","
+                                            readonly>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <form [formGroup]="DimForm">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card text card-initiative">
+                    <div class="card-body">
+                        <div class="form-initiative">
+                            <!-- <div class="row"> -->
+                            <!-- <div class="col-6"> -->
+                            <div class="col-md-12 mb-3">
+                                <h5>Please select item(s) and provide more information as required below:</h5>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12 dim-select">
+                                    <div class="mt-1">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input id="Hardware/Software" value="Hardware/Software"
+                                                class="custom-control-input" type="radio" name="type"
+                                                formControlName="type" (change)="ChangeDim()">
+                                            <label class="custom-control-label my-2" for="Hardware/Software">
+                                                <h4 class="text-dark"> Standard items </h4>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-container *ngIf="showSoftware">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card text card-initiative">
+                                            <div class="card-body">
+                                                <div class="form-initiative">
+                                                    <div class="form-group row">
+                                                        <div class="col-md-4">
+                                                            <label> Total Budget (THB) </label>
+                                                            <input formControlName="opexSoftware" type="text"
+                                                                class="form-control" mask="separator.2"
+                                                                thousandSeparator="," placeholder='0.00' readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <div class="col-md-6">
+                                                            <div class="mt-1">
+                                                                Software
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="card text card-initiative">
+                                                                <div class="form-initiative">
+                                                                    <div class="form-row align-items-center">
+                                                                        <table class="table table-bordered">
+                                                                            <thead class="text-center bg-light">
+                                                                                <th width="15%">Software</th>
+                                                                                <th width="40%">Detail</th>
+                                                                                <th width="15%">No. of unit</th>
+                                                                                <th width="15%">Cost Per
+                                                                                    Unit(THB) </th>
+                                                                                <th width="15%">Total THB</th>
+                                                                                <ng-container
+                                                                                    *ngIf="!DimView && !viewMode">
+                                                                                    <th width="5%"></th>
+                                                                                </ng-container>
+                                                                            </thead>
+                                                                            <tbody
+                                                                                *ngFor="let control of DimForm.controls.software.get('opexSoftware')['controls']; let i=index">
+                                                                                <tr [formGroup]="control">
+                                                                                    <td class="text-center">
+                                                                                        <select class="form-control"
+                                                                                            type="text"
+                                                                                            formControlName="assetId"
+                                                                                            (change)="OnChangeSoftware(i)">
+                                                                                            <option value="" selected
+                                                                                                disabled>
+                                                                                                Choose...
+                                                                                            </option>
+                                                                                            <option
+                                                                                                *ngFor="let item of software"
+                                                                                                value="{{ item.assetId }}">
+                                                                                                {{
+                                                                                                item.assetName
+                                                                                                }}</option>
+                                                                                            <!-- <option value="S9999">
+                                                                                                Other </option> -->
+                                                                                        </select>
+                                                                                    </td>
+                                                                                    <td class="form-group">
+                                                                                        <input type="text"
+                                                                                            class="form-control"
+                                                                                            formControlName="otherName"
+                                                                                            (input)="InputOtherSoftware(i)">
+                                                                                    </td>
+                                                                                    <td class="form-group">
+                                                                                        <input type="number"
+                                                                                            class="form-control"
+                                                                                            formControlName="numberOfUnit"
+                                                                                            (input)="InputSoftware(i)">
+                                                                                    </td>
+                                                                                    <td class="form-group">
+                                                                                        <div class="input-group">
+                                                                                            <input type="text"
+                                                                                                class="form-control"
+                                                                                                formControlName="costPerUnit"
+                                                                                                mask="separator.2"
+                                                                                                thousandSeparator=","
+                                                                                                (input)="InputSoftware(i)">
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <td class="form-group">
+                                                                                        <div class="input-group">
+                                                                                            <input type="text"
+                                                                                                class="form-control"
+                                                                                                formControlName="totalMTHB"
+                                                                                                mask="separator.2"
+                                                                                                thousandSeparator=","
+                                                                                                readonly>
+                                                                                        </div>
+                                                                                    </td>
+                                                                                    <ng-container
+                                                                                        *ngIf="!DimView && !viewMode">
+                                                                                        <td class="text-center">
+                                                                                            <button
+                                                                                                class="btn btn-danger btn-sm"
+                                                                                                (click)="RemoveOpexForm(i)"
+                                                                                                [disabled]="isRemoveOpexForm || isDisableOpex">
+                                                                                                <i
+                                                                                                    class="fas fa-trash-alt"></i>
+                                                                                            </button>
+                                                                                        </td>
+                                                                                    </ng-container>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                        <ng-container *ngIf="!DimView && !viewMode">
+                                                                            <button class="btn btn-primary mr-5"
+                                                                                (click)="AddOpexForm()"
+                                                                                [disabled]="isDisableOpex">
+                                                                                <i class="fas fa-plus-square mr-2"></i>
+                                                                                Add New
+                                                                            </button>
+                                                                        </ng-container>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-container>
+
+                            <div class="form-group row">
+                                <div class="col-md-12 dim-select">
+                                    <div class="mt-1">
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input id="Project/SystemEnhancement" value="Project/System Enhancement"
+                                                class="custom-control-input" type="radio" name="type"
+                                                formControlName="type" (change)="ChangeDim()">
+                                            <label class="custom-control-label my-2" for="Project/SystemEnhancement">
+                                                <h4 class="text-dark"> New project / System enhancement </h4>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <ng-container *ngIf="surveyVersions == 1; else newVersion">
+                                <!-- <div class="project"> -->
+                                <ng-container *ngIf="showProject">
+                                    <div class="form-group row offset-4">
+                                        <label class="ml-3"> CAPEX (M.THB) </label>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <div class="mt-1">
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input id="capex1" value="capex001" class="custom-control-input"
+                                                        type="radio" name="capexNo" formControlName="capexNo"
+                                                        (change)="ChangeCapex($event)">
+                                                    <label class="custom-control-label" for="capex1"> 1. Existing
+                                                        System/Application
+                                                        Enhancement </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input formControlName="capexSummary1" type="text" class="form-control"
+                                                placeholder='0.00' mask="separator.2" thousandSeparator=","
+                                                (input)="ChangeCapexSummary(1)">
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <div class="mt-1">
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input id="capex2" value="capex002" class="custom-control-input"
+                                                        type="radio" name="capexNo" formControlName="capexNo"
+                                                        (change)="ChangeCapex($event)">
+                                                    <label class="custom-control-label" for="capex2"> 2. New platform or
+                                                        New technology to
+                                                        GC </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input formControlName="capexSummary2" type="text" class="form-control"
+                                                placeholder='0.00' mask="separator.2" thousandSeparator=","
+                                                (input)="ChangeCapexSummary(2)">
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <div class="mt-1">
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input id="capex3" value="capex003" class="custom-control-input"
+                                                        type="radio" name="capexNo" formControlName="capexNo"
+                                                        (change)="ChangeCapex($event)">
+                                                    <label class="custom-control-label" for="capex3"> 3. Advanced
+                                                        analytics model (AA)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input formControlName="capexSummary3" type="text" class="form-control"
+                                                placeholder='0.00' mask="separator.2" thousandSeparator=","
+                                                (input)="ChangeCapexSummary(3)">
+                                        </div>
+                                    </div>
+
+                                    <div class="row ml-4">
+                                        <div class="col-md-12 mt-3">
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input id="capexChoice1" value="Operation optimization"
+                                                    class="custom-control-input" type="radio" name="advancedCapexChoice"
+                                                    formControlName="advancedCapexChoice">
+                                                <label class="custom-control-label" for="capexChoice1"> Operation
+                                                    optimization </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input id="capexChoice2" value="Predictive maintenance"
+                                                    class="custom-control-input" type="radio" name="advancedCapexChoice"
+                                                    formControlName="advancedCapexChoice">
+                                                <label class="custom-control-label" for="capexChoice2"> Predictive
+                                                    maintenance </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input id="capexChoice3" value="Predictive pricing"
+                                                    class="custom-control-input" type="radio" name="advancedCapexChoice"
+                                                    formControlName="advancedCapexChoice">
+                                                <label class="custom-control-label" for="capexChoice3"> Predictive
+                                                    pricing </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <ng-container *ngIf="Question">
+                                        <!-- <div class="container-fluid mt-3"> -->
+                                        <div class="form-group row" *ngFor="let item of SortByTopic(CapexTopic)">
+                                            <div class="col-md-4 mt-2">
+                                                <strong> {{ item.topicName }} </strong>
+                                            </div>
+                                            <div class="col-md-8 mt-2">
+                                                <span class="ml-3">
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input class="custom-control-input" type="radio"
+                                                            [name]="item.topicId" [id]="RadioYes(item.topicId)"
+                                                            value="yes" [formControlName]="item.topicId"
+                                                            (change)="ChangeTopic($event, item.topicId)">
+                                                        <label class="custom-control-label"
+                                                            [for]="RadioYes(item.topicId)"> Yes </label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio custom-control-inline">
+                                                        <input class="custom-control-input" type="radio"
+                                                            [name]="item.topicId" [id]="RadioNo(item.topicId)"
+                                                            value="no" [formControlName]="item.topicId"
+                                                            (change)="ChangeTopic($event, item.topicId)">
+                                                        <label class="custom-control-label"
+                                                            [for]="RadioNo(item.topicId)"> No </label>
+                                                    </div>
+                                                </span>
+                                            </div>
+                                            <div class="col-12 mb-3" *ngIf="item.isYesOrNo">
+                                                <div *ngFor="let choice of SortBy(item.capexChoices)">
+                                                    <div class="row">
+                                                        <div class="col-md-6 mb-2 ml-3">
+                                                            <ng-container
+                                                                *ngIf="choice.topicId === 'T0001' && choice.choiceType === 'Text' && choice.choiceId === 'CH0001'">
+                                                                <label> {{ choice.choiceName }} </label>
+                                                                <textarea formControlName="Law" class="form-control"
+                                                                    cols="30" rows="3"></textarea>
+                                                            </ng-container>
+                                                            <ng-container
+                                                                *ngIf="choice.topicId === 'T0001' && choice.choiceType === 'Text' && choice.choiceId === 'CH0002'">
+                                                                <label> {{ choice.choiceName }} </label>
+                                                                <textarea formControlName="Impact" class="form-control"
+                                                                    cols="30" rows="3"></textarea>
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-1 mb-2 ml-3">
+                                                            <ng-container
+                                                                *ngIf="choice.topicId === 'T0001' && choice.choiceType === 'Date' && choice.choiceId === 'CH0003'">
+                                                                <label> {{ choice.choiceName }} </label>
+                                                                <input formControlName="Effective" type="text"
+                                                                    class="form-control" [bsConfig]="bsConfigStart"
+                                                                    class="form-control" bsDatepicker
+                                                                    #dpStart="bsDatepicker"
+                                                                    (bsValueChange)="EffectiveChange($event)">
+                                                            </ng-container>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12 mb-2 ml-3" *ngIf="choice.topicId !== 'T0001'">
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input [id]="choice.choiceId" [value]="choice.choiceId"
+                                                                class="custom-control-input" type="radio"
+                                                                [name]="ChoiceNameOld(item.topicId)"
+                                                                [formControlName]="ChoiceNameOld(item.topicId)">
+                                                            <label class="custom-control-label" [for]="choice.choiceId">
+                                                                {{ choice.choiceName }} </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- </div> -->
+                                    </ng-container>
+                                    <!-- </div> -->
+                                    <!-- </div> -->
+                                    <!-- <div class="col-6"> -->
+
+                                    <!-- </div> -->
+                                    <!-- </div> -->
+                                </ng-container>
+                            </ng-container>
+                            <ng-template #newVersion>
+                                <!-- <div class="project"> -->
+                                <ng-container *ngIf="showProject">
+                                    <div class="form-group row offset-4">
+                                        <label class="ml-3"> CAPEX (M.THB) </label>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <div class="mt-1">
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input id="capex1" value="capex001" class="custom-control-input"
+                                                        type="radio" name="capexNo" formControlName="capexNo"
+                                                        (change)="ChangeCapex($event)">
+                                                    <label class="custom-control-label" for="capex1"> 1. Existing
+                                                        System/Application
+                                                        Enhancement </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input formControlName="capexSummary1" type="text" class="form-control"
+                                                placeholder='0.00' mask="separator.2" thousandSeparator=","
+                                                (input)="ChangeCapexSummary(1)">
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <div class="mt-1">
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input id="capex2" value="capex002" class="custom-control-input"
+                                                        type="radio" name="capexNo" formControlName="capexNo"
+                                                        (change)="ChangeCapex($event)">
+                                                    <label class="custom-control-label" for="capex2"> 2. New
+                                                        platform or New technology to
+                                                        GC </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input formControlName="capexSummary2" type="text" class="form-control"
+                                                placeholder='0.00' mask="separator.2" thousandSeparator=","
+                                                (input)="ChangeCapexSummary(2)">
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <div class="mt-1">
+                                                <div class="custom-control custom-radio custom-control-inline">
+                                                    <input id="capex3" value="capex003" class="custom-control-input"
+                                                        type="radio" name="capexNo" formControlName="capexNo"
+                                                        (change)="ChangeCapex($event)">
+                                                    <label class="custom-control-label" for="capex3"> 3. Advanced
+                                                        analytics model (AA)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input formControlName="capexSummary3" type="text" class="form-control"
+                                                placeholder='0.00' mask="separator.2" thousandSeparator=","
+                                                (input)="ChangeCapexSummary(3)">
+                                        </div>
+                                    </div>
+
+                                    <div class="row ml-4">
+                                        <div class="col-md-12 mt-3">
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input id="capexChoice1" value="Operation optimization"
+                                                    class="custom-control-input" type="radio" name="advancedCapexChoice"
+                                                    formControlName="advancedCapexChoice">
+                                                <label class="custom-control-label" for="capexChoice1"> Operation
+                                                    optimization </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input id="capexChoice2" value="Predictive maintenance"
+                                                    class="custom-control-input" type="radio" name="advancedCapexChoice"
+                                                    formControlName="advancedCapexChoice">
+                                                <label class="custom-control-label" for="capexChoice2"> Predictive
+                                                    maintenance </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12 mt-3">
+                                            <div class="custom-control custom-radio custom-control-inline">
+                                                <input id="capexChoice3" value="Predictive pricing"
+                                                    class="custom-control-input" type="radio" name="advancedCapexChoice"
+                                                    formControlName="advancedCapexChoice">
+                                                <label class="custom-control-label" for="capexChoice3"> Predictive
+                                                    pricing </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+
+                                    <ng-container *ngIf="Question">
+                                        <!-- <div class="container-fluid mt-3"> -->
+                                        <div class="form-group"
+                                            *ngFor="let item of SortByTopic(CapexTopic); let i=index">
+                                            <div class="row">
+                                                <div class="col-md-4 mt-2">
+                                                    <strong> {{ item.topicName }} </strong>
+                                                </div>
+                                                <div class="col-md-8 mt-2">
+                                                    <span class="ml-3">
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input class="custom-control-input" type="radio"
+                                                                [name]="item.topicId" [id]="RadioYes(item.topicId)"
+                                                                value="yes" [formControlName]="item.topicId"
+                                                                (change)="ChangeTopic($event, item.topicId)">
+                                                            <label class="custom-control-label"
+                                                                [for]="RadioYes(item.topicId)">
+                                                                Yes </label>
+                                                        </div>
+                                                        <div class="custom-control custom-radio custom-control-inline">
+                                                            <input class="custom-control-input" type="radio"
+                                                                [name]="item.topicId" [id]="RadioNo(item.topicId)"
+                                                                value="no" [formControlName]="item.topicId"
+                                                                (change)="ChangeTopic($event, item.topicId)">
+                                                            <label class="custom-control-label"
+                                                                [for]="RadioNo(item.topicId)">
+                                                                No </label>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <ng-container class="row" *ngIf="getShowChoice(item.topicId)==true">
+                                                <ng-container *ngIf="item.capexChoices?.length > 0">
+                                                    <div *ngFor="let choice of item.capexChoices">
+                                                        <ng-container class="col-md-6"
+                                                            *ngIf="choice.choiceType === 'Text'">
+                                                            <label> {{ choice.choiceName }} </label>
+                                                            <textarea formControlName="{{ choice.choiceId }}"
+                                                                class="form-control" cols="30" rows="3"></textarea>
+                                                        </ng-container>
+                                                        <!-- <ng-container class="col-md-6 mb-2 ml-3"
+                                                        *ngIf="choice.choiceType === 'Text'">
+                                                        <label> {{ choice.choiceName }} </label>
+                                                        <textarea formControlName="{{ choice.choiceId }}"
+                                                            class="form-control" cols="30" rows="3"></textarea>
+                                                    </ng-container> -->
+                                                        <ng-container class="col-md-3"
+                                                            *ngIf="choice.choiceType === 'Date'">
+                                                            <label> {{ choice.choiceName }} </label>
+                                                            <input formControlName="{{ choice.choiceId }}" type="text"
+                                                                class="form-control" [bsConfig]="bsConfigStart"
+                                                                class="form-control" bsDatepicker
+                                                                #dpStart="bsDatepicker"
+                                                                (bsValueChange)="EffectiveChange($event)">
+                                                        </ng-container>
+                                                        <ng-container class="col-md-12"
+                                                            *ngIf="choice.choiceType == 'Radio'">
+                                                            <div
+                                                                class="custom-control custom-radio custom-control-inline">
+                                                                <input [id]="choice.choiceId+'_value'"
+                                                                    [value]="choice.choiceId"
+                                                                    class="custom-control-input" type="radio"
+                                                                    [name]="item.topicId+'_value'"
+                                                                    [formControlName]="item.topicId+'_value'"
+                                                                    [ngClass]="{'is-invalid': getDimformError(item.topicId+'_value') }">
+                                                                <label class="custom-control-label"
+                                                                    [for]="choice.choiceId+'_value'">
+                                                                    {{ choice.choiceName }} </label>
+                                                            </div>
+                                                        </ng-container>
+                                                        <ng-container class="col-md-12"
+                                                            *ngIf="choice.choiceType == 'CheckBox'">
+                                                            <div
+                                                                class="custom-control custom-checkbox custom-control-inline">
+                                                                <input class="custom-control-input" type="checkbox"
+                                                                    formControlName="{{choice.choiceId}}"
+                                                                    name="{{choice.choiceId}}" id="{{choice.choiceId}}">
+                                                                <!-- <input type="checkbox" name="" id=""> -->
+                                                                <label class="custom-control-label"
+                                                                    for="{{choice.choiceId}}">
+                                                                    {{ choice.choiceName }} </label>
+                                                            </div>
+                                                        </ng-container>
+                                                    </div>
+                                                </ng-container>
+                                            </ng-container>
+                                        </div>
+                                        <!-- </div> -->
+                                    </ng-container>
+                                    <!-- </div> -->
+                                    <!-- </div> -->
+                                    <!-- <div class="col-6"> -->
+
+                                    <!-- </div> -->
+                                    <!-- </div> -->
+                                </ng-container>
+                            </ng-template>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- 
+<ng-template [ngIf]="DimView" [ngIfElse]="ButtonSubmit">
+    <app-initiative-file [id]="id"></app-initiative-file>
+</ng-template> -->
+
+<!-- <ng-template #ButtonSubmit>
+    <div class="row">
+        <div class="col-md-6">
+            <button type="button" class="btn btn-success btn-width" (click)="Submit()" [disabled]="DisabledSubmit">
+                <i class="far fa-check-circle mr-2"></i> Submit
+            </button>
+            <button type="button" class="btn btn-white btn-width ml-2" [routerLink]="['/initiative/my-own']">
+                <i class="fas fa-ban mr-2"></i> Cancel
+            </button>
+        </div>
+        <div class="col-md-6" style="text-align:right">
+            <button type="button" class="btn btn-white btn-width ml-2" (click)="Draft()" [disabled]="DisabledSubmit">
+                <i class="far fa-save mr-2"></i> Save Draft
+            </button>
+            <button type="button" class="btn btn-white btn-width ml-2">
+                <i class="far fa-copy  mr-2"></i> Duplicate
+            </button>
+            <button type="button" class="btn btn-white btn-width ml-2">
+                <i class="fas fa-print mr-2"></i> Print
+            </button>
+            <button type="button" class="btn btn-white btn-width ml-2" (click)="ShowAttachment()">
+                <i class="fas fa-upload mr-2"></i> Attachment
+            </button>
+        </div>
+    </div>
+</ng-template> -->

@@ -1,0 +1,92 @@
+[
+  {
+    "Type": "max",
+    "Stage": "SIL1",
+    "Approver": "teranai.l@frontiscompany.com",
+    "Order": "1"
+  },
+  {
+    "Type": "max",
+    "Stage": "SIL2",
+    "Approver": "teranai.l@frontiscompany.com",
+    "Order": "1"
+  },
+  {
+    "Type": "max",
+    "Stage": "SIL3",
+    "Approver": "teranai.l@frontiscompany.com",
+    "Order": "1"
+  },
+  {
+    "Type": "max",
+    "Stage": "SIL4",
+    "Approver": "teranai.l@frontiscompany.com",
+    "Order": "1"
+  },
+  {
+    "Type": "max",
+    "Stage": "SIL5",
+    "Approver": "teranai.l@frontiscompany.com",
+    "Order": "1"
+  },
+  {
+    "Type": "directCapex",
+    "Stage": "DM Approve",
+    "Approver": "teranai.l@frontiscompany.com",
+    "Order": "1"
+  },
+  {
+    "Type": "directCapex",
+    "Stage": "VP Approve",
+    "Approver": "teranai.l@frontiscompany.com",
+    "Order": "1"
+  },
+  {
+    "Type": "directCapex",
+    "Stage": "EVP Approve",
+    "Approver": "teranai.l@frontiscompany.com",
+    "Order": "1"
+  },
+  {
+    "Type": "max",
+    "Stage": "waiting",
+    "Approver": "teranai.l@frontiscompany.com",
+    "Order": "1"
+  },
+  {
+    "Type": "directCapex",
+    "Stage": "VP Approve",
+    "Approver": "thammatad.a@frontiscompany.com",
+    "Order": "2"
+  },
+  {
+    "Type": "max",
+    "Stage": "SIL1",
+    "Approver": "thammatad.a@frontiscompany.com",
+    "Order": "2"
+  },
+  {
+    "Type": "max",
+    "Stage": "SIL2",
+    "Approver": "thammatad.a@frontiscompany.com",
+    "Order": "2"
+  },
+  {
+    "Type": "max",
+    "Stage": "SIL3",
+    "Approver": "thammatad.a@frontiscompany.com",
+    "Order": "2"
+  },
+  {
+    "Type": "max",
+    "Stage": "SIL4",
+    "Approver": "thammatad.a@frontiscompany.com",
+    "Order": "2"
+  },
+  {
+    "Type": "max",
+    "Stage": "SIL5",
+    "Approver": "thammatad.a@frontiscompany.com",
+    "Order": "2"
+  }
+]

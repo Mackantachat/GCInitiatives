@@ -1,0 +1,64 @@
+<div class="modal-body" style="height: 100%;">
+    <div class="wrapper">
+        <form [formGroup]="kriModalForm">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center" rowspan="2">
+                           <input class="form-control textbox-center" formControlName = "kriType">
+                        </th>
+                        <th scope="col" class="text-center" colspan="3">Target
+                        </th>
+                    </tr>
+                    <tr>
+                        <th scope="col" class="text-center">1 &nbsp;&nbsp;
+                            <input class="" readonly style="min-width:40px;max-width: 40px;border:none;background:red">
+                        </th>
+                        <th scope="col" class="text-center">2  &nbsp;&nbsp;
+                            <input class="" readonly style="min-width:40px;max-width: 40px;border:none;background:yellow">
+                        </th>
+                        <th scope="col" class="text-center">3 &nbsp;&nbsp;
+                            <input class="" readonly style="min-width:40px;max-width: 40px;border:none;background:green">
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <ng-container>
+                            <td>
+                                <!-- <input class="form-control" formControlName = "executionKri"> -->
+                                <textarea class="form-control" formControlName="kriDetail" rows="15" cols="50" style="background-color: rgb(241, 241, 241);"  [readonly]="kriFreeze" ></textarea>
+                            </td>
+                            <td>
+                                <!-- <input class="form-control" formControlName = "target1"> -->
+                                <textarea class="form-control" formControlName="target1" rows="15" cols="50"  style="background-color: rgb(241, 241, 241);" [readonly]="kriFreeze"></textarea>
+                            </td>
+                            <td>
+                                <!-- <input class="form-control" formControlName = "target2"> -->
+                                <textarea  class="form-control" formControlName="target2" rows="15" cols="50"  style="background-color: rgb(241, 241, 241);" [readonly]="kriFreeze"></textarea>
+                            </td>
+                            <td>
+                                <!-- <input class="form-control" formControlName = "target3"> -->
+                                <textarea class="form-control" formControlName="target3" rows="15" cols="50"  style="background-color: rgb(241, 241, 241);" [readonly]="kriFreeze"></textarea>
+                            </td>
+                        </ng-container>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+  
+
+    <div class="row">
+        <div class="col-12">
+            <div class="float-right">
+                <button type="button" class="btn btn-primary mr-1" (click)="save()"  [ngClass]="{'freeze-control': kriFreeze }">
+                    Save
+                </button>
+                <button type="button" class="btn btn-primary" (click)="cancel()">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

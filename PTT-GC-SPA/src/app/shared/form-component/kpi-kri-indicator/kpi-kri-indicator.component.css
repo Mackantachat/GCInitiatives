@@ -1,0 +1,20 @@
+.level-red {
+  background-color: red;
+  cursor: default;
+}
+
+.level-green {
+  background-color: green;
+  cursor: default;
+}
+
+.level-yellow {
+  background-color: yellow;
+  cursor: default;
+}
+.wrapper {
+  position: relative;
+  overflow: auto;
+  border: 0px solid black;
+  white-space: normal;
+}

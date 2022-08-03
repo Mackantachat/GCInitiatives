@@ -1,0 +1,63 @@
+<a [routerLink]="['/initiative/dashboard']" type="button" class="btn btn-info btn-sm">
+  << Back to Menu
+</a>
+<div class="row" style="height: 600px;">
+  
+  <div class="col-md-12" style="position: absolute;">  <!--position:absolute-->
+    <div style="" class="">
+      <div style="width: 1200px; height: 50%;" class="center">
+        <canvas id="Chart">
+        </canvas>
+        <div style="margin-left:60px;width:1160px;" class="row" *ngIf="columnNumber > 48">
+          <div *ngFor="let index of ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']" class="">
+            <div style="border-style: groove;text-align:center;width:95px">{{index}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1">
+  </div>
+  <div class="col-md-2" style="font-size: 12px;position:absolute;padding-left: 100px;padding-top: 80px;" *ngIf="columnNumber > 48">
+    <table border="1" class="" style="background-color:#ffffff;width: 200px;box-shadow: 2px 2px 4px #737373;">
+      <tr style="text-align: center;background: #eeeeee;">
+        <td colspan="2">Current Achievement (M.THB)</td>
+      </tr>
+      <tr *ngFor="let item of result['datasets']">
+        <td>
+          &nbsp;{{item.label}}
+        </td>
+        <td>
+          &nbsp;{{ item.data[nowWeek - 1] | number : '1.2-2'  }}
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- <table border="1" class="table table-bordered" *ngIf="showTable">
+    <tr>
+        <th>Workstream</th>
+        <th *ngFor="let item of result['datasets'] ">{{item.label}}</th>
+    </tr>
+   <tr *ngFor="let item of result['dataLabel']; let i = index ">
+        <td>{{ item }}</td>
+        <td  *ngFor="let item of result['datasets'] ">{{ item.data[i]}}</td>
+    </tr>
+</table> -->
+
+<table border="1" class="table table-bordered" *ngIf="showTable">
+  <tr>
+      <th>Workstream</th>
+      <th *ngIf="count_IL > 19 || (label_IL != '' && label_SIL != '') ">{{ label_IL }}</th>
+      <th *ngFor="let item of result['datasets'] ">{{ item.label == "Unconverted_IL4" ? "Unconverted IL4" : item.label }}</th>
+      <th *ngIf="count_IL > 19 && (label_IL == 'IL5 Achievement' && label_SIL == 'IL5 Achievement')">{{ label_ILCount }}</th>
+  </tr>
+ <tr *ngFor="let item of result['dataLabel']; let i = index ">
+      <td>{{ item }}</td>
+      <td *ngIf="count_IL > 19 || (label_IL != '' && label_SIL != '') ">{{ (arrayIL5[i] + arraySIL5[i]) | number : '1.2-2' }}</td>
+      <td  *ngFor="let item of result['datasets'] ">{{ item.data[i] | number : '1.2-2' }}</td>
+      <td *ngIf="count_IL > 19 && (label_IL == 'IL5 Achievement' && label_SIL == 'IL5 Achievement')">{{ arrayILCount[i] }}</td>
+  </tr>
+</table>
+

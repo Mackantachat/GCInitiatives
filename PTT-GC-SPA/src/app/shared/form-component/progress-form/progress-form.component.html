@@ -1,0 +1,879 @@
+<ng-container *ngIf="isAdmin; else isNotAdmin">
+  <!-- for admin form -->
+  <div class="row" [formGroup]="progessForm">
+    <div class="col-md-12">
+      <div class="card text card-initiative">
+
+        <div class="card-body">
+          <div class="form-initiative">
+            <app-initiative-info [id]="id"></app-initiative-info>
+          </div>
+          <div class="form-initiative">
+            <!--<label style="color: #454545;font-size: 28px;"> Detail </label>-->
+            <h3 style="color: #1C6EA4;">Progress & Milestone (Execution)</h3>
+            <hr>
+          </div>
+
+          <div class="form-initiative">
+            <div class="form-row align-items-center">
+              <form>
+                <table class="table table-bordered">
+                  <thead class="text-center bg-light">
+                    <th width="2%">No.</th>
+                    <th width="20%">Milestone/Deliverable <span class="text-danger">*</span></th>
+                    <!-- <th width="18%">Key Deliverable</th> -->
+                    <th width="15%">Start </th>
+                    <th width="15%">Planned Finish <span class="text-danger">*</span></th>
+                    <th width="15%">Actual Finish</th>
+                    <th width="15%">Activity</th>
+                    <th width="12%">Status</th>
+                    <th width="5%"></th>
+                  </thead>
+                  <tbody *ngFor="let control of progessForm.get('details')['controls']; let i=index">
+                    <tr [formGroup]="control">
+                      <td class="text-center"> {{i+1}} </td>
+                      <td class="form-group">
+                        <!-- <input type="text" class="form-control" [ngClass]="{'is-invalid': InvalidMilestone(i) }"
+                          formControlName="milestone">
+                        <div class="invalid-feedback" *ngIf="InvalidMilestone(i)">
+                          Milestone is required
+                        </div> -->
+                        <textarea formControlName="milestone" class="form-control" rows="3"
+                          [ngClass]="{ 'is-invalid': InvalidMilestone(i) }"></textarea>
+                        <div class="invalid-feedback" *ngIf="InvalidMilestone(i)">
+                          Milestone/Deliverable is required
+                        </div>
+                      </td>
+                      <!-- <td class="form-group">
+                        <textarea rows="1" class="form-control milestone-textarea" formControlName="keyDeliverable"
+                          [ngClass]="{'is-invalid': InvalidKeyDeliverable(i) }"></textarea>
+                      </td> -->
+                      <td class="form-group">
+                        <div class="input-group">
+                          <input formControlName="start" (bsValueChange)="setRequestDate($event,'start',i)" type="text"
+                            class="form-control" [bsConfig]="bsConfig" bsDatepicker [minDate]="initiativeStartDate"
+                            #dpStart="bsDatepicker" [ngClass]="{'is-invalid': InvalidStartDate(i) }"
+                            [triggers]="viewMode ? '' : 'click:click'" />
+
+                          <div *ngIf="!viewMode" class="input-group-append">
+                            <i class="far fa-calendar right-icon mt-2" (click)="dpStart.toggle()"
+                              [attr.aria-expanded]="dpStart.isOpen"></i>
+                          </div>
+                          <!-- <input type="text" class="form-control" formControlName="start" [bsConfig]="bsConBetween"
+                                bsDatepicker #dpRegister="bsDatepicker" (bsValueChange)="ChangePlanDate(i, $event)"> -->
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <div class="input-group">
+                          <input formControlName="planFinish" (bsValueChange)="setRequestDate($event,'planFinish',i)"
+                            type="text" class="form-control" [bsConfig]="bsConfig" bsDatepicker
+                            #dpPlantFinish="bsDatepicker" [ngClass]="{'is-invalid': InvalidPlanFinish(i) }"
+                            [triggers]="viewMode ? '' : 'click:click'" />
+
+                          <div *ngIf="!viewMode" class="input-group-append">
+                            <i class="far fa-calendar right-icon mt-2" (click)="dpPlantFinish.toggle()"
+                              [attr.aria-expanded]="dpPlantFinish.isOpen"></i>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <div class="input-group">
+                          <input formControlName="actualFinish"
+                            (bsValueChange)="setRequestDate($event,'actualFinish',i)" type="text" class="form-control"
+                            [bsConfig]="bsConfig" bsDatepicker #dpActualFinish="bsDatepicker"
+                            [triggers]="viewMode ? '' : 'click:click'" />
+
+                          <div *ngIf="!viewMode" class="input-group-append">
+                            <i class="far fa-calendar right-icon mt-2" (click)="dpActualFinish.toggle()"
+                              [attr.aria-expanded]="dpActualFinish.isOpen"></i>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <select type="text" class="form-control" formControlName="activity">
+                          <option value="Critical"> Critical </option>
+                          <option value="Non-Critical"> Non-Critical </option>
+                        </select>
+                      </td>
+                      <td class="text-center">
+                        <ng-container *ngIf="planStatus[i]">
+                          <i class="fas fa-circle text-success icon-LI mt-2" *ngIf="planStatus[i] == 'min'"></i>
+                          <i class="fas fa-circle text-danger  icon-LI mt-2" *ngIf="planStatus[i] == 'max'"></i>
+                          <i class="fas fa-circle text-secondary  icon-LI mt-2" *ngIf="planStatus[i] == 'actual'"></i>
+                        </ng-container>
+                      </td>
+                      <td class="text-center">
+                        <button *ngIf="!viewMode" (click)="RemoveDetail(i)" class="btn btn-danger btn-sm"
+                          [disabled]="isDisabledProgress">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
+            </div>
+            <button *ngIf="!viewMode" (click)="AddDetail()" class="btn btn-primary mt-3 mr-5" [disabled]="StageIL5">
+              <i class="fas fa-plus-square mr-2"></i> Add New
+            </button>
+          </div>
+
+          <ng-container *ngIf="ShowTabCapex">
+            <div class="form-initiative mt-5">
+              <!-- <div class="col-sm-12"> -->
+              <h4>SAP Detail</h4>
+              <div class="devider"></div>
+              <!-- </div> -->
+            </div>
+            <!-- Change chps to checkControl or checkNotControl -->
+            <div class="form-initiative">
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Appropriation No. :​</label>
+                  <input class="form-control" formControlName="appropriationNo">
+                </div>
+                <div class="col-md-6">
+                  <label>WBS No. :​</label>
+                  <input class="form-control" formControlName="wbsNo">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Standard Project Definition :​ <span class="text-danger">*</span></label>
+                  <!-- <select class="form-control" formControlName="standardProjectDef"
+                    (change)="changeProjectDefinition($event)"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('standardProjectDef') }">
+                    <option *ngFor="let a of standardProjectDefList; let i = index" value="{{a?.value}}">
+                      {{a?.name}}
+                    </option>
+                  </select> -->
+                  <ng-select formControlName="standardProjectDef" [items]="standardProjectDefList" bindValue="value"
+                    bindLabel="name" placeholder="Choose Standard Project" (change)="changeProjectDefinition($event)"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('standardProjectDef') }">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="getErrorMessage('standardProjectDef')">
+                    Standard Project Definition is required !
+                  </div>
+                </div>
+                <div class="col-md-6" [ngClass]="ps.checkControl(progessForm,'Progress','responsible')">
+                  <label>Responsible Person : <span class="text-danger">*</span>​</label>
+                  <!-- <select class="form-control" formControlName="responsible"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('responsible') }">
+                    <option *ngFor="let a of responsibleList; let i = index" value="{{a?.attribute01}}">
+                      {{a?.attribute02}}
+                    </option>
+                  </select> -->
+                  <ng-select formControlName="responsible" [items]="responsibleList" bindValue="attribute01"
+                    bindLabel="attribute02" placeholder="Choose Responsible"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('responsible') }">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="getErrorMessage('responsible')">
+                    Responsible Person is required !
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Solomon Category : <span *ngIf="requireSolomonCategory" class="text-danger">*</span>​​</label>
+                  <!-- <select class="form-control" formControlName="solomonCategory">
+                    <option *ngFor="let a of solomonCategoryList; let i = index" value="{{a?.attribute01}}">
+                      {{a?.attribute02}}
+                    </option>
+                  </select> -->
+                  <ng-select formControlName="solomonCategory" [items]="solomonCategoryList" bindValue="attribute01"
+                    bindLabel="attribute02" placeholder="Choose Solomon Category"
+                    (change)="changeProjectDefinition($event)"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('solomonCategory') }">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="getErrorMessage('solomonCategory')">
+                    Solomon Category is required !
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label>Area/Panel : <span class="text-danger">*</span>​</label>
+                  <!-- <select class="form-control" formControlName="areaPlant" (change)="OnChangeAreaPlant()"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('areaPlant') }">
+                    <option *ngFor="let a of areaPlantList; let i = index" value="{{a?.attribute01}}">
+                      {{a?.attribute02}}
+                    </option>
+                  </select> -->
+                  <ng-select formControlName="areaPlant" [items]="areaPlantList" bindValue="attribute01"
+                    bindLabel="attribute02" placeholder="Choose Area/Panel"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('areaPlant') }">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="getErrorMessage('areaPlant')">
+                    Area/Panel is required !
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <label>Business Unit : <span class="text-danger">*</span>​</label>
+                  <!-- <select class="form-control" formControlName="physicalBu"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('physicalBu') }">
+                    <option *ngFor="let a of physicalBuList; let i = index" value="{{a?.attribute01}}">
+                      {{a?.attribute02}}
+                    </option>
+                  </select> -->
+                  <ng-select formControlName="physicalBu" [items]="physicalBuList" bindValue="attribute01"
+                    bindLabel="attribute02" placeholder="Choose Business Unit"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('physicalBu') }">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="getErrorMessage('physicalBu')">
+                    Business Unit is required !
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label>Physical Unit : <span class="text-danger">*</span></label>
+                  <!-- <select class="form-control" formControlName="physicalUnit"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('physicalUnit') }">
+                    <option *ngFor="let a of physicalUnitList; let i = index" value="{{a?.attribute01}}">
+                      {{a?.attribute02}}
+                    </option>
+                  </select> -->
+                  <ng-select formControlName="physicalUnit" [items]="physicalUnitList" bindValue="attribute01"
+                    bindLabel="attribute02" placeholder="Choose Physical Unit"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('physicalUnit') }">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="getErrorMessage('physicalUnit')">
+                    Physical Unit is required !
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ng-container *ngIf="showMileStone1  && changeCapexFinish">
+              <div class="form-initiative">
+                <app-progress-milestone1 [formGroup]="formGroup" [finishDate]="finishDate"
+                  [requestIniNoDate]="requestIniNoDate" [wbsNo]="getWBS">
+                </app-progress-milestone1>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="showMileStone2 && changeCapexFinish">
+              <div class="form-initiative">
+                <app-progress-milestone2 [formGroup]="formGroup" [finishDate]="finishDate"
+                  [requestIniNoDate]="requestIniNoDate" [wbsNo]="getWBS">
+                </app-progress-milestone2>
+              </div>
+            </ng-container>
+            <!-- select date -->
+            <hr class="mt-5">
+            <form [formGroup]="searchForm" *ngIf="wbsNo">
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="month_date_picker">Month</label>
+                    <div class="input-group">
+                      <!-- <input type="text" bsDatepicker class="form-control" id="month_date_picker" #dpFinish="bsDatepicker"
+                        formControlName="month" [minDate]="minDate" [maxDate]="finishPOcDate"
+                        [bsConfig]="monthViewDateFormart" (bsValueChange)="monthChanged()" #dpMonth="bsDatepicker" /> -->
+                      <input type="text" bsDatepicker class="form-control" id="month_date_picker"
+                        #dpFinish="bsDatepicker" formControlName="month" [bsConfig]="monthViewDateFormart"
+                        (bsValueChange)="monthChanged()" #dpMonth="bsDatepicker" />
+                      <div class="input-group-prepend" (click)="dpMonth.toggle()" [attr.aria-expanded]="dpMonth.isOpen">
+                        <span class="input-group-text">
+                          <i class="far fa-calendar"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <!-- outStanding  -->
+            <div class="form-initiative" *ngIf="wbsNo">
+              <app-out-standing-form [formGroup]="formGroup" [id]="id"></app-out-standing-form>
+            </div>
+            <!-- end bsc   -->
+            <div class="form-initiative" *ngIf="wbsNo">
+              <app-bsc-information [formGroup]="formGroup" [id]="id"></app-bsc-information>
+            </div>
+            <!-- return field -->
+            <!-- <div class="form-initiative mt-5" *ngIf="IsReturn"> -->
+            <!-- start addmore && return -->
+            <!-- <ng-container *ngIf="wbsNo && IsReturn">
+              <div class="row">
+                <div class="col-md-6" [ngClass]="ps.chps('CapexInformation','existingCost')">
+                  <label for="ExistingCost">
+                    Existing Budget (MTHB)<span class="text-danger">*</span> :
+                  </label>
+                  <input formControlName="existingCost" type="text" [value]="returnDetail.existingCost"
+                    name="ExistingCost" class="form-control" placeholder="" step="0.01" placeholder="0.00"
+                    mask="separator.2" thousandSeparator="," readonly />
+                </div>
+                <div class="col-md-6" [ngClass]="ps.chps('CapexInformation','spendingActual')">
+                  <label for="SpendingActual">
+                    Spending Actual (MTHB) <span class="text-danger">*</span> :
+                  </label>
+                  <input formControlName="spendingActual" type="text" [value]="returnDetail.spendingActual"
+                    name="SpendingActual" class="form-control" placeholder="" step="0.01" placeholder="0.00"
+                    mask="separator.2" thousandSeparator="," #SpendingActual
+                    (blur)="setSpendingActual(SpendingActual.value)" />
+                </div>
+                <div class="col-md-6" [ngClass]="ps.chps('CapexInformation','BudgetAvailable')">
+                  <label for="finishDate">
+                    Budget Available (MTHB) <span class="text-danger">*</span> :
+                  </label>
+                  <input formControlName="budgetAvailable" [value]="returnDetail.budgetAvailable" #BudgetAvailable
+                    type="text" name="BudgetAvailable" class="form-control" placeholder="" step="0.01" placeholder="0.00"
+                    mask="separator.2" thousandSeparator="," readonly />
+                </div>
+  
+                <div class="col-md-6" *ngIf="IsReturn" [ngClass]="ps.chps('CapexInformation','returnCost')">
+                  <label for="finishDate">
+                    Return (MTHB) <span class="text-danger">*</span> :
+                  </label>
+                  <input formControlName="returnCost" type="text" [value]="returnDetail.returnCost" name="ReturnCost"
+                    class="form-control" placeholder="" step="0.01" placeholder="0.00" mask="separator.2"
+                    thousandSeparator="," />
+                </div>
+              </div>
+  
+              <div class="row mt-3 w-100">
+                <div class="col-md-3" [ngClass]="ps.chps('CapexInformation','ProjectCost')">
+                  <label for="ExistingCost">
+                    Project Cost (MTHB) <span class="text-danger">*</span> :
+                  </label>
+                  <input formControlName="projectCost" type="text" [value]="returnDetail.projectCost" name="ProjectCost"
+                    class="form-control" placeholder="" step="0.01" placeholder="0.00" mask="separator.2"
+                    thousandSeparator="," readonly />
+                </div>
+                <div class="col-md-3" [ngClass]="ps.chps('CapexInformation','totalAvailable')">
+                  <label for="ExistingCost">
+                    Total Available (MTHB) <span class="text-danger">*</span> :
+                  </label>
+                  <input formControlName="totalAvailable" type="text" [value]="returnDetail.totalAvailable"
+                    name="TotalAvailable" class="form-control" placeholder="" step="0.01" placeholder="0.00"
+                    mask="separator.2" thousandSeparator="," readonly />
+                </div>
+  
+              </div>
+            </ng-container> -->
+            <div *ngIf="wbsNo">
+              <div class="form-initiative mt-5">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h4>Cost Spending ({{costSpendingDate}})</h4>
+                    <div class="devider"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-6">
+                  <label>
+                    Project Cost (THB) :
+                  </label>
+                  <input type="text" value="{{getProjectCost() | number : '1.2-2'}}" class="form-control" readonly />
+                </div>
+                <div class="col-md-6">
+                
+                  <label>
+                    Total Investment Cost (THB) :
+                  </label>
+                  <input formControlName="overAllCostSpending" class="form-control" type="text" mask="separator.2"
+                    thousandSeparator="," readonly />
+              
+
+                  </div>
+
+              </div>
+              <div class="form-initiative">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Investment Cost</th>
+                          <th *ngFor="let item of thead">{{item}}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr formGroupName="planCost">
+                          <td>Plan Baht</td>
+                          <td *ngFor="let plan of controlName" style="padding: 18px 0px;">
+                            <input formControlName="{{plan}}" (change)="calulatePlan()" class="form-control" type="text"
+                              mask="separator.2" thousandSeparator=","
+                              style="margin-left:0;padding: 0px 0px;text-align:right;font-size: 13px"
+                              [ngClass]="{ 'is-invalid': getSpendingCostFormError && !checkCurrentMonth(plan)  }">
+                            <!-- [readonly]="checkCurrentMonth(item)  && (!InitiativeService.isRevise || !InitiativeService.isAddmore)"> -->
+                          </td>
+                        </tr>
+                        <tr formGroupName="actualCost">
+                          <td>Actual Baht</td>
+                          <td *ngFor="let actual of controlName" style="padding: 18px 0px;">
+                            <input formControlName="{{actual}}" class="form-control" mask="separator.2"
+                              thousandSeparator=","
+                              style="margin-left:0;padding: 0px 0px;text-align:right;font-size: 13px">
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="form-initiative mt-3">
+                <div class="row" style="padding-left: 20px">
+                  <!-- style="width: 600px; height: 250px;" -->
+                  <div class="col-md-6 fixed-height-chart">
+                    <label for="">Unit : THB</label>
+                    <canvas id="lineChart"></canvas>
+                  </div>
+                  <!-- style="width: 600px; height: 250px;" -->
+                  <div class="col-md-6 fixed-height-chart">
+                    <label for="">Unit : THB</label>
+                    <canvas id="costYearChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- hide update button -->
+
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-template #isNotAdmin>
+  <!-- normal form -->
+  <div class="row" [formGroup]="progessForm">
+    <div class="col-md-12">
+      <div class="card text card-initiative">
+
+        <div class="card-body">
+          <div class="form-initiative">
+            <app-initiative-info [id]="id"></app-initiative-info>
+          </div>
+          <div class="form-initiative">
+            <!--<label style="color: #454545;font-size: 28px;"> Detail </label>-->
+            <h3 style="color: #1C6EA4;">Progress & Milestone (Execution)</h3>
+            <hr>
+          </div>
+
+          <div class="form-initiative">
+            <div class="form-row align-items-center">
+              <form>
+                <table class="table table-bordered">
+                  <thead class="text-center bg-light">
+                    <th width="2%">No.</th>
+                    <th width="20%">Milestone/Deliverable <span class="text-danger">*</span></th>
+                    <!-- <th width="18%">Key Deliverable</th> -->
+                    <th width="15%">Start </th>
+                    <th width="15%">Planned Finish <span class="text-danger">*</span></th>
+                    <th width="15%">Actual Finish</th>
+                    <th width="15%">Activity</th>
+                    <th width="12%">Status</th>
+                    <th width="5%"></th>
+                  </thead>
+                  <tbody *ngFor="let control of progessForm.get('details')['controls']; let i=index">
+                    <tr [formGroup]="control">
+                      <td class="text-center"> {{i+1}} </td>
+                      <td class="form-group">
+                        <!-- <input type="text" class="form-control" [ngClass]="{'is-invalid': InvalidMilestone(i) }"
+                          formControlName="milestone">
+                        <div class="invalid-feedback" *ngIf="InvalidMilestone(i)">
+                          Milestone is required
+                        </div> -->
+                        <textarea formControlName="milestone" class="form-control" rows="3"
+                          [ngClass]="{ 'is-invalid': InvalidMilestone(i) }"></textarea>
+                        <div class="invalid-feedback" *ngIf="InvalidMilestone(i)">
+                          Milestone/Deliverable is required
+                        </div>
+                      </td>
+                      <!-- <td class="form-group">
+                        <textarea rows="1" class="form-control milestone-textarea" formControlName="keyDeliverable"
+                          [ngClass]="{'is-invalid': InvalidKeyDeliverable(i) }"></textarea>
+                      </td> -->
+                      <td class="form-group">
+                        <div class="input-group">
+                          <input formControlName="start" (bsValueChange)="setRequestDate($event,'start',i)" type="text"
+                            class="form-control" [bsConfig]="bsConfig" bsDatepicker [minDate]="initiativeStartDate"
+                            #dpStart="bsDatepicker" [ngClass]="{'is-invalid': InvalidStartDate(i) }"
+                            [triggers]="viewMode ? '' : 'click:click'" />
+
+                          <div *ngIf="!viewMode" class="input-group-append">
+                            <i class="far fa-calendar right-icon mt-2" (click)="dpStart.toggle()"
+                              [attr.aria-expanded]="dpStart.isOpen"></i>
+                          </div>
+                          <!-- <input type="text" class="form-control" formControlName="start" [bsConfig]="bsConBetween"
+                                bsDatepicker #dpRegister="bsDatepicker" (bsValueChange)="ChangePlanDate(i, $event)"> -->
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <div class="input-group">
+                          <input formControlName="planFinish" (bsValueChange)="setRequestDate($event,'planFinish',i)"
+                            type="text" class="form-control" [bsConfig]="bsConfig" bsDatepicker
+                            #dpPlantFinish="bsDatepicker" [ngClass]="{'is-invalid': InvalidPlanFinish(i) }"
+                            [triggers]="viewMode ? '' : 'click:click'" />
+
+                          <div *ngIf="!viewMode" class="input-group-append">
+                            <i class="far fa-calendar right-icon mt-2" (click)="dpPlantFinish.toggle()"
+                              [attr.aria-expanded]="dpPlantFinish.isOpen"></i>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <div class="input-group">
+                          <input formControlName="actualFinish"
+                            (bsValueChange)="setRequestDate($event,'actualFinish',i)" type="text" class="form-control"
+                            [bsConfig]="bsConfig" bsDatepicker #dpActualFinish="bsDatepicker"
+                            [triggers]="viewMode ? '' : 'click:click'" />
+
+                          <div *ngIf="!viewMode" class="input-group-append">
+                            <i class="far fa-calendar right-icon mt-2" (click)="dpActualFinish.toggle()"
+                              [attr.aria-expanded]="dpActualFinish.isOpen"></i>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="form-group">
+                        <select type="text" class="form-control" formControlName="activity">
+                          <option value="Critical"> Critical </option>
+                          <option value="Non-Critical"> Non-Critical </option>
+                        </select>
+                      </td>
+                      <td class="text-center">
+                        <ng-container *ngIf="planStatus[i]">
+                          <i class="fas fa-circle text-success icon-LI mt-2" *ngIf="planStatus[i] == 'min'"></i>
+                          <i class="fas fa-circle text-danger  icon-LI mt-2" *ngIf="planStatus[i] == 'max'"></i>
+                          <i class="fas fa-circle text-secondary  icon-LI mt-2" *ngIf="planStatus[i] == 'actual'"></i>
+                        </ng-container>
+                      </td>
+                      <td class="text-center">
+                        <button *ngIf="!viewMode" (click)="RemoveDetail(i)" class="btn btn-danger btn-sm"
+                          [disabled]="isDisabledProgress">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </form>
+            </div>
+            <button *ngIf="!viewMode" (click)="AddDetail()" class="btn btn-primary mt-3 mr-5" [disabled]="StageIL5">
+              <i class="fas fa-plus-square mr-2"></i> Add New
+            </button>
+          </div>
+
+          <ng-container *ngIf="ShowTabCapex">
+            <div class="form-initiative mt-5">
+              <!-- <div class="col-sm-12"> -->
+              <h4>SAP Detail</h4>
+              <div class="devider"></div>
+              <!-- </div> -->
+            </div>
+            <!-- Change chps to checkControl or checkNotControl -->
+            <div class="form-initiative">
+              <div class="row">
+                <div class="col-md-6" [ngClass]="ps.checkControl(progessForm,'Progress','appropriationNo')">
+                  <label>Appropriation No. :​</label>
+                  <input class="form-control" formControlName="appropriationNo" readonly>
+                </div>
+                <div class="col-md-6" [ngClass]="ps.checkControl(progessForm,'Progress','wbsNo')">
+                  <label>WBS No. :​</label>
+                  <input class="form-control" formControlName="wbsNo" readonly>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6" [ngClass]="ps.checkControl(progessForm,'Progress','standardProjectDef')">
+                  <label>Standard Project Definition​ : <span class="text-danger">*</span></label>
+                  <!-- <select class="form-control" formControlName="standardProjectDef"
+                    (change)="changeProjectDefinition($event)"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('standardProjectDef') }">
+                    <option *ngFor="let a of standardProjectDefList; let i = index" value="{{a?.value}}">
+                      {{a?.name}}
+                    </option>
+                  </select> -->
+                  <ng-select formControlName="standardProjectDef" [items]="standardProjectDefList" bindValue="value"
+                    bindLabel="name" placeholder="Choose Standard Project" (change)="changeProjectDefinition($event)"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('standardProjectDef') }">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="getErrorMessage('standardProjectDef')">
+                    Standard Project Definition is required !
+                  </div>
+                </div>
+                <div class="col-md-6" [ngClass]="ps.checkControl(progessForm,'Progress','responsible')">
+                  <label>Responsible Person : <span class="text-danger">*</span>​</label>
+                  <!-- <select class="form-control" formControlName="responsible"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('responsible') }">
+                    <option *ngFor="let a of responsibleList; let i = index" value="{{a?.attribute01}}">
+                      {{a?.attribute02}}
+                    </option>
+                  </select> -->
+                  <ng-select formControlName="responsible" [items]="responsibleList" bindValue="attribute01"
+                    bindLabel="attribute02" placeholder="Choose Responsible"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('responsible') }"
+                    [readonly]="getWBS">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="getErrorMessage('responsible')">
+                    Responsible Person is required !
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6" [ngClass]="ps.checkControl(progessForm,'Progress','solomonCategory')">
+                  <label>Solomon Category : <span *ngIf="requireSolomonCategory" class="text-danger">*</span>​​</label>
+                  <!-- <select class="form-control" formControlName="solomonCategory">
+                    <option *ngFor="let a of solomonCategoryList; let i = index" value="{{a?.attribute01}}">
+                      {{a?.attribute02}}
+                    </option>
+                  </select> -->
+                  <ng-select formControlName="solomonCategory" [items]="solomonCategoryList" bindValue="attribute01"
+                    bindLabel="attribute02" placeholder="Choose Solomon Category"
+                    (change)="changeProjectDefinition($event)"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('solomonCategory') }">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="getErrorMessage('solomonCategory')">
+                    Solomon Category is required !
+                  </div>
+                </div>
+                <div class="col-md-6" [ngClass]="ps.checkControl(progessForm,'Progress','areaPlant')">
+                  <label>Area/Panel : <span class="text-danger">*</span>​</label>
+                  <!-- <select class="form-control" formControlName="areaPlant" (change)="OnChangeAreaPlant()"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('areaPlant') }">
+                    <option *ngFor="let a of areaPlantList; let i = index" value="{{a?.attribute01}}">
+                      {{a?.attribute02}}
+                    </option>
+                  </select> -->
+                  <ng-select formControlName="areaPlant" [items]="areaPlantList" bindValue="attribute01"
+                    bindLabel="attribute02" placeholder="Choose Area/Panel"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('areaPlant') }">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="getErrorMessage('areaPlant')">
+                    Area/Panel is required !
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6" [ngClass]="ps.checkControl(progessForm,'Progress','physicalBu')">
+                  <label>Business Unit : <span class="text-danger">*</span>​</label>
+                  <!-- <select class="form-control" formControlName="physicalBu"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('physicalBu') }">
+                    <option *ngFor="let a of physicalBuList; let i = index" value="{{a?.attribute01}}">
+                      {{a?.attribute02}}
+                    </option>
+                  </select> -->
+                  <ng-select formControlName="physicalBu" [items]="physicalBuList" bindValue="attribute01"
+                    bindLabel="attribute02" placeholder="Choose Business Unit"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('physicalBu') }">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="getErrorMessage('physicalBu')">
+                    Business Unit is required !
+                  </div>
+                </div>
+                <div class="col-md-6" [ngClass]="ps.checkControl(progessForm,'Progress','physicalUnit')">
+                  <label>Physical Unit : <span class="text-danger">*</span></label>
+                  <!-- <select class="form-control" formControlName="physicalUnit"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('physicalUnit') }">
+                    <option *ngFor="let a of physicalUnitList; let i = index" value="{{a?.attribute01}}">
+                      {{a?.attribute02}}
+                    </option>
+                  </select> -->
+                  <ng-select formControlName="physicalUnit" [items]="physicalUnitList" bindValue="attribute01"
+                    bindLabel="attribute02" placeholder="Choose Physical Unit"
+                    [ngClass]="{ 'is-invalid': getErrorMessage('physicalUnit') }">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="getErrorMessage('physicalUnit')">
+                    Physical Unit is required !
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ng-container *ngIf="showMileStone1  && changeCapexFinish">
+              <div class="form-initiative">
+                <app-progress-milestone1 [formGroup]="formGroup" [finishDate]="finishDate"
+                  [requestIniNoDate]="requestIniNoDate" [wbsNo]="getWBS">
+                </app-progress-milestone1>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="showMileStone2 && changeCapexFinish">
+              <div class="form-initiative">
+                <app-progress-milestone2 [formGroup]="formGroup" [finishDate]="finishDate"
+                  [requestIniNoDate]="requestIniNoDate" [wbsNo]="getWBS">
+                </app-progress-milestone2>
+              </div>
+            </ng-container>
+            <!-- select date -->
+            <hr class="mt-5">
+            <form [formGroup]="searchForm" *ngIf="wbsNo">
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label for="month_date_picker">Month</label>
+                    <div class="input-group">
+                      <!-- <input type="text" bsDatepicker class="form-control" id="month_date_picker" #dpFinish="bsDatepicker"
+                        formControlName="month" [minDate]="minDate" [maxDate]="finishPOcDate"
+                        [bsConfig]="monthViewDateFormart" (bsValueChange)="monthChanged()" #dpMonth="bsDatepicker" /> -->
+                      <input type="text" bsDatepicker class="form-control" id="month_date_picker"
+                        #dpFinish="bsDatepicker" formControlName="month" [bsConfig]="monthViewDateFormart"
+                        (bsValueChange)="monthChanged()" #dpMonth="bsDatepicker" />
+                      <div class="input-group-prepend" (click)="dpMonth.toggle()" [attr.aria-expanded]="dpMonth.isOpen">
+                        <span class="input-group-text">
+                          <i class="far fa-calendar"></i>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <!-- outStanding  -->
+            <div class="form-initiative" *ngIf="wbsNo">
+              <app-out-standing-form [formGroup]="formGroup" [id]="id"></app-out-standing-form>
+            </div>
+            <!-- end bsc   -->
+            <div class="form-initiative" *ngIf="wbsNo">
+              <app-bsc-information [formGroup]="formGroup" [id]="id"></app-bsc-information>
+            </div>
+            <!-- return field -->
+            <!-- <div class="form-initiative mt-5" *ngIf="IsReturn"> -->
+            <!-- start addmore && return -->
+            <!-- <ng-container *ngIf="wbsNo && IsReturn">
+              <div class="row">
+                <div class="col-md-6" [ngClass]="ps.chps('CapexInformation','existingCost')">
+                  <label for="ExistingCost">
+                    Existing Budget (MTHB)<span class="text-danger">*</span> :
+                  </label>
+                  <input formControlName="existingCost" type="text" [value]="returnDetail.existingCost"
+                    name="ExistingCost" class="form-control" placeholder="" step="0.01" placeholder="0.00"
+                    mask="separator.2" thousandSeparator="," readonly />
+                </div>
+                <div class="col-md-6" [ngClass]="ps.chps('CapexInformation','spendingActual')">
+                  <label for="SpendingActual">
+                    Spending Actual (MTHB) <span class="text-danger">*</span> :
+                  </label>
+                  <input formControlName="spendingActual" type="text" [value]="returnDetail.spendingActual"
+                    name="SpendingActual" class="form-control" placeholder="" step="0.01" placeholder="0.00"
+                    mask="separator.2" thousandSeparator="," #SpendingActual
+                    (blur)="setSpendingActual(SpendingActual.value)" />
+                </div>
+                <div class="col-md-6" [ngClass]="ps.chps('CapexInformation','BudgetAvailable')">
+                  <label for="finishDate">
+                    Budget Available (MTHB) <span class="text-danger">*</span> :
+                  </label>
+                  <input formControlName="budgetAvailable" [value]="returnDetail.budgetAvailable" #BudgetAvailable
+                    type="text" name="BudgetAvailable" class="form-control" placeholder="" step="0.01" placeholder="0.00"
+                    mask="separator.2" thousandSeparator="," readonly />
+                </div>
+  
+                <div class="col-md-6" *ngIf="IsReturn" [ngClass]="ps.chps('CapexInformation','returnCost')">
+                  <label for="finishDate">
+                    Return (MTHB) <span class="text-danger">*</span> :
+                  </label>
+                  <input formControlName="returnCost" type="text" [value]="returnDetail.returnCost" name="ReturnCost"
+                    class="form-control" placeholder="" step="0.01" placeholder="0.00" mask="separator.2"
+                    thousandSeparator="," />
+                </div>
+              </div>
+  
+              <div class="row mt-3 w-100">
+                <div class="col-md-3" [ngClass]="ps.chps('CapexInformation','ProjectCost')">
+                  <label for="ExistingCost">
+                    Project Cost (MTHB) <span class="text-danger">*</span> :
+                  </label>
+                  <input formControlName="projectCost" type="text" [value]="returnDetail.projectCost" name="ProjectCost"
+                    class="form-control" placeholder="" step="0.01" placeholder="0.00" mask="separator.2"
+                    thousandSeparator="," readonly />
+                </div>
+                <div class="col-md-3" [ngClass]="ps.chps('CapexInformation','totalAvailable')">
+                  <label for="ExistingCost">
+                    Total Available (MTHB) <span class="text-danger">*</span> :
+                  </label>
+                  <input formControlName="totalAvailable" type="text" [value]="returnDetail.totalAvailable"
+                    name="TotalAvailable" class="form-control" placeholder="" step="0.01" placeholder="0.00"
+                    mask="separator.2" thousandSeparator="," readonly />
+                </div>
+  
+              </div>
+            </ng-container> -->
+            <div *ngIf="wbsNo">
+              <div class="form-initiative mt-5">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h4>Cost Spending ({{costSpendingDate}})</h4>
+                    <div class="devider"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-6">
+                  <label>
+                    Project Cost (THB) :
+                  </label>
+                  <input type="text" value="{{getProjectCost() | number : '1.2-2'}}" class="form-control" readonly />
+                </div>
+                <div class="col-md-6">
+                  <label>
+                    Total Investment Cost (THB) :
+                  </label>
+                  <input formControlName="overAllCostSpending" class="form-control" type="text" mask="separator.2"
+                    thousandSeparator="," readonly />
+                    <ng-container *ngIf="validatePlanCost">
+                      <label style="color:red;">
+                      value cost are not same Project cost!!
+                      </label>
+                    </ng-container>
+                  </div>
+               
+              </div>
+              <div class="form-initiative">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Investment Cost</th>
+                          <th *ngFor="let item of thead">{{item}}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr formGroupName="planCost">
+                          <td>Plan Baht</td>
+                          <td *ngFor="let plan of controlName" style="padding: 18px 0px;">
+                            <input formControlName="{{plan}}" (change)="calulatePlan()" class="form-control" type="text"
+                              mask="separator.2" thousandSeparator=","
+                              style="margin-left:0;padding: 0px 0px;text-align:right;font-size: 13px"
+                              [ngClass]="{ 'is-invalid': getSpendingCostFormError && !checkCurrentMonth(plan)  }"
+                              [readonly]="checkCurrentMonth(plan)">
+                            <!-- [readonly]="checkCurrentMonth(item)  && (!InitiativeService.isRevise || !InitiativeService.isAddmore)"> -->
+                          </td>
+                        </tr>
+                        <tr formGroupName="actualCost">
+                          <td>Actual Baht</td>
+                          <td *ngFor="let actual of controlName" style="padding: 18px 0px;font-size: 13px">
+                            <input formControlName="{{actual}}" class="form-control" mask="separator.2"
+                              thousandSeparator="," style="margin-left:0;padding: 0px 0px;text-align:right" readonly>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="form-initiative mt-3">
+                <div class="row" style="padding-left: 20px">
+                  <!-- style="width: 600px; height: 250px;" -->
+                  <div class="col-md-6">
+                    <label for="">Unit : THB</label>
+                    <canvas id="lineChart"></canvas>
+                    <!-- <div id="reLineChart">
+                      <canvas id="lineChart"></canvas>
+                    </div> -->
+                  </div>
+                  <!-- style="width: 600px; height: 250px;" -->
+                  <div class="col-md-6">
+                    <label for="">Unit : THB</label>
+                    <canvas id="costYearChart"></canvas>
+                    <!-- <div id="reCostYearChart">
+                      <canvas id="costYearChart"></canvas>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- hide update button -->
+
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

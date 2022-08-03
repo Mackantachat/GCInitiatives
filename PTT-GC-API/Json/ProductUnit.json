@@ -1,0 +1,14 @@
+[
+    {
+        "ProductUnitId": "PU01",
+        "ProductUnitTitle": "KBD"
+    },
+    {
+        "ProductUnitId": "PU02",
+        "ProductUnitTitle": "KTA"
+    },
+    {
+        "ProductUnitId": "PU03",
+        "ProductUnitTitle": "Other"
+    }
+]

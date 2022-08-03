@@ -1,0 +1,58 @@
+.tab-content {
+    margin-top: 1rem;
+}
+
+.nav-required {
+    color: red;
+}
+
+.modal-Attachment {
+    margin-top: 4%;
+}
+
+.container.top {
+    margin-top: 1rem;
+}
+
+textarea .comment {
+    border: 1px solid rgb(56, 56, 56);
+}
+
+.disabled-check {
+    cursor: not-allowed!important;
+    pointer-events: none;
+    opacity: 0.50;
+}
+
+.container {
+    margin-right: inherit;
+    margin-left: inherit;
+}
+
+.btn {
+    border-radius: inherit;
+}
+
+.form-control {
+    display: inherit;
+    margin-right: 10px;
+    width: inherit;
+}
+
+@media (min-width: 1500px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1920px;
+    }
+    .btn-width {
+        width: 8rem;
+    }
+}
+
+@media (max-width: 1400px) {
+    .container, .container-lg, .container-md, .container-sm, .container-xl {
+        max-width: 1400px;
+    }
+    .btn-width {
+        width: 8rem;
+    }
+}

@@ -1,0 +1,380 @@
+<table class="table table-hover">
+  <thead>
+    <tr class="table-active text-center table-initiative">
+      <th width="8%" [ngStyle]="{ cursor: 'pointer' }" (click)="SortBy('InitiativeCode')">
+        Initiative ID
+      </th>
+      <th width="15%" [ngStyle]="{ cursor: 'pointer' }" (click)="SortBy('Name')">
+        Initiative Name
+      </th>
+      <th width="14%" [ngStyle]="{ cursor: 'pointer' }" (click)="SortBy('OwnerName')">
+        Owner
+      </th>
+      <th width="10%">Assigned To</th>
+      <th width="8%" [ngStyle]="{ cursor: 'pointer' }" (click)="SortBy('RegisteringDate')">
+        Register Date
+      </th>
+      <th width="8%" [ngStyle]="{ cursor: 'pointer' }" (click)="SortBy('UpdatedDate')">
+        Update Date
+      </th>
+      <th width="8%" [ngStyle]="{ cursor: 'pointer' }" (click)="SortBy('Organization')">
+        Organization
+      </th>
+      <th width="8%" [ngStyle]="{ cursor: 'pointer' }" (click)="SortBy('WbsNo')">
+        WBS No
+      </th>
+      <th width="8%" [ngStyle]="{ cursor: 'pointer' }" (click)="SortBy('Company')">
+        Company
+      </th>
+      <th width="10%" [ngStyle]="{ cursor: 'pointer' }" (click)="SortBy('InitiativeType')">
+        Initiative Type
+      </th>
+      <th width="8%" [ngStyle]="{ cursor: 'pointer' }" (click)="SortBy('Stage')">
+        Stage
+      </th>
+      <th width="8%" [ngStyle]="{ cursor: 'pointer' }" (click)="SortBy('Status')">
+        Status
+      </th>
+      <th width="20%" class="th-action">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of initiatives; let i = index" class="table-initiative">
+      <!-- (click)="ActionInitiative(item.status, item.id, item.initiativeType)" -->
+      <td>{{ item.initiativeCode }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.ownerName }}</td>
+      <td>
+        {{ item.assignTo }}
+        <!-- {{
+        item.initiativeActions.length !== 0
+        ? item.initiativeActions[0].actionByName
+        : null
+        }} -->
+      </td>
+      <td>
+        {{ item.registeringDate | date: "dd/MM/yyyy" }}
+      </td>
+      <td>
+        {{ item.updatedDate | date: "dd/MM/yyyy" }}
+      </td>
+      <td>{{ item.organization }}</td>
+      <td>{{ item.wbsNo ? item.wbsNo : "-" }}</td>
+      <td>{{ item.company }}</td>
+      <td>
+        {{ convertType(item.initiativeType) | uppercase }}
+        <!-- <span *ngIf="CheckInitiativeType(item.initiativeType)">
+          {{ item.initiativeType | uppercase }}
+        </span>
+        <span *ngIf="item.cim"> CIM </span>
+        <span *ngIf="item.pim"> PIM </span>
+        <span *ngIf="item.dim"> DIM </span>
+        <span *ngIf="item.cpi"> CPI </span>
+        <span *ngIf="item.directCapex"> Direct CAPEX </span>
+        <span *ngIf="item.strategy"> Strategy </span>
+        <span *ngIf="item.randD"> R&D </span>
+        <span *ngIf="item.max"> MAX </span>
+        <span *ngIf="item.other"> Other </span> -->
+      </td>
+      <td>
+        <span *ngIf="item.stage">
+          <i class="fas fa-circle text-success icon-LI"></i>
+          {{ UpperCaseReplaceStage(item.stage) }} <br />
+        </span>
+      </td>
+      <td>
+        <span class="badge badge-dark text-white" *ngIf="item.status == 'draft'">
+          Draft
+        </span>
+        <span class="badge badge-dark text-white" *ngIf="item.status == 'add more'">
+          Add more
+        </span>
+        <span class="badge badge-dark text-white" *ngIf="item.status == 'add more pool'">
+          Add more Pool
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'admin check'">
+          Admin check
+        </span>
+        <span class="badge badge-info" *ngIf="item.status == 'wait for submission'">
+          Wait for submission
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for approval'">
+          Wait for approval
+        </span>
+        <span class="badge badge-info" *ngIf="item.status == 'revise'">
+          Revise
+        </span>
+        <span class="badge badge-info" *ngIf="item.status == 'revised'">
+          Revised
+        </span>
+        <span class="badge badge-danger" *ngIf="item.status == 'reject'">
+          Reject
+        </span>
+        <span class="badge badge-danger" *ngIf="item.status == 'rejected'">
+          Rejected
+        </span>
+        <span class="badge badge-success" *ngIf="item.status == 'approved'">
+          Approved
+        </span>
+        <span class="badge badge-secondary" *ngIf="item.status == 'cancelled'">
+          Cancelled
+        </span>
+        <span class="badge badge-success" *ngIf="item.status == 'finish'">
+          Finish
+        </span>
+        <span class="badge badge-success" *ngIf="item.status == 'principle approved'">
+          Principle Approved
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for review'">
+          Wait for review
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for create App.'">
+          Wait for create App.
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for create WBS'">
+          Wait for create WBS
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for cancellation'">
+          Wait for Cancellation
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for assign'">
+          Wait for Assign
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for update'">
+          Wait for Update
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'in progress'">
+          In Progress
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for create'">
+          Wait for Create
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'update progress'">
+          Update Progress
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for DIM approval'">
+          Wait for DIM Approval
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'project planning'">
+          Project Planning
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'baseline committed'">
+          Baseline Committed
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'implementing in progress'">
+          Implementing in Progress
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'adopt'">
+          Adopt
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'closure'">
+          Closure
+        </span>
+
+
+        <!-- new Status -->
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for final charter'">
+          Wait for final charter
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for CAPEX info'">
+          Wait for CAPEX info
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for final plan'">
+          Wait for final plan
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for golive update'">
+          Wait for golive update
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for closure'">
+          Wait for closure
+        </span>
+        <span class="badge badge-warning text-white" *ngIf="item.status == 'wait for switch process'">
+          Wait for Switch Process
+        </span>
+
+
+        <!-- Wait for final charter
+Wait for CAPEX info
+Wait for final plan
+Wait for golive update
+Wait for closure
+ -->
+
+      </td>
+      <td class="td-action">
+        <div class="row">
+          <!-- new direction -->
+          <!-- <ng-container *ngIf="username == 'thammatad.a@frontiscompany.com'"> -->
+          <ng-container>
+            <a type="button" class="btn btn-info btn-sm mr-1 text-white btn-list"
+              (click)="direction(item.id,item.initiativeType,item.stage)" id="direction-button-link">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </a>
+          </ng-container>
+          <!-- end fo new direction -->
+
+          <!-- My Task -->
+          <!-- <ng-template [ngIf]="name == 'My Tasks'">
+          <ng-container *ngIf="CheckApproveMyTask(item.status)">
+            <a type="button" class="btn btn-success btn-sm mr-1 text-white btn-list" id="approve-button-link"
+              (click)="Approve(item.id)">
+              <i class="fas fa-clipboard-check"></i>
+            </a>
+          </ng-container>
+          <ng-container *ngIf="CheckActionMyTask(item.status)">
+            <a type="button" class="btn btn-warning btn-sm mr-1 text-white btn-list"
+              (click)="Edit(item.id, item.initiativeType)" id="edit-button-link">
+              <i class="fas fa-pencil-alt"></i>
+            </a>
+            <button type="button" class="btn btn-danger btn-sm mr-1 btn-list"
+              (click)="DeleteInitiative(item.id, item.initiativeType, item.stage, item.status)" id="delete-button-link">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </ng-container>
+        </ng-template> -->
+
+          <!-- My Own -->
+          <ng-template [ngIf]="name == 'My Own Initiatives'">
+
+            <!-- <ng-container *ngIf="CheckViewMyOwn(item.status)">
+            <a type="button" class="btn btn-info btn-sm mr-1 text-white btn-list"
+              (click)="Information(item.id, item.initiativeType)" id="information-button-link">
+              <i class="fas fa-eye"></i>
+            </a>
+          </ng-container> -->
+
+            <!-- <ng-container *ngIf="username == 'thammatad.a@frontiscompany.com'; else oldThreeDots"> -->
+            <!-- new 3 dot button -->
+            <ng-container *ngIf="item.isAddMore || item.isRevise || item.isReturn">
+              <a style="cursor: pointer;" class="btn ml-3 mr-1 text-primary" id="addmore" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" id="addmore-dropdown">
+                <i class="fas fa-ellipsis-v"></i>
+              </a>
+              <div class="dropdown-menu mt-3" aria-labelledby="addmore">
+                <a [class.disabled]="!item.isAddMore" class="dropdown-item"
+                  (click)="Addmore(item.id,item.initiativeType)" id="addmore-capex-link" style="cursor: pointer;">Add
+                  more CAPEX</a>
+                <a [class.disabled]="!item.isReturn" class="dropdown-item dropdown-item-border"
+                  (click)="Return(item.id,item.initiativeType)" style="cursor: pointer;">Return
+                  CAPEX </a>
+                <a [class.disabled]="!item.isRevise" class="dropdown-item" (click)="Revise(item.id,item.initiativeType)"
+                  style="cursor: pointer;">Revised Plan </a>
+              </div>
+            </ng-container>
+            <!-- <ng-template #oldThreeDots>
+            <ng-container *ngIf="CheckFinishMyOwn(item.status,item.stage, item.initiativeType)">
+              <a class="ml-3 mr-1 text-primary" id="addmore" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" id="addmore-dropdown">
+                <i class="fas fa-ellipsis-v"></i>
+              </a>
+              <div class="dropdown-menu mt-3" aria-labelledby="addmore">
+                <a class="dropdown-item" (click)="Addmore(item.id)" id="addmore-capex-link" style="cursor: pointer;">Add
+                  more CAPEX</a>
+                <a class="dropdown-item dropdown-item-border" (click)="Return(item.id)" style="cursor: pointer;">Return
+                  CAPEX </a>
+                <a class="dropdown-item dropdown-item-border d-none">Carried CAPEX </a>
+                <a class="dropdown-item" (click)="Revise(item.id)" style="cursor: pointer;">Revised Plan </a>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="CheckPool(item.status, item.initiativeType)">
+              <a class="ml-3 mr-2 text-primary" id="addPool" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" id="addpool-dropdown">
+                <i class="fas fa-ellipsis-v"></i>
+              </a>
+              <div class="dropdown-menu mt-3" aria-labelledby="addPool">
+                <a class="dropdown-item " (click)="AddmorePool(item.id)" id="addmore-pool-link"
+                  style="cursor: pointer;">Add more Pool</a>
+                <a class="dropdown-item dropdown-item-border d-none" style="cursor: pointer;">Return CAPEX </a>
+                <a class="dropdown-item dropdown-item-border d-none">Carried CAPEX </a>
+                <a class="dropdown-item d-none" style="cursor: pointer;">Revised Plan </a>
+              </div>
+            </ng-container>
+          </ng-template> -->
+
+
+
+
+
+            <!-- <ng-container *ngIf="CheckPool(item.status, item.initiativeType)">
+            <a class="ml-3 mr-2 text-primary" id="addPool" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" id="addpool-dropdown">
+              <i class="fas fa-ellipsis-v"></i>
+            </a>
+            <div class="dropdown-menu mt-3" aria-labelledby="addPool">
+              <a class="dropdown-item " (click)="AddmorePool(item.id)" id="addmore-pool-link"
+                style="cursor: pointer;">Add more Pool</a>
+              <a class="dropdown-item dropdown-item-border d-none" style="cursor: pointer;">Return CAPEX </a>
+              <a class="dropdown-item dropdown-item-border d-none">Carried CAPEX </a>
+              <a class="dropdown-item d-none" style="cursor: pointer;">Revised Plan </a>
+            </div>
+          </ng-container> -->
+            <ng-container *ngIf="CheckActionMyOwn(item.status)">
+              <!-- <a type="button" class="btn btn-warning btn-sm mr-1 text-white btn-list"
+              (click)="Edit(item.id, item.initiativeType)" id="edit-button-link">
+              <i class="fas fa-pencil-alt"></i>
+            </a> -->
+              <button type="button" class="btn btn-danger btn-sm mr-1 btn-list"
+                (click)="DeleteInitiative(item.id, item.initiativeType, item.stage, item.status)"
+                id="delete-button-link">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </ng-container>
+          </ng-template>
+
+          <!-- OverView -->
+          <ng-template [ngIf]="name == 'Overview'">
+            <!-- <a *ngIf="CheckOverView(item.status)" type="button" class="btn btn-info btn-sm mr-1 text-white btn-list"
+            (click)="Information(item.id, item.initiativeType)" id="overview-information-button-link">
+            <i class="fas fa-eye"></i>
+          </a>
+          <ng-container *ngIf="CheckFinishMyOwn(item.status,item.stage, item.initiativeType)">
+            <a class="ml-3 mr-1 text-primary" id="addmore" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false" id="addmore-dropdown">
+              <i class="fas fa-ellipsis-v">&nbsp;&nbsp;&nbsp;</i>
+            </a>
+            <div class="dropdown-menu mt-3" aria-labelledby="addmore">
+              <a class="dropdown-item" (click)="Addmore(item.id)" id="addmore-capex-link" style="cursor: pointer;">Add
+                more CAPEX</a>
+              <a class="dropdown-item" (click)="Return(item.id)" style="cursor: pointer;">Return CAPEX </a>
+              <a class="dropdown-item dropdown-item-border d-none">Carried CAPEX </a>
+              <a class="dropdown-item" style="cursor: pointer;">Revised Plan </a>
+            </div>
+          </ng-container> -->
+            <!--permissionService.isEnabled?.indexOf('Super Approval Button') >= 0-->
+            <!-- <ng-container
+            *ngIf="CheckApproveOverview(item.status)  && showSuperApprovalButton"> 
+            <a type="button" class="btn btn-success btn-sm mr-1 text-white btn-list" id="approve-overview-button-link"
+              (click)="ApproveOverview(item.id)">
+              <i class="fas fa-clipboard-check"></i>
+            </a>
+          </ng-container> -->
+            <ng-container
+              *ngIf="CheckApproveOverview(item.status)  &&(CheckPermissionSetting(permissionServiceStaticVar.ONBEHAFTOFAPPROVE_PAGE_ID,item.initiativeType) || CheckInitiativeTypeITDigital(item.initiativeType))">
+              <a type="button" class="btn btn-success btn-sm mr-1 text-white btn-list" id="approve-overview-button-link"
+                (click)="ApproveOverview(item.id,item.initiativeType,item.status)">
+                <i class="fas fa-clipboard-check"></i>
+              </a>
+            </ng-container>
+          </ng-template>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr />
+<ng-container class="mt-4">
+  <div class="d-flex justify-content-left">
+    <div class="form-inline">
+      <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+        [(ngModel)]="currentPage" (pageChanged)="PageChanged($event)" [maxSize]="maxSize" previousText="&lsaquo;"
+        nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+      </pagination>
+      <!-- <select class="custom-select" (change)="ChangePageLength($event)">
+        <option *ngFor="let item of length" value="{{item}}">{{item}}</option>
+      </select>
+      <div style="position: relative; top: 8px;">
+        <label for="PageLenght">per page</label>
+      </div> -->
+    </div>
+  </div>
+</ng-container>

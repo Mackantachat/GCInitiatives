@@ -1,0 +1,399 @@
+<!-- <ng-container>
+  <div bsModal #AttachmentModalApprove="bs-modal" class="modal fade modal-Attachment" [config]="{ backdrop: 'static'}">
+    <app-initiative-attachment (modelClose)="CloseAttachmentApprove()" [id]="GetId()">
+    </app-initiative-attachment>
+  </div>
+</ng-container> -->
+
+<div *ngIf="isApprove">
+  <h3>Approve {{vacPicTitle}}</h3>
+</div>
+<ng-container *ngIf="isApprove">
+  <!-- <div class="row mt-4">
+    <div class="col-md-12">
+      <h3>Approve</h3>
+    </div>
+  </div> -->
+  <!-- <h3 *ngIf="isApprove">Approve</h3> -->
+  <ng-template [ngIf]="page === 'overview-approve'">
+    <div class="card mb-3 mt-2">
+      <div class="card-body">
+        <form [formGroup]="approveForm">
+          <div class="form-group">
+            <label for="Approve"> <strong> Approve Name </strong> </label>
+            <select class="form-control mt-2" formControlName="approver">
+              <option *ngFor="let item of approver" value="{{ item.actionBy }}"> {{ item.actionByName }} </option>
+            </select>
+          </div>
+        </form>
+      </div>
+    </div>
+  </ng-template>
+  <div class="card mb-0 mt-2">
+    <div class="card-body" style="padding-top: 2px; padding-bottom: 2px;">
+      <div [formGroup]="submitForm" (keydown.enter)="$event.preventDefault()">
+        <!-- apprpve normal -->
+        <ng-container *ngIf="vacPicIndividual; else ApproveNormal">
+          <ng-container *ngIf="vacApprove; else picApprove">
+            <!-- vac approve individual -->
+            <!-- row action -->
+            <div class="form-group row">
+              <label for="Action" class="col-sm-2 col-form-label text-right"> Action </label>
+              <div class="col-sm-8 mt-2">
+                <!-- <ng-container *ngIf="!CancelCondition"> -->
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="approve" value="approve" name="status"
+                    formControlName="status" (change)="OnChangeStatusVacApprove($event)">
+                  <label class="custom-control-label" for="approve"> Pass </label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="revise" value="revise" name="status"
+                    formControlName="status" (change)="OnChangeStatusVacApprove($event)">
+                  <label class="custom-control-label" for="revise"> Not Pass </label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="switchProcess" value="approveSwitchProcess"
+                    name="status" formControlName="status" (change)="OnChangeStatusVacApprove($event)">
+                  <label class="custom-control-label" for="switchProcess"> Switch Process </label>
+                </div>
+                <!-- </ng-container>
+                <ng-container *ngIf="CancelCondition">
+                  <div class="custom-control custom-radio custom-control-inline mr-4">
+                    <input class="custom-control-input" type="radio" id="ApproveCancellation"
+                      value="approve cancellation" name="status" formControlName="status"
+                      (change)="OnChangeStatus($event)">
+                    <label class="custom-control-label" for="ApproveCancellation"> Approve Cancellation </label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline mr-4">
+                    <input class="custom-control-input" type="radio" id="RejectCancellation" value="reject cancellation"
+                      name="status" formControlName="status" (change)="OnChangeStatus($event)">
+                    <label class="custom-control-label" for="RejectCancellation"> Reject Cancellation </label>
+                  </div>
+                </ng-container> -->
+              </div>
+            </div>
+            <!-- switch process -->
+            <div class="form-group row" *ngIf="isSwitchProcessTo  && newFeature">
+              <br>
+              <label for="Remark" class="col-sm-2 col-form-label text-right"> Switch Process to
+              </label>
+              <div class="col-sm-6">
+                <ng-select formControlName="switchProcessTo" [items]="switchProcessList" bindValue="value"
+                  bindLabel="name" placeholder="Choose Owner">
+                </ng-select>
+              </div>
+            </div>
+            <!-- remark -->
+            <div class="form-group row">
+              <label for="Remark" class="col-sm-2 col-form-label text-right"> Remark </label>
+              <div class="col-sm-8">
+                <textarea class="form-control" id="Remark" rows="2" name="remark" formControlName="remark"
+                  [ngClass]="{ 'is-invalid': invalidRemark }"> </textarea>
+                <div class="invalid-feedback" *ngIf="invalidRemark">
+                  Remark is required !
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <ng-template #picApprove>
+            <!-- pic approve individual -->
+            <!-- row action -->
+            <div class="form-group row">
+              <label for="Action" class="col-sm-2 col-form-label text-right"> Action </label>
+              <div class="col-sm-8 mt-2">
+                <!-- <ng-container *ngIf="!CancelCondition"> -->
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="approve" value="approve" name="status"
+                    formControlName="status" (change)="OnChangeStatusVacApprove($event)">
+                  <label class="custom-control-label" for="approve"> Pass </label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="revise" value="revise" name="status"
+                    formControlName="status" (change)="OnChangeStatusVacApprove($event)">
+                  <label class="custom-control-label" for="revise"> Leave </label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="reject" value="reject" name="status"
+                    formControlName="status" (change)="OnChangeStatusVacApprove($event)">
+                  <label class="custom-control-label" for="reject"> Move Back </label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="ApproveCancellation" value="approve cancellation"
+                    name="status" formControlName="status" (change)="OnChangeStatusVacApprove($event)">
+                  <label class="custom-control-label" for="ApproveCancellation"> Cancelled </label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="switchProcess" value="approveSwitchProcess"
+                    name="status" formControlName="status" (change)="OnChangeStatusVacApprove($event)">
+                  <label class="custom-control-label" for="switchProcess"> Switch Process </label>
+                </div>
+                <!-- </ng-container>
+                <ng-container *ngIf="CancelCondition">
+                  <div class="custom-control custom-radio custom-control-inline mr-4">
+                    <input class="custom-control-input" type="radio" id="ApproveCancellation"
+                      value="approve cancellation" name="status" formControlName="status"
+                      (change)="OnChangeStatus($event)">
+                    <label class="custom-control-label" for="ApproveCancellation"> Approve Cancellation </label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline mr-4">
+                    <input class="custom-control-input" type="radio" id="RejectCancellation" value="reject cancellation"
+                      name="status" formControlName="status" (change)="OnChangeStatus($event)">
+                    <label class="custom-control-label" for="RejectCancellation"> Reject Cancellation </label>
+                  </div>
+                </ng-container> -->
+              </div>
+            </div>
+            <!-- switch process -->
+            <div class="form-group row" *ngIf="isSwitchProcessTo  && newFeature">
+              <br>
+              <label for="Remark" class="col-sm-2 col-form-label text-right"> Switch Process to
+              </label>
+              <div class="col-sm-6">
+                <ng-select formControlName="switchProcessTo" [items]="switchProcessList" bindValue="value"
+                  bindLabel="name" placeholder="Choose Owner">
+                </ng-select>
+              </div>
+            </div>
+
+            <!-- remark -->
+            <div class="form-group row">
+              <label for="Remark" class="col-sm-2 col-form-label text-right"> Remark </label>
+              <div class="col-sm-8">
+                <textarea class="form-control" id="Remark" rows="2" name="remark" formControlName="remark"
+                  [ngClass]="{ 'is-invalid': invalidRemark }"> </textarea>
+                <div class="invalid-feedback" *ngIf="invalidRemark">
+                  Remark is required !
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <!-- button -->
+          <div class="form-group row">
+            <label for="Remark" class="col-md-2 col-form-label text-right"> </label>
+            <div class="col-md-8">
+              <button [disabled]="!isTestLoading" class="btn btn-success btn-approve mr-2" (click)="OnSubmit()"> Submit
+              </button>
+              <button class="btn btn-danger  btn-approve mr-2" routerLink="/initiative/my-tasks"> Cancel </button>
+
+            </div>
+            <div class="col-md-2" style="text-align:right">
+              <button type="button" class="btn btn-white btn-width ml-2" (click)="ShowAttachmentApprove()">
+                <span class="fas fa-paperclip mr-2"></span> <span style="font-size: 0.9rem;"> Attachment </span>
+              </button>
+            </div>
+          </div>
+        </ng-container>
+        <!-- end vac piv approve individual -->
+        <ng-template #ApproveNormal>
+          <!-- approve normal -->
+          <div class="form-group row">
+            <label for="Action" class="col-sm-2 col-form-label text-right"> Action </label>
+            <div class="col-sm-8 mt-2">
+              <ng-container *ngIf="!CancelCondition">
+                <ng-container *ngIf="isSwitchProcessTo; else normalApprove">
+                  <div class="custom-control custom-radio custom-control-inline mr-4">
+                    <input class="custom-control-input" type="radio" id="approve" value="approve" name="status"
+                      formControlName="status" (change)="OnChangeStatusSwitchProcess($event)">
+                    <label class="custom-control-label" for="approve"> Approve </label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline mr-4">
+                    <input class="custom-control-input" type="radio" id="reject" value="reject" name="status"
+                      formControlName="status" (change)="OnChangeStatusSwitchProcess($event)">
+                    <label class="custom-control-label" for="reject"> Reject </label>
+                  </div>
+                </ng-container>
+                <ng-template #normalApprove>
+                  <div class="custom-control custom-radio custom-control-inline mr-4">
+                    <input class="custom-control-input" type="radio" id="approve" value="approve" name="status"
+                      formControlName="status" (change)="OnChangeStatus($event)">
+                    <label class="custom-control-label" for="approve"> Approve </label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline mr-4">
+                    <input class="custom-control-input" type="radio" id="revise" value="revise" name="status"
+                      formControlName="status" (change)="OnChangeStatus($event)">
+                    <label class="custom-control-label" for="revise"> Revise </label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline mr-4"
+                    [ngClass]="{'disabled-check-main': isMax}">
+                    <input class="custom-control-input" type="radio" id="reject" value="reject" name="status"
+                      formControlName="status" (change)="OnChangeStatus($event)" [readonly]="">
+                    <label class="custom-control-label" for="reject"> Reject </label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline mr-4"
+                    *ngIf="isSwitchProcess && newFeature">
+                    <input class="custom-control-input" type="radio" id="switchProcess" value="switch process"
+                      name="status" formControlName="status" (change)="OnChangeStatus($event)">
+                    <label class="custom-control-label" for="switchProcess"> Switch Process </label>
+                  </div>
+                </ng-template>
+              </ng-container>
+              <ng-container *ngIf="CancelCondition">
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="ApproveCancellation" value="approve cancellation"
+                    name="status" formControlName="status" (change)="OnChangeStatus($event)">
+                  <label class="custom-control-label" for="ApproveCancellation"> Approve Cancellation </label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="RejectCancellation" value="reject cancellation"
+                    name="status" formControlName="status" (change)="OnChangeStatus($event)">
+                  <label class="custom-control-label" for="RejectCancellation"> Reject Cancellation </label>
+                </div>
+                <!-- <div class="custom-control custom-radio custom-control-inline mr-4">
+                <input class="custom-control-input" type="radio" id="RejectSwitchProcess" value="reject switch process"
+                  name="status" formControlName="status" (change)="OnChangeStatus($event)">
+                <label class="custom-control-label" for="RejectSwitchProcess"> Reject Switch Process </label>
+              </div> -->
+              </ng-container>
+            </div>
+          </div>
+
+          <div class="form-group row" *ngIf="isSwitchProcessTo  && newFeature">
+            <br>
+            <label for="Remark" class="col-sm-2 col-form-label text-right"> Switch Process to
+            </label>
+            <div class="col-sm-6">
+              <ng-select formControlName="switchProcessTo" [items]="switchProcessList" bindValue="value"
+                bindLabel="name" placeholder="Choose Owner">
+              </ng-select>
+            </div>
+          </div>
+
+          <ng-container *ngIf="CancelCondition">
+            <div class="form-group row">
+              <label for="Remark" class="col-sm-2 col-form-label text-right"> Reason for cancellation </label>
+              <div class="col-sm-8">
+                <textarea class="form-control" style="margin-bottom: 10px;" rows="2" name="remark"
+                  [value]="ReasonforCancelCondition" readonly></textarea>
+              </div>
+            </div>
+          </ng-container>
+
+          <div class="form-group row">
+            <label for="Remark" class="col-sm-2 col-form-label text-right"> Remark </label>
+            <div class="col-sm-8">
+              <textarea class="form-control" id="Remark" rows="2" name="remark" formControlName="remark"
+                [ngClass]="{ 'is-invalid': invalidRemark }"> </textarea>
+              <div class="invalid-feedback" *ngIf="invalidRemark">
+                Remark is required !
+              </div>
+            </div>
+          </div>
+          <!----------------------------->
+          <ng-container *ngIf="isCreateType && isCheckedApprove">
+            <div class="form-group row">
+              <label for="Action" class="col-sm-2 col-form-label text-right" style="min-width:110px;"> Create Type
+              </label>
+
+              <div class="col-sm-8"> <br>
+
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="noCreate" value="0" name="createType"
+                    formControlName="createType" (change)="OnChangeStatus($event)">
+                  <label class="custom-control-label" for="noCreate"> No Create </label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="autoCreateApp" value="1" name="createType"
+                    formControlName="createType" (change)="OnChangeStatus($event)">
+                  <label class="custom-control-label" for="autoCreateApp"> Auto Create App No. </label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="autoCreateAppWbs" value="2" name="createType"
+                    formControlName="createType" (change)="OnChangeStatus($event)">
+                  <label class="custom-control-label" for="autoCreateAppWbs"> Auto Create App No. and WBS No. </label>
+                </div>
+                <br><br>
+              </div>
+            </div>
+          </ng-container>
+          <!----------------------------->
+          <ng-container *ngIf="ShowSecret">
+            <div class="form-group row">
+              <label for="Action" class="col-sm-2 col-form-label text-right"> Transfer to stage <span
+                  class="text-danger ml-2">*</span> </label>
+              <div class="col-sm-10 mt-2">
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="SecretYes" value="yes" name="secretProject"
+                    formControlName="secretProject" (change)="OnChangeSecret($event)"
+                    [ngClass]="{ 'is-invalid': invalidSecretProject }">
+                  <label class="custom-control-label" for="SecretYes"> Yes </label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline mr-4">
+                  <input class="custom-control-input" type="radio" id="SecretNo" value="no" name="secretProject"
+                    formControlName="secretProject" (change)="OnChangeSecret($event)"
+                    [ngClass]="{ 'is-invalid': invalidSecretProject }">
+                  <label class="custom-control-label" for="SecretNo"> No </label>
+                </div>
+              </div>
+            </div>
+            <ng-container *ngIf="ShowGoToStage">
+              <div class="form-group row">
+                <label for="Remark" class="col-sm-2 col-form-label text-right"> Go to stage <span
+                    class="text-danger ml-3">*</span> </label>
+                <div class="col-sm-10 mt-2">
+                  <select class="form-control" formControlName="goToStage"
+                    [ngClass]="{ 'is-invalid': invalidGoToStage }">
+                    <option value="" selected disabled> Choose.. </option>
+                    <option *ngFor="let item of projects" value="{{ item }}">{{ UpperCaseReplaceStage(item) }}</option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="invalidGoToStage">
+                    Go to stage is required !
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <div class="form-group row" *ngIf="ShowSSPIM">
+            <label for="Action" class="col-md-2 col-form-label text-right"> Assign S-SP-IM Analyst </label>
+            <div class="col-md-4">
+              <ng-select formControlName="sspim" [items]="owners" bindValue="ownerName" bindLabel="ownerName"
+                placeholder="Choose Owner" (search)="SearchOwnerName($event)" (clear)="ClearOwnerName()">
+              </ng-select>
+              <div class="text-feedback" *ngIf="invalidSSPIM">
+                S-SP-IM is required !
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="Remark" class="col-md-2 col-form-label text-right"> </label>
+            <div class="col-md-8">
+              <button class="btn btn-success btn-approve mr-2" (click)="OnSubmit()" [disabled]="!isTestLoading"> Submit
+              </button>
+              <button class="btn btn-danger  btn-approve mr-2" routerLink="/initiative/my-tasks"> Cancel </button>
+
+            </div>
+            <div class="col-md-2" style="text-align:right">
+              <button type="button" class="btn btn-white btn-width ml-2" (click)="ShowAttachmentApprove()">
+                <span class="fas fa-paperclip mr-2"></span> <span style="font-size: 0.9rem;"> Attachment </span>
+              </button>
+            </div>
+          </div>
+        </ng-template>
+
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<br>
+
+<!-- <ng-template [ngIf]="ItDigital" [ngIfElse]="General">
+  <app-dim></app-dim>
+</ng-template>
+<ng-template #General> -->
+<ng-container *ngIf="RequestPool; else normalType">
+  <!-- <app-main-view [isApprove]="isApprove"></app-main-view> -->
+  <app-pool-main-form [isApprove]="isApprove"></app-pool-main-form>
+</ng-container>
+<ng-template #normalType>
+  <ng-container *ngIf="approveEdit; else approveNormal">
+    <app-main-form></app-main-form>
+  </ng-container>
+  <ng-template #approveNormal>
+    <app-main-view [isApprove]="isApprove"></app-main-view>
+  </ng-template>
+
+</ng-template>
+<!-- <app-information-tabs [id]="id"></app-information-tabs> -->
+<!-- </ng-template> -->

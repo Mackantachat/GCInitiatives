@@ -1,0 +1,242 @@
+[
+  {
+    "ReportID": 2,
+    "FieldName": "CLevel",
+    "AggregateFunction": null,
+    "Axis": "X",
+    "Sequence": 1,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 1,
+    "FieldName": "IL0Benefit_IL0",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 1,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 1,
+    "FieldName": "IL1Benefit_IL1",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 2,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 1,
+    "FieldName": "IL1Benefit_SIL1",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 3,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 1,
+    "FieldName": "IL2Benefit_IL2",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 4,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 1,
+    "FieldName": "IL2Benefit_SIL2",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 5,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 1,
+    "FieldName": "IL3Benefit_IL3",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 6,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 1,
+    "FieldName": "IL3Benefit_SIL3",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 7,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 1,
+    "FieldName": "IL4Benefit_IL4",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 8,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 1,
+    "FieldName": "IL4Benefit_SIL4",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 9,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 3,
+    "FieldName": "IL4Benefit_IL4_Converted",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 1,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 3,
+    "FieldName": "IL4Benefit_SIL4_Converted",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 2,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 3,
+    "FieldName": "IL5Benefit_IL5",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 3,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 3,
+    "FieldName": "IL5Benefit_SIL5",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 4,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 1,
+    "FieldName": "TargetToIL4_Week",
+    "AggregateFunction": null,
+    "Axis": "X",
+    "Sequence": 1,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 2,
+    "FieldName": "IL0Benefit_IL0",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 1,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 2,
+    "FieldName": "IL1Benefit_IL1",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 2,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 2,
+    "FieldName": "IL1Benefit_SIL1",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 3,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 2,
+    "FieldName": "IL2Benefit_IL2",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 4,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 2,
+    "FieldName": "IL2Benefit_SIL2",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 5,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 2,
+    "FieldName": "IL3Benefit_IL3",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 6,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 2,
+    "FieldName": "IL3Benefit_SIL3",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 7,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 2,
+    "FieldName": "IL4Benefit_IL4",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 8,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 2,
+    "FieldName": "IL4Benefit_SIL4",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 9,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 3,
+    "FieldName": "CLevel",
+    "AggregateFunction": null,
+    "Axis": "X",
+    "Sequence": 1,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 4,
+    "FieldName": "TargetToIL5_Week",
+    "AggregateFunction": null,
+    "Axis": "X",
+    "Sequence": 1,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 4,
+    "FieldName": "IL4Benefit_IL4_Converted",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 1,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 4,
+    "FieldName": "IL4Benefit_SIL4_Converted",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 2,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 4,
+    "FieldName": "IL5Benefit_IL5",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 3,
+    "ColorCode": null
+  },
+  {
+    "ReportID": 4,
+    "FieldName": "IL5Benefit_SIL5",
+    "AggregateFunction": "SUM",
+    "Axis": "Y",
+    "Sequence": 4,
+    "ColorCode": null
+  }
+]

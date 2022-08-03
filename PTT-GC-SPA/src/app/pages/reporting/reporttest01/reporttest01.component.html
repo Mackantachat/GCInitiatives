@@ -1,0 +1,6 @@
+<div class="container-fluid">
+    <button class="btn btn-primary" (click)="exportPDF()" type="button">PDF</button>
+</div>
+<div class="embed-responsive embed-responsive-4by3">
+    <iframe class="embed-responsive-item" [src]='myUrlReport | safe' allowfullscreen></iframe>
+</div>

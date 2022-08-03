@@ -1,0 +1,366 @@
+<!-- <div class="row">
+  <div class="col-md-12" style="padding-left: inherit;padding-right: inherit;">
+    <div class=" card text card-initiative">
+      <div class="card-body"> -->
+<!-- <div class="form-initiative">
+            <label style="font-size: 28px;color: #454545;">Project Lookback</label>
+            <hr>
+          </div> -->
+
+<br />
+
+<!-- Environment Lookback -->
+<div class="form-group row">
+  <div class="col-md-6">
+    <label>
+      <h4 class="title">Environment Lookback</h4>
+    </label>
+  </div>
+  <div class="col-md-6">
+  </div>
+</div>
+
+<br />
+
+<!-- row-1 -->
+
+<!-- Plan Lookback Date -->
+<div class="form-group row" [formGroup]="lookbackForm">
+  <div class="col-md-2">
+    <label> Plan Environment Lookback Date
+      <span class="text-danger">*</span> : </label>
+  </div>
+
+  <div class="col-md-3">
+    <div class="input-group">
+      <input type="text" formControlName="EnviPlanLookbackDate" [bsConfig]="PlanLookback" class="form-control"
+        bsDatepicker #dpStart="bsDatepicker" [triggers]="viewMode ? '' : 'click:click'">
+      <div *ngIf="!viewMode" class="input-group-append">
+        <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpStart.isOpen"></i>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12">
+    <label for="OwnerName"> Responsible Environmental Engineer : </label>
+    <ng-select formControlName="ResponsibleEnvirEngineer" [items]="owners" bindValue="ownerName" bindLabel="ownerName"
+      (search)="SearchOwnerName($event)" (clear)="ClearOwnerName()">
+    </ng-select>
+    <!-- <div class="text-feedback" *ngIf="getFormError('ownerName')">
+      OwnerName is required !
+    </div> -->
+  </div>
+</div>
+
+<br />
+
+<div><B>Project Impact</B></div>
+
+<!-- Table1 -->
+<div style="margin-top: 20px;">
+  <table class="table table-bordered" id="custom_table">
+    <thead>
+      <tr style="background-color: lightgray;">
+        <th scope="col" style="text-align: center;color: black;">Situation</th>
+        <th scope="col" style="text-align: center;color: black;">Before</th>
+        <th scope="col" style="text-align: center;color: black;">Target</th>
+        <th scope="col" style="text-align: center;color: black;">After</th>
+        <th scope="col" style="text-align: center;color: black;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of ProjectImpact;let i = index">
+        <td scope="row">
+          <input type="text" class="form-control" name="Situation{{i}}" [(ngModel)]="item.Situation">
+        </td>
+        <td style="text-align: center;">
+          <input type="text" class="form-control" name="Before{{i}}" [(ngModel)]="item.Before">
+        </td>
+        <td style="text-align: center;">
+          <input type="text" class="form-control" name="Target{{i}}" [(ngModel)]="item.Target">
+        </td>
+        <td style="text-align: center;">
+          <input type="text" class="form-control" name="After{{i}}" [(ngModel)]="item.After">
+        </td>
+        <td style="text-align: center;">
+          <button class="btn btn-danger btn-sm mr-1 text-white btn-list" (click)="deleteImpact(i)"
+            [disabled]="IsImpactDisabled">
+            <i class="far fa-trash-alt"></i>
+          </button>
+          <!-- <a class="edit" (click)="editImpact(item, impact)">Edit</a> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<br />
+<!-- Button-Add -->
+<div class="row">
+  <div class="col-md-6">
+    <button type="button" class="btn btn-primary" (click)="addImpact()" style="width:115px">
+      <i class="fas fa-plus mr-2"></i> <span style="font-size: 0.9rem;"> Add New </span>
+    </button>
+  </div>
+  <div class="col-md-6"></div>
+</div>
+
+<br />
+
+<!-- Table2 -->
+<div style="margin-top: 20px;">
+  <table class="table table-bordered" id="custom_table">
+    <thead>
+      <tr style="background-color: lightgray;">
+        <th scope="col" style="text-align: center;color: black;">What worked</th>
+        <th scope="col" style="text-align: center;color: black;">What didn’t work</th>
+        <th scope="col" style="text-align: center;color: black;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of ProjectImpactWork;let i = index">
+        <td scope="row" style="text-align: center;">
+          <input type="text" class="form-control" name="WhatWorked{{i}}" [(ngModel)]="item.WhatWorked">
+        </td>
+        <td style="text-align: center;">
+          <input type="text" class="form-control" name="WhatDidNotWork{{i}}" [(ngModel)]="item.WhatDidNotWork">
+        </td>
+        <td style="text-align: center;">
+          <button type="button" class="btn btn-danger btn-sm mr-1 text-white btn-list" (click)="deleteImpactWork(i)"
+            [disabled]="IsImpactWorkDisabled">
+            <i class="far fa-trash-alt"></i>
+          </button>
+          <!-- <a class="edit" (click)="editWork(item, work)">Edit</a> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<br />
+<!-- Button-Add -->
+<div class="row">
+  <div class="col-md-6">
+    <button type="button" class="btn btn-primary" (click)="addImpactWork()" style="width:115px">
+      <i class="fas fa-plus mr-2"></i> <span style="font-size: 0.9rem;"> Add New </span>
+    </button>
+  </div>
+  <div class="col-md-6"></div>
+</div>
+
+<br />
+
+<!-- Environment Project Type -->
+<div class="form-group row">
+  <div class="col-md-6">
+    <label> <B>Environment Project Type</B> </label>
+  </div>
+  <div class="col-md-6">
+  </div>
+</div>
+
+<br />
+
+<!-- row-2 -->
+<div class="form-group row">
+  <!-- Pollution Prevention -->
+  <div class="col-md-6">
+    <label for="company"> Pollution Prevention <span class="text-danger">*</span> : </label>
+    <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="pollutionDropdownList"
+      [(ngModel)]="pollutionSelectedItems" (onSelect)="onPollutionSelect($event)"
+      (onDeSelect)="onItemPollutionDeSelect($event)" (onSelectAll)="onPollutionSelectAll($event)"
+      (onDropDownClose)="onPollutionDropDownClose()">
+    </ng-multiselect-dropdown>
+  </div>
+
+  <!-- Please Specify -->
+  <div class="col-md-4">
+    <label> Please Specify <span class="text-danger">*</span> : </label>
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="pollutionOther" [disabled]="pollutionSpecify"
+        (ngModelChange)="onChangePollutionOther($event)">
+    </div>
+  </div>
+</div>
+
+<br />
+
+<!-- row-3 -->
+<div class="form-group row">
+  <!-- Global Environment Conservation -->
+  <div class="col-md-6">
+    <label for="company"> Global Environment Conservation <span class="text-danger">*</span> : </label>
+    <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="globalDropdownList" [(ngModel)]="globalSelectedItems"
+      (onSelect)="onGlobalSelect($event)" (onSelectAll)="onGlobalSelectAll($event)"
+      (onDropDownClose)="onGlobalDropDownClose()">
+    </ng-multiselect-dropdown>
+  </div>
+
+  <!-- Please Specify -->
+  <div class="col-md-4">
+    <label> Please Specify <span class="text-danger">*</span> : </label>
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="globalOther" [disabled]="globalSpecify"
+        (ngModelChange)="onChangeGlobalOther($event)">
+    </div>
+  </div>
+</div>
+
+<br />
+
+<!-- row-4 -->
+<div class="form-group row">
+  <!-- Resource Circulation -->
+  <div class="col-md-6">
+    <label for="company"> Resource Circulation <span class="text-danger">*</span> : </label>
+    <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="resourceDropdownList"
+      [(ngModel)]="resourceSelectedItems" (onSelect)="onResourceSelect($event)"
+      (onSelectAll)="onResourceSelectAll($event)" (onDropDownClose)="onResourceDropDownClose()">
+    </ng-multiselect-dropdown>
+  </div>
+
+  <!-- Please Specify -->
+  <div class="col-md-4">
+    <label> Please Specify <span class="text-danger">*</span> : </label>
+    <div class="input-group">
+      <input type="text" class="form-control" [(ngModel)]="resourceOther" [disabled]="resourceSpecify"
+        (ngModelChange)="onChangeResourceOther($event)">
+    </div>
+  </div>
+</div>
+
+<br />
+
+<!-- Result -->
+<div class="form-group row">
+  <div class="col-md-6">
+    <label> <B>Result</B> </label>
+  </div>
+  <div class="col-md-6">
+  </div>
+</div>
+
+<!-- Table Result -->
+<div style="margin-top: 20px;">
+  <!-- [formGroup]="EnvironmentResult"-->
+  <table class="table table-bordered" id="custom_table">
+    <thead>
+      <tr style="background-color: lightgray;">
+        <th scope="col" style="text-align: center;color: black;">Category</th>
+        <th scope="col" style="text-align: center;color: black;">Unit</th>
+        <th scope="col" style="text-align: center;color: black;">Before</th>
+        <th scope="col" style="text-align: center;color: black;">After</th>
+        <th scope="col" style="text-align: center;color: black;">Benefit/Year (Non-Monetary)</th>
+        <th scope="col" style="text-align: center;color: black;">Benefit/Year (THB)</th>
+        <th scope="col" style="text-align: center;color: black;">Remark</th>
+        <th scope="col" style="text-align: center;color: black;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of EnvironmentResult; let i=index">
+        <td style="text-align: center;">
+          <input type="text" class="form-control" name="EnvironmentResultCategory{{i}}"
+            [(ngModel)]="item.EnvironmentResultCategory">
+        </td>
+        <td style="text-align: center;">
+          <input type="text" class="form-control" name="EnvironmentResultUnit{{i}}"
+            [(ngModel)]="item.EnvironmentResultUnit">
+        </td>
+        <td style="text-align: center;">
+          <input type="text" class="form-control" name="EnvironmentResultBefore{{i}}"
+            [(ngModel)]="item.EnvironmentResultBefore">
+        </td>
+        <td style="text-align: center;">
+          <input type="text" class="form-control" name="EnvironmentResultAfter{{i}}"
+            [(ngModel)]="item.EnvironmentResultAfter">
+        </td>
+        <td style="text-align: center;">
+          <input type="text" class="form-control" name="EnvironmentResultBenefitYear{{i}}"
+            [(ngModel)]="item.EnvironmentResultBenefitYear">
+        </td>
+        <td style="text-align: center;">
+          <input type="text" class="form-control" name="EnvironmentResultBenefitYearThb{{i}}"
+            [(ngModel)]="item.EnvironmentResultBenefitYearThb">
+        </td>
+        <td style="text-align: center;">
+          <input type="text" class="form-control" name="EnvironmentResultRemark{{i}}"
+            [(ngModel)]="item.EnvironmentResultRemark">
+        </td>
+        <td style="text-align: center;">
+          <button class="btn btn-danger btn-sm mr-1 text-white btn-list" (click)="deleteEnvi(i)">
+            <i class="far fa-trash-alt"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <button type="button" class="btn btn-primary" style="width:115px" (click)="addEnviResult()">
+      <i class="fas fa-plus mr-2"></i> <span style="font-size: 0.9rem;"> Add New </span>
+    </button>
+  </div>
+  <div class="col-md-6"></div>
+</div>
+<!-- </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- modal-edit-result -->
+<!-- <ng-template #result>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Update Lookback</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div style="margin-top: 20px;">
+        <table class="table table-bordered basic-table" id="custom_table">
+          <thead>
+            <tr style="background-color: lightgray;">
+              <th scope="col" style="text-align: center;">Category</th>
+              <th scope="col" style="text-align: center;">Unit</th>
+              <th scope="col" style="text-align: center;">Before</th>
+              <th scope="col" style="text-align: center;">After</th>
+              <th scope="col" style="text-align: center;">Benefit/Year (Non-Monetary)</th>
+              <th scope="col" style="text-align: center;">Benefit/Year (THB)</th>
+              <th scope="col" style="text-align: center;">Remark</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let control of environmentForm.get('enviResult')['controls']; let i=index">
+            <tr [formGroup]="EnvironmentResult">
+              <td style="text-align: center;">
+                <input type="text" class="form-control" formControlName="environmentResultCategory">
+              </td>
+              <td style="text-align: center;">
+                <input type="text" class="form-control" formControlName="environmentResultUnit">
+              </td>
+              <td style="text-align: center;">
+                <input type="text" class="form-control" formControlName="environmentResultBefore">
+              </td>
+              <td style="text-align: center;">
+                <input type="text" class="form-control" formControlName="environmentResultAfter">
+              </td>
+              <td style="text-align: center;">
+                <input type="text" class="form-control" formControlName="environmentResultBenefitYear">
+              </td>
+              <td style="text-align: center;">
+                <input type="text" class="form-control" formControlName="environmentResultBenefitYearThb">
+              </td>
+              <td style="text-align: center;">
+                <input type="text" class="form-control" formControlName="environmentResultRemark">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+    </div>
+  </div>
+  <div class="modal-body" style="text-align: right;">
+    <button type="button" class="btn btn-primary" style="width: 95px;" (click)="updateResult()">Update</button>
+    &nbsp;
+    <button type="button" class="btn btn-danger" style="width: 95px;" (click)="modalRef.hide()">Cancel</button>
+  </div>
+</ng-template> -->

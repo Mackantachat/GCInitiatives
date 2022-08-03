@@ -1,0 +1,793 @@
+<ng-container *ngIf="isAdmin; else isNotAdmin">
+  <br />
+  <h3 style="color: #1C6EA4;">Progress & Milestone {{ InitiativeService.isRevise ? '(Revise Plan)' : null }}</h3>
+  <div class="content py-3" [formGroup]="poc2FormNewLogic">
+    <div class="row">
+      <div class="col-lg-2">
+      </div>
+      <div class="col-lg-2 center">
+        <p>Basic Start Date</p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>Basic Finish Date</p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>Actual Start Date</p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>Actual Finish Date</p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>POC Weight (%)</p>
+      </div>
+    </div>
+    <div class="row overall" formGroupName="overallForm">
+      <div class="col-lg-2">
+        <p class="center">Overall Plan</p>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="o_basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateFunctionChangeValueOverall()"
+          [ngClass]="{ 'plan-inValid': isInvalid('overallForm','basicStartDate') }" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="o_basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateFunctionChangeValueOverall()"
+          [ngClass]="{ 'plan-inValid': isInvalid('overallForm','basicFinishDate') }" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="o_actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" />
+      </div>
+      <div class=" col-lg-2">
+        <input class="form-control" id="o_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" triggers="" />
+      </div>
+      <div class="col-lg-2">
+        <!-- <input class="form-control" id="o_weight" formControlName="pocWeightPercent" type="number" readonly> -->
+      </div>
+    </div>
+
+    <br />
+
+    <!-- ENGINEERING -->
+    <div class="row overall" formGroupName="engineeringForm">
+      <div class="col-lg-2">
+        <p class="center">Engineering</p>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="e_basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateFunctionChangeValue('engineeringForm')"
+          [ngClass]="{ 'plan-inValid': isInvalid('engineeringForm','basicStartDate') }" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="e_basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateFunctionChangeValue('engineeringForm')"
+          [ngClass]="{ 'plan-inValid': isInvalid('engineeringForm','basicFinishDate') }" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="e_actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateActual('engineeringForm')" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="e_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" triggers="" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="e_weight" type="number" formControlName="pocWeightPercent"
+          [ngClass]="{ 'plan-inValid': !viewMode && !getPocPercentError }" (keypress)="clearPercentValidate($event)">
+      </div>
+    </div>
+    <br />
+    <!-- PROCUREMENT -->
+    <div class="row overall" formGroupName="procurementForm">
+      <div class="col-lg-2">
+        <p class="center">Procurement</p>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="p_basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateFunctionChangeValue('procurementForm')"
+          [ngClass]="{ 'plan-inValid': isInvalid('procurementForm','basicStartDate') }" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="p_basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateFunctionChangeValue('procurementForm')"
+          [ngClass]="{ 'plan-inValid': isInvalid('procurementForm','basicFinishDate') }" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="p_actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateActual('procurementForm')" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="p_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" triggers="" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="p_weight" type="number" formControlName="pocWeightPercent"
+          [ngClass]="{ 'plan-inValid': !viewMode && !getPocPercentError }" (keypress)="clearPercentValidate($event)" />
+      </div>
+    </div>
+    <br />
+    <!-- CONSTRUCTION -->
+    <div class="row overall" formGroupName="constructionForm">
+      <div class="col-lg-2">
+        <p class="center">Construction</p>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="c_basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateFunctionChangeValue('constructionForm')"
+          [ngClass]="{ 'plan-inValid': isInvalid('constructionForm','basicStartDate') }" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="c_basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateFunctionChangeValue('constructionForm')"
+          [ngClass]="{ 'plan-inValid': isInvalid('constructionForm','basicFinishDate') }" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="c_actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateActual('constructionForm')" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="c_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="c_weight" type="number" formControlName="pocWeightPercent" [readonly]="viewMode"
+          [ngClass]="{ 'plan-inValid': !viewMode && !getPocPercentError }" (keypress)="clearPercentValidate($event)" />
+      </div>
+    </div>
+    <br />
+    <!-- COMMISSIONING -->
+    <div class="row overall" formGroupName="commissioningForm">
+      <div class="col-lg-2">
+        <p class="center">Commissioning</p>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="co_basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateFunctionChangeValue('commissioningForm')"
+          [ngClass]="{ 'plan-inValid': isInvalid('commissioningForm','basicStartDate') }" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="co_basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateFunctionChangeValue('commissioningForm')"
+          [ngClass]="{ 'plan-inValid': isInvalid('commissioningForm','basicFinishDate') }" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="co_actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateActual('commissioningForm')" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="co_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" triggers="" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="co_weight" type="number" formControlName="pocWeightPercent"
+          [readonly]="viewMode" [ngClass]="{ 'plan-inValid': !viewMode && !getPocPercentError }"
+          (keypress)="clearPercentValidate($event)" />
+      </div>
+    </div>
+  </div>
+
+  <br />
+
+  <!-- Progress 1 -->
+  <div class="card space" *ngFor="let elm of progressPlan; let yearIndex = index;">
+    <div class="card-header dropdown" data-toggle="collapse" [attr.data-target]="'#collapse'+elm.year">
+      <div class="row">
+        <div class="col-lg-6">
+          <p>Progress Plan ({{getYear(yearIndex)}})</p>
+        </div>
+        <div class="col-lg-6">
+          <p style="text-align: right;"><i class="fa fa-caret-down"></i></p>
+        </div>
+      </div>
+    </div>
+    <div class="card-body collapse show" id="collapse{{elm.year}}" aria-labelledby="headingOne">
+      <table class="table table-hover responsive">
+        <thead>
+          <tr class="table-active text-center table-initiative">
+            <th>Work Progress</th>
+            <th>Plan/Actual</th>
+            <th>JAN</th>
+            <th>FEB</th>
+            <th>MAR</th>
+            <th>APR</th>
+            <th>MAY</th>
+            <th>JUN</th>
+            <th>JUL</th>
+            <th>AUG</th>
+            <th>SEP</th>
+            <th>OCT</th>
+            <th>NOV</th>
+            <th>DEC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataPOC;">
+            <td rowspan="2" [style]="show(item.type,item.name)" style="vertical-align : middle;text-align:center;">
+              {{item.type}}
+            </td>
+            <th>{{item.name}}</th>
+            <ng-container *ngIf="item.tag == 'engineering'">
+              <td *ngFor="let data of elm.listMonth; let monthIndex = index">
+                <input *ngIf="item.id == 1" class="form-control" [(ngModel)]="data.engineering_plan.planValue"
+                  mask="separator.2" step="0.01" separatorLimit="100" (keypress)="keyPress($event)"
+                  [ngClass]="{ 'plan-inValid': !data.engineering_plan.planDisabled && !getPlanError }"
+                  (blur)="checkLimit('planValue','engineering_plan',monthIndex,yearIndex)"
+                  [allowNegativeNumbers]="true">
+                <input *ngIf="item.id == 2" class="form-control" [(ngModel)]="data.engineering_plan.actualValue"
+                  mask="separator.2" step="0.01" separatorLimit="100" (keypress)="keyPress($event)"
+                  (blur)="checkLimit('actualValue','engineering_plan',monthIndex,yearIndex)"
+                  [allowNegativeNumbers]="true">
+              </td>
+            </ng-container>
+            <ng-container *ngIf="item.tag == 'procurement'">
+              <td *ngFor="let data of elm.listMonth; let monthIndex = index">
+                <input *ngIf="item.id == 1" class="form-control" [(ngModel)]="data.procurement_plan.planValue"
+                  mask="separator.2" step="0.01" separatorLimit="100" (keypress)="keyPress($event)"
+                  [ngClass]="{ 'plan-inValid': !data.procurement_plan.planDisabled && !getPlanError }"
+                  (blur)="checkLimit('planValue','procurement_plan',monthIndex,yearIndex)"
+                  [allowNegativeNumbers]="true">
+                <input *ngIf="item.id == 2" class="form-control" [(ngModel)]="data.procurement_plan.actualValue"
+                  (blur)="checkLimit('actualValue','procurement_plan',monthIndex,yearIndex)" mask="separator.2"
+                  step="0.01" separatorLimit="100" (keypress)="keyPress($event)" [allowNegativeNumbers]="true">
+              </td>
+            </ng-container>
+            <ng-container *ngIf="item.tag == 'construction'">
+              <td *ngFor="let data of elm.listMonth; let monthIndex = index">
+                <input *ngIf="item.id == 1" class="form-control" [(ngModel)]="data.construction_plan.planValue"
+                  mask="separator.2" step="0.01" separatorLimit="100" (keypress)="keyPress($event)"
+                  [ngClass]="{ 'plan-inValid': !data.construction_plan.planDisabled && !getPlanError }"
+                  (blur)="checkLimit('planValue','construction_plan',monthIndex,yearIndex)"
+                  [allowNegativeNumbers]="true">
+                <!-- (keyup)="avgCalculation(yearIndex,monthIndex,'construction_plan','planValue',data.construction_plan.planValue)" -->
+
+                <input *ngIf="item.id == 2" class="form-control" [(ngModel)]="data.construction_plan.actualValue"
+                  (blur)="checkLimit('actualValue','construction_plan',monthIndex,yearIndex)" mask="separator.2"
+                  step="0.01" separatorLimit="100" (keypress)="keyPress($event)" [allowNegativeNumbers]="true">
+              </td>
+            </ng-container>
+            <ng-container *ngIf="item.tag == 'commissioning'">
+              <td *ngFor="let data of elm.listMonth; let monthIndex = index">
+                <input *ngIf="item.id == 1" class="form-control" [(ngModel)]="data.commissioning_plan.planValue"
+                  mask="separator.2" step="0.01" separatorLimit="100" (keypress)="keyPress($event)"
+                  [ngClass]="{ 'plan-inValid': !data.commissioning_plan.planDisabled && !getPlanError }"
+                  (blur)="checkLimit('planValue','commissioning_plan',monthIndex,yearIndex)"
+                  [allowNegativeNumbers]="true">
+                <!-- (keyup)="avgCalculation(yearIndex,monthIndex,'commissioning_plan','planValue',data.commissioning_plan.planValue)" -->
+
+                <input *ngIf="item.id == 2" class="form-control" [(ngModel)]="data.commissioning_plan.actualValue"
+                  (blur)="checkLimit('actualValue','commissioning_plan',monthIndex,yearIndex)" mask="separator.2"
+                  step="0.01" separatorLimit="100" (keypress)="keyPress($event)" [allowNegativeNumbers]="true">
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table table-hover responsive">
+        <thead>
+          <tr class="table-active text-center table-initiative">
+            <th>Type</th>
+            <th>POC %</th>
+            <th>JAN</th>
+            <th>FEB</th>
+            <th>MAR</th>
+            <th>APR</th>
+            <th>MAY</th>
+            <th>JUN</th>
+            <th>JUL</th>
+            <th>AUG</th>
+            <th>SEP</th>
+            <th>OCT</th>
+            <th>NOV</th>
+            <th>DEC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataOverall;">
+            <td rowspan="2" [style]="show(item.type,item.name)" style="vertical-align : middle;text-align:center;">
+              {{item.type}}
+            </td>
+            <td>{{item.name}}</td>
+            <td *ngFor="let data of elm.listMonth; let monthIndex = index">
+              <input *ngIf="item.id == 1" class="form-control" type="text" [(ngModel)]="data.overall_plan.planValue"
+                [readonly]="true" onKeyUp="if(this.value>100){this.value='0';}else if(this.value<0){this.value='0';}"
+                mask="separator.2" step="0.01" separatorLimit="100" (keypress)="keyPress($event)">
+              <input *ngIf="item.id == 2" class="form-control" type="text" [(ngModel)]="data.overall_plan.actualValue"
+                [readonly]="true" onKeyUp="if(this.value>100){this.value='0';}else if(this.value<0){this.value='0';}"
+                mask="separator.2" step="0.01" separatorLimit="100" (keypress)="keyPress($event)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #isNotAdmin>
+  <br />
+  <h3 style="color: #1C6EA4;">Progress & Milestone {{ InitiativeService.isRevise ? '(Revise Plan)' : null }}</h3>
+  <div class="content py-3" [formGroup]="poc2FormNewLogic">
+    <div class="row">
+      <div class="col-lg-2">
+      </div>
+      <div class="col-lg-2 center">
+        <p>Basic Start Date <span class="text-danger">*</span></p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>Basic Finish Date <span class="text-danger">*</span></p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>Actual Start Date <span class="text-danger">*</span></p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>Actual Finish Date</p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>POC Weight (%) <span class="text-danger">*</span></p>
+      </div>
+    </div>
+    <div class="row overall" formGroupName="overallForm">
+      <div class="col-lg-2">
+        <p class="center">Overall Plan </p>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="o_basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (bsValueChange)="clearDateFunctionChangeValueOverall()"
+          [triggers]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore) ? '' : 'click:click'"
+          [readonly]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore)"
+          [isDisabled]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore)"
+          [ngClass]="{ 'plan-inValid': isInvalid('overallForm','basicStartDate') }" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="o_basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+          [bsConfig]="bsConfigOverAllBasicFinish" (bsValueChange)="clearDateFunctionChangeValueOverall()"
+          [triggers]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore) ? '' : 'click:click'"
+          [readonly]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore)"
+          [isDisabled]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore)"
+          [ngClass]="{ 'plan-inValid': isInvalid('overallForm','basicFinishDate') }" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="o_actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" readonly isDisabled='true' triggers='' />
+      </div>
+      <div class=" col-lg-2">
+        <div *ngIf="allowActualFinishDate || viewMode;else elseBasicOverallFinish">
+          <input class="form-control" id="o_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigOverAllFinish" isDisabled="true" triggers='' readonly />
+        </div>
+        <ng-template #elseBasicOverallFinish>
+          <input class="form-control" id="o_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigOverAllFinish" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <!-- <input class="form-control" id="o_weight" formControlName="pocWeightPercent" type="number" readonly> -->
+      </div>
+    </div>
+
+    <br />
+
+    <!-- ENGINEERING -->
+    <div class="row overall" formGroupName="engineeringForm">
+      <div class="col-lg-2">
+        <p class="center">Engineering</p>
+      </div>
+      <div class="col-lg-2">
+        <div
+          *ngIf="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore) || !isPOCWeightEngineering; else elseBasicStartEng">
+          <input class="form-control" id="e_basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicEngineeringStart" triggers="" readonly isDisabled=true
+            [ngClass]="{ 'plan-inValid': isInvalid('engineeringForm','basicStartDate') }" />
+        </div>
+        <ng-template #elseBasicStartEng>
+          <input class="form-control" id="e_basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicEngineeringStart" (bsValueChange)="clearDateFunctionChangeValue('engineeringForm')"
+            [ngClass]="{ 'plan-inValid': isInvalid('engineeringForm','basicStartDate') }" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <div
+          *ngIf="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore) || !isPOCWeightEngineering; else elseBasicFinishEng">
+          <input class="form-control" id="e_basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicEngineeringFinish" triggers="" readonly isDisabled=true
+            [ngClass]="{ 'plan-inValid': isInvalid('engineeringForm','basicFinishDate') }" />
+        </div>
+        <ng-template #elseBasicFinishEng>
+          <input class="form-control" id="e_basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicEngineeringFinish"
+            (bsValueChange)="clearDateFunctionChangeValue('engineeringForm')" [maxDate]="overallBasicFinishDate"
+            [ngClass]="{ 'plan-inValid': isInvalid('engineeringForm','basicFinishDate') }" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <div *ngIf="viewMode || !isPOCWeightEngineering || !isActualStartDate; else elseEng">
+          <input class="form-control" id="e_actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigEngineeringStart" triggers='' readonly isDisabled=true />
+        </div>
+        <ng-template #elseEng>
+          <input class="form-control" id="e_actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigEngineeringStart" (bsValueChange)="clearDateActual('engineeringForm')"
+            (blur)="preventNullEvent($event)" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <div *ngIf="viewMode || !isPOCWeightEngineering || disEngineeringComplete; else elseActualEngFinish">
+          <input class="form-control" id="e_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+            [minDate]="getMinDate('engineering_plan')" [bsConfig]="bsConfig"
+            (bsValueChange)="clearActual('engineeringForm')" isDisabled="true" triggers='' readonly />
+        </div>
+        <ng-template #elseActualEngFinish>
+          <input class="form-control" id="e_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+            [minDate]="getMinDate('engineering_plan')" [bsConfig]="bsConfig"
+            (bsValueChange)="clearActual('engineeringForm')" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="e_weight" type="number" formControlName="pocWeightPercent"
+          [readonly]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore)"
+          [ngClass]="{ 'plan-inValid': !viewMode && !getPocPercentError }"
+          (keypress)="clearKeyPercentValidate($event, 'Engineering')"
+          (blur)="onChangePocWeightPercent('Engineering', 'engineeringForm')" />
+      </div>
+    </div>
+    <br />
+    <!-- PROCUREMENT -->
+    <div class="row overall" formGroupName="procurementForm">
+      <div class="col-lg-2">
+        <p class="center">Procurement</p>
+      </div>
+      <div class="col-lg-2">
+        <div
+          *ngIf="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore) || !isPOCWeightProcurement; else elseBasicStartPro">
+          <input class="form-control" id="p_basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicProcurementStart" triggers="" readonly isDisabled="true"
+            [ngClass]="{ 'plan-inValid': isInvalid('procurementForm','basicStartDate') }" />
+        </div>
+        <ng-template #elseBasicStartPro>
+          <input class="form-control" id="p_basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicProcurementStart" (bsValueChange)="clearDateFunctionChangeValue('procurementForm')"
+            [ngClass]="{ 'plan-inValid': isInvalid('procurementForm','basicStartDate') }" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <div
+          *ngIf="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore) || !isPOCWeightProcurement; else elseBasicFinishPro">
+          <input class="form-control" id="p_basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicProcurementFinish" triggers="" readonly isDisabled=true
+            [ngClass]="{ 'plan-inValid': isInvalid('procurementForm','basicFinishDate') }" />
+        </div>
+        <ng-template #elseBasicFinishPro>
+          <input class="form-control" id="p_basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicProcurementFinish"
+            (bsValueChange)="clearDateFunctionChangeValue('procurementForm')" [maxDate]="overallBasicFinishDate"
+            [ngClass]="{ 'plan-inValid': isInvalid('procurementForm','basicFinishDate') }" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <div *ngIf="viewMode || !isPOCWeightProcurement || !isActualStartDate;else elsePro">
+          <input class="form-control" id="p_actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigProcurementStart" triggers='' readonly isDisabled=true />
+        </div>
+        <ng-template #elsePro>
+          <input class="form-control" id="p_actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigProcurementStart" (bsValueChange)="clearDateActual('procurementForm')"
+            (blur)="preventNullEvent($event)" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <div *ngIf="viewMode || !isPOCWeightProcurement || disProcurementComplete;else elseActualProcFinish">
+          <input class="form-control" id="p_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+            [minDate]="getMinDate('procurement_plan')" [bsConfig]="bsConfig"
+            (bsValueChange)="clearActual('procurementForm')" isDisabled="true" triggers='' readonly />
+        </div>
+        <ng-template #elseActualProcFinish>
+          <input class="form-control" id="p_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+            [minDate]="getMinDate('procurement_plan')" [bsConfig]="bsConfig"
+            (bsValueChange)="clearActual('procurementForm')" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="p_weight" type="number" formControlName="pocWeightPercent"
+          [readonly]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore)"
+          [ngClass]="{ 'plan-inValid': !viewMode && !getPocPercentError }"
+          (keypress)="clearKeyPercentValidate($event, 'Procurement')"
+          (blur)="onChangePocWeightPercent('Procurement', 'procurementForm')" />
+      </div>
+    </div>
+    <br />
+    <!-- CONSTRUCTION -->
+    <div class="row overall" formGroupName="constructionForm">
+      <div class="col-lg-2">
+        <p class="center">Construction</p>
+      </div>
+      <div class="col-lg-2">
+        <div
+          *ngIf="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore) || !isPOCWeightConstruction; else elseBasicStartCon">
+          <input class="form-control" id="c_basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicConstructionStart" triggers="" readonly isDisabled=true
+            [ngClass]="{ 'plan-inValid': isInvalid('constructionForm','basicStartDate') }" />
+        </div>
+        <ng-template #elseBasicStartCon>
+          <input class="form-control" id="c_basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicConstructionStart"
+            (bsValueChange)="clearDateFunctionChangeValue('constructionForm')"
+            [ngClass]="{ 'plan-inValid': isInvalid('constructionForm','basicStartDate') }" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <div
+          *ngIf="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore) || !isPOCWeightConstruction; else elseBasicFinishCon">
+          <input class="form-control" id="c_basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicConstructionFinish" triggers="" readonly isDisabled=true
+            [ngClass]="{ 'plan-inValid': isInvalid('constructionForm','basicFinishDate') }" />
+        </div>
+        <ng-template #elseBasicFinishCon>
+          <input class="form-control" id="c_basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicConstructionFinish"
+            (bsValueChange)="clearDateFunctionChangeValue('constructionForm')" [maxDate]="overallBasicFinishDate"
+            [ngClass]="{ 'plan-inValid': isInvalid('constructionForm','basicFinishDate') }" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <div *ngIf="viewMode || !isPOCWeightConstruction || !isActualStartDate;else elseCon">
+          <input class="form-control" id="c_actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigConstructionStart" triggers='' readonly isDisabled=true />
+        </div>
+        <ng-template #elseCon>
+          <input class="form-control" id="c_actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigConstructionStart" (bsValueChange)="clearDateActual('constructionForm')"
+            (blur)="preventNullEvent($event)" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <div *ngIf="viewMode || !isPOCWeightConstruction || disConstructionComplete;else elseActualConFinish">
+          <input class="form-control" id="c_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+            [minDate]="getMinDate('construction_plan')" [bsConfig]="bsConfig"
+            (bsValueChange)="clearActual('constructionForm')" isDisabled="true" triggers='' readonly />
+        </div>
+        <ng-template #elseActualConFinish>
+          <input class="form-control" id="c_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+            [minDate]="getMinDate('construction_plan')" [bsConfig]="bsConfig"
+            (bsValueChange)="clearActual('constructionForm')" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="c_weight" type="number" formControlName="pocWeightPercent"
+          [readonly]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore)"
+          [ngClass]="{ 'plan-inValid': !viewMode && !getPocPercentError }"
+          (keypress)="clearKeyPercentValidate($event, 'Construction')"
+          (blur)="onChangePocWeightPercent('Construction', 'constructionForm')" />
+      </div>
+    </div>
+    <br />
+    <!-- COMMISSIONING -->
+    <div class="row overall" formGroupName="commissioningForm">
+      <div class="col-lg-2">
+        <p class="center">Commissioning</p>
+      </div>
+      <div class="col-lg-2">
+        <div
+          *ngIf="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore) || !isPOCWeightCommissioning; else elseBasicStartCom">
+          <input class="form-control" id="co_basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicCommissionStart" triggers="" readonly isDisabled=true
+            [ngClass]="{ 'plan-inValid': isInvalid('commissioningForm','basicStartDate') }" />
+        </div>
+        <ng-template #elseBasicStartCom>
+          <input class="form-control" id="co_basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicCommissionStart"
+            (bsValueChange)="clearDateFunctionChangeValue('commissioningForm')"
+            [ngClass]="{ 'plan-inValid': isInvalid('commissioningForm','basicStartDate') }" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <div
+          *ngIf="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore) || !isPOCWeightCommissioning; else elseBasicFinishCom">
+          <input class="form-control" id="co_basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicCommissionFinish" triggers="" readonly isDisabled=true
+            [ngClass]="{ 'plan-inValid': isInvalid('commissioningForm','basicFinishDate') }" />
+        </div>
+        <ng-template #elseBasicFinishCom>
+          <input class="form-control" id="co_basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigBasicCommissionFinish"
+            (bsValueChange)="clearDateFunctionChangeValue('commissioningForm')" [maxDate]="overallBasicFinishDate"
+            [ngClass]="{ 'plan-inValid': isInvalid('commissioningForm','basicFinishDate') }" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <div *ngIf="viewMode || !isPOCWeightCommissioning || !isActualStartDate;else elseCom">
+          <input class="form-control" id="co_actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigCommissionStart" triggers='' readonly isDisabled=true />
+        </div>
+        <ng-template #elseCom>
+          <input class="form-control" id="co_actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+            [bsConfig]="bsConfigCommissionStart" (bsValueChange)="clearDateActual('commissioningForm')"
+            (blur)="preventNullEvent($event)" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <div *ngIf="viewMode || !isPOCWeightCommissioning || disCommissioningComplete;else elseActualComFinish">
+          <input class="form-control" id="co_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+            [minDate]="getMinDate('commissioning_plan')" [bsConfig]="bsConfig"
+            (bsValueChange)="clearActual('commissioningForm')" isDisabled="true" triggers='' readonly />
+        </div>
+        <ng-template #elseActualComFinish>
+          <input class="form-control" id="co_actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+            [minDate]="getMinDate('commissioning_plan')" [bsConfig]="bsConfig"
+            (bsValueChange)="clearActual('commissioningForm')" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="co_weight" type="number" formControlName="pocWeightPercent"
+          [ngClass]="{ 'plan-inValid': !viewMode && !getPocPercentError }"
+          [readonly]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore)"
+          (keypress)="clearKeyPercentValidate($event, 'Commissioning')"
+          (blur)="onChangePocWeightPercent('Commissioning', 'commissioningForm')" />
+      </div>
+    </div>
+  </div>
+
+  <br />
+
+  <!-- Progress 1 -->
+  <div class="card space" *ngFor="let elm of progressPlan; let yearIndex = index;">
+    <div class="card-header dropdown" data-toggle="collapse" [attr.data-target]="'#collapse'+elm.year">
+      <div class="row">
+        <div class="col-lg-6">
+          <p>Progress Plan ({{getYear(yearIndex)}})</p>
+        </div>
+        <div class="col-lg-6">
+          <p style="text-align: right;"><i class="fa fa-caret-down"></i></p>
+        </div>
+      </div>
+    </div>
+    <div class="card-body collapse show" id="collapse{{elm.year}}" aria-labelledby="headingOne">
+      <table class="table table-hover responsive">
+        <thead>
+          <tr class="table-active text-center table-initiative">
+            <th>Work Progress</th>
+            <th>Plan/Actual</th>
+            <th>JAN</th>
+            <th>FEB</th>
+            <th>MAR</th>
+            <th>APR</th>
+            <th>MAY</th>
+            <th>JUN</th>
+            <th>JUL</th>
+            <th>AUG</th>
+            <th>SEP</th>
+            <th>OCT</th>
+            <th>NOV</th>
+            <th>DEC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataPOC;">
+            <td rowspan="2" [style]="show(item.type,item.name)" style="vertical-align : middle;text-align:center;">
+              {{item.type}}
+            </td>
+            <th>{{item.name}}</th>
+            <ng-container *ngIf="item.tag == 'engineering'">
+              <td *ngFor="let data of elm.listMonth; let monthIndex = index">
+                <!-- <input *ngIf="item.id == 1" class="form-control" type="number"
+                [(ngModel)]="data.engineering_plan.planValue" [disabled]="data.engineering_plan.planDisabled"
+                maxlength="5" onKeyUp="if(this.value>100){this.value='0';}else if(this.value<0){this.value='0';}"
+                step="00.00" min="0.00" separatorLimit="100"  (keypress)="keyPress($event)" >
+              <input *ngIf="item.id == 2" class="form-control" type="number"
+                [(ngModel)]="data.engineering_plan.actualValue" [disabled]="data.engineering_plan.actualDisabled"
+                maxlength="5" onKeyUp="if(this.value>100){this.value='0';}else if(this.value<0){this.value='0';}"
+                step="00.00" min="0.00" separatorLimit="100"  (keypress)="keyPress($event)" > -->
+                <!--(keyup)=" accumulateCalculation(yearIndex, monthIndex, data.planValue)" -->
+
+                <input *ngIf="item.id == 1" type="text" class="form-control"
+                  placeholder="{{data.engineering_plan.planDisp}}" [(ngModel)]="data.engineering_plan.planValue"
+                  [readonly]="data.engineering_plan.planDisabled" mask="separator.2" step="0.01" separatorLimit="100"
+                  (keypress)="keyPress($event)"
+                  [ngClass]="{ 'plan-inValid': !data.engineering_plan.planDisabled && !getPlanError }"
+                  (blur)="checkLimit('planValue','engineering_plan',monthIndex,yearIndex)"
+                  [allowNegativeNumbers]="true">
+                <!-- (keyup)="avgCalculation(yearIndex,monthIndex,'engineering_plan','planValue',data.engineering_plan.planValue)" -->
+
+                <input *ngIf="item.id == 2" type="text" class="form-control"
+                  placeholder="{{data.engineering_plan.actualDisp}}" [(ngModel)]="data.engineering_plan.actualValue"
+                  [readonly]="data.engineering_plan.actualDisabled || capEn.maxActual == 100 || !disEngineeringComplete"
+                  (blur)="checkLimit('actualValue','engineering_plan',monthIndex,yearIndex)" mask="separator.2"
+                  step="0.01" separatorLimit="100" (keypress)="keyPress($event)" [allowNegativeNumbers]="true">
+              </td>
+            </ng-container>
+            <ng-container *ngIf="item.tag == 'procurement'">
+              <td *ngFor="let data of elm.listMonth; let monthIndex = index">
+                <input *ngIf="item.id == 1" class="form-control" placeholder="{{data.procurement_plan.planDisp}}"
+                  [(ngModel)]="data.procurement_plan.planValue" type="text"
+                  [readonly]="data.procurement_plan.planDisabled" mask="separator.2" step="0.01" separatorLimit="100"
+                  (keypress)="keyPress($event)"
+                  [ngClass]="{ 'plan-inValid': !data.procurement_plan.planDisabled && !getPlanError }"
+                  (blur)="checkLimit('planValue','procurement_plan',monthIndex,yearIndex)"
+                  [allowNegativeNumbers]="true">
+                <!-- (keyup)="avgCalculation(yearIndex,monthIndex,'procurement_plan','planValue',data.procurement_plan.planValue)" -->
+
+                <input *ngIf="item.id == 2" class="form-control" placeholder="{{data.procurement_plan.actualDisp}}"
+                  [(ngModel)]="data.procurement_plan.actualValue" type="text"
+                  [readonly]="data.procurement_plan.actualDisabled || capPro.maxActual == 100 || !disProcurementComplete"
+                  (blur)="checkLimit('actualValue','procurement_plan',monthIndex,yearIndex)" mask="separator.2"
+                  step="0.01" separatorLimit="100" (keypress)="keyPress($event)" [allowNegativeNumbers]="true">
+              </td>
+            </ng-container>
+            <ng-container *ngIf="item.tag == 'construction'">
+              <td *ngFor="let data of elm.listMonth; let monthIndex = index">
+                <input *ngIf="item.id == 1" class="form-control" placeholder="{{data.construction_plan.planDisp}}"
+                  [(ngModel)]="data.construction_plan.planValue" type="text"
+                  [readonly]="data.construction_plan.planDisabled" mask="separator.2" step="0.01" separatorLimit="100"
+                  (keypress)="keyPress($event)"
+                  [ngClass]="{ 'plan-inValid': !data.construction_plan.planDisabled && !getPlanError }"
+                  (blur)="checkLimit('planValue','construction_plan',monthIndex,yearIndex)"
+                  [allowNegativeNumbers]="true">
+                <!-- (keyup)="avgCalculation(yearIndex,monthIndex,'construction_plan','planValue',data.construction_plan.planValue)" -->
+
+                <input *ngIf="item.id == 2" class="form-control" placeholder="{{data.construction_plan.actualDisp}}"
+                  [(ngModel)]="data.construction_plan.actualValue" type="text"
+                  [readonly]="data.construction_plan.actualDisabled || capCon.maxActual == 100 || !disConstructionComplete"
+                  (blur)="checkLimit('actualValue','construction_plan',monthIndex,yearIndex)" mask="separator.2"
+                  step="0.01" separatorLimit="100" (keypress)="keyPress($event)" [allowNegativeNumbers]="true">
+              </td>
+            </ng-container>
+            <ng-container *ngIf="item.tag == 'commissioning'">
+              <td *ngFor="let data of elm.listMonth; let monthIndex = index">
+                <input *ngIf="item.id == 1" class="form-control" placeholder="{{data.commissioning_plan.planDisp}}"
+                  [(ngModel)]="data.commissioning_plan.planValue" type="text"
+                  [readonly]="data.commissioning_plan.planDisabled" mask="separator.2" step="0.01" separatorLimit="100"
+                  (keypress)="keyPress($event)"
+                  [ngClass]="{ 'plan-inValid': !data.commissioning_plan.planDisabled && !getPlanError }"
+                  (blur)="checkLimit('planValue','commissioning_plan',monthIndex,yearIndex)"
+                  [allowNegativeNumbers]="true">
+                <!-- (keyup)="avgCalculation(yearIndex,monthIndex,'commissioning_plan','planValue',data.commissioning_plan.planValue)" -->
+
+                <input *ngIf="item.id == 2" class="form-control" placeholder="{{data.commissioning_plan.actualDisp}}"
+                  [(ngModel)]="data.commissioning_plan.actualValue" type="text"
+                  [readonly]="data.commissioning_plan.actualDisabled || capCom.maxActual == 100 || !disCommissioningComplete"
+                  (blur)="checkLimit('actualValue','commissioning_plan',monthIndex,yearIndex)" mask="separator.2"
+                  step="0.01" separatorLimit="100" (keypress)="keyPress($event)" [allowNegativeNumbers]="true">
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table table-hover responsive">
+        <thead>
+          <tr class="table-active text-center table-initiative">
+            <th>Type</th>
+            <th>POC %</th>
+            <th>JAN</th>
+            <th>FEB</th>
+            <th>MAR</th>
+            <th>APR</th>
+            <th>MAY</th>
+            <th>JUN</th>
+            <th>JUL</th>
+            <th>AUG</th>
+            <th>SEP</th>
+            <th>OCT</th>
+            <th>NOV</th>
+            <th>DEC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataOverall;">
+            <td rowspan="2" [style]="show(item.type,item.name)" style="vertical-align : middle;text-align:center;">
+              {{item.type}}
+            </td>
+            <td>{{item.name}}</td>
+            <td *ngFor="let data of elm.listMonth; let monthIndex = index">
+              <input *ngIf="item.id == 1" class="form-control" type="text" [(ngModel)]="data.overall_plan.planValue"
+                [readonly]="true" mask="separator.2" step="0.01" separatorLimit="100" (keypress)="keyPress($event)">
+              <input *ngIf="item.id == 2" class="form-control" type="text" [(ngModel)]="data.overall_plan.actualValue"
+                [readonly]="true" mask="separator.2" step="0.01" separatorLimit="100" (keypress)="keyPress($event)">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-template>

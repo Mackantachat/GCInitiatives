@@ -1,0 +1,18 @@
+[
+  {
+    "PoolBudgetFromId": "MAX",
+    "PoolBudgetFromName": "MAX"
+  },
+  {
+    "PoolBudgetFromId": "DIM",
+    "PoolBudgetFromName": "DIM"
+  },
+  {
+    "PoolBudgetFromId": "PIM",
+    "PoolBudgetFromName": "PIM"
+  },
+  {
+    "PoolBudgetFromId": "ER",
+    "PoolBudgetFromName": "ER"
+  }
+]

@@ -1,0 +1,2171 @@
+<div [formGroup]="DetailMaxForm">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card text card-initiative">
+        <div class="card-body">
+          <div class="form-initiative">
+            <app-initiative-info [id]="id"></app-initiative-info>
+          </div>
+
+          <div class="row" *ngIf="(CheckCapex || CheckDim)  && !isMax">
+            <div class=" col-md-12" *ngIf="CheckCapex">
+              <h5> Project Organization </h5>
+              <hr>
+            </div>
+          </div>
+          <!-- Change chps to checkControl or checkNotControl -->
+          <div class="form-initiative">
+            <ng-container *ngIf="(CheckCapex || CheckDim)  && !isMax">
+              <div class="form-group row">
+                <ng-container *ngIf="CheckDim">
+                  <div class="col-md-3" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','projectSponsor')">
+                    <label for="cfo"> Project Sponsor (SVP and up) <span class="text-danger">*</span>
+                    </label>
+                    <ng-select formControlName="projectSponsor" [items]="coDevelopers" loadingText="Loading"
+                      [multiple]="false" (search)="SearchCoDeveloper($event)" (remove)="RemoveCoDeveloper()"
+                      bindValue="coDeveloperName" bindLabel="coDeveloperName" placeholder="Choose Project Sponsor">
+                    </ng-select>
+                  </div>
+                </ng-container>
+                <div class="col-md-3" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','president')">
+                  <label for="cfo"> Vice President of Owner (VP) <span class="text-danger">*</span>
+                  </label>
+                  <div [ngClass]="{'edit-general' : stage === 'IL5'}">
+                    <ng-select formControlName="president" [items]="presidentList" bindValue="ownerName"
+                      bindLabel="ownerName" placeholder="Choose Vice President of Owner (VP)" required
+                      (search)="SearchPresident($event)" (click)="SearchPresident($event)" (clear)="ClearPresident()"
+                      (change)="storeViceOwner($event)">
+                    </ng-select>
+                  </div>
+                  <div class="text-feedback" *ngIf="invalidPresident">
+                    Vice President of Owner (VP) is required !
+                  </div>
+                </div>
+
+                <div class="col-md-3" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','manager')">
+                  <ng-container *ngIf="isERSource; else isCapexSourceLabel">
+                    <label for="cfo"> Asset Utility / DM <span class="text-danger">*</span>
+                    </label>
+                  </ng-container>
+                  <ng-template #isCapexSourceLabel>
+                    <label for="cfo"> Division Manager of Owner (DM) <span class="text-danger">*</span>
+                    </label>
+                  </ng-template>
+
+                  <div [ngClass]="{'edit-general' : stage === 'IL5'}">
+                    <ng-select formControlName="manager" [items]="managerList" bindValue="ownerName"
+                      bindLabel="ownerName" placeholder="Choose Division Manager of Owner (DM)" required
+                      (search)="SearchManager($event)" (click)="SearchManager($event)" (clear)="ClearGetManager()">
+                    </ng-select>
+                  </div>
+                  <ng-container *ngIf="isERSource; else isCapexSourceError">
+                    <div class="text-feedback" *ngIf="invalidManager">
+                      Asset Utility / DM is required !
+                    </div>
+                  </ng-container>
+                  <ng-template #isCapexSourceError>
+                    <div class="text-feedback" *ngIf="invalidManager">
+                      Division Manager of Owner (DM) is required !
+                    </div>
+                  </ng-template>
+                </div>
+                <div class="col-md-3" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','projectManager')">
+                  <div [ngClass]="{'edit-general' : stage === 'IL5'}">
+                    <ng-container *ngIf="RequestProjectEngineer && Capex; else NoRequestPE">
+                      <label for="cfo"> Project Manager <span class="text-danger">*</span></label>
+                      <ng-select formControlName="projectManager" [items]="projectManagerList" bindValue="ownerName"
+                        bindLabel="ownerName" placeholder="Choose Project Manager" required
+                        (search)="SearchProjectManager($event)" (click)="SearchProjectManager($event)"
+                        (clear)="ClearProjectManager()">
+                      </ng-select>
+                    </ng-container>
+                    <ng-template #NoRequestPE>
+                      <label for="cfo"> Project Manager </label>
+                      <div class="col-md-12">
+                        <input class="form-control" formControlName="projectManager" type="text" bindValue="ownerName"
+                          bindLabel="ownerName" placeholder="Choose PM on E-MOC Tab" required readonly>
+                      </div>
+                    </ng-template>
+                  </div>
+                  <div class="text-feedback" *ngIf="invalidProjectManager">
+                    Project Manager is required !
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <!-- check dim -->
+                <ng-container *ngIf="CheckDim">
+                  <div class="col-md-3"
+                    [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','digitalFocalPoint')">
+                    <label for="cfo"> Digital Transformation focal point 
+                    </label>
+                    <ng-select formControlName="digitalFocalPoint" [items]="coDevelopers" loadingText="Loading"
+                      [multiple]="false" (search)="SearchCoDeveloper($event)" (click)="SearchCoDeveloper($event)"
+                      (remove)="RemoveCoDeveloper()" bindValue="coDeveloperName" bindLabel="coDeveloperName"
+                      maxSelectedItems="1" placeholder="Choose Digital Transformation focal point"
+                      [class.readonly]="selectDigitalCapex">
+                    </ng-select>
+                  </div>
+                  <div class="col-md-3" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','iTFocalPoint')">
+                    <label for="cfo"> IT Focal Point <span class="text-danger">*</span> </label>
+                    <!-- <ng-select formControlName="iTFocalPoint" [items]="coDevelopers" loadingText="Loading"
+                      [multiple]="true" (search)="SearchCoDeveloper($event)" (click)="SearchCoDeveloper($event)"
+                      (remove)="RemoveCoDeveloper()" bindValue="coDeveloperName" bindLabel="coDeveloperName"
+                      maxSelectedItems="1" placeholder="Choose IT Focal Point">
+                    </ng-select> -->
+                    <ng-select formControlName="iTFocalPoint" [items]="coDevelopers" loadingText="Loading"
+                      (search)="SearchCoDeveloper($event)" (click)="SearchCoDeveloper($event)"
+                      (remove)="RemoveCoDeveloper()" bindValue="coDeveloperName" bindLabel="coDeveloperName"
+                      placeholder="Choose IT Focal Point">
+                    </ng-select>
+                  </div>
+
+                </ng-container>
+                <!-- end dim -->
+              </div>
+              <div class="form-group row">
+                <ng-container *ngIf="CheckDim">
+                  <div class="col-md-6"
+                    [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','impactedParties')">
+                    <label for="cfo"> Impacted parties (DM level) <span class="text-danger">*</span>
+                    </label>
+                    <ng-select formControlName="impactedParties" [items]="coDevelopers" loadingText="Loading"
+                      [multiple]="true" (search)="SearchCoDeveloper($event)" (click)="SearchCoDeveloper($event)"
+                      (remove)="RemoveCoDeveloper()" bindValue="coDeveloperName" bindLabel="coDeveloperName"
+                      placeholder="Choose Impacted parties">
+                    </ng-select>
+                  </div>
+
+                  <div class="col-md-6" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','teamMember')">
+                    <label for="cfo"> Team members <span class="text-danger">*</span> </label>
+                    <ng-select formControlName="teamMember" [items]="coDevelopers" loadingText="Loading"
+                      [multiple]="true" (search)="SearchCoDeveloper($event)" (click)="SearchCoDeveloper($event)"
+                      (remove)="RemoveCoDeveloper()" bindValue="coDeveloperName" bindLabel="coDeveloperName"
+                      placeholder="Choose Team members">
+                    </ng-select>
+                  </div>
+                </ng-container>
+              </div>
+            </ng-container>
+
+            <!-- check dim -->
+            <ng-container *ngIf="CheckDim">
+              <h5>Project strategy and category
+              </h5>
+              <hr>
+              <div class="form-group row">
+                <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','digitalStrategy')">
+                  <label for="digitalStrategy"> Digital Strategy </label>
+                  <ng-select formControlName="digitalStrategy" [items]="digitalStrategy" bindValue="attribute01"
+                    bindLabel="attribute03" placeholder="Choose...">
+                  </ng-select>
+                </div>
+                <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','projectCategory')">
+                  <label for="projectCategory"> Project Category </label>
+                  <ng-select formControlName="projectCategory" [items]="projectCategory" bindValue="attribute01"
+                    bindLabel="attribute03" placeholder="Choose...">
+                  </ng-select>
+                </div>
+                <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','valueChain')">
+                  <label for="valueChain"> Project group (Pre-screening) </label>
+                  <ng-select  [disabled]="valueChain.disabled" formControlName="valueChain" [items]="valueChain" bindValue="attribute01"
+                    bindLabel="attribute02" placeholder="Choose...">
+                  </ng-select>
+                </div>
+              </div>
+            </ng-container>
+            <!-- end dim -->
+
+            <!-- check dim -->
+            <ng-container *ngIf="CheckDim">
+              <div class="row">
+                <div class=" col-md-12">
+                  <h5> Project Timeline </h5>
+                  <hr>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-3">
+                  <div>
+                    <div class="col-md-12">
+                      <h6><u> Original </u></h6>
+                    </div>
+                  </div>
+                  <div>
+                    <div [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','baselineStartDate')">
+                      <label for="baselineStartDate">
+                        Start date <span class="text-danger" *ngIf="!viewMode && !IsOriginalDisable">*</span> :
+                      </label>
+                      <div class="input-group">
+                        <ng-container *ngIf="!viewMode && !IsOriginalDisable; else originStartEnable">
+                          <input formControlName="baselineStartDate" type="text" [bsConfig]="bsConfigDate"
+                            class="form-control" bsDatepicker #dpBaselineStartDate="bsDatepicker"
+                            [ngClass]="{ 'is-invalid': getErrorField('baselineStartDate') }">
+                          <div *ngIf="!viewMode" class="input-group-append">
+                            <i class="far fa-calendar right-icon mt-2" (click)="dpBaselineStartDate.toggle()"
+                              [attr.aria-expanded]="dpBaselineStartDate.isOpen"></i>
+                          </div>
+                        </ng-container>
+                        <ng-template #originStartEnable>
+                          <input type="text" class="form-control"
+                            [value]="getDateValue('baselineStartDate') ? (getDateValue('baselineStartDate') | date: 'dd/MM/yyyy') : ''"
+                            readonly>
+                        </ng-template>
+                      </div>
+                    </div>
+                  </div>
+                  <div [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','baselineFinishDate')">
+                    <label for="baselineFinishDate"> Finish date (Go-live) </label>
+                    <div class="input-group">
+                      <ng-container *ngIf="!viewMode && !IsOriginalDisable; else originFinishEnable">
+                        <input formControlName="baselineFinishDate" type="text" [bsConfig]="bsConfigDate"
+                          class="form-control" bsDatepicker #dpBaselineFinishDate="bsDatepicker"
+                          [ngClass]="{ 'is-invalid': getErrorField('baselineFinishDate') }">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" (click)="dpBaselineFinishDate.toggle()"
+                            [attr.aria-expanded]="dpBaselineFinishDate.isOpen"></i>
+                        </div>
+                      </ng-container>
+                      <ng-template #originFinishEnable>
+                        <input type="text" class="form-control"
+                          [value]="getDateValue('baselineFinishDate') ? (getDateValue('baselineFinishDate') | date: 'dd/MM/yyyy') : ''"
+                          readonly>
+                      </ng-template>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="col-md-12">
+                    <h6><u> Revise/Forecast </u></h6>
+                  </div>
+                  <label for="reviseForecastStartDate"> Start date (Start Implementing) {{!viewMode &&
+                    IsOriginalDisable}}<span class="text-danger" *ngIf="!viewMode && IsOriginalDisable">*</span>:
+                  </label>
+                  <div class="input-group"
+                    [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','reviseForecastStartDate')">
+                    <ng-container *ngIf="!viewMode && IsOriginalDisable; else forecastStartEnable">
+                      <input formControlName="reviseForecastStartDate" type="text" [bsConfig]="bsConfigDate"
+                        class="form-control" bsDatepicker #dpReviseForecastStartDate="bsDatepicker"
+                        [ngClass]="{ 'is-invalid': getErrorField('reviseForecastStartDate') }">
+                      <div *ngIf="!viewMode" class="input-group-append">
+                        <i class="far fa-calendar right-icon mt-2" (click)="dpReviseForecastStartDate.toggle()"
+                          [attr.aria-expanded]="dpReviseForecastStartDate.isOpen"></i>
+                      </div>
+                    </ng-container>
+                    <ng-template #forecastStartEnable>
+                      <input type="text" class="form-control"
+                        [value]="getDateValue('reviseForecastStartDate') ? (getDateValue('reviseForecastStartDate') | date: 'dd/MM/yyyy') : ''"
+                        readonly>
+                    </ng-template>
+                  </div>
+                  <div [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','reviseForecastFinishDate')">
+                    <label for="reviseForecastFinishDate"> Finish date (Go-live) </label>
+                    <div class="input-group">
+
+                      <ng-container *ngIf="!viewMode && IsOriginalDisable; else forecastFinishEnable">
+                        <input formControlName="reviseForecastFinishDate" type="text" [bsConfig]="bsConfigDate"
+                          class="form-control" bsDatepicker #dpReviseForecastFinishDate="bsDatepicker"
+                          [ngClass]="{ 'is-invalid': getErrorField('reviseForecastFinishDate') }">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" (click)="dpReviseForecastFinishDate.toggle()"
+                            [attr.aria-expanded]="dpReviseForecastFinishDate.isOpen"></i>
+                        </div>
+                      </ng-container>
+                      <ng-template #forecastFinishEnable>
+                        <input type="text" class="form-control"
+                          [value]="getDateValue('reviseForecastFinishDate') ? (getDateValue('reviseForecastFinishDate') | date: 'dd/MM/yyyy') : ''"
+                          readonly>
+                      </ng-template>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-md-3">
+                  <div class="col-md-12">
+                    <h6><u> Actual </u></h6>
+                  </div>
+                  <div [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','actualStartDate')">
+                    <label for="actualStartDate"> Start date (Start Implementing) </label>
+                    <div class="input-group">
+
+                      <ng-container *ngIf="!viewMode && IsOriginalDisable; else actualStartEnable">
+                        <input formControlName="actualStartDate" type="text" [bsConfig]="bsConfigDate"
+                          class="form-control" bsDatepicker #dpActualStartDate="bsDatepicker"
+                          [ngClass]="{ 'is-invalid': getErrorField('actualStartDate') }">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" (click)="dpActualStartDate.toggle()"
+                            [attr.aria-expanded]="dpActualStartDate.isOpen"></i>
+                        </div>
+                      </ng-container>
+                      <ng-template #actualStartEnable>
+                        <input type="text" class="form-control"
+                          [value]="getDateValue('actualStartDate') ? (getDateValue('actualStartDate') | date: 'dd/MM/yyyy') : ''"
+                          readonly>
+                      </ng-template>
+                    </div>
+                  </div>
+                  <div [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','actualFinishDate')">
+                    <label for="actualFinishDate"> Finish date (Go-live) </label>
+                    <div class="input-group">
+
+                      <ng-container *ngIf="!viewMode && IsOriginalDisable; else actualFinishEnable">
+                        <input formControlName="actualFinishDate" type="text" [bsConfig]="bsConfigDate"
+                          class="form-control" bsDatepicker #dpActualFinishDate="bsDatepicker"
+                          [ngClass]="{ 'is-invalid': getErrorField('actualFinishDate') }">
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" (click)="dpActualFinishDate.toggle()"
+                            [attr.aria-expanded]="dpActualFinishDate.isOpen"></i>
+                        </div>
+                      </ng-container>
+                      <ng-template #actualFinishEnable>
+                        <input type="text" class="form-control"
+                          [value]="getDateValue('actualFinishDate') ? (getDateValue('actualFinishDate') | date: 'dd/MM/yyyy') : ''"
+                          readonly>
+                      </ng-template>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="CheckDim">
+              <div class="row">
+                <div class=" col-md-12">
+                  <h5>Project Cost </h5>
+                  <hr>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3  text-center">
+                  <label>Total cost (MTHB)</label>
+                  <input class="form-control" type="text" formControlName="totalBenefit" readonly>
+                </div>
+                <div class="col-md-3 text-center" *ngIf="requireCAPEX">
+                  <label>CAPEX (MTHB)</label>
+                  <input class="form-control" type="text" value="{{CapexCost}}" readonly>
+                </div>
+                <div class="col-md-3 text-center" *ngIf="requireOPEX">
+                  <label>OPEX (MTHB)</label>
+                  <input class="form-control" type="text" value="{{OpexCost}}" readonly>
+                </div>
+
+              </div>
+              <div class="row" *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+                <div class=" col-md-12">
+                  <h5> Project Benefit </h5>
+                  <hr>
+                </div>
+              </div>
+              <div class="row" *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+                <div class="col-md-12">
+                  <span>Financial Benefit (please input more detailed information under </span>
+                  <span style="color: dodgerblue;" class="ml-1"><u>Impact tracking</u></span>
+                  <span class="ml-1">tab)</span>
+                </div>
+                <hr>
+              </div>
+              <div class="form-group row " *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+                <div class="col-md-6">
+                  <div class="custom-control custom-checkbox custom-control-inline">
+                    <input id="requireDirectBenefit" class="custom-control-input" type="checkbox"
+                      formControlName="requireDirectBenefit" (change)="OnChangeDirectBenefit($event)">
+                    <label class="custom-control-label" for="requireDirectBenefit">
+                      Direct Benefit (MTHB)
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row" *ngIf="typeOfbenefit !== 'NON-FINANCIAL' && requireDirectBenefit">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" formControlName="directBenefit">
+                </div>
+              </div>
+
+              <div class="form-group row " *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+                <div class="col-md-6">
+                  <div class="custom-control custom-checkbox custom-control-inline">
+                    <input id="requireIndirectBenefit" class="custom-control-input" type="checkbox"
+                      formControlName="requireIndirectBenefit" (change)="OnChangeInDirectBenefit($event)">
+                    <label class="custom-control-label" for="requireIndirectBenefit">
+                      Indirect Benefit (MTHB)
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row" *ngIf="typeOfbenefit !== 'NON-FINANCIAL' && requireIndirectBenefit">
+                <div class="col-md-6">
+                  <input type="text" class="form-control" formControlName="indirectBenefit">
+                </div>
+              </div>
+
+              <!-- <div class="row" *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+                <div class="custom-control custom-checkbox custom-control-inline col-md-6">
+                  <input id="requireDirectBenefit" class="custom-control-input" type="checkbox"
+                    formControlName="requireDirectBenefit" (change)="OnChangeDirectBenefit($event)">
+                  <label class="custom-control-label col-md-5" for="requireDirectBenefit"> Direct
+                    Benefit(MTHB) </label>
+                  <input *ngIf="requireDirectBenefit" type="text" class="form-control col-md-4"
+                    formControlName="directBenefit">
+                </div>
+              </div> -->
+              <!-- <div class="row text-center" *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+                <div class="custom-control custom-checkbox custom-control-inline col-md-6">
+                  <input id="requireIndirectBenefit" class="custom-control-input" type="checkbox"
+                    formControlName="requireIndirectBenefit" (change)="OnChangeInDirectBenefit($event)">
+                  <label class="custom-control-label col-md-5" for="requireIndirectBenefit"> Indirect
+                    Benefit(MTHB)
+                  </label>
+                  <input *ngIf="requireIndirectBenefit" class="form-control col-md-4" type="text"
+                    formControlName="indirectBenefit">
+                </div>
+              </div> -->
+              <div class="form-group row mt-3" *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+                <div class="custom-control custom-control-inline col-md-6">
+                  <label class=" col-md-4"><b>Total Financial Benefit </b></label>
+                  <input class="form-control col-md-8" type="text" [value]="getTotalFinancialBenefit" readonly>
+                </div>
+              </div>
+              <div class="form-group row" *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+                <div class="custom-control custom-control-inline col-md-6">
+                  <label class="col-md-4"><b> Payback period </b>
+                  </label>
+                  <input class="form-control col-md-8" type="text" [value]="getPaybackPeriod" readonly>
+                </div>
+              </div>
+              <div class="form-group row" *ngIf="false">
+                <div [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','projectDocumentDatabase')">
+                  <label class="col-md-6">
+                    <u style="color: blue;"> Project Deliverable</u>
+                  </label>
+                  <input class="form-control col-md-4" type="text" formControlName="projectDocumentDatabase">
+                </div>
+              </div>
+            </ng-container>
+
+            <ng-container *ngIf="false">
+              <div class="row">
+                <div class=" col-md-12">
+                  <h5> Project Closure </h5>
+                  <hr>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 ml-1">
+                  <h6><u> Deliverables summary </u></h6>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <label for="isDeliverAsPerCommittedScope"> Scope: Deliver as per committed
+                    scope?</label>
+                </div>
+                <div class="col-md-2"
+                  [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','isDeliverAsPerCommittedScope')">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input id="yesScope" value="true" class="custom-control-input" type="radio"
+                      name="isDeliverAsPerCommittedScope" formControlName="isDeliverAsPerCommittedScope"
+                      (change)="OnChangeScope()">
+                    <label class="custom-control-label" for="yesScope"> Yes </label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input id="noScope" value="false" class="custom-control-input" type="radio"
+                      name="isDeliverAsPerCommittedScope" formControlName="isDeliverAsPerCommittedScope"
+                      (change)="OnChangeScope()">
+                    <label class="custom-control-label" for="noScope"> No </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','scopeDetail')">
+                <ng-container *ngIf="IsShowScope">
+                  <div class="col-md-6">
+                    <input formControlName="scopeDetail" type="text" class="form-control"
+                      placeholder="Detail / Rational support">
+                  </div>
+                </ng-container>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <label for="isDeliverAsPerCommittedDate" class="mr-3"> Timeline: Deliver as per
+                    committed scope?</label>
+                </div>
+                <div class="col-md-2"
+                  [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','isDeliverAsPerCommittedDate')">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input id="yesTimeLine" value="true" class="custom-control-input" type="radio"
+                      name="isDeliverAsPerCommittedDate" formControlName="isDeliverAsPerCommittedDate"
+                      (change)="OnChangeTimeLine()">
+                    <label class="custom-control-label" for="yesTimeLine"> Yes </label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input id="noTimeLine" value="false" class="custom-control-input" type="radio"
+                      name="isDeliverAsPerCommittedDate" formControlName="isDeliverAsPerCommittedDate"
+                      (change)="OnChangeTimeLine()">
+                    <label class="custom-control-label" for="noTimeLine"> No </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <ng-container *ngIf="IsShowTimeline">
+                  <div class="col-md-6" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','timelineDetail')">
+                    <input formControlName="timelineDetail" type="text" class="form-control"
+                      placeholder="Detail / Rational support">
+                  </div>
+                </ng-container>
+              </div>
+
+
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <label for="isDeliverAsPerCommittedScope" class="mr-2"> Cost: Deliver as per
+                    committed scope?</label>
+                </div>
+                <div class="col-md-2"
+                  [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','isDeliverAsPerCommittedCost')">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input id="yesCost" value="true" class="custom-control-input" type="radio"
+                      name="isDeliverAsPerCommittedCost" formControlName="isDeliverAsPerCommittedCost"
+                      (change)="OnChangeCost()">
+                    <label class="custom-control-label" for="yesCost"> Yes </label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input id="noCost" value="false" class="custom-control-input" type="radio"
+                      name="isDeliverAsPerCommittedCost" formControlName="isDeliverAsPerCommittedCost"
+                      (change)="OnChangeCost()">
+                    <label class="custom-control-label" for="noCost"> No </label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <ng-container *ngIf="IsShowCost">
+                  <div class="col-md-6" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','costDetail')">
+                    <input formControlName="costDetail" type="text" class="form-control"
+                      placeholder="Detail / Rational support">
+                  </div>
+                </ng-container>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-2">
+                  <label for="userFeedback" class="mr-2"> User adoption / User feedback </label>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-6" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','userFeedback')">
+                  <input formControlName="userFeedback" type="text" class="form-control"
+                    placeholder="Detail / Rational support">
+                </div>
+              </div>
+            </ng-container>
+            <!-- end dim -->
+          </div>
+          <div class="form-initiative">
+            <ng-container *ngIf='CheckMax || requireDirectBenefit'>
+              <div class="row mt-3">
+                <div class=" col-md-12">
+                  <h5 *ngIf="CheckMax"> Initiative Details</h5>
+                  <h5 *ngIf="requireDirectBenefit">MAX Initiative Details</h5>
+                  <div *ngIf="requireDirectBenefit" class="row ml-0">
+                    <h6>For </h6>
+                    <h6 class="ml-1" style="color: dodgerblue;">Direct benefit</h6>
+                    <h6>, please provide reviewer and approver details as below:
+                    </h6>
+                  </div>
+                  <hr>
+                </div>
+              </div>
+              <!-- <ng-container *ngIf="IsShowFormCondition">
+                                <div class="form-group row mt-3">
+                                    <div class="col-md-4">
+                                        <label for="initiative year"> Initiative Year </label>
+                                        <input formControlName="initiativeYear" class="form-control" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="strategicObjective"> Strategic Objective </label>
+                                        <select formControlName="strategicObjective" class="form-control"
+                                            (change)="OnChangeStrategic($event)">
+                                            <option value="" selected disabled> Choose... </option>
+                                            <option *ngFor="let strategic of strategicObjectives"
+                                                value="{{ strategic.id }}">
+                                                {{strategic.strategicObjectiveTitle}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="strategy"> Strategy </label>
+                                        <select formControlName="strategy" class="form-control"
+                                            [ngClass]="{ 'is-invalid': invalidStrategyTitle }">
+                                            <option value="" selected disabled>Choose Strategy</option>
+                                            <option *ngFor="let strategy of strategies" value="{{strategy.strategyId}}">
+                                                {{strategy.strategyTitle}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="invalid-feedback" *ngIf="invalidStrategyTitle">
+                                        Strategy Title is required !
+                                    </div>
+                                </div>
+                            </ng-container> -->
+
+              <div class="form-group row">
+                <div class="col-md-4"
+                  [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','initiativeTypeMax')">
+                  <label for="type"> Initiative Type <span class="text-danger" *ngIf="NoStage">*</span> </label>
+                  <select formControlName="initiativeTypeMax" class="form-control"
+                    [ngClass]="{ 'is-invalid': invalidInitiativeType }">
+                    <option value="" disabled> Choose...</option>
+                    <option *ngFor="let type of types" value="{{type.initiativeTypeMaxTitle}}"
+                      [disabled]="IsTypeDiable(type.initiativeTypeMaxTitle)">
+                      {{type.initiativeTypeMaxTitle}}
+                    </option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="invalidInitiativeType">
+                    Initiative Type is required !
+                  </div>
+                </div>
+                <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','workstream')">
+                  <label for="workStream"> Workstream <span class="text-danger" *ngIf="NoStage">*</span> </label>
+                  <select formControlName="workstream" class="form-control" (change)="OnChangeWorkstream($event)"
+                    [ngClass]="{ 'is-invalid': invalidWorkstream }">
+                    <option value="" disabled> Choose...</option>
+                    <option *ngFor="let workstream of workStreams" value="{{workstream.workStreamTitle}}">
+                      {{workstream.workStreamTitle}}
+                    </option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="invalidWorkstream">
+                    Workstream is required !
+                  </div>
+                </div>
+                <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','subWorkstream2')">
+                  <label for="subWorkStream"> Sub-Workstream <span class="text-danger" *ngIf="NoStage">*</span> </label>
+                  <select formControlName="subWorkstream2" class="form-control" (change)="OnChangeSubWorkstream($event)"
+                    [ngClass]="{ 'is-invalid': invalidSubWorkstream }">
+                    <option value="" disabled> Choose...</option>
+                    <option *ngFor="let subWorkStream of subWorkstreams" value="{{subWorkStream.subWorkstream2}}">
+                      {{subWorkStream.subWorkstream2}}
+                    </option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="invalidSubWorkstream">
+                    Workstream is required !
+                  </div>
+                </div>
+              </div>
+
+              <ng-container *ngIf="IsShowProcurement">
+                <div class="row mt-5">
+                  <div class=" col-md-12">
+                    <h4> Procurement </h4>
+                    <hr>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','proCategory')">
+                    <label for="proCategory"> Procurement Category <span class="text-danger"
+                        *ngIf="stage == 'IL2'">*</span> :</label>
+                    <ng-select formControlName="proCategory" [items]="procurementCategoryList"
+                      [ngClass]="{ 'is-invalid': getErrorField('proCategory') }" bindValue="procurementName"
+                      bindLabel="procurementName" placeholder="Choose Category">
+                    </ng-select>
+                    <div class="invalid-feedback" *ngIf="getErrorField('proCategory')">
+                      Procurement Category is required !
+                    </div>
+                  </div>
+                  <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','proSubCategory')">
+                    <label for="proSubCategory"> Procurement Sub-category <span class="text-danger"
+                        *ngIf="stage == 'IL2'">*</span> :</label>
+                    <ng-select formControlName="proSubCategory" [items]="procurementSubCategoryList"
+                      [ngClass]="{ 'is-invalid': getErrorField('proSubCategory') }" bindValue="procurementName"
+                      bindLabel="procurementName" placeholder="Choose Sub-category">
+                    </ng-select>
+                    <div class="invalid-feedback" *ngIf="getErrorField('proSubCategory')">
+                      Procurement Sub-category is required !
+                    </div>
+                  </div>
+                  <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','proLever')">
+                    <label for="proLever"> Procurement Lever <span class="text-danger" *ngIf="stage == 'IL3'">*</span>
+                      :</label>
+                    <ng-select formControlName="proLever" [items]="procurementLeverList" bindValue="procurementName"
+                      [ngClass]="{ 'is-invalid': getErrorField('proLever') }" bindLabel="procurementName"
+                      placeholder="Choose Lever">
+                    </ng-select>
+                    <div class="invalid-feedback" *ngIf="getErrorField('proLever')">
+                      Procurement Lever is required !
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','baseline')">
+                    <label for="baseline"> Procurement Baseline (M.THB) <span class="text-danger"
+                        *ngIf="stage == 'IL2'">*</span> :</label>
+                    <input type="text" [ngClass]="{ 'is-invalid': getErrorField('baseline') }"
+                      formControlName="baseline" class="form-control" mask="separator.2" thousandSeparator="," readonly>
+                    <div class="invalid-feedback" *ngIf="getErrorField('baseline')">
+                      Procurement Baseline is required !
+                    </div>
+                  </div>
+                  <div class="col-md-4"
+                    [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','baselineHistorical')">
+                    <label for="baselineHistorical"> Historical (M.THB) <span class="text-danger"
+                        *ngIf="stage == 'IL2'">*</span> :</label>
+                    <input type="text" formControlName="baselineHistorical" class="form-control"
+                      (input)="OnChangeBaseline()" [ngClass]="{ 'is-invalid': getErrorField('baselineHistorical') }"
+                      mask="separator.2" thousandSeparator=",">
+                    <div class="invalid-feedback" *ngIf="getErrorField('baseline')">
+                      Procurement Baseline is required !
+                    </div>
+                  </div>
+                  <div class="col-md-4"
+                    [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','baselineNonHistorical')">
+                    <label for="baselineNonHistorical"> Non Historical (M.THB) <span class="text-danger"
+                        *ngIf="stage == 'IL2'">*</span> :</label>
+                    <input type="text" formControlName="baselineNonHistorical" class="form-control"
+                      (input)="OnChangeBaseline()" [ngClass]="{ 'is-invalid': getErrorField('baselineNonHistorical') }"
+                      mask="separator.2" thousandSeparator=",">
+                    <div class="invalid-feedback" *ngIf="getErrorField('baselineNonHistorical')">
+                      Procurement Historical is required !
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','saving')">
+                    <label for="saving"> Procurement Savings (M.THB) <span class="text-danger"
+                        *ngIf="stage == 'IL2'">*</span> :</label>
+                    <input type="text" formControlName="saving" class="form-control" mask="separator.2"
+                      thousandSeparator="," readonly>
+                  </div>
+                  <div class="col-md-4"
+                    [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','savingHistorical')">
+                    <label for="savingHistorical"> Historical (M.THB) <span class="text-danger"
+                        *ngIf="stage == 'IL2'">*</span> :</label>
+                    <input type="text" formControlName="savingHistorical" class="form-control"
+                      (input)="OnChangeSaving()" [ngClass]="{ 'is-invalid': getErrorField('savingHistorical') }"
+                      mask="separator.2" thousandSeparator=",">
+                    <div class="invalid-feedback" *ngIf="getErrorField('savingHistorical')">
+                      Historical is required !
+                    </div>
+                  </div>
+                  <div class="col-md-4"
+                    [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','savingNonHistorical')">
+                    <label for="savingNonHistorical"> Non Historical (M.THB) <span class="text-danger"
+                        *ngIf="stage == 'IL2'">*</span> :
+                    </label>
+                    <input type="text" formControlName="savingNonHistorical" class="form-control"
+                      (input)="OnChangeSaving()" [ngClass]="{ 'is-invalid': getErrorField('savingNonHistorical') }"
+                      mask="separator.2" thousandSeparator=",">
+                    <div class="invalid-feedback" *ngIf="getErrorField('savingNonHistorical')">
+                      Non Historical is required !
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+
+              <div class="row">
+                <div class=" col-md-12">
+                  <h5> Date </h5>
+                  <hr>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','iL3Date')">
+                  <label for="iL3Date"> Target IL3 Date <span class="text-danger" *ngIf="StageIL1">*</span> </label>
+                  <div class="input-group">
+                    <input formControlName="iL3Date" type="text" [bsConfig]="bsConfigIL3Date" class="form-control"
+                      bsDatepicker #dpIL3Date="bsDatepicker" [ngClass]="{ 'is-invalid': invalidIl3 }"
+                      (bsValueChange)="ChangeIl3Date($event)" [triggers]="viewMode ? '' : 'click:click'">
+                    <div *ngIf="!viewMode" class="input-group-append">
+                      <i class="far fa-calendar right-icon mt-2" (click)="dpIL3Date.toggle()"
+                        [attr.aria-expanded]="dpIL3Date.isOpen"></i>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="invalidIl3">
+                      Il3 Date is required !
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','iL4Date')">
+                  <label for="iL4Date"> Target IL4 Date <span class="text-danger" *ngIf="StageIL1">*</span> </label>
+                  <div class="input-group">
+                    <input formControlName="iL4Date" type="text" [bsConfig]="bsConfigIL4Date" class="form-control"
+                      bsDatepicker #dpIL4Date="bsDatepicker" [ngClass]="{ 'is-invalid': invalidIl4 }"
+                      (bsValueChange)="ChangeIl4Date($event)" [triggers]="viewMode ? '' : 'click:click'">
+                    <div *ngIf="!viewMode" class="input-group-append">
+                      <i class="far fa-calendar right-icon mt-2" (click)="dpIL4Date.toggle()"
+                        [attr.aria-expanded]="dpIL4Date.isOpen"></i>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="invalidIl4">
+                      Il4 Date is required !
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','iL5Date')">
+                  <label for="iL5Date"> Target IL5 Date <span class="text-danger" *ngIf="StageIL1">*</span> </label>
+                  <div class="input-group">
+                    <input formControlName="iL5Date" type="text" [bsConfig]="bsConfigIL5Date" class="form-control"
+                      bsDatepicker #dpIL5Date="bsDatepicker" [ngClass]="{ 'is-invalid': invalidIl5 }"
+                      (bsValueChange)="ChangeIl5Date($event)" [triggers]="viewMode ? '' : 'click:click'">
+                    <div *ngIf="!viewMode" class="input-group-append">
+                      <i class="far fa-calendar right-icon mt-2" (click)="dpIL5Date.toggle()"
+                        [attr.aria-expanded]="dpIL5Date.isOpen"></i>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="invalidIl5">
+                      Il5 Date is required !
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <div class="form-initiative">
+              <ng-container *ngIf='CheckMax || requireDirectBenefit'>
+                <h5>MAX Approval Details</h5>
+                <hr>
+                <div class="form-group row">
+                  <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','sponsorEvp')">
+                    <label for="sponsor"> Sponsor </label>
+                    <div [ngClass]="{'edit-general' : stage === 'IL5'}">
+                      <ng-select formControlName="sponsorEvp" [items]="sponsorList" [multiple]="true" bindValue="email"
+                        bindLabel="name">
+                      </ng-select>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="invalidSponsor">
+                      Sponsor is required !
+                    </div>
+                  </div>
+                  <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','workstreamLead')">
+                    <label for="workStreamLead"> Workstream Leader <span class="text-danger" *ngIf="NoStage">*</span>
+                    </label>
+                    <div [ngClass]="{'edit-general' : stage === 'IL5'}">
+                      <select formControlName="workstreamLead" class="form-control"
+                        (change)="OnChangeWorkstreamLeader($event)" [ngClass]="{ 'is-invalid': invalidWorkstreamLead }">
+                        <option value="" disabled> Choose...</option>
+                        <option *ngFor="let lead of workstreamList" value="{{ lead.email }}">
+                          {{ lead.name }}</option>
+                      </select>  
+                    <div class="invalid-feedback" *ngIf="invalidWorkstreamLead">
+                      Workstream Leader is required !
+                    </div>
+                    </div>
+                  </div>                    
+                  
+                  <div class="col-md-4" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','toFinance')">
+                    <label for="toFinance"> TO Finance </label>
+                    <div [ngClass]="{'edit-general' : stage === 'IL5'}">
+                      <ng-select formControlName="toFinance" [items]="toFinanceList" [multiple]="true"
+                        loadingText="Loading" bindValue="email" bindLabel="name">
+                      </ng-select>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="invalidToFinance">
+                      TO Finance is required !
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-4">
+                    <label for="cfo"> CFO </label>
+                    <div [ngClass]="{'edit-general' : stage === 'IL5'}">
+                      <ng-select formControlName="cfo" [items]="cfoList" [multiple]="true" loadingText="Loading"
+                        bindValue="email" bindLabel="name">
+                      </ng-select>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="cto"> CTO </label>
+                    <div [ngClass]="{'edit-general' : stage === 'IL5'}">
+                      <ng-select formControlName="cto" [items]="ctoList" [multiple]="true" loadingText="Loading"
+                        bindValue="email" bindLabel="name">
+                      </ng-select>
+                    </div>
+                    <div class="invalid-feedback" *ngIf="invalidCTO">
+                      CTO is required !
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <!-- temporary new max add field -->
+          <ng-container *ngIf="false">
+            <!-- <ng-container *ngIf="isMax"> -->
+            <!-- <div class="row">
+              <div class=" col-md-12">
+                <h5>Project Cost </h5>
+                <hr>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-3  text-center">
+                <label>Total cost (MTHB)</label>
+                <input class="form-control" type="text" formControlName="totalBenefit" readonly>
+              </div>
+              <div class="col-md-3 text-center" *ngIf="requireCAPEX">
+                <label>CAPEX (MTHB)</label>
+                <input class="form-control" type="text" value="{{CapexCost}}" readonly>
+              </div>
+              <div class="col-md-3 text-center" *ngIf="requireOPEX">
+                <label>OPEX (MTHB)</label>
+                <input class="form-control" type="text" value="{{OpexCost}}" readonly>
+              </div>
+
+            </div> -->
+            <div class="row" *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+              <div class=" col-md-12">
+                <h5> Project Benefit </h5>
+                <hr>
+              </div>
+            </div>
+            <div class="row" *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+              <div class="col-md-12">
+                <span>Financial Benefit (please input more detailed information under </span>
+                <span style="color: dodgerblue;" class="ml-1"><u>Impact tracking</u></span>
+                <span class="ml-1">tab)</span>
+              </div>
+              <hr>
+            </div>
+            <div class="form-group row " *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+              <div class="col-md-6">
+                <div class="custom-control custom-checkbox custom-control-inline">
+                  <input id="requireDirectBenefit" class="custom-control-input" type="checkbox"
+                    formControlName="requireDirectBenefit" (change)="OnChangeDirectBenefit($event)">
+                  <label class="custom-control-label" for="requireDirectBenefit">
+                    Direct Benefit (MTHB)
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row" *ngIf="typeOfbenefit !== 'NON-FINANCIAL' && requireDirectBenefit">
+              <div class="col-md-6">
+                <input type="text" class="form-control" formControlName="directBenefit">
+              </div>
+            </div>
+
+            <div class="form-group row " *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+              <div class="col-md-6">
+                <div class="custom-control custom-checkbox custom-control-inline">
+                  <input id="requireIndirectBenefit" class="custom-control-input" type="checkbox"
+                    formControlName="requireIndirectBenefit" (change)="OnChangeInDirectBenefit($event)">
+                  <label class="custom-control-label" for="requireIndirectBenefit">
+                    Indirect Benefit (MTHB)
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row" *ngIf="typeOfbenefit !== 'NON-FINANCIAL' && requireIndirectBenefit">
+              <div class="col-md-6">
+                <input type="text" class="form-control" formControlName="indirectBenefit">
+              </div>
+            </div>
+
+            <!-- <div class="row" *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+              <div class="custom-control custom-checkbox custom-control-inline col-md-6">
+                <input id="requireDirectBenefit" class="custom-control-input" type="checkbox"
+                  formControlName="requireDirectBenefit" (change)="OnChangeDirectBenefit($event)">
+                <label class="custom-control-label col-md-5" for="requireDirectBenefit"> Direct
+                  Benefit(MTHB) </label>
+                <input *ngIf="requireDirectBenefit" type="text" class="form-control col-md-4"
+                  formControlName="directBenefit">
+              </div>
+            </div> -->
+            <!-- <div class="row text-center" *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+              <div class="custom-control custom-checkbox custom-control-inline col-md-6">
+                <input id="requireIndirectBenefit" class="custom-control-input" type="checkbox"
+                  formControlName="requireIndirectBenefit" (change)="OnChangeInDirectBenefit($event)">
+                <label class="custom-control-label col-md-5" for="requireIndirectBenefit"> Indirect
+                  Benefit(MTHB)
+                </label>
+                <input *ngIf="requireIndirectBenefit" class="form-control col-md-4" type="text"
+                  formControlName="indirectBenefit">
+              </div>
+            </div> -->
+            <div class="form-group row mt-3" *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+              <div class="custom-control custom-control-inline col-md-6">
+                <label class=" col-md-4"><b>Total Financial Benefit </b></label>
+                <input class="form-control col-md-8" type="text" [value]="getTotalFinancialBenefit" readonly>
+              </div>
+            </div>
+            <div class="form-group row" *ngIf="typeOfbenefit !== 'NON-FINANCIAL'">
+              <div class="custom-control custom-control-inline col-md-6">
+                <label class="col-md-4"><b> Payback Period </b>
+                </label>
+                <input class="form-control col-md-8" type="text" [value]="getPaybackPeriod" readonly>
+              </div>
+            </div>
+            <div class="form-group row" *ngIf="false">
+              <div [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','projectDocumentDatabase')">
+                <label class="col-md-6">
+                  <u style="color: blue;"> Project Deliverable</u>
+                </label>
+                <input class="form-control col-md-4" type="text" formControlName="projectDocumentDatabase">
+              </div>
+            </div>
+          </ng-container>
+          <div *ngIf="Max && RequestCapex">
+            <hr>
+            <!-- <h5>Fixed Asset</h5> -->
+            <h5>Additional CAPEX Information</h5>
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="requestSubPIC" class="custom-control-input" type="checkbox" formControlName="requestSubPIC"
+                (change)="OnChangeRequestSubPIC($event)">
+              <label class="custom-control-label" for="requestSubPIC">
+                <!-- Request Sub PIC -->
+                Request PIM Process
+              </label>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="fixedAsset" class="custom-control-input" type="checkbox" formControlName="fixedAsset"
+                (change)="OnChangeFixedAsset($event)">
+              <label class="custom-control-label" for="fixedAsset">
+                Fixed Asset
+              </label>
+            </div>
+            <!-- <div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="true" [value]="true" class="custom-control-input" type="radio" name="IsrequestSubPIC"
+                  formControlName="requestSubPIC" (change)="OnChangeFixedAsset()">
+                <label class="custom-control-label" for="true"> Yes </label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="false" [value]="false" class="custom-control-input" type="radio" name="IsrequestSubPIC"
+                  formControlName="requestSubPIC" (change)="OnChangeRequestSubPIC()">
+                <label class="custom-control-label" for="false"> No </label>
+              </div>
+            </div> -->
+
+            <div class="row" *ngIf="FixedAsset">
+              <div class="col-md-4">
+                <label for="internalOrderNo"> Internal Order No. (For OPEX/Fixed Asset)</label>
+                <input type="text" formControlName="internalOrderNo" class="form-control">
+              </div>
+            </div>
+            <!-- <div class="custom-control custom-checkbox custom-control-inline" *ngIf="FixedAsset">
+              <input class="custom-control-input" type="text" formControlName="internalOrderNo">
+              <label class="custom-control-label" for="internalOrderNo">
+                Internal Order No.
+              </label>
+            </div> -->
+          </div>
+
+          <!-- Handover Section -->
+          <div class="form-initiative" [formGroup]="DimHandoverForm" *ngIf="ShowHandover">
+            <!-- chackbox -->
+            <div>
+              <h5> Project Handover </h5>
+              <hr>
+            </div>
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="isRequestITHandover" class="custom-control-input" type="checkbox"
+                formControlName="isRequestITHandover" (change)="OnChangeRequestITHandover()">
+              <label class="custom-control-label" for="isRequestITHandover">
+                Request IT For Handover Project
+              </label>
+            </div>
+            <ng-container *ngIf="ShowHandover && IsCheckBoxRequestIT">
+
+              <div>
+
+                <h6><u>Handover Checklist</u></h6>
+                <div class="custom-control custom-checkbox">
+                  <input id="isDeliverables" class="custom-control-input" type="checkbox"
+                    formControlName="isDeliverables">
+                  <label class="custom-control-label" for="isDeliverables">
+                    Deliverables
+                  </label>
+                  <p style="margin-left: 4%;">• All paper works /deliverables have been signed off by
+                    authorized person
+                    <br>
+                    • Index/archive all project deliverables into SharePoint
+                  </p>
+                </div>
+                <div class="custom-control" *ngIf="getDimHandoverProperties('isDeliverables')">
+                  <label>Comment </label>
+                  <textarea formControlName="commentDeliverables" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="custom-control custom-checkbox">
+                  <input id="isCommunicationOrTraining" class="custom-control-input" type="checkbox"
+                    formControlName="isCommunicationOrTraining">
+                  <label class="custom-control-label" for="isCommunicationOrTraining">
+                    Communication / Training
+                  </label>
+                  <p style="margin-left: 4%;">• Communication to end user has been made <br>
+                    • Training session for end user has been arranged <br>
+                    • Technical Training session for IT support/PTT Digital T.3456 has been arranged
+                    <br>
+                    • Access link provided on the GC Intranet <br>
+                  </p>
+                </div>
+                <div class="custom-control" *ngIf="getDimHandoverProperties('isCommunicationOrTraining')">
+                  <label>Comment </label>
+                  <textarea formControlName="commentCommunicationOrTraining" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="custom-control custom-checkbox">
+                  <input id="isAllIssueClosed" class="custom-control-input" type="checkbox"
+                    formControlName="isAllIssueClosed">
+                  <label class="custom-control-label" for="isAllIssueClosed">
+                    All Issue closed
+                  </label>
+                </div>
+                <div class="custom-control" *ngIf="getDimHandoverProperties('isAllIssueClosed')">
+                  <label>Comment </label>
+                  <textarea formControlName="commentAllIssueClosed" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="custom-control custom-checkbox">
+                  <input id="isOperationSupport" class="custom-control-input" type="checkbox"
+                    formControlName="isOperationSupport">
+                  <label class="custom-control-label" for="isOperationSupport">
+                    Operation Support
+                  </label>
+                </div>
+                <div class="custom-control" *ngIf="getDimHandoverProperties('isOperationSupport')">
+                  <label>Comment </label>
+                  <textarea formControlName="commentOperationSupport" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="custom-control custom-checkbox">
+                  <input id="isOther" class="custom-control-input" type="checkbox" formControlName="isOther">
+                  <label class="custom-control-label" for="isOther">
+                    Other
+                  </label>
+                </div>
+                <div class="custom-control" *ngIf="getDimHandoverProperties('isOther')">
+                  <label>Comment </label>
+                  <textarea formControlName="commentOther" class="form-control" rows="3"></textarea>
+                </div>
+              </div>
+
+              <div>
+                <p><u>On-Going Project Cost </u></p>
+                <div class="col-sm-12 row">
+                  <div class="col-md-3"
+                    [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','licenseOrSubscriptionFee')">
+                    <label>License/subscription fee (Baht/Year) </label>
+                    <input type="text" class="form-control" formControlName="licenseOrSubscriptionFee" step='0.01'
+                      placeholder='0.00' mask="separator.3" thousandSeparator=",">
+                  </div>
+                  <div class="col-md-3" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','supportFee')">
+                    <label>Support fee (Baht/Year)</label>
+                    <input type="text" class="form-control" formControlName="supportFee" step='0.01' placeholder='0.00'
+                      mask="separator.3" thousandSeparator=",">
+                  </div>
+
+                  <div class="col-md-3" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','startDate')">
+                    <label>Start Date </label>
+                    <div class="input-group">
+                      <input formControlName="startDate" type="text" [bsConfig]="bsConfigStart" class="form-control"
+                        bsDatepicker (bsValueChange)="OnChangeStartDate($event)"
+                        [triggers]="viewMode ? '' : 'click:click'">
+                      <div class="input-group-append">
+                        <i class="far fa-calendar right-icon mt-2"></i>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','finishDate')">
+                    <label>End Date </label>
+                    <div class="input-group">
+                      <input formControlName="finishDate" type="text" [bsConfig]="bsConfigFinish" class="form-control"
+                        bsDatepicker (bsValueChange)="OnchangeFinishDate($event)"
+                        [triggers]="viewMode ? '' : 'click:click'">
+                      <div class="input-group-append">
+                        <i class="far fa-calendar right-icon mt-2"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- <div>
+                <label>Email for Engineer </label>
+                <div class="row col-md-12">
+                  <div class=" col-md-3">
+                    <ng-select formControlName="engineerEmail" [items]="projectManagerList" bindValue="ownerName"
+                      bindLabel="ownerName" placeholder="Choose Project Engineer" required
+                      (search)="SearchProjectManager($event)" (clear)="ClearProjectManager()">
+                    </ng-select>
+                  </div>
+                  <div class="col-md-2">
+                    <button class="form-control">
+                      Send Email
+                    </button>
+                  </div>
+                </div>
+              </div> -->
+                <div>
+                  <label>Handover for IT </label>
+                  <div class="col-md-12 row">
+                    <div class=" col-md-3">
+                      <ng-select formControlName="handoverforIT" [items]="projectManagerList" bindValue="ownerName"
+                        bindLabel="ownerName" placeholder="Choose Handover for IT" required
+                        (search)="SearchProjectManager($event)" (clear)="ClearProjectManager()">
+                      </ng-select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div>
+              <h5> IT Accept Handover</h5>
+              <div class="col-md-12 row">
+                <div class="col-md-4custom-control custom-checkbox" style="margin-top: 5%;"
+                  [ngClass]="ps.chps('DetailInformation','isAcceptHandover')">
+                  <input id="isAcceptHandover" class="custom-control-input" type="checkbox"
+                    formControlName="isAcceptHandover" (ngModelChange)="OnAcceptHandover()">
+                  <label class="custom-control-label" for="isAcceptHandover">
+                    Accept Handover
+                  </label>
+                </div>
+                <div class="col-md-3" [ngClass]="ps.chps('DetailInformation','acceptDate')">
+                  <label>Accept Handover Date </label>
+                  <div class="input-group">
+                    <input formControlName="acceptDate" type="text" [bsConfig]="bsConfigFinish" class="form-control"
+                      bsDatepicker [isDisabled]="true" readonly>
+                    <div *ngIf="!viewMode" class="input-group-append">
+                      <i class="far fa-calendar right-icon mt-2"></i>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </div> -->
+            </ng-container>
+          </div>
+
+          <!-- Card Section -->
+          <div class="form-initiative">
+            <!-- <ng-container *ngIf="RequestCapex"> -->
+            <ng-container *ngIf="CheckDim">
+              <div class="row">
+                <div class=" col-md-12">
+                  <h5>Project Non Financial Benefit</h5>
+                  <hr>
+                </div>
+                <div class="col-md-6">
+                  <label>Non Financial</label>
+                  <textarea formControlName="projectNonFinancialBenefit" class="form-control" rows="3"></textarea>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="requireFieldReqestCapex">
+              <hr>
+              <div class="row ml-0" *ngIf="!Capex">
+                <h5><b>Non-financial Benefit</b></h5>
+                <h6 class="mt-1 ml-1">(Please input information in section <u style="color: dodgerblue;">“Return on
+                    investment,
+                    Additional Key Performance Indicators”</u> as below) </h6>
+              </div>
+              <br>
+              <div class="bg-light">
+                <div id="Investment">
+                  <div class="card-header">
+                    <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                      data-target="#collapseInvestment" aria-expanded="true">
+                      <div class="float-left">
+                        Investment Framework
+                      </div>
+                      <i class="fas fa-chevron-circle-down float-right"></i>
+                    </button>
+                  </div>
+                  <div id="collapseInvestment" class="collapse bg-white" aria-labelledby="headingOne"
+                    data-parent="#Investment">
+                    <div class="card-body">
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','productionProcess')">
+                        <div class="col-md-3">
+                          <label for="production"> Production Process of Project , List of
+                            equipment & Leadtime </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="productionProcess" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','milestoneSchedule')">
+                        <div class="col-md-3">
+                          <label for="production"> Milestone & Schedule </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="milestoneSchedule" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','expectedTarget')">
+                        <div class="col-md-3">
+                          <label for="production"> Expected Target &Result </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="expectedTarget" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','comparisonWithOther')">
+                        <div class="col-md-3">
+                          <label for="comparison"> Comparison with other alternative</label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="comparisonWithOther" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','otherResources')">
+                        <div class="col-md-3">
+                          <label for="production"> Other resources needed to support the
+                            project: (Personnel, IT,
+                            Others)
+                          </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="otherResources" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','otherInvestment')">
+                        <div class="col-md-3">
+                          <label for="other"> Other </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="otherInvestment" rows="2"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="strategic">
+                  <div class="card-header">
+                    <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                      data-target="#collapseStrategic" aria-expanded="true">
+                      <div class="float-left">
+                        Strategic Analysis
+                      </div>
+                      <i class="fas fa-chevron-circle-down float-right"></i>
+                    </button>
+                  </div>
+                  <div id="collapseStrategic" class="collapse bg-white" aria-labelledby="headingOne"
+                    data-parent="#strategic">
+                    <div class="card-body">
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','consistent')">
+                        <div class="col-md-3">
+                          <label for="consistent"> Consistent with company's strategy </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="consistent" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','keySuccessFactor')">
+                        <div class="col-md-3">
+                          <label for="keySuccess"> Key Success Factor </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="keySuccessFactor" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','synergyBenefit')">
+                        <div class="col-md-3">
+                          <label for="synergyBenefit"> Synergy Benefit</label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="synergyBenefit" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','otherStrategic')">
+                        <div class="col-md-3">
+                          <label for="other"> Other </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="otherStrategic" rows="2"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="business">
+                  <div class="card-header">
+                    <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                      data-target="#collapseBusiness" aria-expanded="true">
+                      <div class="float-left">
+                        Business Analysis
+                      </div>
+                      <i class="fas fa-chevron-circle-down float-right"></i>
+                    </button>
+                  </div>
+                  <div id="collapseBusiness" class="collapse bg-white" aria-labelledby="headingOne"
+                    data-parent="#business">
+                    <div class="card-body">
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','marketOverview')">
+                        <div class="col-md-3">
+                          <label for="marketOverview"> Market overview</label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="marketOverview" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','potentialCustomer')">
+                        <div class="col-md-3">
+                          <label for="potentialCustomer"> Potential Customer</label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="potentialCustomer" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','salesPlan')">
+                        <div class="col-md-3">
+                          <label for="salesPain"> Sales Plan </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="salesPlan" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','sourceOfFeedback')">
+                        <div class="col-md-3">
+                          <label for="sourceOfFeedback"> Source of Feedback </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="sourceOfFeedback" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','otherBusiness')">
+                        <div class="col-md-3">
+                          <label for="other"> Other </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="otherBusiness" rows="2"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="quality">
+                  <div class="card-header">
+                    <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                      data-target="#collapseQuality" aria-expanded="true">
+                      <div class="float-left">
+                        Quality Index
+                      </div>
+                      <i class="fas fa-chevron-circle-down float-right"></i>
+                    </button>
+                  </div>
+                  <div id="collapseQuality" class="collapse bg-white" aria-labelledby="headingOne"
+                    data-parent="#quality">
+                    <div class="card-body">
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','safetyIndex')">
+                        <div class="col-md-3">
+                          <label for="safetyIndex"> Safety index</label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="safetyIndex" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','corporateImageIndex')">
+                        <div class="col-md-3">
+                          <label for="CorporateImageIndex"> Corporate image index</label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="corporateImageIndex" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','otherQuality')">
+                        <div class="col-md-3">
+                          <label for="other"> Other </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="otherQuality" rows="2"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="return">
+                  <div class="card-header">
+                    <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                      data-target="#collapseReturn" aria-expanded="true">
+                      <div class="float-left"
+                        [ngClass]="{ 'invalidCollapse': invalidBaseCase||invalidProjectIrrBaseCase||invalidNpvBaseCase||
+                                            invalidPaybackBaseCase||invalidEbitdaBaseCase||invalidDepreciationCost||invalidUsefulYear||invalidUsefulMonth }">
+                        Return of Investment <span class='text-danger' *ngIf="requireFieldReqestCapex">*</span>
+                      </div>
+                      <i class="fas fa-chevron-circle-down float-right"></i>
+                    </button>
+                  </div>
+                  <div id="collapseReturn" class="collapse bg-white" aria-labelledby="headingOne" data-parent="#return">
+                    <div class="card-body">
+                      <ng-container *ngIf="IsShowRamAmdJFactor">
+                        <div class="form-group row">
+                          <div class="col-md-4">
+                            <label> RAM : </label>
+                            <select type="text" class="form-control" formControlName="ram"
+                              [ngClass]="{ 'is-invalid': invalidRam }">
+                              <option value="" selected> Choose RAM </option>
+                              <option value="Very low"> Very low </option>
+                              <option value="Low"> Low </option>
+                              <option value="Medium"> Medium </option>
+                              <option value="High"> High </option>
+                            </select>
+                            <div class="text-feedback" *ngIf="invalidRam">
+                              RAM is required !
+                            </div>
+                          </div>
+
+                          <!-- JFactor-->
+                          <div class="col-md-4">
+                            <label> J-Factor : </label>
+                            <input type="text" class="form-control" formControlName="jFactor" step='0.01'
+                              placeholder='0.00' [ngClass]="{ 'is-invalid': invalidJfactor }" mask="separator.2"
+                              thousandSeparator=",">
+                            <div class="invalid-feedback" *ngIf="invalidJfactor">
+                              JFactor is required !
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                      </ng-container>
+                      <ng-container *ngIf="IsShowReturn">
+                        <div class="form-group row"
+                          [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','baseCase')">
+                          <div class="col-md-12">
+                            <label for="baseCase"> Base Case (Please specify assumption)
+                              <span class='text-danger'>*</span></label>
+                            <textarea class="form-control" formControlName="baseCase" rows="2"
+                              [ngClass]="{ 'is-invalid': invalidBaseCase }"></textarea>
+                            <div class="invalid-feedback" *ngIf="invalidBaseCase">
+                              Base Case (Please specify assumption) is required !
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3"
+                            [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','projectIrrBaseCase')">
+                            <label for="projectIrrBaseCase"> Project IRR(%) <span class='text-danger'>*</span></label>
+                            <input class="form-control" type="number" formControlName="projectIrrBaseCase"
+                              [ngClass]="{ 'is-invalid': invalidProjectIrrBaseCase }">
+                            <div class="invalid-feedback" *ngIf="invalidProjectIrrBaseCase">
+                              Project IRR(%) is required !
+                            </div>
+                          </div>
+                          <div class="col-md-3"
+                            [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','npvBaseCase')">
+                            <!-- <label for="npvBaseCase"> NPV (M THB) <span class='text-danger'>*</span></label>
+                            <input class="form-control" type="number" formControlName="npvBaseCase"
+                              [ngClass]="{ 'is-invalid': invalidNpvBaseCase }">
+                            <div class="invalid-feedback" *ngIf="invalidNpvBaseCase">
+                              NPV (M THB) is required !
+                            </div> -->
+                            <label for="npvBaseCase"> NPV (M THB)</label>
+                            <input class="form-control" type="number" formControlName="npvBaseCase">
+                          </div>
+                          <div class="col-md-3"
+                            [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','paybackBaseCase')">
+                            <label for="paybackBaseCase"> Payback(Year) <span class='text-danger'>*</span></label>
+                            <input class="form-control" type="number" formControlName="paybackBaseCase"
+                              [ngClass]="{ 'is-invalid': invalidPaybackBaseCase }">
+                            <div class="invalid-feedback" *ngIf="invalidPaybackBaseCase">
+                              Payback(Year) is required !
+                            </div>
+                          </div>
+                          <div class="col-md-3"
+                            [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','ebitdaBaseCase')">
+                            <label for="ebitdaUpLiftBaseCase"> EBITDA Uplift ( M.THB) <span
+                                class='text-danger'>*</span></label>
+                            <input class="form-control" type="number" formControlName="ebitdaBaseCase"
+                              [ngClass]="{ 'is-invalid': invalidEbitdaBaseCase }">
+                            <div class="invalid-feedback" *ngIf="invalidEbitdaBaseCase">
+                              Payback(Year) is required !
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                        <!-- <div class="form-group row">
+                          <div class="col-md-12" [ngClass]="ps.chps('DetailInformation','optimisticCase')">
+                            <label for="optimisticCase"> Optimistic Case (Please specify
+                              assumption) </label>
+                            <textarea class="form-control" formControlName="optimisticCase" rows="2"></textarea>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3" [ngClass]="ps.chps('DetailInformation','projectIrrOptimisticCase')">
+                            <label for="projectIrrOptimisticCase"> Project IRR(%) </label>
+                            <input class="form-control" type="number" formControlName="projectIrrOptimisticCase">
+                          </div>
+                          <div class="col-md-3" [ngClass]="ps.chps('DetailInformation','npvOptimisticCase')">
+                            <label for="npvOptimisticCase"> NPV (M THB) </label>
+                            <input class="form-control" type="number" formControlName="npvOptimisticCase">
+                          </div>
+                          <div class="col-md-3" [ngClass]="ps.chps('DetailInformation','paybackOptimisticCase')">
+                            <label for="paybackOptimisticCase"> Payback(Year) </label>
+                            <input class="form-control" type="number" formControlName="paybackOptimisticCase">
+                          </div>
+                          <div class="col-md-3" [ngClass]="ps.chps('DetailInformation','ebitdaOptimisticCase')">
+                            <label for="ebitdaUpLiftOptimisticCase"> EBITDA Uplift ( M.THB)
+                            </label>
+                            <input class="form-control" type="number" formControlName="ebitdaOptimisticCase">
+                          </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                        <div class="form-group row">
+                          <div class="col-md-12" [ngClass]="ps.chps('DetailInformation','pessimisticCase')">
+                            <label for="pessimisticCase"> Pessimistic Case (Please specify
+                              assumption) </label>
+                            <textarea class="form-control" formControlName="pessimisticCase" rows="2"></textarea>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3" [ngClass]="ps.chps('DetailInformation','projectIrrPessimisticCase')">
+                            <label for="projectIrrPessimisticCase"> Project IRR(%) </label>
+                            <input class="form-control" type="number" formControlName="projectIrrPessimisticCase">
+                          </div>
+                          <div class="col-md-3" [ngClass]="ps.chps('DetailInformation','npvPessimisticCase')">
+                            <label for="npvPessimisticCase"> NPV (M THB) </label>
+                            <input class="form-control" type="number" formControlName="npvPessimisticCase">
+                          </div>
+                          <div class="col-md-3" [ngClass]="ps.chps('DetailInformation','paybackPessimisticCase')">
+                            <label for="paybackPessimisticCase"> Payback(Year) </label>
+                            <input class="form-control" type="number" formControlName="paybackPessimisticCase">
+                          </div>
+                          <div class="col-md-3" [ngClass]="ps.chps('DetailInformation','ebitdaPessimisticCase')">
+                            <label for="ebitdaUpLiftPessimisticCase"> EBITDA Uplift ( M.THB)
+                            </label>
+                            <input class="form-control" type="number" formControlName="ebitdaPessimisticCase">
+                          </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <br> -->
+                      </ng-container>
+
+
+
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                          <label for="usefulLife"> Useful life <span class='text-danger'>*</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-2"
+                          [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','usefulYear')">
+                          <input class="form-control" type="number" formControlName="usefulYear"
+                            [ngClass]="{ 'is-invalid': invalidUsefulYear }" (input)="OnchangeUsefulYear()">
+                          <div class="invalid-feedback" *ngIf="invalidUsefulYear">
+                            Useful Year is required !
+                          </div>
+                        </div>
+                        <div class="text-center mt-2"> Year </div>
+
+                        <div class="col-md-2"
+                          [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','usefulMonth')">
+                          <input class="form-control" type="number" formControlName="usefulMonth"
+                            [ngClass]="{ 'is-invalid': invalidUsefulMonth }" (input)="OnchangeUsefulMonth()">
+                          <div class="invalid-feedback" *ngIf="invalidUsefulMonth">
+                            Useful Month is required !
+                          </div>
+                        </div>
+                        <div class="text-center mt-2"> Month </div>
+                      </div>
+
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','depreciationCost')">
+                        <div class="col-md-6">
+                          <label for="depreciationCost"> Depreciation Cost <span class='text-danger'>*</span> </label>
+                          <input class="form-control" type="text" formControlName="depreciationCost"
+                            [ngClass]="{ 'is-invalid': invalidDepreciationCost }">
+                          <div class="invalid-feedback" *ngIf="invalidDepreciationCost">
+                            Depreciation Cost is required !
+                          </div>
+                        </div>
+                      </div>
+
+                      <br>
+                      <hr>
+                      <br>
+                      <h5> Additional Key Performance Indicators </h5>
+                      <table class="table table-bordered mt-4">
+                        <thead class="text-center bg-light">
+                          <th width="20%"> KPIs </th>
+                          <th width="55%"> Target </th>
+                          <th width="20%"> Frequency </th>
+                          <th width="5%"> </th>
+                        </thead>
+                        <tbody
+                          *ngFor="let control of DetailMaxForm.controls.kpisForm?.get('kpis')['controls']; let i=index">
+                          <tr [formGroup]="control">
+                            <ng-container *ngIf="i < 0; else haveKpiData">
+                              <td rowspan="4"> No Data </td>
+                            </ng-container>
+                            <ng-template #haveKpiData>
+                              <td>
+                                <select class="form-control" type="text" formControlName="kpis"
+                                  (change)="ChangeKpis(i, $event)">
+                                  <option value="" selected disabled> Choose... </option>
+                                  <option *ngFor="let kpis of kpises" value="{{kpis.kpisTitle}}"
+                                    [disabled]="kpis.disabled">
+                                    {{ kpis.kpisTitle }}
+                                  </option>
+                                </select>
+                              </td>
+                              <td>
+                                <input class="form-control" type="text" formControlName="target">
+                              </td>
+                              <td>
+                                <select class="form-control" type="text" formControlName="frequency">
+                                  <option value="" selected disabled>Choose...</option>
+                                  <option *ngFor="let frequency of frequencies" value="{{frequency.frequencyTitle}}">
+                                    {{frequency.frequencyTitle}}
+                                  </option>
+                                </select>
+                              </td>
+                              <td>
+                                <button *ngIf="!viewMode" type="button" style="font-size:x-small;"
+                                  class="btn btn-danger btn-sm mr-1" (click)="RemoveKpis(i)" [disabled]="isRemoveKpis">
+                                  <i class="fas fa-trash-alt"></i>
+                                </button>
+                              </td>
+                            </ng-template>
+
+
+                          </tr>
+                        </tbody>
+                      </table>
+                      <button *ngIf="!viewMode" class="btn btn-primary mr-5" (click)="AddKpis()"
+                        [disabled]="isDisableAddKpis">
+                        <i class="fas fa-plus-square mr-2"></i> Add New
+                      </button>
+                      <br>
+                      <hr>
+                      <br>
+                      <div class="col-md-12" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','remark')">
+                        <label for="">KPIs Remark</label>
+                        <textarea class="form-control" formControlName="remark" rows="5"></textarea>
+                      </div>
+                      <br>
+                      <br>
+                      <div class="col-md-12" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','otherKpis')">
+                        <label for="">Other Remark</label>
+                        <textarea class="form-control" formControlName="otherKpis" rows="5"></textarea>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                </div>
+                <div id="additional">
+                  <div class="card-header">
+                    <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                      data-target="#collapseAdditional" aria-expanded="true">
+                      <div class="float-left" [ngClass]="{ 'invalidCollapse': invalidCutFeedDate||invalidStartUpDate||invalidCycleYear||
+                                            invalidCycleMonth||invalidEquipmentName||invalidReplacementDate||invalidOldAssetCondition||invalidOldAssetNo||
+                                            invalidEquipmentOrAsset||invalidBoiNo||invalidParties}">
+                        <!-- Additional Information -->
+                        Require Field For Project Accounting <span class='text-danger'
+                          *ngIf="requireFieldReqestCapex">*</span>
+                      </div>
+                      <i class="fas fa-chevron-circle-down float-right"></i>
+                    </button>
+                  </div>
+                  <div id="collapseAdditional" class="collapse bg-white" aria-labelledby="headingOne"
+                    data-parent="#additional">
+                    <div class="card-body">
+                      <div class="form-group row">
+                        <div class="col-md-6"
+                          [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','forEnvironment')">
+                          <label class="my-3" for="requestCapex"> For Environment (EMA) <span
+                              class="text-danger">*</span>
+                          </label>
+                          <br>
+                          <div class="mt-1">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="trueEnvironment" value="true" class="custom-control-input" type="radio"
+                                name="forEnvironment" formControlName="forEnvironment">
+                              <label class="custom-control-label" for="trueEnvironment">
+                                Yes </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline ml-5">
+                              <input id="falseEnvironment" value="false" class="custom-control-input" type="radio"
+                                name="forEnvironment" formControlName="forEnvironment">
+                              <label class="custom-control-label" for="falseEnvironment">
+                                No </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row"
+                        [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','forTurnaround')">
+                        <div class="col-md-6">
+                          <label class="my-3" for="requestCapex"> For Turnaround Project <span
+                              class="text-danger">*</span> </label>
+                          <br>
+                          <div class="mt-1">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="trueTurnaround" value="true" class="custom-control-input" type="radio"
+                                name="forTurnaround" formControlName="forTurnaround" (change)="OnChangeTurnaround()">
+                              <label class="custom-control-label" for="trueTurnaround">
+                                Yes </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline ml-5">
+                              <input id="falseTurnaround" value="false" class="custom-control-input" type="radio"
+                                name="forTurnaround" formControlName="forTurnaround" (change)="OnChangeTurnaround()">
+                              <label class="custom-control-label" for="falseTurnaround">
+                                No </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ng-container *ngIf="IsShowTurnAround">
+                        <div class="form-group row">
+                          <div class="col-md-6"
+                            [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','cutFeedDate')">
+                            <label for="cutFeedDate"> Cut Feed Date <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                              <input formControlName="cutFeedDate" type="text" [bsConfig]="bsConfigDate"
+                                class="form-control" bsDatepicker #dpCutFeedDate="bsDatepicker"
+                                (bsValueChange)="ChangeCutFeedDate($event)"
+                                [ngClass]="{ 'is-invalid': invalidCutFeedDate }"
+                                [triggers]="viewMode ? '' : 'click:click'">
+                              <div *ngIf="!viewMode" class="input-group-append">
+                                <i class="far fa-calendar right-icon mt-2" (click)="dpCutFeedDate.toggle()"
+                                  [attr.aria-expanded]="dpCutFeedDate.isOpen"></i>
+                              </div>
+                              <div class="invalid-feedback" *ngIf="invalidCutFeedDate">
+                                Cut Feed Date is required !
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6"
+                            [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','startUpDate')">
+                            <label for="cutFeedDate"> Start Up Date <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                              <input formControlName="startUpDate" type="text" [bsConfig]="bsConfigDate"
+                                class="form-control" bsDatepicker #dpStartUpDate="bsDatepicker"
+                                (bsValueChange)="ChangeStartUpDate($event)"
+                                [ngClass]="{ 'is-invalid': invalidStartUpDate }"
+                                [triggers]="viewMode ? '' : 'click:click'">
+                              <div *ngIf="!viewMode" class="input-group-append">
+                                <i class="far fa-calendar right-icon mt-2" (click)="dpStartUpDate.toggle()"
+                                  [attr.aria-expanded]="dpStartUpDate.isOpen"></i>
+                              </div>
+                              <div class="invalid-feedback" *ngIf="invalidStartUpDate">
+                                Start Up Date is required !
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-md-6">
+                            <label for="cycle"> Cycle <span class='text-danger'>*</span>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-2"
+                            [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','cycleYear')">
+                            <input class="form-control" type="number" formControlName="cycleYear"
+                              [ngClass]="{ 'is-invalid': invalidCycleYear }">
+                            <div class="invalid-feedback" *ngIf="invalidCycleYear">
+                              Year is required !
+                            </div>
+                          </div>
+                          <div class="text-center mt-2"> Year </div>
+                          <div class="col-md-2"
+                            [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','cycleMonth')">
+                            <input class="form-control" type="number" formControlName="cycleMonth"
+                              [ngClass]="{ 'is-invalid': invalidCycleMonth }" (input)="OnchangeCycleMonth()">
+                            <div class="invalid-feedback" *ngIf="invalidCycleMonth">
+                              Month is required !
+                            </div>
+                          </div>
+                          <div class="text-center mt-2"> Month </div>
+                        </div>
+                      </ng-container>
+
+                      <br>
+                      <hr>
+
+                      <div class="form-group row">
+                        <div class="col-md-6"
+                          [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','replaceEquipment')">
+                          <label class="my-3" for="replaceEquipment"> Replace Equipment <span
+                              class="text-danger">*</span>
+                          </label>
+                          <br>
+                          <div class="mt-1">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="trueEquipment" value="true" class="custom-control-input" type="radio"
+                                name="replaceEquipment" formControlName="replaceEquipment"
+                                (change)="OnChangeReplaceEquipment()">
+                              <label class="custom-control-label" for="trueEquipment"> Yes
+                              </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline ml-5">
+                              <input id="falseEquipment" value="false" class="custom-control-input" type="radio"
+                                name="replaceEquipment" formControlName="replaceEquipment"
+                                (change)="OnChangeReplaceEquipment()">
+                              <label class="custom-control-label" for="falseEquipment"> No
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ng-container *ngIf="IsShowReplace">
+                        <div class="form-group row">
+                          <div class="col-md-12"
+                            [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','equipmentName')">
+                            <label for="equipmentName"> Equipment Name <span class="text-danger">*</span> </label>
+                            <textarea class="form-control" formControlName="equipmentName" rows="3"
+                              [ngClass]="{ 'is-invalid': invalidEquipmentName }"></textarea>
+                            <div class="invalid-feedback" *ngIf="invalidEquipmentName">
+                              Equipment Name is required !
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-md-6"
+                            [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','replacementDate')">
+                            <label for="replacementDate"> Replacement Date <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                              <input formControlName="replacementDate" type="text" [bsConfig]="bsConfigDate"
+                                class="form-control" bsDatepicker #dpReplacementDate="bsDatepicker"
+                                (bsValueChange)="ChangeReplacementDate($event)"
+                                [ngClass]="{ 'is-invalid': invalidReplacementDate }"
+                                [triggers]="viewMode ? '' : 'click:click'">
+                              <div *ngIf="!viewMode" class="input-group-append">
+                                <i class="far fa-calendar right-icon mt-2" (click)="dpReplacementDate.toggle()"
+                                  [attr.aria-expanded]="dpReplacementDate.isOpen"></i>
+                              </div>
+                              <div class="invalid-feedback" *ngIf="invalidReplacementDate">
+                                Replacement Date is required !
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6"
+                            [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','oldAssetCondition')">
+                            <label for="oldAssetCondition"> Old Asset Condition <span
+                                class="text-danger">*</span></label>
+                            <select formControlName="oldAssetCondition" class="form-control"
+                              (change)="OnChangeOldAsset()" [ngClass]="{ 'is-invalid': invalidOldAssetCondition }">
+                              <option value="">Choose..</option>
+                              <option value="unable">Unable to Use</option>
+                              <option value="repair">Repair/Collect for space</option>
+                            </select>
+                            <div class="invalid-feedback" *ngIf="invalidOldAssetCondition">
+                              Old Asset Condition is required !
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row mt-5"
+                          [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','equipmentOrAsset')">
+                          <div class="col-md-12">
+                            <label for="equipmentOrAsset"> Equipment or Asset which
+                              constructed
+                              from project (Ex. Boiler,
+                              CCR Building ,Hardware/Software/License etc.) <span class="text-danger">*</span> </label>
+                            <textarea class="form-control" formControlName="equipmentOrAsset" rows="3"
+                              [ngClass]="{ 'is-invalid': invalidEquipmentOrAsset }">
+                                                        </textarea>
+                            <div class="invalid-feedback" *ngIf="invalidEquipmentOrAsset">
+                              Equipment or Asset which constructed from project (Ex.
+                              Boiler,
+                              CCR Building ,Hardware/Software/License etc.) is required !
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+
+                      <ng-container *ngIf="IsShowOldAsset">
+                        <div class="form-group row"
+                          [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','oldAssetNo')">
+                          <div class="col-md-12">
+                            <label for="oldAssetNo"> Old Asset No. <span class="text-danger">*</span> <i
+                                class="fas fa-info-circle fa-lg ml-2" data-toggle="tooltip" data-placement="top"
+                                title="If you need more information for Old Asset No. please contact F-A2-FA Team"></i>
+                            </label>
+                            <textarea class="form-control" formControlName="oldAssetNo" rows="3"
+                              [ngClass]="{ 'is-invalid': invalidOldAssetNo }">
+                                                        </textarea>
+                            <div class="invalid-feedback" *ngIf="invalidOldAssetNo">
+                              Old Asset No. is required !
+                            </div>
+                          </div>
+                        </div>
+
+                      </ng-container>
+
+
+
+                      <div class="form-group row">
+                        <div class="col-md-6" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','boi')">
+                          <label class="my-3" for="replaceEquipment"> BOI <span class="text-danger">*</span> </label>
+                          <br>
+                          <div class="mt-1">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="trueBoi" value="true" class="custom-control-input" type="radio" name="boi"
+                                formControlName="boi" (change)="OnChangeBOI()">
+                              <label class="custom-control-label" for="trueBoi"> Yes
+                              </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline ml-5">
+                              <input id="falseBoi" value="false" class="custom-control-input" type="radio" name="boi"
+                                formControlName="boi" (change)="OnChangeBOI()">
+                              <label class="custom-control-label" for="falseBoi"> No
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <ng-container *ngIf="IsShowBOI">
+                          <div class="col-md-6" [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','boiNo')">
+                            <label class="my-3" for="replaceEquipment"> BOI No. </label>
+                            <input type="text" formControlName="boiNo" class="form-control"
+                              [ngClass]="{ 'is-invalid': invalidBoiNo }">
+                            <div class="invalid-feedback" *ngIf="invalidBoiNo">
+                              BOI No. is required !
+                            </div>
+                          </div>
+                        </ng-container>
+                      </div>
+                      <br>
+
+                      <div class="form-group row mb-5">
+                        <div class="col-md-6"
+                          [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','haveAdditional')">
+                          <label class="my-3" for="replaceEquipment"> Do you have Additional
+                            Information <span class="text-danger">*</span> </label>
+                          <br>
+                          <div class="mt-1">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="trueAdditional" value="true" class="custom-control-input" type="radio"
+                                name="haveAdditional" formControlName="haveAdditional" (change)="OnChangeAdditional()">
+                              <label class="custom-control-label" for="trueAdditional">
+                                Yes </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline ml-5">
+                              <input id="falseAdditional" value="false" class="custom-control-input" type="radio"
+                                name="haveAdditional" formControlName="haveAdditional" (change)="OnChangeAdditional()">
+                              <label class="custom-control-label" for="falseAdditional">
+                                No </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ng-container *ngIf="IsShowAdditional">
+
+                        <span> Additional Information
+                          <!--<span class="text-danger"> * </span>
+                          <span class="text-feedback ml-3" *ngIf="invalidAdditional">
+                            Additional Information is required !
+                          </span>-->
+                        </span>
+
+                        <br>
+                        <br>
+
+                        <div class="form-group row mt-2">
+                          <div class="col-md-12">
+                            <div class="mt-1">
+                              <div class="custom-control custom-checkbox custom-control-inline col-md-3"
+                                [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','capital')">
+                                <input id="capital" class="custom-control-input" type="checkbox"
+                                  formControlName="capital">
+                                <label class="custom-control-label" for="capital"> 2
+                                  Yr./return Spare part </label>
+                              </div>
+                              <div class="custom-control custom-checkbox custom-control-inline col-md-2"
+                                [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','catalyst')">
+                                <input id="catalyst" class="custom-control-input" type="checkbox"
+                                  formControlName="catalyst">
+                                <label class="custom-control-label" for="catalyst">
+                                  Catalyst </label>
+                              </div>
+                              <div class="custom-control custom-checkbox custom-control-inline col-md-2"
+                                [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','software')">
+                                <input id="software" class="custom-control-input" type="checkbox"
+                                  formControlName="software">
+                                <label class="custom-control-label" for="software">
+                                  Software/License </label>
+                              </div>
+                              <div class="custom-control custom-checkbox custom-control-inline col-md-2"
+                                [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','rightOfUse')">
+                                <input id="rightOfUse" class="custom-control-input" type="checkbox"
+                                  formControlName="rightOfUse">
+                                <label class="custom-control-label" for="rightOfUse">
+                                  Right of Use </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+
+                      <br>
+                      <hr>
+
+                      <div class="form-group row">
+                        <div class="col-md-6"
+                          [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','coordinate')">
+                          <label class="my-3" for="coordinate"> Coordinate with external
+                            parties (Outside Company) <span class="text-danger">*</span>
+                          </label>
+                          <br>
+                          <div class="mt-1">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="trueCoordinate" value="true" class="custom-control-input" type="radio"
+                                name="coordinate" formControlName="coordinate" (change)="OnChangeCoordinate()">
+                              <label class="custom-control-label" for="trueCoordinate">
+                                Yes </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline ml-5">
+                              <input id="falseCoordinate" value="false" class="custom-control-input" type="radio"
+                                name="coordinate" formControlName="coordinate" (change)="OnChangeCoordinate()">
+                              <label class="custom-control-label" for="falseCoordinate">
+                                No </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ng-container *ngIf="IsShowParties">
+                        <div class="form-group row"
+                          [ngClass]="ps.checkControl(DetailMaxForm,'DetailInformation','parties')">
+                          <div class="col-md-12">
+                            <label for="parties"> Which parties (Ex. University, PEA , etc.)
+                              <span class="text-danger">*</span> </label>
+                            <textarea class="form-control" formControlName="parties" rows="3"
+                              [ngClass]="{ 'is-invalid': invalidParties }"></textarea>
+                            <div class="invalid-feedback" *ngIf="invalidParties">
+                              Which parties (Ex. University, PEA , etc.) is required !
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+
+          </div>
+          <br>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

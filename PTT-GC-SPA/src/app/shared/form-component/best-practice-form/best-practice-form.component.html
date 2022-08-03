@@ -1,0 +1,698 @@
+<div class="container-fluid">
+  <form [formGroup]="bestPracticeForm">
+    <div class="row">
+      <div class="col-sm-12">
+        <app-initiative-info [id]="id"></app-initiative-info>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <h4>Project Best Practice</h4>
+        <div class="devider"></div>
+      </div>
+    </div>
+    <!-- Change chps to checkControl or checkNotControl -->
+    <div class="row" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','isBestPracticeRequired')">
+      <div class="col-sm-6">
+        <div class="form-group row">
+          <label class="col-sm-3">Submit best Practice </label>
+          <div class="col-sm-9">
+            <div class="form-check form-check-inline">
+              <input formControlName="isBestPracticeRequired" class="form-check-input" type="radio" id="submit_accept"
+                [value]="true" (change)="onChangeIsSubmit()" />
+              <label class="form-check-label" for="submit_accept">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input formControlName="isBestPracticeRequired" class="form-check-input" type="radio" id="submit_decline"
+                [value]="false" (change)="onChangeIsSubmit()" />
+              <label class="form-check-label" for="submit_decline">No</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-container *ngIf="showSubmit">
+
+      <div class="row u-margin-top-small">
+        <div class="col-sm-6">
+          <div class="form-group" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','knowledgeType')">
+            <label for="knowledge_type">Knowledge Type</label>
+            <select id="knowledge_type" class="form-control" formControlName="knowledgeType">
+              <option value="" disabled>Please select</option>
+              <option [value]="item.key" *ngFor="let item of knowledgeTypeList">
+                {{ item.value }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','sharedTo')">
+          <div class="form-group">
+            <label for="shared_to">Share to </label>
+            <select class="form-control" id="shared_to" formControlName="sharedTo">
+              <option value="" disabled>Please select</option>
+              <option [value]="item.key" *ngFor="let item of shareList">
+                {{ item.value }}
+              </option>
+            </select>
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','isPublishToOpEx')">
+          <label for="source_of_improvement"></label>
+          <div class="form-group">
+            <div class="form-check form-check-inline u-margin-top-small">
+              <input class="form-check-input" type="checkbox" id="publish_to_opex" formControlName="isPublishToOpEx" />
+              <label class="form-check-label" for="publish_to_opex">
+                Publish to OpEX
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','sharedPracticeType')">
+            <label for="shared_practice_type">Share Practice Type <span class="text-danger">*</span></label>
+            <select class="form-control" id="shared_practice_type" formControlName="sharedPracticeType"
+              [ngClass]="{'is-invalid': getFormError('sharedPracticeType') }">
+              <option value="" disabled>Please select</option>
+              <option value="Operation Support">Operation</option>
+              <option value="Operation Support">Operation Support</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="getFormError('sharedPracticeType')">
+              Share Practice Type is required !
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','title')">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="title">Title </label>
+            <input type="text" class="form-control" id="title" formControlName="title" />
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','knowledgeOwner')">
+          <div class="form-group">
+            <label for="knowledge_owner">Knowledge Owner</label>
+            <!-- <select class="form-control" id="knowledge_owner" formControlName="knowledgeOwner" disabled>
+              <option value="" >Please select</option>
+              <option value="Owner">Owner</option>
+            </select> -->
+            <input type="text" class="form-control" formControlName="knowledgeOwner" readonly>
+          </div>
+        </div>
+
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','knowledgeContributor')">
+          <div class="form-group">
+            <label for="knowledge_contributor">Knowledge Contributor </label>
+            <ng-select formControlName="knowledgeContributor" [items]="coDevelopers" loadingText="Loading"
+              [multiple]="true" (search)="SearchCoDeveloper($event)" (remove)="RemoveCoDeveloper()"
+              bindValue="coDeveloperName" bindLabel="coDeveloperName" placeholder="Choose CoDevelopers">
+            </ng-select>
+            <!-- <ng-select formControlName="knowledgeContributor" [items]="knowledgeContributerList" [multiple]="true"
+              bindLabel="key" bindValue="value" [closeOnSelect]="false" [selectableGroup]="true"
+              [selectableGroupAsModel]="false">
+            </ng-select> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','company')">
+          <div class="form-group">
+            <label for="conpany">Compamy </label>
+            <input type="text" id="conpany" class="form-control" formControlName="company" readonly />
+          </div>
+        </div>
+
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','plant')">
+          <div class="form-group">
+            <label for="plant">Plant </label>
+            <ng-select formControlName="plant" [items]="GetPlants()" bindValue="id" bindLabel="name"
+              placeholder="Choose Plant" [ngClass]="{'is-invalid': getFormError('plant') }">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','organization')">
+          <div class="form-group">
+            <label for="organization">Organization</label>
+            <ng-select formControlName="organization" [items]="GetOrganizations()" bindValue="name" bindLabel="name"
+              placeholder="Choose Organization" [ngClass]="{'is-invalid': getFormError('organization') }">
+            </ng-select>
+          </div>
+        </div>
+
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','isDigitalization')">
+          <label for="source_of_improvement"></label>
+          <div class="form-group">
+            <div class="form-check form-check-inline u-margin-top-small">
+              <input class="form-check-input" type="checkbox" id="isDigitalization"
+                formControlName="isDigitalization" />
+              <label class="form-check-label" for="isDigitalization">
+                Digitalization
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="source_of_improvement">Contact Person </label>
+            <div *ngIf="contactModel.controls.length <= 0" class="alert alert-secondary" role="alert">
+              No available indicator
+            </div>
+
+            <table class="table table-sm table-bordered" *ngIf="contactModel.controls.length > 0">
+              <thead>
+                <tr>
+                  <th scope="col" width="100px" class="text-center">
+                    Contact Person No.
+                  </th>
+                  <th scope="col" width="350px">Name</th>
+                  <th scope="col" width="100px">Phone</th>
+                  <th scope="col" width="150px">Email</th>
+                  <th scope="col" width="100px" class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let contaxtPerson of bestPracticeForm.get('contactModel')['controls']; index as i">
+                  <ng-container [formGroup]="contaxtPerson">
+                    <td scope="row" class="text-center">
+                      <span>{{ i + 1 }}</span>
+                    </td>
+                    <td>
+                      <input type="text" formControlName="name" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                      <input type="text" formControlName="phone" class="form-control form-control-sm" maxlength="10" />
+                    </td>
+                    <td>
+                      <input type="text" formControlName="email" class="form-control form-control-sm" />
+                    </td>
+                    <td class="text-center">
+                      <button *ngIf="!viewMode" class="btn btn-sm btn-danger" (click)="removeContactPerson(i)">
+                        <span><i class="fa fa-times"></i></span>
+                      </button>
+                    </td>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="form-group">
+            <button *ngIf="!viewMode" class="btn btn-sm btn-primary" (click)="newContactPerson()">
+              <i class="fa fa-plus"></i>
+              Add New
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','startDate')">
+          <div class="form-group">
+            <label for="start_date">Start Date</label>
+            <div class="input-group">
+              <input type="text" bsDatepicker id="start_date" #dpStart="bsDatepicker" [bsConfig]="bsConfigStart"
+                class="form-control" formControlName="startDate" [triggers]="viewMode ? '' : 'click:click'" />
+              <div *ngIf="!viewMode" class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="far fa-calendar"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','endDate')">
+          <div class="form-group">
+            <label for="end_date">End Date</label>
+            <div class="input-group">
+              <input type="text" bsDatepicker id="end_date" #dpFinish="bsDatepicker" [bsConfig]="bsConfigFinish"
+                class="form-control" formControlName="endDate" [triggers]="viewMode ? '' : 'click:click'" />
+              <div *ngIf="!viewMode" class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="far fa-calendar"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','yearOfBestPractice')">
+          <div class="form-group">
+            <label for="year_of_bp_program">Year of Best Practice Program</label>
+            <div class="input-group">
+              <input type="text" bsDatepicker id="finish_date" #dpFinish="bsDatepicker" [bsConfig]="yearViewDateFormart"
+                class="form-control" formControlName="yearOfBestPractice" [triggers]="viewMode ? '' : 'click:click'" />
+              <div *ngIf="!viewMode" class="input-group-prepend">
+                <span class="input-group-text">
+                  <i class="far fa-calendar"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','lifeTimeOfProject')">
+          <div class="form-group">
+            <label for="lifetime_of_project">Life Time of Project (Year) <span class="text-danger">*</span></label>
+            <input type="number" class="form-control" id="lifetime_of_project" formControlName="lifeTimeOfProject"
+              [ngClass]="{'is-invalid': getFormError('lifeTimeOfProject') }" />
+            <div class="invalid-feedback" *ngIf="getFormError('lifeTimeOfProject')">
+              Life Time of Project is required !
+            </div>
+            <!-- <small class="form-text text-muted"></small> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','investment')">
+          <div class="form-group">
+            <label for="investment">Investment <span class="text-danger">*</span></label>
+            <input type="number" id="investment" class="form-control" formControlName="investment"
+              [ngClass]="{'is-invalid': getFormError('investment') }" />
+            <div class="invalid-feedback" *ngIf="getFormError('investment')">
+              Investment is required !
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','projectCost')">
+          <div class="form-group">
+            <label for="project_cost">
+              Project cost & Investment per year (M.Baht/Yr.) <span class="text-danger">*</span>
+            </label>
+            <input type="number" id="project_cost" class="form-control" formControlName="projectCost"
+              [ngClass]="{'is-invalid': getFormError('projectCost') }" />
+            <div class="invalid-feedback" *ngIf="getFormError('projectCost')">
+              Project cost & Investment is required !
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','abstractSummary')">
+          <div class="form-group">
+            <label for="abstract_summary">Abstract Summary </label>
+            <textarea rows="3" readonly class="form-control" id="abstract_summary"
+              formControlName="abstractSummary"></textarea>
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','abstractDetails')">
+          <div class="form-group">
+            <label for="abstract_detail"> Abstract Details </label>
+            <textarea rows="3" readonly id="abstract_detail" class="form-control"
+              formControlName="abstractDetails"></textarea>
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','objective')">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="objective">Objective</label>
+            <textarea rows="3" readonly id="objective" class="form-control" formControlName="objective"></textarea>
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','benefitDescription')">
+          <div class="form-group">
+            <label for="benefit_1">Benefit Description</label>
+            <textarea rows="3" id="benefit_1" class="form-control" formControlName="benefitDescription"></textarea>
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','benefitType')">
+          <div class="form-group">
+            <label for="benefit_type">Benefit </label>
+            <input readonly type="number" id="benefit_type" class="form-control" formControlName="benefitType" />
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','knowledgeTheme')">
+          <div class="form-group">
+            <label for="knowledge _theme">Knowledge Theme </label>
+            <ng-select formControlName="knowledgeTheme" [items]="knowledgeThemeList" groupBy="group" bindLabel="key"
+              bindValue="value" [selectableGroup]="true" [selectableGroupAsModel]="false">
+            </ng-select>
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','enterpriseKeyword')">
+          <div class="form-group">
+            <label for="enterprise_keyword">Enterprise Keyword </label>
+            <input type="text" class="form-control" id="enterprise_keyword" formControlName="enterpriseKeyword" />
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','captureMethod')">
+          <div class="form-group">
+            <label for="capture_method">Capture Method </label>
+            <input readonly class="form-control" formControlName="captureMethod">
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','captureMethodNote')">
+          <div class="form-group">
+            <label for="capture_method_note">Capture Method Note </label>
+            <textarea rows="2" class="form-control" id="capture_method_note"
+              formControlName="captureMethodNote"></textarea>
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','targetGroupNote')">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="target_group_note">Target Group Note </label>
+            <textarea rows="3" readonly class="form-control" id="target_group_note"
+              formControlName="targetGroupNote"></textarea>
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','applyFrom')">
+          <div class="form-group">
+            <label for="apply_form">Apply From </label>
+            <input type="text" id="apply_form" class="form-control" formControlName="applyFrom" />
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','applyFromOpEx')">
+          <div class="form-group">
+            <label for="apply_from_opex">Apply From OpEx <span class="text-danger">*</span> </label>
+            <input type="text" id="apply_from_opex" class="form-control" formControlName="applyFromOpEx"
+              [ngClass]="{'is-invalid': getFormError('applyFromOpEx') }" />
+            <div class="invalid-feedback" *ngIf="getFormError('applyFromOpEx')">
+              Apply From OpEx is required !
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="project_reference">Project Referent </label>
+            <div role="alert" class="alert alert-secondary" *ngIf="projectReferenceModel.controls.length <= 0">
+              No available project referent
+            </div>
+
+            <table class="table table-sm table-bordered" *ngIf="projectReferenceModel.controls.length > 0">
+              <thead>
+                <tr>
+                  <th scope="col" width="75px" class="text-center">No.</th>
+                  <th scope="col">Project Referent</th>
+                  <th scope="col" width="100px" class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let refForm of bestPracticeForm.get('projectReferenceModel')['controls']; index as i">
+                  <ng-container [formGroup]="refForm">
+                    <td scope="row" class="text-center">
+                      <span>{{ i + 1 }}</span>
+                    </td>
+                    <td>
+                      <!-- <input type="text" class="form-control form-control-sm" formControlName="projectReference" /> -->
+                      <ng-select formControlName="projectReference" [items]="initiativeList" loadingText="Loading"
+                        (search)="SearchInitiativeList($event)" (remove)="RemoveInitiativeList()"
+                        placeholder="Choose InitiativeList">
+                      </ng-select>
+                    </td>
+                    <td class="text-center">
+                      <button *ngIf="!viewMode" class="btn btn-sm btn-danger" (click)="removeProjectReferenceForm(i)">
+                        <span><i class="fa fa-times"></i></span>
+                      </button>
+                    </td>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="form-group">
+            <button *ngIf="!viewMode" class="btn btn-sm btn-primary" (click)="newProjectReferenceForm()">
+              <i class="fa fa-plus"></i>
+              Add New
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <div class="col-sm-12">
+          <h4>Milestones</h4>
+          <div class="devider"></div>
+        </div>
+
+        <div class="col-sm-12">
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 10%" aria-valuenow="10"
+              aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row u-margin-top-small">
+        <div class="col-sm-12">
+          <h4>Detail</h4>
+          <div class="devider"></div>
+        </div>
+
+        <div class="col-sm-12">
+          <div class="form-group">
+            <div *ngIf="mileStoneModel.controls.length <= 0" class="alert alert-secondary" role="alert">
+              No available detail
+            </div>
+
+            <table class="table table-sm table-bordered" *ngIf="mileStoneModel.controls.length > 0">
+              <thead>
+                <tr>
+                  <th scope="col" width="75px" class="text-center">No.</th>
+                  <th scope="col" width="250px">Milestone</th>
+                  <th scope="col">Key Deliverable</th>
+                  <th scope="col">Start</th>
+                  <th scope="col">Plan Finish</th>
+                  <th scope="col">Actual Finish</th>
+                  <th scope="col">Activity</th>
+                  <th scope="col">Status</th>
+                  <th scope="col" width="100px" class="text-center"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let stepForm of bestPracticeForm.get('mileStoneModel')['controls']; index as i">
+                  <ng-container [formGroup]="stepForm">
+                    <td scope="row" class="text-center">
+                      <span>{{ i + 1 }}</span>
+                    </td>
+                    <td>
+                      <input type="text" formControlName="milestone" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                      <input type="text" formControlName="keyDeliverable" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                      <div class="input-group">
+                        <input type="text" bsDatepicker formControlName="start" class="form-control form-control-sm"
+                          #dpStart="bsDatepicker" [bsConfig]="defaultDateConfig" />
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="far fa-calendar"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="input-group">
+                        <input type="text" bsDatepicker formControlName="planFinish"
+                          class="form-control form-control-sm" #dpStart="bsDatepicker" [bsConfig]="defaultDateConfig" />
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="far fa-calendar"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="input-group">
+                        <input type="text" bsDatepicker formControlName="actualFinish"
+                          class="form-control form-control-sm" #dpStart="bsDatepicker" [bsConfig]="defaultDateConfig" />
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="far fa-calendar"></i>
+                          </span>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <select class="form-control form-control-sm" formControlName="activity">
+                        <option value="Critical">Critical</option>
+                        <option value="Non-Critical">Non-Critical</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select class="form-control form-control-sm" formControlName="status">
+                        <option value="Finished">Finished</option>
+                        <option value="In Progress">In Progress</option>
+                      </select>
+                    </td>
+                    <td class="text-center">
+                      <button *ngIf="!viewMode" class="btn btn-sm btn-danger" (click)="removeDetailForm(i)">
+                        <span><i class="fa fa-times"></i></span>
+                      </button>
+                    </td>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="form-group">
+            <button *ngIf="!viewMode" class="btn btn-sm btn-primary" (click)="newDetailForm()">
+              <i class="fa fa-plus"></i>
+              Add new
+            </button>
+          </div>
+        </div>
+      </div> -->
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','businessLine')">
+          <div class="form-group">
+            <label for="business_line">Business Line <span class="text-danger">*</span> </label>
+            <ng-select formControlName="businessLine" [items]="businessLineList" groupBy="group" bindLabel="key"
+              bindValue="value" [selectableGroupAsModel]="false">
+            </ng-select>
+          </div>
+        </div>
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','projectType')">
+          <div class="form-group">
+            <label for="project_type">Project Type <span class="text-danger">*</span> </label>
+            <ng-select formControlName="projectType" [items]="projectTypeList" bindLabel="key" bindValue="value"
+              groupBy="group" [selectableGroupAsModel]="false">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','oemsElement')">
+          <div class="form-group">
+            <label for="oems">OEMS Element <span class="text-danger">*</span> </label>
+
+            <select class="form-control" id="oems" formControlName="oemsElement"
+              [ngClass]="{'is-invalid': getFormError('oemsElement') }">
+              <option value="" disabled>Please select</option>
+              <option *ngFor="let item of oemsList" value="{{item}}">{{item}}</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="getFormError('oemsElement')">
+              OEMS Element is required !
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','application')">
+          <div class="form-group">
+            <label for="application">Application <span class="text-danger">*</span></label>
+            <textarea rows="2" id="application" class="form-control" formControlName="application"
+              [ngClass]="{'is-invalid': getFormError('application') }"></textarea>
+            <div class="invalid-feedback" *ngIf="getFormError('application')">
+              Application is required !
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','operationFunction')">
+          <div class="form-group">
+            <label for="operaion">Operation Function <span class="text-danger">*</span> </label>
+            <select class="form-control" id="operaion" formControlName="operationFunction"
+              [ngClass]="{'is-invalid': getFormError('operationFunction') }">
+              <option value="" disabled>Please select</option>
+              <option *ngFor="let item of operationFunctionList" value="{{item}}">{{item}}</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="getFormError('operationFunction')">
+              Operation Function is required !
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','operationUnit')">
+          <div class="form-group">
+            <label for="operation_unit">Operation Unit <span class="text-danger">*</span> </label>
+            <select class="form-control" id="operation_unit" formControlName="operationUnit"
+              [ngClass]="{'is-invalid': getFormError('operationUnit') }">
+              <option value="" disabled>Please select</option>
+              <option *ngFor="let item of operationalUnitList" value="{{item}}">{{item}}</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="getFormError('operationUnit')">
+              Operation Unit is required !
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','equipmentType')">
+          <div class="form-group">
+            <label for="equipment_type">Equipment Type <span class="text-danger">*</span> </label>
+            <select class="form-control" id="equipment_type" formControlName="equipmentType"
+              [ngClass]="{'is-invalid': getFormError('equipmentType') }">
+              <option value="" disabled>Plase select</option>
+              <option *ngFor="let item of equipmentTypeList" value="{{item}}">{{item}}</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="getFormError('equipmentType')">
+              Equipment Type is required !
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6" [ngClass]="ps.checkControl(bestPracticeForm,'BestPactise','productGroup')">
+          <div class="form-group">
+            <label for="product_group">Product Group <span class="text-danger">*</span> </label>
+            <select class="form-control" id="product_group" formControlName="productGroup"
+              [ngClass]="{'is-invalid': getFormError('productGroup') }">
+              <option value="" disabled>Please select</option>
+              <option *ngFor="let item of productGroupList" value="{{item}}">{{item}}</option>
+            </select>
+            <div class="invalid-feedback" *ngIf="getFormError('productGroup')">
+              Product Group is required !
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </ng-container>
+
+  </form>
+</div>

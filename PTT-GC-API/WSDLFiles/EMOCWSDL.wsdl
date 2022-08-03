@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateMoC">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MoCRequest" type="tns:MoCRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MoCRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MoCType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExpiredDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Initiator" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MainPlantID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Plants" type="tns:ArrayOfMoCPlant" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMoCPlant">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MoCPlant" nillable="true" type="tns:MoCPlant" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MoCPlant">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PlantID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MoCChampion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateMoCResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateMoCResult" type="tns:MoCResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="MoCResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MoCs" type="tns:ArrayOfMoCResponse" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMoCResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MoCResponse" nillable="true" type="tns:MoCResponse" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MoCResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MoCNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PlantID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IsMainPlant" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateMoCSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateMoC" />
+  </wsdl:message>
+  <wsdl:message name="CreateMoCSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateMoCResponse" />
+  </wsdl:message>
+  <wsdl:portType name="PSRFormServiceSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateMoC">
+      <wsdl:input message="tns:CreateMoCSoapIn" />
+      <wsdl:output message="tns:CreateMoCSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PSRFormServiceSoap" type="tns:PSRFormServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMoC">
+      <soap:operation soapAction="http://tempuri.org/CreateMoC" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="PSRFormServiceSoap12" type="tns:PSRFormServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMoC">
+      <soap12:operation soapAction="http://tempuri.org/CreateMoC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PSRFormService">
+    <wsdl:port name="PSRFormServiceSoap" binding="tns:PSRFormServiceSoap">
+      <soap:address location="http://demo-t.pttgc.corp/_layouts/15/emoc/externalservices/PSRFormService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="PSRFormServiceSoap12" binding="tns:PSRFormServiceSoap12">
+      <soap12:address location="http://demo-t.pttgc.corp/_layouts/15/emoc/externalservices/PSRFormService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

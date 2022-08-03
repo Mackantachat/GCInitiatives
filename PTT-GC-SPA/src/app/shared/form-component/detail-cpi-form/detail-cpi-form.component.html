@@ -1,0 +1,573 @@
+<div class="card card-initiative">
+  <div class="card-body">
+    <div [formGroup]="detailCpiForm">
+      <div class="form-initiative">
+        <app-initiative-info [id]="id"></app-initiative-info>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <h4>CPI Detailed information</h4>
+          <div class="devider"></div>
+        </div>
+      </div>
+
+      <!-- Change chps to checkControl or checkNotControl -->
+      <div class="row u-margin-top-medium">
+        <div class="col-sm-12">
+          <h4>Define & Baseline</h4>
+          <div class="devider"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="form-group" [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','sourceOfImprovement')">
+            <label for="source_of_improvement">Source Of Improvement</label>
+            <select class="form-control" id="source_of_improvement" formControlName="sourceOfImprovement">
+              <option value="" disabled>Select source of improvement</option>
+              <option [value]="item.key" *ngFor="let item of sourceOfImprovementList">
+                {{ item.value }}
+              </option>
+            </select>
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+
+        <div class="col-sm-3" [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','typeOfCpi')">
+          <div class="form-group">
+            <label for="type_of_cpi">Type of CPI </label>
+            <select class="form-control" id="typeOfCpi" formControlName="typeOfCpi">
+              <option value="" disabled>Select type of CPI</option>
+              <option [value]="item.key" *ngFor="let item of cpiList">
+                {{ item.value }}
+              </option>
+            </select>
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-3" [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','phnBuPillar')">
+          <div class="form-group">
+            <label for="phnBuPillar">Pillar (Only PHN-BU, EOB-BU)</label>
+            <select class="form-control" id="phnBuPillar" formControlName="phnBuPillar"
+              (change)="specifyPhnBuAndType('phnBuPillar','PhnBuPillarOther')">
+              <option [value]="item.key" *ngFor="let item of phnBuList">
+                {{ item.value }}
+              </option>
+            </select>
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+        <div *ngIf="PhnBuPillarOther" class="col-sm-3">
+          <div [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','phnBuPillar')">
+            <div class="form-group">
+              <!-- <span class="text-danger">*</span> -->
+              <label for="phnBuPillar">Specify Pillar (Only PHN-BU, EOB-BU) :</label>
+              <input type="text" class="form-control" formControlName="specifyPhnBuPillar">
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-3" [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','typeOfPhn')">
+          <div class="form-group">
+            <label for="typeOfPhn">Type of Improvement (Kaizen) : Only PHN-BU, EOB-BU </label>
+            <select class="form-control" id="typeOfPhn" formControlName="typeOfPhn"
+              (change)="specifyPhnBuAndType('typeOfPhn','TypeOfPhnOther')">
+              <option [value]="item.key" *ngFor="let item of phnTypeList">
+                {{ item.value }}
+              </option>
+            </select>
+            <small class="form-text text-muted"></small>
+          </div>
+        </div>
+        <div *ngIf="TypeOfPhnOther" class="col-sm-3">
+          <div [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','phnBuPillar')">
+            <div class="form-group">
+              <!-- <span class="text-danger">*</span> -->
+              <label for="phnBuPillar">Specify Type of Improvement (Kaizen) : Only PHN-BU, EOB-BU</label>
+              <input type="text" class="form-control" formControlName="specifytypeOfPhn">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="source_of_improvement">Key Performance Indicator</label>
+
+            <div *ngIf="kpiFormList.controls.length <= 0" class="alert alert-secondary" role="alert">
+              No available Indicator
+            </div>
+
+            <table class="table table-sm table-bordered" *ngIf="kpiFormList.controls.length > 0">
+              <thead>
+                <tr>
+                  <th scope="col" width="75px" class="text-center">KPI No.</th>
+                  <th scope="col" width="350px">KPI</th>
+                  <th scope="col" width="100px">Baseline</th>
+                  <th scope="col" width="100px">Target</th>
+                  <th scope="col" width="100px">Unit</th>
+                  <th scope="col">Remark</th>
+                  <th scope="col" width="100px" class="text-center" *ngIf="!IsStageFirstReview">Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let kpiForm of kpiFormList.controls; index as i">
+                  <ng-container [formGroup]="kpiForm">
+                    <td scope="row" class="text-center">
+                      <span>{{ i + 1 }}</span>
+                    </td>
+                    <td>
+                      <input type="text" formControlName="kpiTitle" class="form-control form-control-sm"
+                        (blur)="OnInputKpi(i)" [readonly]="IsStageFirstReview" />
+                    </td>
+                    <td>
+                      <input type="number" formControlName="baseline" class="form-control form-control-sm"
+                        [readonly]="IsStageFirstReview" />
+                    </td>
+                    <td>
+                      <input type="number" formControlName="target" class="form-control form-control-sm"
+                        (blur)="OnInputKpi(i)" [readonly]="IsStageFirstReview" />
+                    </td>
+                    <td>
+                      <input type="text" formControlName="unit" class="form-control form-control-sm"
+                        [readonly]="IsStageFirstReview" />
+                    </td>
+                    <td>
+                      <input type="text" formControlName="remark" class="form-control form-control-sm"
+                        [readonly]="IsStageFirstReview" />
+                    </td>
+                    <td class="text-center" *ngIf="!IsStageFirstReview">
+                      <button *ngIf="!viewMode" class="btn btn-sm btn-danger" (click)="removeKpi(i)">
+                        <span><i class="fas fa-trash-alt"></i></span>
+                      </button>
+                    </td>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="form-group" *ngIf="!viewMode && !IsStageFirstReview">
+            <button class="btn btn-sm btn-primary" (click)="newKPI()">
+              <i class="fa fa-plus"></i>
+              Add New
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h4>Hypothesize & Analyze</h4>
+          <div class="devider"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-6" [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','analysisTool')">
+          <div class="form-group">
+            <label for="analysis_tool">Analysis Tool </label>
+            <select class="form-control" id="analysisTool" formControlName="analysisTool"
+              (change)="changeAnalysisTool($event)">
+              <option value="" disabled>Please select</option>
+              <option *ngFor="let item of analysisToolList" [value]="item.value">
+                <span>{{ item.key }}</span>
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-6" *ngIf="IsOtherAnalysisTool">
+          <div [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','otherTool')">
+            <label>Other (Please Specify)<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" formControlName="otherTool" placeholder="Please Specify Tool"
+              [ngClass]="{'is-invalid': getFormError('otherTool') }">
+            <div class="text-feedback" *ngIf="getFormError('otherTool')">
+              Please Specify Other Analysis Tool !
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','rootCause')">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="root_cause">Root Cause </label>
+            <textarea rows="3" id="root_cause" class="form-control" formControlName="rootCause"></textarea>
+          </div>
+        </div>
+      </div>
+
+
+      <ng-container *ngIf="!haveProgressForm">
+        <div class="row">
+          <div class="col-sm-12" *ngIf="!IsStageFirstReview">
+            <h4>Resolve & Plan</h4>
+            <div class="devider"></div>
+          </div>
+          <div class="col-sm-12" *ngIf="IsStageFirstReview">
+            <h4>Implement & Operate
+            </h4>
+            <div class="devider"></div>
+          </div>
+        </div>
+
+        <!-- <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="step_expanation">Step Explanation </label>
+                        <div *ngIf="kpiMonitorFormList.controls.length <= 0" class="alert alert-secondary"
+                            role="alert">
+                            No step explanation
+                        </div>
+
+                        <table class="table table-sm table-bordered"
+                            *ngIf="kpiMonitorFormList.controls.length > 0">
+                            <thead>
+                                <tr>
+                                    <th scope="col" width="75px" class="text-center">Step No.</th>
+                                    <th scope="col" width="350px">Step</th>
+                                    <th scope="col">Start</th>
+                                    <th scope="col">Finish</th>
+                                    <th scope="col">Responsible By</th>
+                                    <th scope="col" width="100px" class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="
+                      let stepForm of kpiMonitorFormList.controls;
+                      index as i
+                    ">
+                                    <ng-container [formGroup]="stepForm">
+                                        <td scope="row" class="text-center">
+                                            <span>{{ i + 1 }}</span>
+                                        </td>
+                                        <td>
+                                            <input type="text" formControlName="stepTitle"
+                                                class="form-control form-control-sm" />
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="text" bsDatepicker formControlName="start"
+                                                    class="form-control form-control-sm" #dpStart="bsDatepicker"
+                                                    [bsConfig]="bsConfigStart" />
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="far fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="text" bsDatepicker formControlName="finish"
+                                                    class="form-control form-control-sm" #dpFinish="bsDatepicker"
+                                                    [bsConfig]="bsConfigFinish" />
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="far fa-calendar"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <input type="text" formControlName="responsibleBy"
+                                                class="form-control form-control-sm" />
+                                        </td>
+                                        <td class="text-center">
+                                            <button *ngIf="!viewMode" class="btn btn-sm btn-danger"
+                                                (click)="removeStep(i)">
+                                                <span><i class="fa fa-times"></i></span>
+                                            </button>
+                                        </td>
+                                    </ng-container>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="form-group" *ngIf="!viewMode">
+                        <button class="btn btn-sm btn-primary" (click)="newStep()">
+                            <i class="fa fa-plus"></i>
+                            Add new
+                        </button>
+                    </div>
+                </div>
+            </div> -->
+        <div class="form-initiative">
+          <div class="form-row align-items-center">
+            <div [formGroup]="milestoneFormList">
+              <table class="table table-bordered">
+                <thead class="text-center bg-light">
+                  <th width="7%">No.</th>
+                  <th width="20%">Milestone/Deliverable <span class="text-danger">*</span></th>
+                  <!-- <th width="18%">Key Deliverable</th> -->
+                  <th width="15%">Start </th>
+                  <th width="15%">Planned Finish</th>
+                  <th width="15%">Actual Finish</th>
+                  <th width="15%">Activity</th>
+                  <th width="12%">Status</th>
+                  <th width="5%"></th>
+                </thead>
+                <tbody *ngFor="let control of detailCpiForm.get('milestoneFormList')['controls']; let i=index">
+                  <tr [formGroup]="control">
+                    <td class="text-center"> {{i+1}} </td>
+                    <td class="form-group">
+                      <textarea formControlName="milestone" class="form-control" rows="3"
+                        [ngClass]="{ 'is-invalid': InvalidMilestone(i) }"></textarea>
+                      <div class="invalid-feedback" *ngIf="InvalidMilestone(i)">
+                        Milestone/Deliverable is required
+                      </div>
+                    </td>
+                    <td class="form-group">
+                      <div class="input-group">
+                        <input formControlName="start" (bsValueChange)="setRequestDate($event,'start',i)" type="text"
+                          class="form-control" [bsConfig]="bsConfigStart" bsDatepicker #dpStart="bsDatepicker"
+                          [triggers]="viewMode ? '' : 'click:click'" />
+
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" (click)="dpStart.toggle()"
+                            [attr.aria-expanded]="dpStart.isOpen"></i>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="form-group">
+                      <div class="input-group">
+                        <input formControlName="planFinish" (bsValueChange)="setRequestDate($event,'planFinish',i)"
+                          type="text" class="form-control" [bsConfig]="bsConfigStart" bsDatepicker
+                          #dpPlantFinish="bsDatepicker" [triggers]="viewMode ? '' : 'click:click'" />
+
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" (click)="dpPlantFinish.toggle()"
+                            [attr.aria-expanded]="dpPlantFinish.isOpen"></i>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="form-group">
+                      <div class="input-group">
+                        <input formControlName="actualFinish" (blur)="changeActualFinish(i)"
+                          (bsValueChange)="setRequestDate($event,'actualFinish',i)" type="text" class="form-control"
+                          [bsConfig]="bsConfigStart" bsDatepicker #dpActualFinish="bsDatepicker"
+                          [triggers]="viewMode ? '' : 'click:click'" />
+
+                        <div *ngIf="!viewMode" class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" (click)="dpActualFinish.toggle()"
+                            [attr.aria-expanded]="dpActualFinish.isOpen"></i>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="form-group">
+                      <select type="text" class="form-control" formControlName="activity">
+                        <option value="Critical"> Critical </option>
+                        <option value="Non-Critical"> Non-Critical </option>
+                      </select>
+                    </td>
+                    <td class="text-center">
+                      <ng-container *ngIf="planStatus[i]">
+                        <i class="fas fa-circle text-success icon-LI mt-2" *ngIf="planStatus[i] == 'min'"></i>
+                        <i class="fas fa-circle text-danger  icon-LI mt-2" *ngIf="planStatus[i] == 'max'"></i>
+                        <i class="fas fa-circle text-secondary  icon-LI mt-2" *ngIf="planStatus[i] == 'actual'"></i>
+                      </ng-container>
+                    </td>
+                    <td class="text-center">
+                      <button (click)="RemoveDetail(i)" class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <button (click)="AddDetail()" class="btn btn-primary mr-5" *ngIf="!StageIL5">
+              <i class="fas fa-plus-square mr-2"></i> Add New
+            </button>
+          </div>
+        </div>
+      </ng-container>
+
+      <div class="row" [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','estimatedBudgetOpex')">
+        <div class="col-sm-6">
+          <b>Estimated Budget </b>
+          <div class="form-group">
+            <!-- <label for="estimate_budgest">Estimated Budget </label> -->
+            <label for="estimate_budgest">OPEX </label>
+            <div class="input-group mb-3">
+              <input type="number" class="form-control" formControlName="estimatedBudgetOpex" />
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">THB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <b>Estimated Benefit </b>
+        </div>
+        <div class="col-sm-6" [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','estimatedBenefitSavings')">
+          <div class="form-group">
+            <!-- <label for="estimate_budgest">Estimated Benefit </label> -->
+            <label for="estimate_budgest_saving">Savings </label>
+            <div class="input-group mb-3">
+              <input type="number" id="estimate_budgest_saving" class="form-control"
+                formControlName="estimatedBenefitSavings" />
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">THB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6"
+          [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','estimatedBenefitCalculationDetails')">
+          <div class="form-group">
+            <label for="estimated_benefit_detail">Benefit Calculation Details </label>
+            <textarea rows="3" id="estimated_benefit_detail" class="form-control"
+              formControlName="estimatedBenefitCalculationDetails"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h4>Approve Detail</h4>
+        </div>
+      </div>
+      <div class="row">
+        <!-- <div class="col-sm-3" [ngClass]="ps.chps('Detail-CPI','phnBuPillar')"> -->
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="phnBuPillar">CPI Approver</label>
+            <ng-select formControlName="cpiApprover" [items]="owners" bindValue="ownerName" bindLabel="ownerName"
+              placeholder="Choose CPI Approver" (click)="SearchOwnerName($event)" (search)="SearchOwnerName($event)"
+              (clear)="ClearOwnerName()">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="row" *ngIf="IsStageFirstReview">
+        <div class="col-sm-12">
+          <h4>Monitor and Adjust</h4>
+          <div class="devider"></div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="IsStageFirstReview">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="source_of_improvement">Key Performance Indicator</label>
+
+            <div *ngIf="kpiFormList.controls.length <= 0" class="alert alert-secondary" role="alert">
+              No key performance Indicator
+            </div>
+
+            <table class="table table-sm table-bordered" *ngIf="kpiMonitorFormList.controls.length > 0">
+              <thead>
+                <tr>
+                  <th scope="col" width="75px" class="text-center">KPI No.</th>
+                  <th scope="col">KPI</th>
+                  <th scope="col">Result</th>
+                  <th scope="col">Target</th>
+                  <th scope="col" width="200px" class="text-center">Status</th>
+                  <th scope="col" width="100px" class="text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="
+                      let kpiForm of kpiMonitorFormList.controls;
+                      index as i
+                    ">
+                  <ng-container [formGroup]="kpiForm">
+                    <td scope="row" class="text-center">
+                      <span>{{ i + 1 }}</span>
+                    </td>
+                    <td>
+                      <input type="text" formControlName="kpiTitle" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                      <input type="text" formControlName="result" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                      <input type="text" formControlName="target" class="form-control form-control-sm" />
+                    </td>
+                    <td>
+                      <select class="form-control form-control-sm" formControlName="status">
+                        <option value="Achieve">Achieve</option>
+                        <option value="Not Achieve">Not Achieve</option>
+                      </select>
+                    </td>
+                    <td class="text-center">
+                      <button *ngIf="!viewMode" class="btn btn-sm btn-danger" (click)="removeKpiMonitor(i)">
+                        <span><i class="fas fa-trash-alt"></i></span>
+                      </button>
+                    </td>
+                  </ng-container>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="form-group" *ngIf="!viewMode">
+            <button class="btn btn-sm btn-primary" (click)="newKpiMonitor()">
+              <i class="fa fa-plus"></i>
+              Add New
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" *ngIf="IsStageFirstReview">
+        <div class="col-sm-12">
+          <b>Actual</b>
+        </div>
+        <div class="col-sm-6" [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','actualBudgetOpex')">
+          <div class="form-group">
+            <label for="estimate_budgest">OPEX </label>
+            <div class="input-group mb-3">
+              <input type="number" class="form-control" formControlName="actualBudgetOpex" />
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">THB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6"></div>
+
+        <div class="col-sm-6" [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','actualBudgetSavings')">
+          <div class="form-group">
+            <label for="Actual_estimate_budgest">Savings </label>
+            <div class="input-group mb-3">
+              <input type="number" id="Actual_estimate_budgest" class="form-control"
+                formControlName="actualBudgetSavings" />
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">THB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6" [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','actualBenefitCalculationDetails')">
+          <div class="form-group">
+            <label for="benefit_Calculation_detail">Benefit Calculation Details </label>
+            <textarea rows="3" id="benefit_Calculation_detail" class="form-control"
+              formControlName="actualBenefitCalculationDetails"></textarea>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="IsStageFirstReview">
+        <div [ngClass]="ps.checkControl(detailCpiForm,'Detail-CPI','lookbackText')">
+          <h5>Lookback</h5>
+          <label>Lookback Summary / Practice / Lesson Learn
+          </label>
+          <textarea rows="3" id="lookbackText" class="form-control" formControlName="lookbackText"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

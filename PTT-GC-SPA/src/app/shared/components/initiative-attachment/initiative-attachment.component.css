@@ -1,0 +1,14 @@
+.card-layout {
+  height: 450px;
+}
+
+.table-custom-scrollbar {
+  position: relative;
+  max-height: 280px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.table-wrapper-scroll-y {
+  display: block;
+}

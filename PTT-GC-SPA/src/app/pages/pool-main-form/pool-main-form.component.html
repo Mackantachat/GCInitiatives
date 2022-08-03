@@ -1,0 +1,184 @@
+<!-- <div *ngIf="PoolView">
+  <app-initiative-box></app-initiative-box>
+</div> -->
+<!-- <div bsModal #AttachmentModal="bs-modal" class="modal fade modal-Attachment" [config]="{ backdrop: 'static' }">
+    <app-initiative-attachment (modelClose)="CloseAttachment()" [id]="id"></app-initiative-attachment>
+</div> -->
+
+<!-- header -->
+<ng-container *ngIf="isApprove; else normalMode">
+
+</ng-container>
+<ng-template #normalMode>
+
+</ng-template>
+
+<div class="form-group row">
+  <div class="col-md-12">
+    <label style="font-size: 28px;">My Own Initiatives <i class="fa fa-angle-right" aria-hidden="true"></i>{{'
+      '}}{{GetId() != null ? getInitiativeName() : 'Create Request Pool' }}
+    </label>
+  </div>
+</div>
+<!-- end header -->
+
+<!-- tab section -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#general" role="tab" aria-controls="home"
+      aria-selected="true">
+      <span [ngClass]="{'nav-required': validateTabs('general') }">
+        General Information
+      </span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="detailInformation-tab" data-toggle="tab" href="#detailInformation" role="tab"
+      aria-controls="detailInformation" aria-selected="false">
+      <span>
+        Detailed Information
+      </span>
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="capexInformation-tab" data-toggle="tab" href="#capexInformation" role="tab"
+      aria-controls="capexInformation" aria-selected="false">
+      <span [ngClass]="{'nav-required': validateTabs('capexInformationForm') }">
+        CAPEX Information
+      </span>
+    </a>
+  </li>
+  <li class="nav-item" *ngIf="GetId()">
+    <a class="nav-link" id="status-tab" data-toggle="tab" href="#status" role="tab" aria-controls="status"
+      aria-selected="false">
+      <span>
+        Status
+      </span>
+    </a>
+  </li>
+</ul>
+
+<!-- page section -->
+<div class="tab-content" id="generalTab">
+  <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="home-tab">
+    <app-pool-general-form [formGroup]='formGroup'></app-pool-general-form>
+  </div>
+  <div class="tab-pane fade " id="detailInformation" role="tabpanel" aria-labelledby="detailInformation-tab">
+    <app-pool-detail-form [formGroup]='formGroup'></app-pool-detail-form>
+  </div>
+  <div class="tab-pane fade" id="capexInformation">
+    <!-- <app-pool-capex-info-form [formGroup]='formGroup'></app-pool-capex-info-form> -->
+    <app-capex-information-form [formGroup]="formGroup" [id]="GetId()" [page]="page">
+    </app-capex-information-form>
+  </div>
+  <div class="tab-pane fade" id="status" *ngIf="GetId()">
+    <app-status-form [id]="GetId()"></app-status-form>
+  </div>
+</div>
+
+<div *ngIf="!viewMode && !isApprove" class="container top">
+  <ng-container *ngIf="CheckSubmitTo">
+    <form [formGroup]="submitToForm">
+      <div class="form-group row my-3">
+        <div class="col-md-4">
+          <label for="submitTo"> Submit to </label>
+          <select formControlName="status" class="form-control" (change)="OnChangeStatus()">
+            <option value="forward"> Submitted Forward </option>
+            <option value="backward"> Submitted Backward </option>
+            <option value="cancelled"> Submitted Cancelled </option>
+          </select>
+        </div>
+      </div>
+      <ng-container *ngIf="Comment">
+        <div class="form-group row my-3">
+          <div class="col-md-12">
+            <textarea formControlName="commentCancelled" rows="3" class="form-control comment"></textarea>
+            <div class="invalid-feedback">
+              Comment is required !
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </form>
+  </ng-container>
+
+  <br>
+  <div class="row">
+    <div class="col-md-6">
+      <button type="button" class="btn btn-success btn-width" (click)="Submit()">
+        <i class="far fa-check-circle mr-2"></i> Submit
+      </button>
+      <!-- <button type="button" class="btn btn-white btn-width ml-2" (click)="logForm()">
+        log
+      </button> -->
+      <button type="button" class="btn btn-white btn-width ml-2" [routerLink]="['/initiative/my-own']">
+        <i class="fas fa-ban mr-2"></i> Cancel
+      </button>
+
+      <!-- <br />
+        <input type="text" [ngModel]="txtLastTime" style="min-width:300px;border:none;margin-top:10px;color:#E5E5E5"
+                  readonly />
+
+                <input type="text" [ngModel]="txtLastTime" style="min-width:300px;border:none;margin-top:10px;color:#E5E5E5"
+                  readonly /> -->
+
+    </div>
+    <div class="col-md-6" style="text-align:right">
+      <!-- <button type="button" class="btn btn-white" (click)="SubmitRequestCapex()">
+                  <i class="far fa-money-bill-alt mr-2"></i> Request CAPEX
+                </button> -->
+      <button type="button" class="btn btn-white btn-width ml-2" (click)="Draft()">
+        <i class="far fa-save mr-2"></i> Save
+      </button>
+      <button *ngIf="GetInitiativeCode" type="button" class="btn btn-white btn-width ml-2" (click)="Duplicate()">
+        <span class="far fa-copy  mr-2"></span> Duplicate
+      </button>
+      <button *ngIf="GetInitiativeCode" type="button" class="btn btn-white btn-width ml-2" (click)="Print()">
+        <span class="fas fa-print mr-2"></span> Print
+      </button>
+      <button *ngIf="GetInitiativeCode" type="button" class="btn btn-white btn-width ml-2" (click)="ShowAttachment()">
+        <span class="fas fa-paperclip mr-2"></span> <span style="font-size: 0.9rem;"> Attachment </span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- <ng-template [ngIf]="false" [ngIfElse]="ButtonSubmit">
+    <br />
+    <hr />
+    <app-initiative-file [id]="id"></app-initiative-file>
+</ng-template>
+
+<ng-template #ButtonSubmit>
+    <br />
+    <hr />
+    <div class="row">
+        <div class="col-md-12 mt-3">
+            <button type="button" class="btn btn-success btn-width" (click)="logForm()">
+                <i class="far fa-check-circle mr-2"></i> LogForm
+            </button>
+            <button type="button" class="btn btn-success btn-width" (click)="Submit()">
+                <i class="far fa-check-circle mr-2"></i> Submit
+            </button>
+            <button type="button" class="btn btn-warning btn-width ml-2" (click)="Draft()">
+                <i class="far fa-save mr-2"></i> Save Draft
+            </button>
+            <button type="button" class="btn btn-danger btn-width ml-2" [routerLink]="['/initiative/my-own']">
+                <i class="fas fa-ban mr-2"></i> Cancel
+            </button>
+            <button type="button" class="btn btn-info btn-width ml-2">
+                <i class="far fa-copy mr-2"></i> Duplicate
+            </button>
+            <button type="button" class="btn btn-secondary btn-width ml-2">
+                <i class="fas fa-print mr-2"></i> Print
+            </button>
+            <button type="button" class="btn btn-primary btn-width ml-2" (click)="logForm()">
+                <i class="fas fa-upload mr-2"></i> Attachment
+            </button>
+        </div>
+    </div>
+</ng-template> -->
+<div *ngIf="IsFileAttach">
+  <app-initiative-show-attachment [id]="id">
+  </app-initiative-show-attachment>
+</div>

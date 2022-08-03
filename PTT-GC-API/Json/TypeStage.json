@@ -1,0 +1,72 @@
+[
+  {
+    "Type": "max",
+    "Stage": "IL0",
+    "Order": "1"
+  },
+  {
+    "Type": "max",
+    "Stage": "SIL1",
+    "Order": "2"
+  },
+  {
+    "Type": "max",
+    "Stage": "IL1",
+    "Order": "3"
+  },
+  {
+    "Type": "max",
+    "Stage": "SIL2",
+    "Order": "4"
+  },
+  {
+    "Type": "max",
+    "Stage": "IL2",
+    "Order": "5"
+  },
+  {
+    "Type": "max",
+    "Stage": "SIL3",
+    "Order": "6"
+  },
+  {
+    "Type": "max",
+    "Stage": "IL3",
+    "Order": "7"
+  },
+  {
+    "Type": "max",
+    "Stage": "SIL4",
+    "Order": "8"
+  },
+  {
+    "Type": "max",
+    "Stage": "IL4",
+    "Order": "9"
+  },
+  {
+    "Type": "max",
+    "Stage": "SIL5",
+    "Order": "10"
+  },
+  {
+    "Type": "max",
+    "Stage": "IL5",
+    "Order": "11"
+  },
+  {
+    "Type": "directCapex",
+    "Stage": "DM Approve",
+    "Order": "1"
+  },
+  {
+    "Type": "directCapex",
+    "Stage": "VP Approve",
+    "Order": "2"
+  },
+  {
+    "Type": "directCapex",
+    "Stage": "EVP Approve",
+    "Order": "3"
+  }
+]

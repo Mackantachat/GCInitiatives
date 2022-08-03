@@ -1,0 +1,34 @@
+<!-- <div bsModal #AttachmentModal="bs-modal" class="modal fade modal-Attachment" [config]="{ backdrop: 'static'}">
+  <app-initiative-attachment (modelClose)="CloseAttachment()" [id]="id"></app-initiative-attachment>
+</div> -->
+<hr>
+<div class="container top">
+  <!-- 1 -->
+  <div class="row">
+    <div class="col-md-6">
+      <button type="button" class="btn btn-success btn-width" (click)="Submit()" [disabled]="DisabledButton">
+        <i class="far fa-check-circle mr-2"></i> Submit
+      </button>
+      <button type="button" class="btn btn-white btn-width ml-2" [routerLink]="['/initiative/my-own']">
+        <i class="fas fa-ban mr-2"></i> Cancel
+      </button>
+      <br />
+    </div>
+
+    <!-- 2 -->
+    <div class="col-md-6" style="text-align:right">
+      <button type="button" class="btn btn-white btn-width ml-2" (click)="Draft()" [disabled]="DisabledButton">
+        <i class="far fa-save mr-2"></i> Save Draft
+      </button>
+      <button type="button" class="btn btn-white btn-width ml-2">
+        <i class="far fa-copy  mr-2"></i> Duplicate
+      </button>
+      <button type="button" class="btn btn-white btn-width ml-2">
+        <i class="fas fa-print mr-2"></i> Print
+      </button>
+      <button type="button" class="btn btn-white btn-width ml-2" (click)="ShowAttachment()">
+        <i class="fas fa-paperclip mr-2"></i> <span style="font-size: 0.9rem;"> Attachment </span>
+      </button>
+    </div>
+  </div>
+</div>

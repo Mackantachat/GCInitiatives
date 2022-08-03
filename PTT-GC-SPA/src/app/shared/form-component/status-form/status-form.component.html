@@ -1,0 +1,87 @@
+<div class="form-group row">
+
+  <!-- <div bsModal #ViewLogHistoryModal="bs-modal" class="modal fade modal-ViewLog" [config]="{ backdrop: 'static' }">
+    <app-view-log-history (modelClose)="CloseViewLogHistory()" [id]="id"></app-view-log-history>
+  </div> -->
+
+
+  <!-- <div bsModal #HistoryStatus="bs-modal" class="modal fade modal-ViewLog" [config]="{ backdrop: 'static' }">
+    <app-history-status (modelClose)="CloseHistoryStatus()" [id]="id" [stage]="history"></app-history-status>
+  </div> -->
+
+  <div class="col-md-12" style="padding-left: inherit;padding-right: inherit;">
+    <div class="card text card-initiative">
+      <div class="card-body">
+        <!-- <app-initiative-information [id]="id"></app-initiative-information> -->
+        <div class="form-initiative">
+          <app-initiative-info [id]="id"></app-initiative-info>
+        </div>
+        <div class="form-initiative">
+          <label style="font-size: 28px;color: #454545;">Initiative Status</label>
+          <button class="btn float-right" style="color: #0078B8;" data-toggle="collapse" data-target="#statusTracking"
+            (click)="OnHideShow()">
+            {{hideShowBtnText}}
+          </button>
+          <!-- <button (click)="LogTracking()">Log</button> -->
+          <hr>
+        </div>
+
+        <div class="form-initiative collapse show" aria-expanded="true" id="statusTracking">
+          <ng-template [ngIf]="statusTrackingLength" [ngIfElse]="Nodata">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr class="table-active text-center table-initiative">
+                        <th>State</th>
+                        <th>Status</th>
+                        <th>Stage</th>
+                        <th>Action by</th>
+                        <th>Action Date</th>
+                        <!-- <th>Current Action</th>
+                        <th>Next Action</th> -->
+                        <th class="th-action">Comment</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let item of statusTrackings; let i = index;" class="table-initiative">
+                        <td>
+                          <ng-container *ngIf="item.status === 'Complete'">
+                            <i class="fas fa-check"></i>
+                          </ng-container>
+                          <ng-container *ngIf="item.status === 'In Progress'">
+                            <i class="fas fa-sync-alt"></i>
+                          </ng-container>
+                        </td>
+                        <td> {{ item.status }} </td>
+                        <!-- <td> {{ ReplaceStage(item.stage)  }} </td> -->
+                        <td> {{ item?.currentStageDisplay == null ? ReplaceStage(item.stage) :
+                          ReplaceStage(item.currentStageDisplay) }} </td>
+                        <td> {{ checkApproveBy(item.approvedBy) && item.stage == 'Assign Project Eng.' ? 'System' :
+                          item.approvedBy }} </td>
+                        <td> {{ item.approvedDate | date:'dd/MM/yyyy HH:mm:ss' }} </td>
+                        <!-- <td> {{ item.CurrentActionInformation   }} </td>
+                        <td> {{ item.NextActionInformation   }} </td> -->
+                        <td class="td-action">
+                          <ng-container *ngIf="CheckStage(item.stage,item.approvedBy)">
+                            <button class="btn btn-warning text-white" (click)="ShowHistory(item.stage)">
+                              <i class="fas fa-history"></i>
+                            </button>
+                          </ng-container>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+          <ng-template #Nodata>
+            <app-initiative-no-data></app-initiative-no-data>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

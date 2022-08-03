@@ -1,0 +1,34 @@
+.center {
+  text-align: center;
+  align-items: center;
+}
+
+.overall {
+  border-radius: 5px;
+  border: 1px solid #1c6ea4;
+  background-color: lightblue;
+  padding: 5px;
+}
+
+.dropdown {
+  cursor: pointer;
+}
+
+.title {
+  color: #454545;
+}
+
+#custom_table td,
+#custom_table th {
+  border: 1px solid white;
+  padding: 8px;
+}
+
+/* input.ng-untouched.ng-pristine, input.ng-valid {
+  border: 1px solid #f9f9f9 !important;
+} */
+
+input.plan-inValid {
+  border-color: #dc3545;
+  padding-right: inherit;
+}

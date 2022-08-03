@@ -1,0 +1,4442 @@
+[
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Availability",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Chutima.L@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Energy efficiency",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Chutima.L@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Other",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Chutima.L@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Unit optimization",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Chutima.L@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Availability",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Prawin.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Energy efficiency",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Prawin.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Marketing and sales",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Prawin.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Other",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Prawin.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Unit optimization",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Prawin.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "GCME",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Availability",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Energy efficiency",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Marketing and sales",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Other",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Supply chain optimization",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Unit optimization",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Health - Green",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Health - Multiple BUs",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Aromatics",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - EO Based",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Green",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Multiple BUs",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Olefins",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Phenol",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Polymers",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Refinery",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Aromatics",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - EO Based",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Green",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Multiple BUs",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Olefins",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Phenol",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Polymers",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Refinery",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Aromatics",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - EO Based",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Green",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Multiple BUs",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Olefins",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Phenol",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Polymers",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Refinery",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Netipong.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Aromatics",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Sorasit.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Olefins",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Sorasit.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Others",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Sorasit.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Refinery",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Sorasit.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Availability",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Wittawat.C@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Energy efficiency",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Wittawat.C@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Other",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Wittawat.C@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Unit optimization",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Wittawat.C@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Availability",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Sujin.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Energy efficiency",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Sujin.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Marketing and sales",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Sujin.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Other",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Sujin.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Supply chain optimization",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Sujin.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Unit optimization",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Sujin.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Availability",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Prachya.R@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Energy efficiency",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Prachya.R@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Logistics",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Prachya.R@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Marketing and sales",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Pranod.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Marketing and sales",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Kongkiet.W@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Other",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Teerayut.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Supply chain optimization",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Teerayut.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - TSCL",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Teerayut.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Unit optimization",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Teerayut.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - TSCL",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Teerayut.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Unit optimization",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Teerayut.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Aromatics",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Warawoot.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - EO Based",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Warawoot.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Green",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Warawoot.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Multiple BUs",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Warawoot.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Olefins",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Warawoot.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Phenol",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Warawoot.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Polymers",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Warawoot.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Refinery",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Warawoot.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Availability",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Chainarong.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Energy efficiency",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Chainarong.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Other",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Chainarong.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Unit optimization",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Chainarong.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Aromatics",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Thiensak.K@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - EO Based",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Thiensak.K@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - GCME",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Thiensak.K@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Green",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Thiensak.K@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Olefins",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Thiensak.K@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Phenol",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Thiensak.K@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Polymers",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Thiensak.K@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Refinery",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Thiensak.K@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Aromatics",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Satta.V@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Olefins",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Satta.V@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Refinery",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Satta.V@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - SCM",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Satta.V@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Utilities",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Satta.V@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Chemical Movement and Dispatching",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Naphinya.J@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Planning and Commercial",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Naphinya.J@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Plant I",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Naphinya.J@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Technology & Maintenance",
+        "Indicator": "TO Finance",
+        "ApproverEmail": "Naphinya.J@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Availability",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Energy efficiency",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Other",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Unit optimization",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Availability",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Energy efficiency",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Marketing and sales",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Other",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Unit optimization",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "GCME",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Availability",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Energy efficiency",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Marketing and sales",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Other",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Supply chain optimization",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Unit optimization",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Health - Green",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Health - Multiple BUs",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Aromatics",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - EO Based",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Green",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Multiple BUs",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Olefins",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Phenol",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Polymers",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Refinery",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Aromatics",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - EO Based",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Green",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Multiple BUs",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Olefins",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Phenol",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Polymers",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Refinery",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Aromatics",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - EO Based",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Green",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Multiple BUs",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Olefins",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Phenol",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Polymers",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Refinery",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Aromatics",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Olefins",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Others",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Refinery",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Availability",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Energy efficiency",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Other",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Unit optimization",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Availability",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Energy efficiency",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Marketing and sales",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Other",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Supply chain optimization",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Unit optimization",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Availability",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Energy efficiency",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Logistics",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Marketing and sales",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Other",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Supply chain optimization",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - TSCL",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Unit optimization",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - TSCL",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Unit optimization",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Aromatics",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - EO Based",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Green",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Multiple BUs",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Olefins",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Phenol",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Polymers",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Refinery",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Availability",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Energy efficiency",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Other",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Unit optimization",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Aromatics",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - EO Based",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - GCME",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Green",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Olefins",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Phenol",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Polymers",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Refinery",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Aromatics",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Olefins",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Refinery",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - SCM",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Utilities",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Chemical Movement and Dispatching",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Planning and Commercial",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Plant I",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Technology & Maintenance",
+        "Indicator": "CFO",
+        "ApproverEmail": "Narongkorn.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Availability",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Energy efficiency",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Other",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Unit optimization",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Availability",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Energy efficiency",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Marketing and sales",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Other",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Unit optimization",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "GCME",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Availability",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Energy efficiency",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Marketing and sales",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Other",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Supply chain optimization",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Unit optimization",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Health - Green",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Health - Multiple BUs",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Aromatics",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - EO Based",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Green",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Multiple BUs",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Olefins",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Phenol",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Polymers",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Refinery",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Aromatics",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - EO Based",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Green",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Multiple BUs",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Olefins",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Phenol",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Polymers",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Refinery",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Aromatics",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - EO Based",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Green",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Multiple BUs",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Olefins",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Phenol",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Polymers",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Refinery",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Aromatics",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Olefins",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Others",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Refinery",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Availability",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Energy efficiency",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Other",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Unit optimization",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Availability",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Energy efficiency",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Marketing and sales",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Other",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Supply chain optimization",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Unit optimization",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Availability",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Energy efficiency",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Logistics",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Marketing and sales",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Other",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Supply chain optimization",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - TSCL",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Unit optimization",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - TSCL",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Unit optimization",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Aromatics",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - EO Based",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Green",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Multiple BUs",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Olefins",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Phenol",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Polymers",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Refinery",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Availability",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Energy efficiency",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Other",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Unit optimization",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Aromatics",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - EO Based",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - GCME",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Green",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Olefins",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Phenol",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Polymers",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Refinery",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Aromatics",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Olefins",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Refinery",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - SCM",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Utilities",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Chemical Movement and Dispatching",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Planning and Commercial",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Plant I",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Technology & Maintenance",
+        "Indicator": "CTO",
+        "ApproverEmail": "Arthit.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Availability",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ratthakorn.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Energy efficiency",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ratthakorn.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Other",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ratthakorn.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Unit optimization",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ratthakorn.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Availability",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Rattanawalee.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Energy efficiency",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Rattanawalee.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Marketing and sales",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Rattanawalee.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Other",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Rattanawalee.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Unit optimization",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Rattanawalee.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "GCME",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ronnakorn.L@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Availability",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Satta.V@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Energy efficiency",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Satta.V@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Marketing and sales",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Satta.V@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Other",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Satta.V@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Supply chain optimization",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Satta.V@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Unit optimization",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Satta.V@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Health - Green",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ekkorn.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Health - Multiple BUs",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ekkorn.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Aromatics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Aromatics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Chaiya.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - EO Based",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - EO Based",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Green",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Green",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Multiple BUs",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Olefins",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Olefins",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Chaiya.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Phenol",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Chaiya.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Phenol",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Polymers",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Polymers",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ekkorn.P@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Refinery",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Refinery",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Satta.V@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Aromatics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ronnakorn.L@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Aromatics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Rattanawalee.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - EO Based",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Chaiya.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - EO Based",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Green",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Thaweesak.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Green",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Manit.A@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Multiple BUs",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Pongpraphan.L@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Olefins",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Sawat.V@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Olefins",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Phattaravalan.L@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Phenol",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Apisak.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Phenol",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Montian.I@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Polymers",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Pisut.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Polymers",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Refinery",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Chaiya.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Refinery",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Chaiya.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Aromatics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Aromatics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - EO Based",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ekkorn.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - EO Based",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Green",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Satta.V@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Green",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ronnakorn.L@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Multiple BUs",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Rattanawalee.S@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Olefins",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Chaiya.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Olefins",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Phenol",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Thaweesak.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Phenol",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Manit.A@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Polymers",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ekkorn.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Polymers",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Refinery",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Chaiya.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance - Refinery",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Aromatics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Aromatics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Olefins",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Olefins",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Others",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Supachai.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Refinery",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Supachai.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "M&S (upstream) - Refinery",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Suriya.M@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Availability",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Saroj.J@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Energy efficiency",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Saroj.J@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Other",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Saroj.J@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Unit optimization",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Saroj.J@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Availability",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Teprapa.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Energy efficiency",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Teprapa.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Marketing and sales",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Teprapa.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Other",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Teprapa.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Supply chain optimization",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Teprapa.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Unit optimization",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Teprapa.T@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Availability",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Kasin.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Energy efficiency",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Kasin.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Logistics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Kasin.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Marketing and sales",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Kasin.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Other",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Kasin.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Supply chain optimization",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Kasin.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - TSCL",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Kasin.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Unit optimization",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Kasin.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - TSCL",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Kasin.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Unit optimization",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Kasin.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Availability",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Winyoo.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Energy efficiency",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Winyoo.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Logistics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Winyoo.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Marketing and sales",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Winyoo.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Other",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Winyoo.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Supply chain optimization",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Winyoo.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - TSCL",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Winyoo.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Unit optimization",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Winyoo.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - TSCL",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Winyoo.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymers - Unit optimization",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Winyoo.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Aromatics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Jariya.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - EO Based",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Jariya.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Green",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Jariya.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Aromatics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Angcana.W@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - EO Based",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Kamol.M@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Green",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Mayura.A@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Multiple BUs",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Harnarong.K@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Olefins",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Harnarong.K@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Phenol",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Harnarong.K@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Polymers",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Harnarong.K@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Refinery",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Harnarong.K@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Olefins",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Phoowadit.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Phenol",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Pornnop.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Polymers",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Surachai.K@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Refinery",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Siripan.D@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Availability",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Siripan.D@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Energy efficiency",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Siripan.D@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Other",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Siripan.D@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Unit optimization",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Siripan.D@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Aromatics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Pongphan.K@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - EO Based",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Pongphan.K@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Aromatics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Rungson.I@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - EO Based",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Siripop.P@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - GCME",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ratanapong.W@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Green",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ratanapong.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Olefins",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ratanapong.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Phenol",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ratanapong.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Polymers",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ratanapong.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Refinery",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Ratanapong.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Aromatics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Sujin.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Olefins",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Sujin.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Refinery",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Sujin.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Green",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Patiphan.I@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Olefins",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Sila.A@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Phenol",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Tanadach.V@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Polymers",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Tassana.N@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "CAPEX - Refinery",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Suriyong.Y@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Aromatics",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Achakul.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Olefins",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Apinyawan.W@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Refinery",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Sunthorn.P@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - SCM",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Terdsak.K@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Utilities",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Terdsak.K@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply Chain (upstream) - Utilities",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Sawarin.P@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Chemical Movement and Dispatching",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Sawarin.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Planning and Commercial",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Sawarin.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Plant I",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Sawarin.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Technology & Maintenance",
+        "Indicator": "Sponsor",
+        "ApproverEmail": "Sawarin.P@pttgcgroup.com"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Aromatics",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Aromatics",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Chaiya.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "EO Based",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "EO Based",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "GCME",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "GCME",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Green",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Green",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Health",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Chaiya.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Maintenance",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Maintenance",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "3"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Maintenance",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "4"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Maintenance",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "5"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Maintenance",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "6"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Maintenance",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "7"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Maintenance",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "8"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Maintenance",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "9"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Maintenance",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "10"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Maintenance",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "11"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Maintenance",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Yuttana.B@pttgcgroup.com",
+        "Order": "12"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Maintenance",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Chakkrit.C@pttgcgroup.com",
+        "Order": "13"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "M&S (upstream)",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Chaiya.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Olefins",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Olefins",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Olefins",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "3"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Phenol",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Phenol",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Polymers",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Polymers",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Polymers",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "3"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Polymers",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "4"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Polymers",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "5"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Polymers",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Yuttana.B@pttgcgroup.com",
+        "Order": "6"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Polymers",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Chakkrit.C@pttgcgroup.com",
+        "Order": "7"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Polymers",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Chaiya.S@pttgcgroup.com",
+        "Order": "8"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Polymers",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "9"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Procurement",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Procurement",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Chaiya.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Refinery",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Refinery",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "CAPEX",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Supply Chain (upstream)",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Supply Chain (upstream)",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Supply Chain (upstream)",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "3"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Utilities",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Utilities",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "2"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Utilities",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "3"
+    },
+    {
+        "WorkstreamType": "Workstream",
+        "WorkstreamValue": "Utilities",
+        "Indicator": "WorkstreamLead",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "4"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Availability",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Energy efficiency",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Other",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Unit optimization",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Availability",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Energy efficiency",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Marketing and sales",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Other",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Unit optimization",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "GCME",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Availability",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Energy efficiency",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Marketing and sales",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Other",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Supply chain optimization",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Unit optimization",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Health - Green",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Health - Multiple BUs",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Aromatics",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - EO Based",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Green",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Multiple BUs",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Olefins",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Phenol",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Polymer",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Refinery",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Aromatics",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - EO Based",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Green",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Multiple BUs",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Olefins",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Phenol",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Polymer",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Refinery",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - Aromatics",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - EO Based",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - Green",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - Multiple BUs",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - Olefins",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - Phenol",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - Polymer",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - Refinery",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Marketing and sales (upstream) - Aromatics",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Marketing and sales (upstream) - Olefins",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Marketing and sales (upstream) - Others",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Marketing and sales (upstream) - Refinery",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Availability",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Energy efficiency",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Other",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Unit optimization",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Availability",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Energy efficiency",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Marketing and sales",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Other",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Supply chain optimization",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Unit optimization",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - Availability",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - Energy efficiency",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - Logistics",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - Marketing and sales",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - Other",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - Supply chain optimization",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - TSCL",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - Unit optimization",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Aromatics",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - EO Based",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Green",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Multiple BUs",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Olefins",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Phenol",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Polymer",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Refinery",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Availability",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Energy efficiency",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Other",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Unit optimization",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - Aromatics",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - EO Based",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - GCME",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - Green",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - Olefins",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - Phenol",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - Polymer",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - Refinery",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply chain optimization (upstream) - Aromatics",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply chain optimization (upstream) - Olefins",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply chain optimization (upstream) - Refinery",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply chain optimization (upstream) - SCM",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply chain optimization (upstream) - Utilities",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Turnaround - Aromatics",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Turnaround - EO Based",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Turnaround - Olefins",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Turnaround - Phenol",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Turnaround - Polymer",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Turnaround - Refinery",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Chemical Movement and Dispatching",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Planning and Commercial",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Plant I",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Technology & Maintenance",
+        "Indicator": "TOTeam",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Availability",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Energy efficiency",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Other",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Aromatics - Unit optimization",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Availability",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Energy efficiency",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Marketing and sales",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Other",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "EO Based - Unit optimization",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "GCME",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Availability",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Energy efficiency",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Marketing and sales",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Other",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Supply chain optimization",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Green - Unit optimization",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Health - Green",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Health - Multiple BUs",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Aromatics",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - EO Based",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Green",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Multiple BUs",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Olefins",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Phenol",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Polymer",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Lab optimization - Refinery",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Aromatics",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - EO Based",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Green",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Multiple BUs",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Olefins",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Phenol",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Polymer",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance & Procurement - Refinery",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - Aromatics",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - EO Based",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - Green",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - Multiple BUs",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - Olefins",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - Phenol",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - Polymer",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Maintenance costs - Refinery",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Marketing and sales (upstream) - Aromatics",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Marketing and sales (upstream) - Olefins",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Marketing and sales (upstream) - Others",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Marketing and sales (upstream) - Refinery",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Availability",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Energy efficiency",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Other",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Olefins - Unit optimization",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Availability",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Energy efficiency",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Marketing and sales",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Other",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Supply chain optimization",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Phenol - Unit optimization",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - Availability",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - Energy efficiency",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - Logistics",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - Marketing and sales",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - Other",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - Supply chain optimization",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - TSCL",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Polymer - Unit optimization",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Aromatics",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - EO Based",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Green",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Multiple BUs",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Olefins",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Phenol",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Polymer",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Procurement - Refinery",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Availability",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Energy efficiency",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Other",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Refinery - Unit optimization",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - Aromatics",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - EO Based",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - GCME",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - Green",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - Olefins",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - Phenol",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - Polymer",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Small CAPEX - Refinery",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply chain optimization (upstream) - Aromatics",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply chain optimization (upstream) - Olefins",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply chain optimization (upstream) - Refinery",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply chain optimization (upstream) - SCM",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Supply chain optimization (upstream) - Utilities",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Turnaround - Aromatics",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Uraivan.T@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Turnaround - EO Based",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Turnaround - Olefins",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Thana.P@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Turnaround - Phenol",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Wanrudee.C@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Turnaround - Polymer",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Apichat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Turnaround - Refinery",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Yuttana.N@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Chemical Movement and Dispatching",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nirat.W@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Planning and Commercial",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Vinai.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Plant I",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Somkiat.S@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Technology & Maintenance",
+        "Indicator": "TF-BT-TO",
+        "ApproverEmail": "Nasrul.A@pttgcgroup.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Technology & Maintenance",
+        "Indicator": "TOFinanceIL4",
+        "ApproverEmail": "eakwarlapat@gmail.com",
+        "Order": "1"
+    },
+    {
+        "WorkstreamType": "SubWorkstream",
+        "WorkstreamValue": "Utilities - Technology & Maintenance",
+        "Indicator": "TOFinanceIL5",
+        "ApproverEmail": "tinnakornchoompee@gmail.com",
+        "Order": "1"
+    }
+]

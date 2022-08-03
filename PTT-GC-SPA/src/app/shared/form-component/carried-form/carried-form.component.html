@@ -1,0 +1,119 @@
+<div class="row">
+    <div class="col-12" style="padding-left: inherit;padding-right: inherit;">
+        <div class="card text border-0">
+            <div class="card-body">
+                <div>
+                    <span style="font-size: 28px;color: #454545;">Carry over project</span>
+                    <hr>
+                </div>
+                <form [formGroup]="form" class="row">
+                    <div class="col-12 form-group">
+                        <div class="table-responsive" (scroll)="scrolling($event)">
+                            <table class="table table-bordered table-striped" style="width: max-content">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th rowspan="2" style="width: 180px;" class="fixed-col-1 shadow" #fixedCol1>
+                                            Check</th>
+                                        <th rowspan="2" style="width: 120px;" class="fixed-col-x shadow" #fixedCol2>
+                                            Initiative ID</th>
+                                        <th rowspan="2" style="width: 120px;" class="fixed-col-x shadow" #fixedCol3>
+                                            Initiative Name</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>WBS No</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>Initiative Owner</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>Investment type (Group)
+                                        </th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>Investment type
+                                            (Sub-Group)</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>VP Cost center</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>Code of Cost center</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>Request Carried Date</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>Original Project
+                                            commercial Date</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>Useful Life (Years)</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>Approved Budget (Update
+                                            total)</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>Actual Accumulated
+                                            (Previous year)</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>Current Actual
+                                            Accumulated(Jan-NOV)</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>Available</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>New Project commercial
+                                            Date</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>Status</th>
+                                        <th rowspan="2" style="width: 120px;" #middleFoxedCol>Justification</th>
+                                        <th colspan="2" style="width: 120px;" class="fixed-col-x" #fixedCol4>Plan
+                                            Estimated</th>
+                                        <th colspan="19" style="width: 120px;">Investment Plan</th>
+                                        <th></th>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <th style="width: 120px;" class="fixed-col-x" #fixedCol4>sum Budget
+                                            ของเดือนที่เหลือ</th>
+                                        <th style="width: 120px;" class="fixed-col-x" #fixedCol5>Total {{currentYear}}
+                                        </th>
+                                        <th style="width: 120px;" *ngFor="let month of months">
+                                            {{month + ' ' + add(currentYear, 1) | titlecase}}</th>
+                                        <th style="width: 120px;" *ngFor="let i of yearCount">{{add(currentYear, i)}}
+                                        </th>
+                                        <th style="width: 120px;">TOTAL</th>
+                                        <th style="width: 120px;">VARIANCE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!--                <tr *ngFor="let carryOver of data; let i = index" formArrayName="check">-->
+                                    <tr *ngFor="let row of formArray.controls; let i = index" formArrayName="check">
+                                        <td class="fixed-col-1 shadow" #fixedCol1 [formGroupName]="i">
+                                            <div class="form-check form-check-inline">
+                                                <input id="approve-{{data[i].initiativeId}}" class="form-check-input"
+                                                    type="radio" [value]="true" formControlName="approve">
+                                                <label class="form-check-label" for="approve-{{data[i].initiativeId}}">
+                                                    Approve </label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input id="revise-{{data[i].initiativeId}}" class="form-check-input"
+                                                    type="radio" [value]="false" formControlName="approve">
+                                                <label class="form-check-label" for="revise-{{data[i].initiativeId}}">
+                                                    Revise </label>
+                                            </div>
+                                        </td>
+                                        <td class="fixed-col-x shadow" #fixedCol2>{{data[i].initiativeId}}</td>
+                                        <td class="fixed-col-x shadow" #fixedCol3>{{data[i].initiativeName}}</td>
+                                        <td>{{data[i].wbsNo}}</td>
+                                        <td>{{data[i].initiativeOwner}}</td>
+                                        <td>{{data[i].investmentTypeGroup}}</td>
+                                        <td>{{data[i].investmentTypeSubGroup}}</td>
+                                        <td>{{data[i].vpCostCenter}}</td>
+                                        <td>{{data[i].codeOfCostCenter}}</td>
+                                        <td>{{data[i].requestCarriedDate | date}}</td>
+                                        <td>{{data[i].originalProjectCommercialDate | date}}</td>
+                                        <td>{{data[i].usefulLife}}</td>
+                                        <td>{{data[i].approvedBudget}}</td>
+                                        <td>{{data[i].actualAccumulated}}</td>
+                                        <td>{{data[i].currentActualAccumulated}}</td>
+                                        <td>{{data[i].available}}</td>
+                                        <td>{{data[i].newProjectCommercialDate | date}}</td>
+                                        <td>{{data[i].status}}</td>
+                                        <td>{{data[i].justification}}</td>
+                                        <td class="fixed-col-x" #fixedCol4>{{data[i].sumBudget}}</td>
+                                        <td class="fixed-col-x" #fixedCol5>{{data[i].totalCurrentYear}}</td>
+                                        <td *ngFor="let month of months">
+                                            {{getMonthlyInvestmentPlan(data[i], currentYear, month)}}</td>
+                                        <td *ngFor="let j of yearCount">
+                                            {{getYearAnnualInvestmentPlan(data[i], data[i].initiativeId, j)}}</td>
+                                        <td>{{getTotal(data[i], data[i].initiativeId)}}</td>
+                                        <td>{{getVariance(data[i], data[i].initiativeId) | number : '1.2-2'}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-primary mr-1" (click)="submit()">
+                            Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

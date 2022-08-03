@@ -1,0 +1,596 @@
+[
+  {
+    "WorkStreamTitle": "Aromatics",
+    "SubWorkstream1": "Aromatics",
+    "SubWorkstream2": "Aromatics - Availability",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Aromatics",
+    "SubWorkstream1": "Aromatics",
+    "SubWorkstream2": "Aromatics - Energy efficiency",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Aromatics",
+    "SubWorkstream1": "Aromatics",
+    "SubWorkstream2": "Aromatics - Other",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Aromatics",
+    "SubWorkstream1": "Aromatics",
+    "SubWorkstream2": "Aromatics - Unit optimization",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "EO Based",
+    "SubWorkstream1": "EO Based - Operations",
+    "SubWorkstream2": "EO Based - Availability",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "EO Based",
+    "SubWorkstream1": "EO Based - Operations",
+    "SubWorkstream2": "EO Based - Energy efficiency",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "EO Based",
+    "SubWorkstream1": "EO Based - Marketing and sales",
+    "SubWorkstream2": "EO Based - Marketing and sales",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "EO Based",
+    "SubWorkstream1": "EO Based - Operations",
+    "SubWorkstream2": "EO Based - Other",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "EO Based",
+    "SubWorkstream1": "EO Based - Operations",
+    "SubWorkstream2": "EO Based - Unit optimization",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "GCME",
+    "SubWorkstream1": "PTTME (GCME)",
+    "SubWorkstream2": "GCME",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Green",
+    "SubWorkstream1": "Green - Operations",
+    "SubWorkstream2": "Green - Availability",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Green",
+    "SubWorkstream1": "Green - Operations",
+    "SubWorkstream2": "Green - Energy efficiency",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Green",
+    "SubWorkstream1": "Green - Marketing and sales",
+    "SubWorkstream2": "Green - Marketing and sales",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Green",
+    "SubWorkstream1": "Green - Operations",
+    "SubWorkstream2": "Green - Other",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Green",
+    "SubWorkstream1": "Green - Operations",
+    "SubWorkstream2": "Green - Supply chain optimization",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Green",
+    "SubWorkstream1": "Green - Operations",
+    "SubWorkstream2": "Green - Unit optimization",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Health",
+    "SubWorkstream1": "Health",
+    "SubWorkstream2": "Health - Green",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Health",
+    "SubWorkstream1": "Health",
+    "SubWorkstream2": "Health - Multiple BUs",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Lab optimization - Aromatics",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Lab optimization - EO Based",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Lab optimization - Green",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Lab optimization - Multiple BUs",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Lab optimization - Olefins",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Lab optimization - Phenol",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Lab optimization - Polymers",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Lab optimization - Refinery",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance & Procurement - Aromatics",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance & Procurement - EO Based",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance & Procurement - Green",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance & Procurement - Multiple BUs",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance & Procurement - Olefins",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance & Procurement - Phenol",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance & Procurement - Polymers",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance & Procurement - Refinery",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance costs - Aromatics",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance costs - EO Based",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance costs - Green",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance costs - Multiple BUs",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance costs - Olefins",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance costs - Phenol",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance costs - Polymers",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Maintenance costs",
+    "SubWorkstream1": "Maintenance",
+    "SubWorkstream2": "Maintenance costs - Refinery",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Marketing and sales (upstream)",
+    "SubWorkstream1": "Marketing and sales (upstream)",
+    "SubWorkstream2": "Marketing and sales (upstream) - Aromatics",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Marketing and sales (upstream)",
+    "SubWorkstream1": "Marketing and sales (upstream)",
+    "SubWorkstream2": "Marketing and sales (upstream) - Olefins",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Marketing and sales (upstream)",
+    "SubWorkstream1": "Marketing and sales (upstream)",
+    "SubWorkstream2": "Marketing and sales (upstream) - Others",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Marketing and sales (upstream)",
+    "SubWorkstream1": "Marketing and sales (upstream)",
+    "SubWorkstream2": "Marketing and sales (upstream) - Refinery",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Olefins",
+    "SubWorkstream1": "Olefins",
+    "SubWorkstream2": "Olefins - Availability",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Olefins",
+    "SubWorkstream1": "Olefins",
+    "SubWorkstream2": "Olefins - Energy efficiency",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Olefins",
+    "SubWorkstream1": "Olefins",
+    "SubWorkstream2": "Olefins - Other",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Olefins",
+    "SubWorkstream1": "Olefins",
+    "SubWorkstream2": "Olefins - Unit optimization",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Phenol",
+    "SubWorkstream1": "Phenol - Operations",
+    "SubWorkstream2": "Phenol - Availability",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Phenol",
+    "SubWorkstream1": "Phenol - Operations",
+    "SubWorkstream2": "Phenol - Energy efficiency",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Phenol",
+    "SubWorkstream1": "Phenol - Marketing and sales",
+    "SubWorkstream2": "Phenol - Marketing and sales",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Phenol",
+    "SubWorkstream1": "Phenol - Operations",
+    "SubWorkstream2": "Phenol - Other",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Phenol",
+    "SubWorkstream1": "Phenol - Operations",
+    "SubWorkstream2": "Phenol - Supply chain optimization",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Phenol",
+    "SubWorkstream1": "Phenol - Operations",
+    "SubWorkstream2": "Phenol - Unit optimization",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Polymers",
+    "SubWorkstream1": "Polymers - Operations",
+    "SubWorkstream2": "Polymers - Availability",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Polymers",
+    "SubWorkstream1": "Polymers - Operations",
+    "SubWorkstream2": "Polymers - Energy efficiency",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Polymers",
+    "SubWorkstream1": "Polymers - Operations",
+    "SubWorkstream2": "Polymers - Logistics",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Polymers",
+    "SubWorkstream1": "Polymers - Marketing and sales",
+    "SubWorkstream2": "Polymers - Marketing and sales",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Polymers",
+    "SubWorkstream1": "Polymers - Operations",
+    "SubWorkstream2": "Polymers - Other",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Polymers",
+    "SubWorkstream1": "Polymers - Operations",
+    "SubWorkstream2": "Polymers - Supply chain optimization",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Polymers",
+    "SubWorkstream1": "Polymers - Operations",
+    "SubWorkstream2": "Polymers - TSCL",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Polymers",
+    "SubWorkstream1": "Polymers - Operations",
+    "SubWorkstream2": "Polymers - Unit optimization",
+    "CLevel": "SEVP-D"
+  },
+  {
+    "WorkStreamTitle": "Procurement",
+    "SubWorkstream1": "Procurement",
+    "SubWorkstream2": "Procurement - Aromatics",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Procurement",
+    "SubWorkstream1": "Procurement",
+    "SubWorkstream2": "Procurement - EO Based",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Procurement",
+    "SubWorkstream1": "Procurement",
+    "SubWorkstream2": "Procurement - Green",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Procurement",
+    "SubWorkstream1": "Procurement",
+    "SubWorkstream2": "Procurement - Multiple BUs",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Procurement",
+    "SubWorkstream1": "Procurement",
+    "SubWorkstream2": "Procurement - Olefins",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Procurement",
+    "SubWorkstream1": "Procurement",
+    "SubWorkstream2": "Procurement - Phenol",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Procurement",
+    "SubWorkstream1": "Procurement",
+    "SubWorkstream2": "Procurement - Polymers",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Procurement",
+    "SubWorkstream1": "Procurement",
+    "SubWorkstream2": "Procurement - Refinery",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Refinery",
+    "SubWorkstream1": "Refinery",
+    "SubWorkstream2": "Refinery - Availability",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Refinery",
+    "SubWorkstream1": "Refinery",
+    "SubWorkstream2": "Refinery - Energy efficiency",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Refinery",
+    "SubWorkstream1": "Refinery",
+    "SubWorkstream2": "Refinery - Other",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Refinery",
+    "SubWorkstream1": "Refinery",
+    "SubWorkstream2": "Refinery - Unit optimization",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Turnaround and sustained CAPEX",
+    "SubWorkstream1": "Sustained CAPEX",
+    "SubWorkstream2": "Small CAPEX - Aromatics",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Turnaround and sustained CAPEX",
+    "SubWorkstream1": "Sustained CAPEX",
+    "SubWorkstream2": "Small CAPEX - EO Based",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Turnaround and sustained CAPEX",
+    "SubWorkstream1": "Sustained CAPEX",
+    "SubWorkstream2": "Small CAPEX - GCME",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Turnaround and sustained CAPEX",
+    "SubWorkstream1": "Sustained CAPEX",
+    "SubWorkstream2": "Small CAPEX - Green",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Turnaround and sustained CAPEX",
+    "SubWorkstream1": "Sustained CAPEX",
+    "SubWorkstream2": "Small CAPEX - Olefins",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Turnaround and sustained CAPEX",
+    "SubWorkstream1": "Sustained CAPEX",
+    "SubWorkstream2": "Small CAPEX - Phenol",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Turnaround and sustained CAPEX",
+    "SubWorkstream1": "Sustained CAPEX",
+    "SubWorkstream2": "Small CAPEX - Polymers",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Turnaround and sustained CAPEX",
+    "SubWorkstream1": "Sustained CAPEX",
+    "SubWorkstream2": "Small CAPEX - Refinery",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Supply chain optimization (upstream)",
+    "SubWorkstream1": "Supply chain (upstream)",
+    "SubWorkstream2": "Supply chain optimization (upstream) - Aromatics",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Supply chain optimization (upstream)",
+    "SubWorkstream1": "Supply chain (upstream)",
+    "SubWorkstream2": "Supply chain optimization (upstream) - Olefins",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Supply chain optimization (upstream)",
+    "SubWorkstream1": "Supply chain (upstream)",
+    "SubWorkstream2": "Supply chain optimization (upstream) - Refinery",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Supply chain optimization (upstream)",
+    "SubWorkstream1": "Supply chain (upstream)",
+    "SubWorkstream2": "Supply chain optimization (upstream) - SCM",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Supply chain optimization (upstream)",
+    "SubWorkstream1": "Supply chain (upstream)",
+    "SubWorkstream2": "Supply chain optimization (upstream) - Utilities",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Turnaround and sustained CAPEX",
+    "SubWorkstream1": "Sustained CAPEX",
+    "SubWorkstream2": "Turnaround - Aromatics",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Turnaround and sustained CAPEX",
+    "SubWorkstream1": "Sustained CAPEX",
+    "SubWorkstream2": "Turnaround - EO Based",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Turnaround and sustained CAPEX",
+    "SubWorkstream1": "Sustained CAPEX",
+    "SubWorkstream2": "Turnaround - Olefins",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Turnaround and sustained CAPEX",
+    "SubWorkstream1": "Sustained CAPEX",
+    "SubWorkstream2": "Turnaround - Phenol",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Turnaround and sustained CAPEX",
+    "SubWorkstream1": "Sustained CAPEX",
+    "SubWorkstream2": "Turnaround - Polymers",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Turnaround and sustained CAPEX",
+    "SubWorkstream1": "Sustained CAPEX",
+    "SubWorkstream2": "Turnaround - Refinery",
+    "CLevel": "COE"
+  },
+  {
+    "WorkStreamTitle": "Utilities",
+    "SubWorkstream1": "UTY",
+    "SubWorkstream2": "Utilities - Chemical Movement and Dispatching",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Utilities",
+    "SubWorkstream1": "UTY",
+    "SubWorkstream2": "Utilities - Planning and Commercial",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Utilities",
+    "SubWorkstream1": "UTY",
+    "SubWorkstream2": "Utilities - Plant I",
+    "CLevel": "SEVP-U/MCS"
+  },
+  {
+    "WorkStreamTitle": "Utilities",
+    "SubWorkstream1": "UTY",
+    "SubWorkstream2": "Utilities - Technology & Maintenance",
+    "CLevel": "SEVP-U/MCS"
+  }
+]

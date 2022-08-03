@@ -1,0 +1,1055 @@
+<!-- <app-initiative-box></app-initiative-box> -->
+<!-- <app-form-tabs></app-form-tabs> -->
+<app-initiative-header [name]="name"></app-initiative-header>
+<!-- <app-form-tabs-addmore></app-form-tabs-addmore> -->
+
+<form [formGroup]="DetailMaxForm" style="margin-top: 1rem;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card text card-initiative">
+        <div class="card-body">
+          <div class="form-initiative">
+            <app-initiative-info [id]="id"></app-initiative-info>
+          </div>
+          <div class="form-initiative">
+            <ng-container *ngIf='CheckMax'>
+              <div class="row mt-3">
+                <div class=" col-md-12">
+                  <h5> Initiative Details</h5>
+                  <hr>
+                </div>
+              </div>
+              <ng-container *ngIf="IsShowFormCondition">
+                <div class="form-group row mt-3">
+                  <div class="col-md-4">
+                    <label for="initiative year"> Initiative Year </label>
+                    <input formControlName="initiativeYear" class="form-control" readonly>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="strategicObjective"> Strategic Objective </label>
+                    <select formControlName="strategicObjective" class="form-control"
+                      (change)="OnChangeStrategic($event)">
+                      <option value="" selected disabled> Choose... </option>
+                      <option *ngFor="let strategic of strategicObjectives" value="{{ strategic.id }}">
+                        {{strategic.strategicObjectiveTitle}}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="strategy"> Strategy </label>
+                    <select formControlName="strategy" class="form-control">
+                      <option value="" selected disabled>Choose Strategy</option>
+                      <option *ngFor="let strategy of strategies" value="{{strategy.strategyId}}">
+                        {{strategy.strategyTitle}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+              </ng-container>
+
+              <div class="form-group row">
+                <div class="col-md-4">
+                  <label for="type"> Initiative Type</label>
+                  <select formControlName="initiativeTypeMax" class="form-control"
+                    [ngClass]="{ 'is-invalid': invalidInitiativeType }">
+                    <option value="" disabled> Choose...</option>
+                    <option *ngFor="let type of types" value="{{type.initiativeTypeMaxTitle}}">
+                      {{type.initiativeTypeMaxTitle}}
+                    </option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="invalidInitiativeType">
+                    Initiative Type is required !
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="workStream"> Workstream <span class="text-danger" *ngIf="NoStage">*</span> </label>
+                  <select formControlName="workstream" class="form-control" (change)="OnChangeWorkstream($event)"
+                    [ngClass]="{ 'is-invalid': invalidWorkstream }">
+                    <option value="" disabled> Choose...</option>
+                    <option *ngFor="let workstream of workStreams" value="{{workstream.workStreamTitle}}">
+                      {{workstream.workStreamTitle}}
+                    </option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="invalidWorkstream">
+                    Workstream is required !
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="subWorkStream"> Sub-Workstream <span class="text-danger" *ngIf="NoStage">*</span>
+                  </label>
+                  <select formControlName="subWorkstream2" class="form-control" (change)="OnChangeSubWorkstream($event)"
+                    [ngClass]="{ 'is-invalid': invalidSubWorkstream }">
+                    <option value="" disabled> Choose...</option>
+                    <option *ngFor="let subWorkStream of subWorkstreams" value="{{subWorkStream.subWorkstream2}}">
+                      {{subWorkStream.subWorkstream2}}
+                    </option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="invalidSubWorkstream">
+                    Workstream is required !
+                  </div>
+                </div>
+              </div>
+
+              <ng-container *ngIf="IsShowProcurement">
+                <div class="row mt-5">
+                  <div class=" col-md-12">
+                    <h4> Procurement </h4>
+                    <hr>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-4">
+                    <label for="proCategory"> Procurement Category </label>
+                    <ng-select formControlName="proCategory" [items]="procurementCategoryList"
+                      bindValue="procurementName" bindLabel="procurementName" placeholder="Choose Category">
+                    </ng-select>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="proSubCategory"> Procurement Sub-category </label>
+                    <ng-select formControlName="proSubCategory" [items]="procurementSubCategoryList"
+                      bindValue="procurementName" bindLabel="procurementName" placeholder="Choose Sub-category">
+                    </ng-select>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="proLever"> Procurement Lever </label>
+                    <ng-select formControlName="proLever" [items]="procurementLeverList" bindValue="procurementName"
+                      bindLabel="procurementName" placeholder="Choose Lever">
+                    </ng-select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-4">
+                    <label for="baseline"> Procurement Baseline </label>
+                    <input type="number" formControlName="baseline" class="form-control" readonly>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="baselineHistorical"> Historical </label>
+                    <input type="number" formControlName="baselineHistorical" class="form-control"
+                      (input)="OnChangeBaseline()">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="baselineNonHistorical"> Non Historical </label>
+                    <input type="number" formControlName="baselineNonHistorical" class="form-control"
+                      (input)="OnChangeBaseline()">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-4">
+                    <label for="saving"> Procurement Savings </label>
+                    <input type="number" formControlName="saving" class="form-control" readonly>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="savingHistorical"> Historical </label>
+                    <input type="number" formControlName="savingHistorical" class="form-control"
+                      (input)="OnChangeSaving()">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="savingNonHistorical"> Non Historical </label>
+                    <input type="number" formControlName="savingNonHistorical" class="form-control"
+                      (input)="OnChangeSaving()">
+                  </div>
+                </div>
+              </ng-container>
+
+              <div class="row">
+                <div class=" col-md-12">
+                  <h5> Date </h5>
+                  <hr>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <div class="form-initiative">
+            <label style="color: #454545;font-size: 28px;"> Approval Detail </label>
+            <hr>
+          </div>
+          <div class="form-initiative">
+            <ng-container *ngIf='CheckMax'>
+              <div class="form-group row">
+                <div class="col-md-4">
+                  <label for="sponsor"> Sponsor </label>
+                  <ng-select formControlName="sponsorEvp" [items]="sponsorList" [multiple]="true" bindValue="email"
+                    bindLabel="name">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="invalidSponsor">
+                    Sponsor is required !
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="workStreamLead"> Workstream Leader <span class="text-danger" *ngIf="NoStage">*</span>
+                  </label>
+                  <select formControlName="workstreamLead" class="form-control"
+                    [ngClass]="{ 'is-invalid': invalidWorkstreamLead }">
+                    <option value="" disabled> Choose...</option>
+                    <option *ngFor="let lead of workstreamList" value="{{ lead.email }}">{{ lead.name }}</option>
+                  </select>
+                  <div class="invalid-feedback" *ngIf="invalidWorkstreamLead">
+                    Workstream Leader is required !
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label for="toFinance"> TO Finance </label>
+                  <ng-select formControlName="toFinance" [items]="toFinanceList" [multiple]="true" loadingText="Loading"
+                    bindValue="email" bindLabel="name">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="invalidToFinance">
+                    TO Finance is required !
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-4">
+                  <label for="cfo"> CFO </label>
+                  <ng-select formControlName="cfo" [items]="cfoList" [multiple]="true" loadingText="Loading"
+                    bindValue="email" bindLabel="name">
+                  </ng-select>
+                </div>
+                <div class="col-md-4">
+                  <label for="cto"> CTO </label>
+                  <ng-select formControlName="cto" [items]="ctoList" [multiple]="true" loadingText="Loading"
+                    bindValue="email" bindLabel="name">
+                  </ng-select>
+                  <div class="invalid-feedback" *ngIf="invalidCTO">
+                    CTO is required !
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <div class="form-initiative">
+            <ng-container *ngIf="CheckCapex">
+              <div class="form-group row">
+                <div class="col-md-6">
+                  <label for="cfo"> Vice President of Owner (VP) <span class="text-danger">*</span> </label>
+                  <input type="text" class="form-control" formControlName="president" readonly>
+                  <div class="text-feedback" *ngIf="invalidPresident">
+                    Vice President of Owner (VP) is required !
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="cfo"> Division Manager of Owner (DM) <span class="text-danger">*</span> </label>
+                  <input type="text" class="form-control" formControlName="manager" readonly>
+                  <div class="text-feedback" *ngIf="invalidManager">
+                    Division Manager of Owner (DM) is required !
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-6">
+                  <label for="cfo"> Project Manager <span class="text-danger">*</span> </label>
+                  <input type="text" class="form-control" formControlName="projectManager" readonly>
+                  <div class="text-feedback" *ngIf="invalidProjectManager">
+                    Project Manager is required !
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+          <div class="form-initiative">
+            <ng-container *ngIf="IsRequestCapex">
+              <hr>
+              <br>
+              <div class="bg-light">
+                <div id="Investment">
+                  <div class="card-header">
+                    <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                      data-target="#collapseInvestment" aria-expanded="true">
+                      <div class="float-left">
+                        Investment Framework
+                      </div>
+                      <i class="fas fa-chevron-circle-down float-right"></i>
+                    </button>
+                  </div>
+                  <div id="collapseInvestment" class="collapse bg-white" aria-labelledby="headingOne"
+                    data-parent="#Investment">
+                    <div class="card-body">
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="production"> Production Process of Project , List of
+                            equipment & Leadtime </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="productionProcess" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="production"> Milestone & Schedule </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="milestoneSchedule" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="production"> Expected Target &Result </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="expectedTarget" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="comparison"> Comparison with other alternative</label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="comparisonWithOther" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="production"> Other resources needed to support the project: (Personnel, IT,
+                            Others)
+                          </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="otherResources" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="other"> Other </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="otherInvestment" rows="2"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="strategic">
+                  <div class="card-header">
+                    <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                      data-target="#collapseStrategic" aria-expanded="true">
+                      <div class="float-left">
+                        Strategic Analysis
+                      </div>
+                      <i class="fas fa-chevron-circle-down float-right"></i>
+                    </button>
+                  </div>
+                  <div id="collapseStrategic" class="collapse bg-white" aria-labelledby="headingOne"
+                    data-parent="#strategic">
+                    <div class="card-body">
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="consistent"> Consistent with company's strategy </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="consistent" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="keySuccess"> Key Success Factor </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="keySuccessFactor" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="synergyBenefit"> Synergy Benefit</label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="synergyBenefit" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="other"> Other </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="otherStrategic" rows="2"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="business">
+                  <div class="card-header">
+                    <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                      data-target="#collapseBusiness" aria-expanded="true">
+                      <div class="float-left">
+                        Business Analysis
+                      </div>
+                      <i class="fas fa-chevron-circle-down float-right"></i>
+                    </button>
+                  </div>
+                  <div id="collapseBusiness" class="collapse bg-white" aria-labelledby="headingOne"
+                    data-parent="#business">
+                    <div class="card-body">
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="marketOverview"> Market overview</label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="marketOverview" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="potentialCustomer"> Potential Customer</label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="potentialCustomer" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="salesPain"> Sales Plan </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="salesPlan" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="sourceOfFeedback"> Source of Feedback </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="sourceOfFeedback" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="other"> Other </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="otherBusiness" rows="2"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="quality">
+                  <div class="card-header">
+                    <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                      data-target="#collapseQuality" aria-expanded="true">
+                      <div class="float-left">
+                        Quality Index
+                      </div>
+                      <i class="fas fa-chevron-circle-down float-right"></i>
+                    </button>
+                  </div>
+                  <div id="collapseQuality" class="collapse bg-white" aria-labelledby="headingOne"
+                    data-parent="#quality">
+                    <div class="card-body">
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="safetyIndex"> Safety index</label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="safetyIndex" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="CorporateImageIndex"> Corporate image index</label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="corporateImageIndex" rows="2"></textarea>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-3">
+                          <label for="other"> Other </label>
+                        </div>
+                        <div class="col-md-9">
+                          <textarea class="form-control" formControlName="otherQuality" rows="2"></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="return">
+                  <div class="card-header">
+                    <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                      data-target="#collapseReturn" aria-expanded="true">
+                      <div class="float-left">
+                        Return of Investment
+                      </div>
+                      <i class="fas fa-chevron-circle-down float-right"></i>
+                    </button>
+                  </div>
+                  <div id="collapseReturn" class="collapse bg-white" aria-labelledby="headingOne" data-parent="#return">
+                    <div class="card-body">
+                      <ng-container *ngIf="IsShowReturn">
+                        <div class="form-group row">
+                          <div class="col-md-12">
+                            <label for="baseCase"> Base Case (Please specify assumption) <span
+                                class='text-danger'>*</span></label>
+                            <textarea class="form-control" formControlName="baseCase" rows="2"
+                              [ngClass]="{ 'is-invalid': invalidBaseCase }"></textarea>
+                            <div class="invalid-feedback" *ngIf="invalidBaseCase">
+                              Base Case (Please specify assumption) is required !
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3">
+                            <label for="projectIrrBaseCase"> Project IRR(%) <span class='text-danger'>*</span></label>
+                            <input class="form-control" type="number" formControlName="projectIrrBaseCase"
+                              [ngClass]="{ 'is-invalid': invalidProjectIrrBaseCase }">
+                            <div class="invalid-feedback" *ngIf="invalidProjectIrrBaseCase">
+                              Project IRR(%) is required !
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <label for="npvBaseCase"> NPV (M THB) <span class='text-danger'>*</span></label>
+                            <input class="form-control" type="number" formControlName="npvBaseCase"
+                              [ngClass]="{ 'is-invalid': invalidNpvBaseCase }">
+                            <div class="invalid-feedback" *ngIf="invalidNpvBaseCase">
+                              NPV (M THB) is required !
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <label for="paybackBaseCase"> Payback(Year) <span class='text-danger'>*</span></label>
+                            <input class="form-control" type="number" formControlName="paybackBaseCase"
+                              [ngClass]="{ 'is-invalid': invalidPaybackBaseCase }">
+                            <div class="invalid-feedback" *ngIf="invalidPaybackBaseCase">
+                              Payback(Year) is required !
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <label for="ebitdaUpLiftBaseCase"> EBITDA Uplift ( M.THB) <span
+                                class='text-danger'>*</span></label>
+                            <input class="form-control" type="number" formControlName="ebitdaBaseCase"
+                              [ngClass]="{ 'is-invalid': invalidEbitdaBaseCase }">
+                            <div class="invalid-feedback" *ngIf="invalidEbitdaBaseCase">
+                              EBITDA Uplift is required !
+                            </div>
+                          </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group row">
+                          <div class="col-md-12">
+                            <label for="optimisticCase"> Optimistic Case (Please specify assumption) </label>
+                            <textarea class="form-control" formControlName="optimisticCase" rows="2"></textarea>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3">
+                            <label for="projectIrrOptimisticCase"> Project IRR(%) </label>
+                            <input class="form-control" type="number" formControlName="projectIrrOptimisticCase">
+                          </div>
+                          <div class="col-md-3">
+                            <label for="npvOptimisticCase"> NPV (M THB) </label>
+                            <input class="form-control" type="number" formControlName="npvOptimisticCase">
+                          </div>
+                          <div class="col-md-3">
+                            <label for="paybackOptimisticCase"> Payback(Year) </label>
+                            <input class="form-control" type="number" formControlName="paybackOptimisticCase">
+                          </div>
+                          <div class="col-md-3">
+                            <label for="ebitdaUpLiftOptimisticCase"> EBITDA Uplift ( M.THB) </label>
+                            <input class="form-control" type="number" formControlName="ebitdaOptimisticCase">
+                          </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="form-group row">
+                          <div class="col-md-12">
+                            <label for="pessimisticCase"> Pessimistic Case (Please specify assumption) </label>
+                            <textarea class="form-control" formControlName="pessimisticCase" rows="2"></textarea>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-3">
+                            <label for="projectIrrPessimisticCase"> Project IRR(%) </label>
+                            <input class="form-control" type="number" formControlName="projectIrrPessimisticCase">
+                          </div>
+                          <div class="col-md-3">
+                            <label for="npvPessimisticCase"> NPV (M THB) </label>
+                            <input class="form-control" type="number" formControlName="npvPessimisticCase">
+                          </div>
+                          <div class="col-md-3">
+                            <label for="paybackPessimisticCase"> Payback(Year) </label>
+                            <input class="form-control" type="number" formControlName="paybackPessimisticCase">
+                          </div>
+                          <div class="col-md-3">
+                            <label for="ebitdaUpLiftPessimisticCase"> EBITDA Uplift ( M.THB) </label>
+                            <input class="form-control" type="number" formControlName="ebitdaPessimisticCase">
+                          </div>
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                      </ng-container>
+
+
+
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                          <label for="usefulLife"> Useful life <span class='text-danger'>*</span> </label>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-md-2">
+                          <input class="form-control" type="number" formControlName="usefulYear"
+                            [ngClass]="{ 'is-invalid': invalidUsefulYear }">
+                          <div class="invalid-feedback" *ngIf="invalidUsefulYear">
+                            Useful Year is required !
+                          </div>
+                        </div>
+                        <div class="text-center mt-2"> Year </div>
+
+                        <div class="col-md-2">
+                          <input class="form-control" type="number" formControlName="usefulMonth"
+                            [ngClass]="{ 'is-invalid': invalidUsefulMonth }" (input)="OnchangeUsefulMonth()">
+                          <div class="invalid-feedback" *ngIf="invalidUsefulMonth">
+                            Useful Month is required !
+                          </div>
+                        </div>
+                        <div class="text-center mt-2"> Month </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                          <label for="depreciationCost"> Depreciation Cost <span class='text-danger'>*</span> </label>
+                          <input class="form-control" type="text" formControlName="depreciationCost"
+                            [ngClass]="{ 'is-invalid': invalidDepreciationCost }">
+                          <div class="invalid-feedback" *ngIf="invalidDepreciationCost">
+                            Depreciation Cost is required !
+                          </div>
+                        </div>
+                      </div>
+
+                      <br>
+                      <hr>
+                      <br>
+                      <h5> Additional Key Performance Indicators </h5>
+                      <table class="table table-bordered mt-4">
+                        <thead class="text-center bg-light">
+                          <th width="20%"> KPIs </th>
+                          <th width="55%"> Target </th>
+                          <th width="20%"> Frequency </th>
+                          <th width="5%"> </th>
+                        </thead>
+                        <tbody
+                          *ngFor="let control of DetailMaxForm.controls.kpisForm.get('kpis')['controls']; let i=index">
+                          <tr [formGroup]="control">
+                            <td>
+                              <select class="form-control" type="text" formControlName="kpis"
+                                (change)="ChangeKpis(i, $event)">
+                                <option value="" selected disabled> Choose... </option>
+                                <option *ngFor="let kpis of kpises" value="{{kpis.kpisTitle}}"
+                                  [disabled]="kpis.disabled">
+                                  {{ kpis.kpisTitle }}
+                                </option>
+                              </select>
+                            </td>
+                            <td>
+                              <input class="form-control" type="text" formControlName="target">
+                            </td>
+                            <td>
+                              <select class="form-control" type="text" formControlName="frequency">
+                                <option value="" selected disabled>Choose...</option>
+                                <option *ngFor="let frequency of frequencies" value="{{frequency.frequencyTitle}}">
+                                  {{frequency.frequencyTitle}}
+                                </option>
+                              </select>
+                            </td>
+                            <td>
+                              <button type="button" style="font-size:x-small;" class="btn btn-danger btn-sm mr-1"
+                                (click)="RemoveKpis(i)" [disabled]="isRemoveKpis">
+                                <i class="fas fa-trash-alt"></i>
+                              </button>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <button class="btn btn-primary mr-5" (click)="AddKpis()" [disabled]="isDisableAddKpis">
+                        <i class="fas fa-plus-square mr-2"></i> Add New
+                      </button>
+                      <br>
+                      <hr>
+                      <br>
+                      <div class="col-md-12">
+                        <label for="">KPIs Remark</label>
+                        <textarea class="form-control" formControlName="remark" rows="5"></textarea>
+                      </div>
+                      <br>
+                      <br>
+                      <div class="col-md-12">
+                        <label for="">Other Remark</label>
+                        <textarea class="form-control" formControlName="otherKpis" rows="5"></textarea>
+                      </div>
+                      <br>
+                    </div>
+                  </div>
+                </div>
+                <div id="additional">
+                  <div class="card-header">
+                    <button class="btn btn-link btn-co text-dark" type="button" data-toggle="collapse"
+                      data-target="#collapseAdditional" aria-expanded="true">
+                      <div class="float-left">
+                        Additional Information
+                      </div>
+                      <i class="fas fa-chevron-circle-down float-right"></i>
+                    </button>
+                  </div>
+                  <div id="collapseAdditional" class="collapse bg-white" aria-labelledby="headingOne"
+                    data-parent="#additional">
+                    <div class="card-body">
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                          <label class="my-3" for="requestCapex"> For Environment (EMA) <span
+                              class="text-danger">*</span>
+                          </label>
+                          <br>
+                          <div class="mt-1">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="trueEnvironment" value="true" class="custom-control-input" type="radio"
+                                name="forEnvironment" formControlName="forEnvironment">
+                              <label class="custom-control-label" for="trueEnvironment"> Yes </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline ml-5">
+                              <input id="falseEnvironment" value="false" class="custom-control-input" type="radio"
+                                name="forEnvironment" formControlName="forEnvironment">
+                              <label class="custom-control-label" for="falseEnvironment"> No </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                          <label class="my-3" for="requestCapex"> For Turnaround Project <span
+                              class="text-danger">*</span> </label>
+                          <br>
+                          <div class="mt-1">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="trueTurnaround" value="true" class="custom-control-input" type="radio"
+                                name="forTurnaround" formControlName="forTurnaround" (change)="OnChangeTurnaround()">
+                              <label class="custom-control-label" for="trueTurnaround"> Yes </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline ml-5">
+                              <input id="falseTurnaround" value="false" class="custom-control-input" type="radio"
+                                name="forTurnaround" formControlName="forTurnaround" (change)="OnChangeTurnaround()">
+                              <label class="custom-control-label" for="falseTurnaround"> No </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ng-container *ngIf="IsShowTurnAround">
+                        <div class="form-group row">
+                          <div class="col-md-6">
+                            <label for="cutFeedDate"> Cut Feed Date <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                              <input formControlName="cutFeedDate" type="text" [bsConfig]="bsConfigDate"
+                                class="form-control" bsDatepicker #dpCutFeedDate="bsDatepicker"
+                                (bsValueChange)="ChangeCutFeedDate($event)"
+                                [ngClass]="{ 'is-invalid': invalidCutFeedDate }" readonly>
+                              <div class="input-group-append">
+                                <i class="far fa-calendar right-icon mt-2" (click)="dpCutFeedDate.toggle()"
+                                  [attr.aria-expanded]="dpCutFeedDate.isOpen"></i>
+                              </div>
+                              <div class="invalid-feedback" *ngIf="invalidCutFeedDate">
+                                Cut Feed Date is required !
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="cutFeedDate"> Start Up Date <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                              <input formControlName="startUpDate" type="text" [bsConfig]="bsConfigDate"
+                                class="form-control" bsDatepicker #dpStartUpDate="bsDatepicker"
+                                (bsValueChange)="ChangeStartUpDate($event)"
+                                [ngClass]="{ 'is-invalid': invalidStartUpDate }" readonly>
+                              <div class="input-group-append">
+                                <i class="far fa-calendar right-icon mt-2" (click)="dpStartUpDate.toggle()"
+                                  [attr.aria-expanded]="dpStartUpDate.isOpen"></i>
+                              </div>
+                              <div class="invalid-feedback" *ngIf="invalidStartUpDate">
+                                Start Up Date is required !
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-md-6">
+                            <label for="cycle"> Cycle <span class='text-danger'>*</span> </label>
+                          </div>
+                        </div>
+                        <div class="form-group row">
+                          <div class="col-md-2">
+                            <input class="form-control" type="number" formControlName="cycleYear"
+                              [ngClass]="{ 'is-invalid': invalidCycleYear }" readonly>
+                            <div class="invalid-feedback" *ngIf="invalidCycleYear">
+                              Year is required !
+                            </div>
+                          </div>
+                          <div class="text-center mt-2"> Year </div>
+                          <div class="col-md-2">
+                            <input class="form-control" type="number" formControlName="cycleMonth"
+                              [ngClass]="{ 'is-invalid': invalidCycleMonth }" (input)="OnchangeCycleMonth()" readonly>
+                            <div class="invalid-feedback" *ngIf="invalidCycleMonth">
+                              Month is required !
+                            </div>
+                          </div>
+                          <div class="text-center mt-2"> Month </div>
+                        </div>
+                      </ng-container>
+
+                      <br>
+                      <hr>
+
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                          <label class="my-3" for="replaceEquipment"> Replace Equipment <span
+                              class="text-danger">*</span>
+                          </label>
+                          <br>
+                          <div class="mt-1">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="trueEquipment" value="true" class="custom-control-input" type="radio"
+                                name="replaceEquipment" formControlName="replaceEquipment"
+                                (change)="OnChangeReplaceEquipment()">
+                              <label class="custom-control-label" for="trueEquipment"> Yes </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline ml-5">
+                              <input id="falseEquipment" value="false" class="custom-control-input" type="radio"
+                                name="replaceEquipment" formControlName="replaceEquipment"
+                                (change)="OnChangeReplaceEquipment()">
+                              <label class="custom-control-label" for="falseEquipment"> No </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ng-container *ngIf="IsShowReplace">
+                        <div class="form-group row">
+                          <div class="col-md-12">
+                            <label for="equipmentName"> Equipment Name <span class="text-danger">*</span> </label>
+                            <textarea class="form-control" formControlName="equipmentName" rows="3"
+                              [ngClass]="{ 'is-invalid': invalidEquipmentName }" readonly></textarea>
+                            <div class="invalid-feedback" *ngIf="invalidEquipmentName">
+                              Equipment Name is required !
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <div class="col-md-6">
+                            <label for="replacementDate"> Replacement Date <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                              <input formControlName="replacementDate" type="text" [bsConfig]="bsConfigDate"
+                                class="form-control" bsDatepicker #dpReplacementDate="bsDatepicker"
+                                (bsValueChange)="ChangeReplacementDate($event)"
+                                [ngClass]="{ 'is-invalid': invalidReplacementDate }" readonly>
+                              <div class="input-group-append">
+                                <i class="far fa-calendar right-icon mt-2" (click)="dpReplacementDate.toggle()"
+                                  [attr.aria-expanded]="dpReplacementDate.isOpen"></i>
+                              </div>
+                              <div class="invalid-feedback" *ngIf="invalidReplacementDate">
+                                Replacement Date is required !
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <label for="oldAssetCondition"> Old Asset Condition <span
+                                class="text-danger">*</span></label>
+                            <select formControlName="oldAssetCondition" class="form-control"
+                              (change)="OnChangeOldAsset()" [ngClass]="{ 'is-invalid': invalidOldAssetCondition }"
+                              readonly>
+                              <option value="">Choose..</option>
+                              <option value="unable">Unable to Use</option>
+                              <option value="repair">Repair/Collect for space</option>
+                            </select>
+                            <div class="invalid-feedback" *ngIf="invalidOldAssetCondition">
+                              Old Asset Condition is required !
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+
+                      <ng-container *ngIf="IsShowOldAsset">
+                        <div class="form-group row">
+                          <div class="col-md-12">
+                            <label for="oldAssetNo"> Old Asset No. <span class="text-danger">*</span> <i
+                                class="fas fa-info-circle fa-lg ml-2" data-toggle="tooltip" data-placement="top"
+                                title="If you need more information for Old Asset No. please contact F-A2-FA Team"></i>
+                            </label>
+                            <textarea class="form-control" formControlName="oldAssetNo" rows="3"
+                              [ngClass]="{ 'is-invalid': invalidOldAssetNo }">
+                        </textarea>
+                            <div class="invalid-feedback" *ngIf="invalidOldAssetNo">
+                              Old Asset No. is required !
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+
+                      <div class="form-group row mt-5">
+                        <div class="col-md-12">
+                          <label for="equipmentOrAsset"> Equipment or Asset which constructed from project (Ex. Boiler,
+                            CCR Building ,Hardware/Software/License etc.) <span class="text-danger">*</span> </label>
+                          <textarea class="form-control" formControlName="equipmentOrAsset" rows="3"
+                            [ngClass]="{ 'is-invalid': invalidEquipmentOrAsset }" readonly>
+                      </textarea>
+                          <div class="invalid-feedback" *ngIf="invalidEquipmentOrAsset">
+                            Equipment or Asset which constructed from project (Ex. Boiler,
+                            CCR Building ,Hardware/Software/License etc.) is required !
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                          <label class="my-3" for="replaceEquipment"> BOI <span class="text-danger">*</span> </label>
+                          <br>
+                          <div class="mt-1">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="trueBoi" value="true" class="custom-control-input" type="radio" name="boi"
+                                formControlName="boi" (change)="OnChangeBOI()">
+                              <label class="custom-control-label" for="trueBoi"> Yes </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline ml-5">
+                              <input id="falseBoi" value="false" class="custom-control-input" type="radio" name="boi"
+                                formControlName="boi" (change)="OnChangeBOI()">
+                              <label class="custom-control-label" for="falseBoi"> No </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <ng-container *ngIf="IsShowBOI">
+                          <div class="col-md-6">
+                            <label class="my-3" for="replaceEquipment"> BOI No. </label>
+                            <input type="text" formControlName="boiNo" class="form-control"
+                              [ngClass]="{ 'is-invalid': invalidBoiNo }" readonly>
+                            <div class="invalid-feedback" *ngIf="invalidBoiNo">
+                              BOI No. is required !
+                            </div>
+                          </div>
+                        </ng-container>
+                      </div>
+                      <br>
+
+                      <div class="form-group row mb-5">
+                        <div class="col-md-6">
+                          <label class="my-3" for="replaceEquipment"> Do you have Additional Information <span
+                              class="text-danger">*</span> </label>
+                          <br>
+                          <div class="mt-1">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="trueAdditional" value="true" class="custom-control-input" type="radio"
+                                name="haveAdditional" formControlName="haveAdditional" (change)="OnChangeAdditional()">
+                              <label class="custom-control-label" for="trueAdditional"> Yes </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline ml-5">
+                              <input id="falseAdditional" value="false" class="custom-control-input" type="radio"
+                                name="haveAdditional" formControlName="haveAdditional" (change)="OnChangeAdditional()">
+                              <label class="custom-control-label" for="falseAdditional"> No </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ng-container *ngIf="IsShowAdditional">
+
+                        <span> Additional Information
+                          <span class="text-danger"> * </span>
+                          <span class="text-feedback ml-3" *ngIf="invalidAdditional">
+                            Additional Information is required !
+                          </span>
+                        </span>
+
+                        <br>
+                        <br>
+
+                        <div class="form-group row mt-2">
+                          <div class="col-md-12">
+                            <div class="mt-1">
+                              <div class="custom-control custom-checkbox custom-control-inline col-md-3">
+                                <input id="capital" class="custom-control-input" type="checkbox"
+                                  formControlName="capital" [ngClass]="{ 'is-invalid': invalidAdditional }">
+                                <label class="custom-control-label" for="capital"> 2 Yr./return Spare part </label>
+                              </div>
+                              <div class="custom-control custom-checkbox custom-control-inline col-md-2">
+                                <input id="catalyst" class="custom-control-input" type="checkbox"
+                                  formControlName="catalyst" [ngClass]="{ 'is-invalid': invalidAdditional }">
+                                <label class="custom-control-label" for="catalyst"> Catalyst </label>
+                              </div>
+                              <div class="custom-control custom-checkbox custom-control-inline col-md-2">
+                                <input id="software" class="custom-control-input" type="checkbox"
+                                  formControlName="software" [ngClass]="{ 'is-invalid': invalidAdditional }">
+                                <label class="custom-control-label" for="software"> Software/License </label>
+                              </div>
+                              <div class="custom-control custom-checkbox custom-control-inline col-md-2">
+                                <input id="rightOfUse" class="custom-control-input" type="checkbox"
+                                  formControlName="rightOfUse" [ngClass]="{ 'is-invalid': invalidAdditional }">
+                                <label class="custom-control-label" for="rightOfUse"> Right of Use </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+
+                      <br>
+                      <hr>
+
+                      <div class="form-group row">
+                        <div class="col-md-6">
+                          <label class="my-3" for="coordinate"> Coordinate with external parties (Outside Company) <span
+                              class="text-danger">*</span> </label>
+                          <br>
+                          <div class="mt-1">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input id="trueCoordinate" value="true" class="custom-control-input" type="radio"
+                                name="coordinate" formControlName="coordinate" (change)="OnChangeCoordinate()">
+                              <label class="custom-control-label" for="trueCoordinate"> Yes </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline ml-5">
+                              <input id="falseCoordinate" value="false" class="custom-control-input" type="radio"
+                                name="coordinate" formControlName="coordinate" (change)="OnChangeCoordinate()">
+                              <label class="custom-control-label" for="falseCoordinate"> No </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ng-container *ngIf="IsShowParties">
+                        <div class="form-group row">
+                          <div class="col-md-12">
+                            <label for="parties"> Which parties (Ex. University, PEA , etc.) <span
+                                class="text-danger">*</span> </label>
+                            <textarea class="form-control" formControlName="parties" rows="3"
+                              [ngClass]="{ 'is-invalid': invalidParties }" readonly></textarea>
+                            <div class="invalid-feedback" *ngIf="invalidParties">
+                              Which parties (Ex. University, PEA , etc.) is required !
+                            </div>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<!-- <app-initiative-button
+  (SaveDraft)="Draft($event)"
+  (SaveSubmit)="Submit($event)"
+  [validate]="invalidSubmit"
+  [Cim]="Cim"
+  [Strategy]="Strategy"
+  [Capex]="Capex"
+  [Max]="Max"
+  [page]="page"
+  [id]="id">
+</app-initiative-button> -->
+
+<app-addmore-button (SaveDraft)="SaveDraft()" (SaveSubmit)="SaveSubmit()" [validate]="invalidSubmit">
+</app-addmore-button>

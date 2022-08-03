@@ -1,0 +1,367 @@
+[
+  {
+    "ReportType": "CAPEXAllProjectsSubmittedInPeriod",
+    "Value": "Company",
+    "Name": "Company"
+  },
+  {
+    "ReportType": "CAPEXAllProjectsSubmittedInPeriod",
+    "Value": "ProjecctComRun",
+    "Name": "End Date"
+  },
+  {
+    "ReportType": "CAPEXAllProjectsSubmittedInPeriod",
+    "Value": "TypeOfInvestment",
+    "Name": "Investment Type"
+  },
+  {
+    "ReportType": "CAPEXAllProjectsSubmittedInPeriod",
+    "Value": "RequestIniNoDate",
+    "Name": "Start Date"
+  },
+  {
+    "ReportType": "CAPEXProjectApproved",
+    "Value": "Company",
+    "Name": "Company Name"
+  },
+  {
+    "ReportType": "CAPEXProjectApproved",
+    "Value": "Organization",
+    "Name": "Organization"
+  },
+  {
+    "ReportType": "CAPEXReportGroupByandCompanyType",
+    "Value": "TypeOfInvestment",
+    "Name": "Investment Type"
+  },
+  {
+    "ReportType": "CAPEXReportGroupByandCompanyType",
+    "Value": "Organization",
+    "Name": "Organization"
+  },
+  {
+    "ReportType": "CAPEXReportGroupByandCompanyType",
+    "Value": "RequestIniNoDate",
+    "Name": "Start Date"
+  },
+  {
+    "ReportType": "CAPEXSummaryReportbyCompany",
+    "Value": "Company",
+    "Name": "Company"
+  },
+  {
+    "ReportType": "CAPEXSummaryReportbyCompany",
+    "Value": "ProjecctComRun",
+    "Name": "End Date"
+  },
+  {
+    "ReportType": "CAPEXSummaryReportbyCompany",
+    "Value": "Organization",
+    "Name": "Organization"
+  },
+  {
+    "ReportType": "CAPEXSummaryReportbyCompany",
+    "Value": "RequestIniNoDate",
+    "Name": "Start Date"
+  },
+  {
+    "ReportType": "CAPEXReportGroupByandCompanyType",
+    "Value": "ProjecctComRun",
+    "Name": "End Date"
+  },
+  {
+    "ReportType": "CAPEXDepreciationForNewProjectReport",
+    "Value": "TypeOfInvestment",
+    "Name": "Investment Type"
+  },
+  {
+    "ReportType": "CAPEXDepreciationForNewProjectReport",
+    "Value": "Organization",
+    "Name": "Organization"
+  },
+  {
+    "ReportType": "CAPEXDepreciationForNewProjectReport",
+    "Value": "Plant",
+    "Name": "VP"
+  },
+  {
+    "ReportType": "CAPEXReportRequestPool",
+    "Value": "Organization",
+    "Name": "Organization"
+  },
+  {
+    "ReportType": "CAPEXReportRequestPool",
+    "Value": "Company",
+    "Name": "Company Name"
+  },
+  {
+    "ReportType": "CAPEXReportUsedPool",
+    "Value": "Company",
+    "Name": "Company Name"
+  },
+  {
+    "ReportType": "CAPEXReportUsedPool",
+    "Value": "BudgetYear",
+    "Name": "Budget Year"
+  },
+  {
+    "ReportType": "CAPEXNewCapexGcGroupByProjectType",
+    "Value": "ini.Organization",
+    "Name": "Organization"
+  },
+  {
+    "ReportType": "CAPEXReportUsedPool",
+    "Value": "TypeOfInvestment",
+    "Name": "Investment Type"
+  },
+  {
+    "ReportType": "CAPEXProjectDetail",
+    "Value": "Year",
+    "Name": "Budget Year"
+  },
+  {
+    "ReportType": "CAPEXProjectDetail",
+    "Value": "Company Name",
+    "Name": "Company Name"
+  },
+  {
+    "ReportType": "GraphHistoricalIL5",
+    "Value": "Year",
+    "Name": "Year"
+  },
+  {
+    "ReportType": "GraphHistoricalIL5_COE",
+    "Value": "Year",
+    "Name": "Year"
+  },
+  {
+    "ReportType": "CAPEXReportGroupByandCompanyType",
+    "Value": "BudgetYear",
+    "Name": "Budget Year"
+  },
+  {
+    "ReportType": "CAPEXProjectDetail",
+    "Value": "Initiative No",
+    "Name": "Initiative No"
+  },
+  {
+    "ReportType": "CAPEXProjectDetail",
+    "Value": "Project Name",
+    "Name": "Project Name"
+  },
+  {
+    "ReportType": "CAPEXProjectDetail",
+    "Value": "Type of Investment",
+    "Name": "Investment Type"
+  },
+  {
+    "ReportType": "CAPEXSummaryReportbyCompany",
+    "Value": "BudgetYear",
+    "Name": "Budget Year"
+  },
+  {
+    "ReportType": "CAPEXProjectApproved",
+    "Value": "BudgetYear",
+    "Name": "Budget Year"
+  },
+  {
+    "ReportType": "CAPEXProjectApproved",
+    "Value": "TypeOfInvestment",
+    "Name": "Investment Type"
+  },
+  {
+    "ReportType": "CAPEXDepreciationForNewProjectReport",
+    "Value": "BudgetYear",
+    "Name": "Budget Year"
+  },
+  {
+    "ReportType": "CAPEXDepreciationForNewProjectReport",
+    "Value": "Company",
+    "Name": "Company"
+  },
+  {
+    "ReportType": "CAPEXReportUsedPool",
+    "Value": "Organization",
+    "Name": "Organization"
+  },
+  {
+    "ReportType": "CAPEXReportRequestPool",
+    "Value": "BudgetYear",
+    "Name": "Budget Year"
+  },
+  {
+    "ReportType": "CAPEXReportRequestPool",
+    "Value": "TypeOfInvestment",
+    "Name": "Investment Type"
+  },
+  {
+    "ReportType": "BGSlide",
+    "Value": "InitiativeNo",
+    "Name": "Initiative No"
+  },
+  {
+    "ReportType": "BGSlide",
+    "Value": "Company",
+    "Name": "Company"
+  },
+  {
+    "ReportType": "BGSlide",
+    "Value": "TypeOfInvestment",
+    "Name": "Investment Type"
+  },
+  {
+    "ReportType": "BGSlide",
+    "Value": "BudgetYear",
+    "Name": "Budget Year"
+  },
+  {
+    "ReportType": "CAPEXProjectDetail",
+    "Value": "Status",
+    "Name": "Status"
+  },
+  {
+    "ReportType": "NewCapexReport",
+    "Value": "ini.Status",
+    "Name": "Status"
+  },
+  {
+    "ReportType": "CAPEXReportGroupByandCompanyType",
+    "Value": "Status",
+    "Name": "Status"
+  },
+  {
+    "ReportType": "BGSlide",
+    "Value": "Status",
+    "Name": "Status"
+  },
+  {
+    "ReportType": "CAPEXAllProjectsSubmittedInPeriod",
+    "Value": "Status",
+    "Name": "Status"
+  },
+  {
+    "ReportType": "CAPEXAllProjectsSubmittedInPeriod",
+    "Value": "Status",
+    "Name": "Status"
+  },
+  {
+    "ReportType": "CAPEXDepreciationForNewProjectReport",
+    "Value": "Status",
+    "Name": "Status"
+  },
+  {
+    "ReportType": "CAPEXProjectApproved",
+    "Value": "Status",
+    "Name": "Status"
+  },
+  {
+    "ReportType": "CapexReportByCompany",
+    "Value": "ini.Status",
+    "Name": "Status"
+  },
+  {
+    "ReportType": "CAPEXReportRequestPool",
+    "Value": "Status",
+    "Name": "Status"
+  },
+  {
+    "ReportType": "CAPEXReportUsedPool",
+    "Value": "Status",
+    "Name": "Status"
+  },
+  {
+    "ReportType": "CAPEXSummaryReportbyCompany",
+    "Value": "Status",
+    "Name": "Status"
+  },
+  {
+    "ReportType": "GraphHistoricalIL5_SEVP-D",
+    "Value": "Year",
+    "Name": "Year"
+  },
+  {
+    "ReportType": "GraphHistoricalIL5_SEVP-U/MCS",
+    "Value": "Year",
+    "Name": "Year"
+  },
+  {
+    "ReportType": "GraphHistoricalIL4",
+    "Value": "Year",
+    "Name": "Year"
+  },
+  {
+    "ReportType": "GraphHistoricalIL4_COE",
+    "Value": "Year",
+    "Name": "Year"
+  },
+  {
+    "ReportType": "GraphHistoricalIL4_SEVP-D",
+    "Value": "Year",
+    "Name": "Year"
+  },
+  {
+    "ReportType": "GraphHistoricalIL4_SEVP-U/MCS",
+    "Value": "Year",
+    "Name": "Year"
+  },
+  {
+    "ReportType": "NewCapexReport",
+    "Value": "cap.BudgetYear",
+    "Name": "Budget Year"
+  },
+  {
+    "ReportType": "NewCapexReport",
+    "Value": "ini.Company",
+    "Name": "Company"
+  },
+  {
+    "ReportType": "NewCapexReport",
+    "Value": "ini.TypeOfInvestment",
+    "Name": "Investment Type"
+  },
+  {
+    "ReportType": "NewCapexReport",
+    "Value": "ini.Organization",
+    "Name": "Organization"
+  },
+  {
+    "ReportType": "CapexReportByCompany",
+    "Value": "cap.BudgetYear",
+    "Name": "Budget Year"
+  },
+  {
+    "ReportType": "CapexReportByCompany",
+    "Value": "ini.Company",
+    "Name": "Company"
+  },
+  {
+    "ReportType": "CapexReportByCompany",
+    "Value": "ini.TypeOfInvestment",
+    "Name": "Investment Type"
+  },
+  {
+    "ReportType": "CapexReportByCompany",
+    "Value": "ini.Organization",
+    "Name": "Organization"
+  },
+  {
+    "ReportType": "CAPEXNewCapexGcGroupByProjectType",
+    "Value": "cap.BudgetYear",
+    "Name": "Budget Year"
+  },
+  {
+    "ReportType": "CAPEXNewCapexGcGroupByProjectType",
+    "Value": "ini.Company",
+    "Name": "Company"
+  },
+  {
+    "ReportType": "CAPEXNewCapexGcGroupByProjectType",
+    "Value": "ini.TypeOfInvestment",
+    "Name": "Investment Type"
+  },
+  {
+    "ReportType": "CAPEXNewCapexGcGroupByProjectType",
+    "Value": "ini.Status",
+    "Name": "Status"
+  }
+]

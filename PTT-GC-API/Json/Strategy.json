@@ -1,0 +1,112 @@
+[
+  {
+    "StrategyId": "S2020_001",
+    "StrategyTitle": "International Business",
+    "StrategicObjectiveId": 1
+  },
+  {
+    "StrategyId": "S2020_002",
+    "StrategyTitle": "International Investment",
+    "StrategicObjectiveId": 1
+  },
+  {
+    "StrategyId": "S2020_003",
+    "StrategyTitle": "Plan BOD",
+    "StrategicObjectiveId": 1
+  },
+  {
+    "StrategyId": "S2020_004",
+    "StrategyTitle": "Performance Excellence",
+    "StrategicObjectiveId": 1
+  },
+  {
+    "StrategyId": "S2020_005",
+    "StrategyTitle": "Rima Fields",
+    "StrategicObjectiveId": 1
+  },
+  {
+    "StrategyId": "S2020_006",
+    "StrategyTitle": "Shanna Andrew",
+    "StrategicObjectiveId": 1
+  },
+  {
+    "StrategyId": "S2020_007",
+    "StrategyTitle": "Karla Iles",
+    "StrategicObjectiveId": 2
+  },
+  {
+    "StrategyId": "S2020_008",
+    "StrategyTitle": "Sahra Casey",
+    "StrategicObjectiveId": 2
+  },
+  {
+    "StrategyId": "S2020_009",
+    "StrategyTitle": "Ananya Milne",
+    "StrategicObjectiveId": 2
+  },
+  {
+    "StrategyId": "S2020_010",
+    "StrategyTitle": "Ashlee Cotton",
+    "StrategicObjectiveId": 2
+  },
+  {
+    "StrategyId": "S2020_011",
+    "StrategyTitle": "Nial Nguyen",
+    "StrategicObjectiveId": 2
+  },
+  {
+    "StrategyId": "S2020_012",
+    "StrategyTitle": "Henri Kenny",
+    "StrategicObjectiveId": 3
+  },
+  {
+    "StrategyId": "S2020_013",
+    "StrategyTitle": "Rihanna Chaney",
+    "StrategicObjectiveId": 3
+  },
+  {
+    "StrategyId": "S2020_014",
+    "StrategyTitle": "Bryson Paine",
+    "StrategicObjectiveId": 3
+  },
+  {
+    "StrategyId": "S2020_015",
+    "StrategyTitle": "Faheem Swanson",
+    "StrategicObjectiveId": 4
+  },
+  {
+    "StrategyId": "S2020_016",
+    "StrategyTitle": "Lenny Stacey",
+    "StrategicObjectiveId": 4
+  },
+  {
+    "StrategyId": "S2020_017",
+    "StrategyTitle": "Cole Benson",
+    "StrategicObjectiveId": 4
+  },
+  {
+    "StrategyId": "S2020_018",
+    "StrategyTitle": "Usmaan Small",
+    "StrategicObjectiveId": 5
+  },
+  {
+    "StrategyId": "S2020_019",
+    "StrategyTitle": "Akram Connolly",
+    "StrategicObjectiveId": 5
+  },
+  {
+    "StrategyId": "S2020_019",
+    "StrategyTitle": "Jay-Jay Dejesus",
+    "StrategicObjectiveId": 6
+  },
+  {
+    "StrategyId": "S2020_019",
+    "StrategyTitle": "Niko Landry",
+    "StrategicObjectiveId": 6
+  },
+  {
+    "StrategyId": "S2020_019",
+    "StrategyTitle": "Jo Holder",
+    "StrategicObjectiveId": 6
+  }
+]

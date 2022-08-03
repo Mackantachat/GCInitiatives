@@ -1,0 +1,97 @@
+<div class="row">
+  <div class="col-12">
+    <div class=" card text card-initiative">
+      <div class="card-body">
+        <div class="form-initiative">
+          <app-initiative-info [id]="id"></app-initiative-info>
+        </div>
+        <div class="form-initiative">
+          <h3>Risk List</h3>
+          <hr>
+        </div>
+
+        <div class="form-initiative">
+          <div class="form-inline mb-3">
+            <h3 class="col-md-10"></h3>
+            <button *ngIf="!viewMode" class="col-md-2 btn btn-primary" (click)="addRiskData()"
+              style="align-self: flex-end;">
+              <i class="fas fa-plus-square mr-2"></i> Add New Risk
+            </button>
+          </div>
+        </div>
+        <div class="form-initiative">
+          <table class="table table-bordered">
+            <thead class="text-center bg-light">
+              <th>Risk No.</th>
+              <th>Risk Level</th>
+              <th>Risk Factor</th>
+              <th>Phase</th>
+              <th>KRI Overall</th>
+              <th>Approve period</th>
+              <th>Completing Date</th>
+              <th>Action</th>
+            </thead>
+            <tbody>
+              <ng-container *ngIf="getRiskService.riskData && getRiskService.riskData.length > 0; else riskNotHaveData">
+                <tr *ngFor="let control of getRiskService.riskData;let i = index">
+                  <td class="text-center">
+                    {{i+1}}
+                  </td>
+                  <td class="text-center">
+                     <!-- <input class="form-control" [ngClass]="'level-'+ getLevel(control.riskLevelMitigationProgress)" readonly> -->
+                     <input class="form-control" [ngClass]="'level-'+ getLevel(control.riskLevelMitigationProgress  == '' ? control.riskLevelExitingControl : control.riskLevelMitigationProgress)" readonly>
+                  </td>
+                  <td class="text-center">
+                    {{control.riskFactor}}
+                  </td>
+                  <td class="text-center">
+                    {{ replacePhase(control.phase)}}
+                  </td>
+                  <td class="text-center">
+                    <input class="form-control" [ngClass]="'level-'+ GetMaxKRIStatus(i)" readonly>
+                  </td>
+                  <td class="text-center">
+                    {{getDate(control.approvePeriod)}}
+                  </td>
+                  <td class="text-center">
+                    {{getDate(control.registerDate)}}
+                  </td>
+
+                  <ng-container *ngIf="!viewMode; else viewModeTemplate">
+                    <td class="text-center">
+                      <a type="button" class="btn btn-warning btn-sm mr-1 text-white btn-list" (click)="editRisk(i)">
+                        <i class="fas fa-pen"></i>
+                      </a>
+                    </td>
+                  </ng-container>
+                  <ng-template #viewModeTemplate>
+                    <td class="text-center">
+                      <a type="button" class="btn btn-warning btn-sm mr-1 text-white btn-list" (click)="editRisk(i)">
+                        <i class="fas fa-eye"></i>
+                      </a>
+                    </td>
+                  </ng-template>
+
+                </tr>
+              </ng-container>
+              <ng-template #riskNotHaveData>
+                <tr>
+                  <td colspan="8">No Data</td>
+                </tr>
+              </ng-template>
+
+
+            </tbody>
+          </table>
+
+          <!-- add form Risk  -->
+          <div *ngIf="openFormRisk">
+            <app-risk-form (saveData)="saveData()" [formGroup]="formGroup"></app-risk-form>
+          </div>
+          <!--  -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,130 @@
+<div class="modal-dialog modal-xl" style="margin-top :inherit;margin-bottom :inherit;">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">
+        <i class="fas fa-history mr-2"></i> Audit
+      </h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="CloseModal()">
+        <i class="fas fa-times-circle"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <!-- <div class="container text-center loader-layout">
+        <ngx-spinner bdColor="#fffffff" color="#105bac" size="medium" type="ball-spin" [fullScreen]="false">
+        </ngx-spinner>
+      </div> -->
+      <form [formGroup]="HistoryForm">
+        <div class="form-group row">
+          <div class="col-md-2">
+            <label class="my-1 mr-2 float-right" for="Keyword"> <strong> Keyword </strong> </label>
+          </div>
+          <div class="col-md-8">
+            <input type="text" formControlName="keyword" class="form-control">
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-2">
+            <label class="my-1 mr-2 float-right" for="StartDate"> <strong> Start Date </strong> </label>
+          </div>
+          <div class="col-md-8">
+            <div class="input-group">
+              <input formControlName="startDate" type="text" [bsConfig]="bsStartDate" class="form-control" bsDatepicker
+                #dpStartDate="bsDatepicker" (bsValueChange)="ChangeStartDate($event)">
+              <div class="input-group-append">
+                <i class="far fa-calendar right-icon mt-2" (click)="dpStartDate.toggle()"
+                  [attr.aria-expanded]="dpStartDate.isOpen"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-2">
+            <label class="my-1 mr-2 float-right" for="EndDate"> <strong> End Date </strong> </label>
+          </div>
+          <div class="col-md-8">
+            <div class="input-group">
+              <input formControlName="endDate" type="text" [bsConfig]="bsEndDate" class="form-control" bsDatepicker
+                #dpEndDate="bsDatepicker" (bsValueChange)="ChangeEndDate($event)">
+              <div class="input-group-append">
+                <i class="far fa-calendar right-icon mt-2" (click)="dpEndDate.toggle()"
+                  [attr.aria-expanded]="dpEndDate.isOpen"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-md-8 offset-md-2">
+            <button type="button" class="btn btn-block btn-primary my-1" (click)="Search()"> Search </button>
+          </div>
+        </div>
+      </form>
+      <hr>
+      <ng-template [ngIf]="IsAudit" [ngIfElse]="Nodata">
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <thead>
+              <tr class="bg-audit text-center">
+                <th scope="col">No.</th>
+                <th scope="col">FieldName</th>
+                <th scope="col">OldValue</th>
+                <th scope="col">NewValue</th>
+                <th scope="col">ActionDate</th>
+                <th scope="col">Action by</th>
+                <!-- <th scope="col">UpdateBy</th> -->
+                <th scope="col">Comment </th>
+                <!-- <th scope="col">Comment Date </th> -->
+                <th scope="col">Comment By </th>
+                <th scope="col"> <i class="fas fa-cog"></i> </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of audits; let i = index;">
+                <th scope="row" *ngIf="currentPage == 1" class="text-center">{{ (i + 1) }}</th>
+                <th scope="row" *ngIf="currentPage != 1" class="text-center">{{ (i + 1) + ((currentPage - 1) * 10) }}
+                </th>
+                <td class="word-warp"> {{ item.fieldName }}</td>
+                <td class="word-warp"> {{ item.oldValue }}</td>
+                <td class="word-warp"> {{ item.newValue }}</td>
+                <td class="text-center"> {{ item.actionDate | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+                <td class="text-center"> {{ item.actionBy}}</td>
+                <!-- <td>{{ item.actionBy  }}</td> -->
+                <td class="word-warp"> {{ item.commentDetail }} </td>
+                <!-- <td class="text-center"> {{ item.commentDate | date:'dd/MM/yyyy HH:mm:ss' }} </td> -->
+                <td class="word-warp"> {{ item.commentByName }} </td>
+                <td class="text-center">
+                  <button class="btn btn-warning text-white" (click)="ShowLogComment(item.id)">
+                    <i class="fas fa-comment-dots"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ng-template>
+      <ng-template #Nodata>
+        <ng-container *ngIf="loading; else loaded">
+          <ngx-spinner bdColor="#fffffff" color="#105bac" size="medium" type="ball-spin" [fullScreen]="false">
+          </ngx-spinner>
+        </ng-container>
+        <ng-template #loaded>
+          <app-initiative-no-data></app-initiative-no-data>
+        </ng-template>
+      </ng-template>
+      <ng-template [ngIf]="IsAudit">
+        <hr>
+        <ng-container class="mt-3" *ngIf="pagination">
+          <div class="d-flex justify-content-center">
+            <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems"
+              [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="PageChanged($event)" [maxSize]="maxSize"
+              previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+            </pagination>
+          </div>
+        </ng-container>
+      </ng-template>
+      <app-initiative-history></app-initiative-history>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="HideModal()">Close</button>
+    </div>
+  </div>
+</div>

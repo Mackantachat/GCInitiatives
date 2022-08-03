@@ -1,0 +1,47 @@
+.table-initiative {
+    font-size: 14px !important;
+}
+
+.table {
+    margin-bottom: 0px;
+}
+
+.table thead th {
+    vertical-align: middle;
+}
+
+.sortHover {
+    cursor: "pointer" !important;
+}
+
+.btn-list {
+    font-size: x-small;
+}
+
+.table-active, .table-active>td, .table-active>th {
+    background-color: #ffffff;
+}
+
+th, td {
+    color: #777777;
+    text-align: left;
+}
+
+th.th-action, td.td-action {
+    color: #777777;
+    text-align: right;
+}
+
+.container {
+    margin-right: inherit;
+    margin-left: inherit;
+}
+
+.container-fluid {
+    padding-left: inherit;
+    padding-right: inherit;
+}
+
+.card {
+    border: inherit;
+}

@@ -1,0 +1,12 @@
+diff a/PTT-GC-API/Models/Initiative/DetailInformation.cs b/PTT-GC-API/Models/Initiative/DetailInformation.cs	(rejected hunks)
+@@ -11,8 +11,8 @@
+ 
+         // ------------------ Detail Max ---------------------- //
+         public string InitiativeYear { get; set; }
+-        public string StrategicObjective { get; set; }
+-        public string Strategy { get; set; }
++        public string StrategicObjective { get; set; } //CIM
++        public string Strategy { get; set; } //CIM
+         public string InitiativeTypeMax { get; set; }
+         public string Workstream { get; set; }
+         public string SubWorkstream1 { get; set; }

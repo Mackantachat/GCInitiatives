@@ -1,0 +1,35 @@
+/* .freeze-table-header          { overflow-y: auto; height: 100px; }
+.freeze-table-header thead th { position: sticky; top: 0; } */
+
+/* Just common table stuff. Really. */
+/* table  { border-collapse: collapse; width: 100%; }
+th, td { padding: 8px 16px; }
+th     { background:#eee; } */
+
+
+/* Borders (if you need them) */
+/* .freeze-table-header,
+.freeze-table-header td {
+  box-shadow: inset 1px -1px #000;
+}
+.freeze-table-header th {
+  box-shadow: inset 1px 1px #000, 0 1px #000;
+} */
+
+
+
+table {
+  table-layout: fixed;
+}
+
+th ::ng-deep {
+  /* white-space: nowrap; */
+  background-color: #0078b8!important;  
+}
+
+.table ::ng-deep thead ::ng-deep th ::ng-deep {
+  vertical-align: middle!important;
+  color: #ffffff!important;
+  background-color: #0078b8!important;  
+  font-weight: 400!important;
+}

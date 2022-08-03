@@ -1,0 +1,831 @@
+<!-- <div bsModal #AttachmentModal="bs-modal" class="modal fade modal-Attachment" [config]="{ backdrop: 'static'}">
+  <app-initiative-attachment (modelClose)="CloseAttachment()" [id]="id"></app-initiative-attachment>
+</div> -->
+
+<!-- <div bsModal #ViewLogHistoryModal="bs-modal" class="modal fade modal-ViewLog" [config]="{ backdrop: 'static' }">
+  <app-view-log-history (modelClose)="CloseViewLogHistory()" [id]="id"></app-view-log-history>
+</div>
+
+<div bsModal #HistoryStatus="bs-modal" class="modal fade modal-ViewLog" [config]="{ backdrop: 'static' }">
+  <app-history-status (modelClose)="CloseHistoryStatus()" [id]="id" [stage]="history"></app-history-status>
+</div> -->
+
+<div>
+  <tabset #dimTabs>
+    <tab heading="IT & digital Budget Survey">
+      <div class="form-group row mt-3">
+        <div class="col-md-12">
+          <h3> {{ name }} </h3>
+          <hr>
+        </div>
+      </div>
+      <form [formGroup]="initiativesForm">
+        <!-- (keydown.enter)="$event.preventDefault()"-->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card text card-initiative">
+              <div class="card-body">
+                <div class="form-initiative">
+
+                  <!-- Initiative No -->
+                  <ng-container *ngIf="page == 'edit'">
+                    <div class="form-group row">
+                      <div class="col-md-6">
+                        <label for="name"> Initiative No. <span class="text-danger">*</span> : </label>
+                        <input value="{{initiativeCode}}" type="text" class="form-control" readonly>
+                      </div>
+                    </div>
+                  </ng-container>
+
+                  <!-- Initiative Name && Owner Name-->
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <label for="name"> Initiative Name <span class="text-danger">*</span> : </label>
+                      <input formControlName="name" type="text" class="form-control"
+                        [ngClass]="{'is-invalid': invalidName }">
+                      <div class="invalid-feedback" *ngIf="invalidName">
+                        Initiative Name is required !
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label for="OwnerName"> Owner Name <span class="text-danger">*</span> : </label>
+                      <ng-select formControlName="ownerName" [items]="owners" bindValue="ownerName"
+                        bindLabel="ownerName" placeholder="Choose Owner" (search)="SearchOwnerName($event)"
+                        (clear)="ClearOwnerName()">
+                      </ng-select>
+                      <div class="text-feedback" *ngIf="invalidOwnerName">
+                        OwnerName is required !
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label for="coDevelopers"> Co-Developer : </label>
+                      <ng-select formControlName="coDeveloper" [items]="coDevelopers" loadingText="Loading"
+                        [multiple]="true" (search)="SearchCoDeveloper($event)" (remove)="RemoveCoDeveloper()"
+                        bindValue="coDeveloperName" bindLabel="coDeveloperName" placeholder="Choose CoDevelopers">
+                      </ng-select>
+                    </div>
+                  </div>
+
+                  <!-- Company && SpecifyCompany && Plant && SpecifyPlant -->
+                  <div class="form-group row">
+                    <div class="col-md-3">
+                      <label for="company"> Company <span class="text-danger">*</span> : </label>
+                      <ng-select formControlName="company" [items]="companyList" bindValue="value" bindLabel="name"
+                        placeholder="Choose Company" (change)="onChangeCompany()" (focus)="onChangeCompany()"
+                        [readonly]="haveCompany" required>
+                      </ng-select>
+                      <div class="text-feedback" *ngIf="invalidCompany">
+                        Company is required !
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <ng-template [ngIf]="IsOtherCompany">
+                        <label for="specifyCompany"> Please Specify : Company</label>
+                        <input formControlName="specifyCompany" type="text" class="form-control">
+                      </ng-template>
+                    </div>
+                    <div class="col-md-3">
+                      <label for="plant"> Plant <span class="text-danger">*</span> : </label>
+                      <ng-select formControlName="plant" [items]="GetPlants()" bindValue="id" bindLabel="name"
+                        placeholder="Choose Plant" required>
+                      </ng-select>
+                      <div class="text-feedback" *ngIf="invalidPlant">
+                        Plant is required !
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <ng-template [ngIf]="IsOtherPlant">
+                        <label for="specifyPlant"> Please Specify : Plant</label>
+                        <input formControlName="specifyPlant" type="text" class="form-control">
+                      </ng-template>
+                    </div>
+                  </div>
+
+                  <!-- Organization && MTP Integration && Initiative Year && Register Date-->
+                  <div class="form-group row">
+                    <div class="col-md-3">
+                      <label for="organization">
+                        Organization (Asset Owner) <span class="text-danger">*</span> :
+                      </label>
+                      <ng-select formControlName="organization" [items]="GetOrganizations()" bindValue="name"
+                        bindLabel="name" placeholder="Choose Organization" required>
+                      </ng-select>
+                      <div class="text-feedback" *ngIf="invalidOrganization">
+                        Organization (Asset Owner) is required !
+                      </div>
+                    </div>
+                    <div class="col-3 mt-4 pt-3 mtp">
+                      <div class="custom-control custom-checkbox custom-control-inline">
+                        <input id="integration" class="custom-control-input" type="checkbox"
+                          formControlName="integration">
+                        <label class="custom-control-label" for="integration"> MTP Integration </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Starting Date & Finish Date -->
+                  <div class="form-group row">
+                    <div class="col-md-3">
+                      <label for="year"> Initiative Year <span class="text-danger">*</span> : </label>
+                      <select formControlName="year" class="form-control">
+                        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                      </select>
+                    </div>
+                    <div class="col-md-3">
+                      <label for="registerDate"> Register Date <span class="text-danger">*</span> : </label>
+                      <div class="input-group">
+                        <input formControlName="registeringDate" type="text" class="form-control" readonly>
+                        <div class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2"></i>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3">
+                      <label for="registerDate"> Starting Date <span class="text-danger">*</span> : </label>
+                      <div class="input-group">
+                        <input formControlName="startingDate" type="text" [bsConfig]="bsConfigStart"
+                          class="form-control" bsDatepicker #dpStart="bsDatepicker"
+                          (bsValueChange)="StartDateChange($event)">
+                        <div class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" (click)="dpStart.toggle()"
+                            [attr.aria-expanded]="dpStart.isOpen"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label for="FinishDate"> Finish Date <span class="text-danger">*</span> : </label>
+                      <div class="input-group">
+                        <input formControlName="finishingDate" type="text" [bsConfig]="bsConfigFinish"
+                          class="form-control" bsDatepicker #dpFinish="bsDatepicker"
+                          [ngClass]="{ 'is-invalid': invalidStartingDate }" (bsValueChange)="FinishChange($event)"
+                          (onShown)="OnShowFinish()" (onHidden)="OnHiddenFinish()">
+                        <div class="input-group-append">
+                          <i class="far fa-calendar right-icon mt-2" (click)="dpFinish.toggle()"
+                            [attr.aria-expanded]="dpFinish.isOpen"></i>
+                        </div>
+                        <div class="invalid-feedback" *ngIf="invalidStartingDate">
+                          Finish Date is required !
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Location -->
+                  <div class="form-group row ">
+                    <div class="col-md-6" *ngIf="showLocation">
+                      <label for="location"> Location : </label>
+                      <br>
+                      <div class="mt-1">
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input id="domestic" value="domestic" class="custom-control-input" type="radio"
+                            name="location" formControlName="location">
+                          <label class="custom-control-label" for="domestic"> Domestic </label>
+                        </div>
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input id="oversea" value="oversea" class="custom-control-input" type="radio" name="location"
+                            formControlName="location">
+                          <label class="custom-control-label" for="oversea"> Oversea </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6" *ngIf="showLocation">
+                      <label for="specifyLocation"> Please Specify : </label>
+                      <input formControlName="specifyLocation" type="text" class="form-control">
+                    </div>
+                  </div>
+
+                  <!-- Background &&  Objective/Expected Result-->
+                  <div class="form-group row ">
+                    <div class="col-md-6">
+                      <label for="background"> Background <span class="text-danger">*</span> : </label>
+                      <textarea formControlName="background" class="form-control" rows="3"
+                        [ngClass]="{ 'is-invalid': invalidBackground }"></textarea>
+                      <div class="invalid-feedback" *ngIf="invalidBackground">
+                        Background is required !
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="resultObjective">
+                        Objective/Expected Result <span class="text-danger">*</span> :
+                      </label>
+                      <textarea formControlName="resultObjective" class="form-control" rows="3"
+                        [ngClass]="{'is-invalid': invalidResultObjective }"></textarea>
+                      <div class="invalid-feedback" *ngIf="invalidResultObjective">
+                        Objective/Expected Result is required !
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- ScopeOfWork -->
+                  <div class="form-group row ">
+                    <div class="col-md-6">
+                      <label for="scopeOfWork"> Scope of Work <span class="text-danger">*</span> : </label>
+                      <textarea formControlName="scopeOfWork" class="form-control" rows="3"
+                        [ngClass]="{'is-invalid': invalidScopeOfWork }"></textarea>
+                      <div class="invalid-feedback" *ngIf="invalidScopeOfWork">
+                        ScopeOfWork is required !
+                      </div>
+                    </div>
+                    <!-- <div class="col-md-3 my-3">
+                <br><br>
+                <div class="custom-control custom-checkbox custom-control-inline">
+                  <input id="involveItDigital" class="custom-control-input" type="checkbox"
+                    formControlName="involveItDigital">
+                  <label class="custom-control-label" for="involveItDigital"> Is this Initiative involve
+                    IT & digital
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-3 my-3">
+                <br><br>
+                <div class="custom-control custom-checkbox custom-control-inline">
+                  <input id="requestProjectEngineer" class="custom-control-input" type="checkbox"
+                    formControlName="requestProjectEngineer">
+                  <label class="custom-control-label" for="requestProjectEngineer"> Request Project Engineer
+                    (TPX) </label>
+                </div>
+              </div> -->
+                  </div>
+
+                  <!-- involve IT & digital & Project Engineer -->
+                  <div class="form-group row ">
+
+                  </div>
+
+                  <!-- Request Opex && Cost Estimated(OPEX) -->
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <label for="costEstCapex" class="my-3">
+                        Cost Estimated (CAPEX) M.THB <span class="text-danger">
+                          *
+                        </span> :
+                      </label>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <input formControlName="costEstCapex" type="text" class="form-control" placeholder='0.00'
+                            mask="separator.2" thousandSeparator="," [ngClass]="{ 'is-invalid': invalidCostEstCapex }"
+                            readonly>
+                          <div class="invalid-feedback" *ngIf="invalidCostEstCapex">
+                            Cost Estimated (CAPEX) is required !
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label class="my-3" for="costEstOpex">
+                        Cost Estimated (OPEX – Onetime) M.THB <span class="text-danger">*</span> :
+                      </label>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <input formControlName="costEstOpex" type="text" class="form-control" placeholder='0.00'
+                            mask="separator.2" thousandSeparator="," (change)="CalculatePayBackPeriod()"
+                            [ngClass]="{ 'is-invalid': invalidCostEstOpex }" readonly>
+                          <div class="invalid-feedback" *ngIf="invalidCostEstOpex">
+                            Cost Estimated (OPEX) is required !
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <label> Type of Benefit : </label>
+                      <select type="text" class="form-control" formControlName="typeBenefit"
+                        (change)="ChangeTypeBenefit()">
+                        <option value="" selected disabled>Choose Type of Benefit</option>
+                        <option value="EBITDA">EBITDA</option>
+                        <option value="EBIT">EBIT</option>
+                        <option value="NON-FINANCIAL">NON-FINANCIAL</option>
+                      </select>
+                    </div>
+
+                    <ng-container *ngIf="showBenefit">
+                      <div class="col-md-6">
+                        <label for="benefitAmount"> Benefit Amount </label>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <input formControlName="benefitAmount" type="text" class="form-control" placeholder='0.00'
+                              mask="separator.2" thousandSeparator="," (input)="CalculatePayBackPeriod()">
+                          </div>
+                          <div class="col-md-6">
+                            <select type="text" class="form-control" formControlName="benefitAmountType">
+                              <option value="THB"> M.THB / Year </option>
+                              <option value="USD"> M.USD / Year </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </ng-container>
+
+
+                  </div>
+
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <label> Pay Back Period : </label>
+                      <input type="text" class="form-control" formControlName="payBackPeriod" step='0.01'
+                        placeholder='0.00' mask="separator.2" thousandSeparator="," readonly>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <hr>
+      <form [formGroup]="DimForm">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card text card-initiative">
+              <div class="card-body">
+                <div class="form-initiative">
+                  <!-- <div class="row"> -->
+                  <!-- <div class="col-6"> -->
+                  <div class="col-md-12 mb-3">
+                    <h5>Please select item(s) and provide more information as required below:</h5>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-12 dim-select">
+                      <div class="mt-1">
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input id="Hardware/Software" value="Hardware/Software" class="custom-control-input"
+                            type="radio" name="type" formControlName="type" (change)="ChangeDim()">
+                          <label class="custom-control-label my-2" for="Hardware/Software">
+                            <h4 class="text-dark"> Standard items </h4>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="row">
+                        <div class="col-md-12">
+                          <div class="card text card-initiative">
+                            <div class="card-body">
+                              <div class="form-initiative">
+                                <div class="form-group row">
+                                  <div class="col-md-4">
+                                    <label> CAPEX (THB) </label>
+                                    <input formControlName="capexHardware" type="text" class="form-control"
+                                      placeholder='0.00' mask="separator.2" thousandSeparator="," readonly>
+                                  </div>
+                                </div>
+                                <div class="form-group row">
+                                  <div class="col-md-6">
+                                    <div class="mt-1">
+                                      Hardware
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="card text card-initiative">
+                                      <div class="form-initiative">
+                                        <div class="form-row align-items-center">
+                                          <table class="table table-bordered">
+                                            <thead class="text-center bg-light">
+                                              <th width="19%">Hardware</th>
+                                              <th width="19%">Other</th>
+                                              <th width="19%">No. of unit</th>
+                                              <th width="19%">Cost Per Unit(THB) </th>
+                                              <th width="19%">Total THB</th>
+                                              <ng-container *ngIf="!DimView">
+                                                <th width="5%"></th>
+                                              </ng-container>
+                                            </thead>
+                                            <tbody
+                                              *ngFor="let control of DimForm.controls.hardware.get('capexHardware')['controls']; let i=index">
+                                              <tr [formGroup]="control">
+                                                <td class="text-center">
+                                                  <select class="form-control" type="text" formControlName="assetId"
+                                                    (change)="OnChangeHardware(i)">
+                                                    <option value="" selected disabled> Choose... </option>
+                                                    <option *ngFor="let item of hardware" value="{{ item.assetId }}">
+                                                      {{ item.assetName }}
+                                                    </option>
+                                                    <option value="H9999"> Other </option>
+                                                  </select>
+                                                </td>
+                                                <td class="form-group">
+                                                  <input type="text" class="form-control" formControlName="otherName"
+                                                    (input)="InputOtherHardware(i)">
+                                                </td>
+                                                <td class="form-group">
+                                                  <input type="number" class="form-control"
+                                                    formControlName="numberOfUnit" (input)="InputHardware(i)">
+                                                </td>
+                                                <td class="form-group">
+                                                  <div class="input-group">
+                                                    <input type="text" class="form-control"
+                                                      formControlName="costPerUnit" mask="separator.2"
+                                                      thousandSeparator="," (input)="InputHardware(i)">
+                                                  </div>
+                                                </td>
+                                                <td class="form-group">
+                                                  <div class="input-group">
+                                                    <input type="text" class="form-control"
+                                                      formControlName="totalMTHB" mask="separator.2"
+                                                      thousandSeparator="," readonly>
+                                                  </div>
+                                                </td>
+                                                <ng-container *ngIf="!DimView">
+                                                  <td class="text-center">
+                                                    <button class="btn btn-danger btn-sm" (click)="RemoveCapexForm(i)"
+                                                      [disabled]="isRemoveCapexForm || isDisableCapex">
+                                                      <i class="fas fa-trash-alt"></i>
+                                                    </button>
+                                                  </td>
+                                                </ng-container>
+                                              </tr>
+                                            </tbody>
+                                          </table>
+                                          <ng-container *ngIf="!DimView">
+                                            <button class="btn btn-primary" (click)="AddCapexForm()"
+                                              [disabled]="isDisableCapex">
+                                              <i class="fas fa-plus-square mr-2"></i> Add New
+                                            </button>
+                                          </ng-container>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div> -->
+                  <ng-container *ngIf="showSoftware">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="card text card-initiative">
+                          <div class="card-body">
+                            <div class="form-initiative">
+                              <div class="form-group row">
+                                <div class="col-md-4">
+                                  <label> Opex (THB) </label>
+                                  <input formControlName="opexSoftware" type="text" class="form-control"
+                                    mask="separator.2" thousandSeparator="," placeholder='0.00' readonly>
+                                </div>
+                              </div>
+                              <div class="form-group row">
+                                <div class="col-md-6">
+                                  <div class="mt-1">
+                                    Software
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12">
+                                  <div class="card text card-initiative">
+                                    <div class="form-initiative">
+                                      <div class="form-row align-items-center">
+                                        <table class="table table-bordered">
+                                          <thead class="text-center bg-light">
+                                            <th width="15%">Software</th>
+                                            <th width="40%">Detail</th>
+                                            <th width="15%">No. of unit</th>
+                                            <th width="15%">Cost Per Unit(THB) </th>
+                                            <th width="15%">Total THB</th>
+                                            <ng-container *ngIf="!DimView">
+                                              <th width="5%"></th>
+                                            </ng-container>
+                                          </thead>
+                                          <tbody
+                                            *ngFor="let control of DimForm.controls.software.get('opexSoftware')['controls']; let i=index">
+                                            <tr [formGroup]="control">
+                                              <td class="text-center">
+                                                <select class="form-control" type="text" formControlName="assetId"
+                                                  (change)="OnChangeSoftware(i)">
+                                                  <option value="" selected disabled> Choose... </option>
+                                                  <option *ngFor="let item of software" value="{{ item.assetId }}">
+                                                    {{ item.assetName }}</option>
+                                                  <option value="S9999"> Other </option>
+                                                </select>
+                                              </td>
+                                              <td class="form-group">
+                                                <input type="text" class="form-control" formControlName="otherName"
+                                                  (input)="InputOtherSoftware(i)">
+                                              </td>
+                                              <td class="form-group">
+                                                <input type="number" class="form-control" formControlName="numberOfUnit"
+                                                  (input)="InputSoftware(i)">
+                                              </td>
+                                              <td class="form-group">
+                                                <div class="input-group">
+                                                  <input type="text" class="form-control" formControlName="costPerUnit"
+                                                    mask="separator.2" thousandSeparator="," (input)="InputSoftware(i)">
+                                                </div>
+                                              </td>
+                                              <td class="form-group">
+                                                <div class="input-group">
+                                                  <input type="text" class="form-control" formControlName="totalMTHB"
+                                                    mask="separator.2" thousandSeparator="," readonly>
+                                                </div>
+                                              </td>
+                                              <ng-container *ngIf="!DimView">
+                                                <td class="text-center">
+                                                  <button class="btn btn-danger btn-sm" (click)="RemoveOpexForm(i)"
+                                                    [disabled]="isRemoveOpexForm || isDisableOpex">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                  </button>
+                                                </td>
+                                              </ng-container>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                        <ng-container *ngIf="!DimView">
+                                          <button class="btn btn-primary mr-5" (click)="AddOpexForm()"
+                                            [disabled]="isDisableOpex">
+                                            <i class="fas fa-plus-square mr-2"></i> Add New
+                                          </button>
+                                        </ng-container>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-container>
+
+                  <div class="form-group row">
+                    <div class="col-md-12 dim-select">
+                      <div class="mt-1">
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input id="Project/SystemEnhancement" value="Project/System Enhancement"
+                            class="custom-control-input" type="radio" name="type" formControlName="type"
+                            (change)="ChangeDim()">
+                          <label class="custom-control-label my-2" for="Project/SystemEnhancement">
+                            <h4 class="text-dark"> New project / System enhancement </h4>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="project"> -->
+                  <ng-container *ngIf="showProject">
+                    <div class="form-group row offset-4">
+                      <label class="ml-3"> CAPEX (M.THB) </label>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-md-4">
+                        <div class="mt-1">
+                          <div class="custom-control custom-radio custom-control-inline">
+                            <input id="capex1" value="capex001" class="custom-control-input" type="radio" name="capexNo"
+                              formControlName="capexNo" (change)="ChangeCapex($event)">
+                            <label class="custom-control-label" for="capex1"> 1. Existing System/Application
+                              Enhancement </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <input formControlName="capexSummary1" type="text" class="form-control" placeholder='0.00'
+                          mask="separator.2" thousandSeparator="," (input)="ChangeCapexSummary(1)">
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="form-group row">
+                      <div class="col-md-4">
+                        <div class="mt-1">
+                          <div class="custom-control custom-radio custom-control-inline">
+                            <input id="capex2" value="capex002" class="custom-control-input" type="radio" name="capexNo"
+                              formControlName="capexNo" (change)="ChangeCapex($event)">
+                            <label class="custom-control-label" for="capex2"> 2. New platform or New technology to
+                              GC </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <input formControlName="capexSummary2" type="text" class="form-control" placeholder='0.00'
+                          mask="separator.2" thousandSeparator="," (input)="ChangeCapexSummary(2)">
+                      </div>
+                    </div>
+
+                    <br>
+                    <div class="form-group row">
+                      <div class="col-md-4">
+                        <div class="mt-1">
+                          <div class="custom-control custom-radio custom-control-inline">
+                            <input id="capex3" value="capex003" class="custom-control-input" type="radio" name="capexNo"
+                              formControlName="capexNo" (change)="ChangeCapex($event)">
+                            <label class="custom-control-label" for="capex3"> 3. Advanced analytics model (AA)
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <input formControlName="capexSummary3" type="text" class="form-control" placeholder='0.00'
+                          mask="separator.2" thousandSeparator="," (input)="ChangeCapexSummary(3)">
+                      </div>
+                    </div>
+
+                    <div class="row ml-4">
+                      <div class="col-md-12 mt-3">
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input id="capexChoice1" value="Operation optimization" class="custom-control-input"
+                            type="radio" name="advancedCapexChoice" formControlName="advancedCapexChoice">
+                          <label class="custom-control-label" for="capexChoice1"> Operation optimization </label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mt-3">
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input id="capexChoice2" value="Predictive maintenance" class="custom-control-input"
+                            type="radio" name="advancedCapexChoice" formControlName="advancedCapexChoice">
+                          <label class="custom-control-label" for="capexChoice2"> Predictive maintenance </label>
+                        </div>
+                      </div>
+                      <div class="col-md-12 mt-3">
+                        <div class="custom-control custom-radio custom-control-inline">
+                          <input id="capexChoice3" value="Predictive pricing" class="custom-control-input" type="radio"
+                            name="advancedCapexChoice" formControlName="advancedCapexChoice">
+                          <label class="custom-control-label" for="capexChoice3"> Predictive pricing </label>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+
+                    <ng-container *ngIf="Question">
+                      <!-- <div class="container-fluid mt-3"> -->
+                      <div class="form-group row" *ngFor="let item of SortByTopic(CapexTopic)">
+                        <div class="col-md-4 mt-2">
+                          <strong> {{ item.topicName }} </strong>
+                        </div>
+                        <div class="col-md-8 mt-2">
+                          <span class="ml-3">
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input class="custom-control-input" type="radio" [name]="item.topicId"
+                                [id]="RadioYes(item.topicId)" value="yes" [formControlName]="item.topicId"
+                                (change)="ChangeTopic($event, item.topicId)">
+                              <label class="custom-control-label" [for]="RadioYes(item.topicId)"> Yes </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                              <input class="custom-control-input" type="radio" [name]="item.topicId"
+                                [id]="RadioNo(item.topicId)" value="no" [formControlName]="item.topicId"
+                                (change)="ChangeTopic($event, item.topicId)">
+                              <label class="custom-control-label" [for]="RadioNo(item.topicId)"> No </label>
+                            </div>
+                          </span>
+                        </div>
+                        <div class="col-12 mb-3" *ngIf="item.isYesOrNo">
+                          <div *ngFor="let choice of SortBy(item.capexChoices)">
+                            <div class="row">
+                              <div class="col-md-6 mb-2 ml-3">
+                                <ng-container
+                                  *ngIf="choice.topicId === 'T0001' && choice.choiceType === 'Text' && choice.choiceId === 'CH0001'">
+                                  <label> {{ choice.choiceName }} </label>
+                                  <textarea formControlName="Law" class="form-control" cols="30" rows="3"></textarea>
+                                </ng-container>
+                                <ng-container
+                                  *ngIf="choice.topicId === 'T0001' && choice.choiceType === 'Text' && choice.choiceId === 'CH0002'">
+                                  <label> {{ choice.choiceName }} </label>
+                                  <textarea formControlName="Impact" class="form-control" cols="30" rows="3"></textarea>
+                                </ng-container>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-1 mb-2 ml-3">
+                                <ng-container
+                                  *ngIf="choice.topicId === 'T0001' && choice.choiceType === 'Date' && choice.choiceId === 'CH0003'">
+                                  <label> {{ choice.choiceName }} </label>
+                                  <input formControlName="Effective" type="text" class="form-control"
+                                    [bsConfig]="bsConfigStart" class="form-control" bsDatepicker #dpStart="bsDatepicker"
+                                    (bsValueChange)="EffectiveChange($event)">
+                                </ng-container>
+                              </div>
+                            </div>
+                            <div class="col-md-12 mb-2 ml-3" *ngIf="choice.topicId !== 'T0001'">
+                              <div class="custom-control custom-radio custom-control-inline">
+                                <input [id]="choice.choiceId" [value]="choice.choiceId" class="custom-control-input"
+                                  type="radio" [name]="ChoiceName(item.topicId)"
+                                  [formControlName]="ChoiceName(item.topicId)">
+                                <label class="custom-control-label" [for]="choice.choiceId">
+                                  {{ choice.choiceName }} </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- </div> -->
+                    </ng-container>
+                    <!-- </div> -->
+                    <!-- </div> -->
+                    <!-- <div class="col-6"> -->
+
+                    <!-- </div> -->
+                    <!-- </div> -->
+                  </ng-container>
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <br>
+      <hr>
+      <br>
+    </tab>
+    <ng-container *ngIf="page === 'dim-edit' || page === 'dim-view' || page === 'approve'">
+      <tab heading="Status">
+        <div class="form-group row mt-3">
+          <div class="col-md-12">
+            <h3> Status
+              <button class="btn btn-outline-info float-right" (click)="ShowViewLogHistory()">
+                <i class="fas fa-history mr-2"></i> View Log History
+              </button>
+            </h3>
+            <hr>
+          </div>
+        </div>
+        <ng-template [ngIf]="statusTrackings.length" [ngIfElse]="Nodata">
+          <div class="container-fluid my-1">
+            <div class="row">
+              <div class="col-md-12">
+                <table class="table table-bordered mt-3">
+                  <thead class="text-center bg-light">
+                    <th>State</th>
+                    <th>Status</th>
+                    <th>Stage</th>
+                    <th>Approve by</th>
+                    <th>Approve Date</th>
+                    <th> <i class="fas fa-cog"></i> </th>
+                  </thead>
+                  <tbody class="text-center">
+                    <tr *ngFor="let item of statusTrackings; let i = index;">
+                      <td>
+                        <ng-container *ngIf="item.status === 'Complete'">
+                          <i class="fas fa-check"></i>
+                        </ng-container>
+                        <ng-container *ngIf="item.status === 'In Progress'">
+                          <i class="fas fa-sync-alt"></i>
+                        </ng-container>
+                      </td>
+                      <td> {{ item.status }} </td>
+                      <td> {{ item.stage }} </td>
+                      <td> {{ item.approvedBy }} </td>
+                      <td> {{ item.approvedDate | date:'dd/MM/yyyy HH:mm:ss' }} </td>
+                      <td>
+                        <ng-container *ngIf="CheckStage(item.stage)">
+                          <button class="btn btn-warning text-white" (click)="ShowHistory(item.stage)">
+                            <i class="fas fa-history"></i>
+                          </button>
+                        </ng-container>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template #Nodata>
+          <app-initiative-no-data></app-initiative-no-data>
+        </ng-template>
+      </tab>
+    </ng-container>
+  </tabset>
+</div>
+
+<ng-template [ngIf]="DimView" [ngIfElse]="ButtonSubmit">
+  <app-initiative-file [id]="id"></app-initiative-file>
+</ng-template>
+
+<ng-template #ButtonSubmit>
+  <div class="row">
+    <div class="col-md-6">
+      <button type="button" class="btn btn-success btn-width" (click)="Submit()" [disabled]="DisabledSubmit">
+        <i class="far fa-check-circle mr-2"></i> Submit
+      </button>
+      <button type="button" class="btn btn-white btn-width ml-2" [routerLink]="['/initiative/my-own']">
+        <i class="fas fa-ban mr-2"></i> Cancel
+      </button>
+    </div>
+    <div class="col-md-6" style="text-align:right">
+      <button type="button" class="btn btn-white btn-width ml-2" (click)="Draft()" [disabled]="DisabledSubmit">
+        <i class="far fa-save mr-2"></i> Save Draft
+      </button>
+      <button type="button" class="btn btn-white btn-width ml-2">
+        <i class="far fa-copy  mr-2"></i> Duplicate
+      </button>
+      <button type="button" class="btn btn-white btn-width ml-2">
+        <i class="fas fa-print mr-2"></i> Print
+      </button>
+      <button type="button" class="btn btn-white btn-width ml-2" (click)="ShowAttachment()">
+        <i class="fas fa-upload mr-2"></i> Attachment
+      </button>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,251 @@
+<form [formGroup]="lookbackForm">
+  <div class="row">
+    <div class="col-md-12" style="padding-left: inherit;padding-right: inherit;">
+      <div class=" card text card-initiative">
+        <div class="card-body">
+          <!-- <div class="form-initiative">
+              <label style="font-size: 28px;color: #454545;">Project Lookback</label>
+              <hr>
+            </div>
+            <br /> -->
+
+          <!-- Performance Lookback -->
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label>
+                <h4 class="title">Performance Lookback</h4>
+              </label>
+            </div>
+            <div class="col-md-6">
+            </div>
+          </div>
+
+          <br />
+
+          <!-- row-1 -->
+          <!-- Plan Lookback Date -->
+          <div class="form-group row">
+            <div class="col-md-2">
+              <label> Plan Performance Lookback Date
+                <span class="text-danger">*</span> : </label>
+            </div>
+
+            <div class="col-md-3">
+              <div class="input-group">
+                <input type="text" formControlName="PerformancePlanLookbackDate" [bsConfig]="PlanLookback"
+                  class="form-control" bsDatepicker #dpStart="bsDatepicker" [maxDate]="nextYearAgo"
+                  [triggers]="viewMode ? '' : 'click:click'">
+                <div *ngIf="!viewMode" class="input-group-append">
+                  <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpStart.isOpen"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <div><B>Core-Uplift Performance Lookback</B></div>
+
+          <!-- Table -->
+          <div style="margin-top: 20px;">
+            <table class="table table-bordered" id="custom_table">
+              <thead>
+                <tr style="background-color: lightgray;">
+                  <th scope="col" style="text-align: center;color: black;">Economics</th>
+                  <th scope="col" style="text-align: center;color: black;">Estimated/Planed</th>
+                  <th scope="col" style="text-align: center;color: black;">Actual</th>
+                  <th scope="col" style="text-align: center;color: black;">Why Difference</th>
+                  <th scope="col" style="text-align: center;color: black;">Remark</th>
+                  <th scope="col" style="text-align: center;color: black;">Comment</th>
+                  <!-- <th scope="col" style="text-align: center;color: black;">Action</th> -->
+                </tr>
+              </thead>
+              <tbody *ngFor="let control of lookbackForm.get('CoreUplift')['controls'];let i = index">
+
+                <tr [formGroup]="control">
+                  <td scope="row" style="background-color: lightgray;"><B>{{control.value.Economics}}</B></td>
+                  <td style="text-align: center;"><input class="form-control" formControlName="EstimatedPlaned"
+                      [ngClass]="{'is-invalid': getFormError(control,'EstimatedPlaned') }"></td>
+                  <td style="text-align: center;"><input class="form-control" formControlName="Actual"
+                      [ngClass]="{'is-invalid': getFormError(control,'Actual') }"></td>
+                  <td style="text-align: center;"><input class="form-control" formControlName="WhyDifference"
+                      [ngClass]="{'is-invalid': getFormError(control,'WhyDifference') }"></td>
+                  <td style="text-align: center;"><input class="form-control" formControlName="Remark"></td>
+                  <td style="text-align: center;"><input class="form-control" formControlName="Comment"></td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          <br />
+
+          <div><B>Result</B></div>
+
+          <!-- Table Result -->
+          <div style="margin-top: 20px;">
+            <form [formGroup]="lookbackForm">
+              <table class="table table-bordered" id="custom_table">
+                <thead>
+                  <tr style="background-color: lightgray;">
+                    <th scope="col" style="text-align: center;">Description</th>
+                    <th scope="col" style="text-align: center;">Unit</th>
+                    <th scope="col" style="text-align: center;">Before</th>
+                    <th scope="col" style="text-align: center;">After</th>
+                    <th scope="col" style="text-align: center;">Benefit</th>
+                    <th scope="col" style="text-align: center;">Rating</th>
+                    <!-- <th scope="col" style="text-align: center;">Action</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td scope="row" style="text-align: center;">
+                      <input type="text" class="form-control" formControlName="CoreUpliftResultDescription">
+                    </td>
+                    <td style="text-align: center;">
+                      <input type="text" class="form-control" formControlName="CoreUpliftResultUnit">
+                    </td>
+                    <td style="text-align: center;">
+                      <input type="text" class="form-control" formControlName="CoreUpliftResultBefore">
+                    </td>
+                    <td style="text-align: center;">
+                      <input type="text" class="form-control" formControlName="CoreUpliftResultAfter">
+                    </td>
+                    <td style="text-align: center;">
+                      <input type="text" class="form-control" formControlName="CoreUpliftResultBenefit">
+                    </td>
+                    <td style="text-align: center;">
+                      <input type="text" class="form-control" formControlName="CoreUpliftResultRating">
+                    </td>
+                    <!-- <td style="text-align: center;">
+                      <a class="edit" (click)="editResult(result)">Edit</a>
+                    </td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </form>
+          </div>
+
+          <!-- modal-edit -->
+          <!-- <ng-template #template>
+            <div class="modal-header">
+              <h4 class="modal-title pull-left">Modal</h4>
+              <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div style="margin-top: 20px;">
+                <form [formGroup]="coreUpliftForm">
+                  <table class="table table-bordered basic-table" id="custom_table">
+                    <thead>
+                      <tr style="background-color: lightgray;">
+                        <th scope="col" style="text-align: center;">Economics</th>
+                        <th scope="col" style="text-align: center;">Estimated/Planed</th>
+                        <th scope="col" style="text-align: center;">Actual</th>
+                        <th scope="col" style="text-align: center;">Why Difference</th>
+                        <th scope="col" style="text-align: center;">Remark</th>
+                        <th scope="col" style="text-align: center;">Comment</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr style="background-color: lightgray;">
+                        <td scope="row" style="text-align: center;">
+                          <B>{{col_name}}</B>
+                        </td>
+
+                        <td class="tdcolor" style="text-align: center;">
+                          <input type="text" class="form-control" formControlName="EstimatedPlaned">
+                        </td>
+
+                        <td class="tdcolor" style="text-align: center;">
+                          <input type="text" class="form-control" formControlName="Actual">
+                        </td>
+
+                        <td class="tdcolor" style="text-align: center;">
+                          <input type="text" class="form-control" formControlName="WhyDifference">
+                        </td>
+
+                        <td class="tdcolor" style="text-align: center;">
+                          <input type="text" class="form-control" formControlName="Remark">
+                        </td>
+
+                        <td class="tdcolor" style="text-align: center;">
+                          <input type="text" class="form-control" formControlName="Comment">
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </form>
+              </div>
+            </div>
+
+            <div class="modal-body" style="text-align: right;">
+              <button type="button" class="btn btn-primary" style="width: 95px;"
+                (click)="confirmUpdate()">Submit</button>
+              &nbsp;
+              <button type="button" class="btn btn-danger" style="width: 95px;"
+                (click)="declineUpdate()">Cancel</button>
+            </div>
+          </ng-template> -->
+
+          <!-- modal-edit-result -->
+          <!-- <ng-template #result>
+            <div class="modal-header">
+              <h4 class="modal-title pull-left">Update Lookback</h4>
+              <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div style="margin-top: 20px;">
+                <form [formGroup]="resultForm">
+                  <table class="table table-bordered basic-table" id="custom_table">
+                    <thead>
+                      <tr style="background-color: lightgray;">
+                        <th scope="col" style="text-align: center;">Description</th>
+                        <th scope="col" style="text-align: center;">Unit</th>
+                        <th scope="col" style="text-align: center;">Before</th>
+                        <th scope="col" style="text-align: center;">After</th>
+                        <th scope="col" style="text-align: center;">Benefit</th>
+                        <th scope="col" style="text-align: center;">Rating</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <td style="text-align: center;">
+                        <input type="text" class="form-control" formControlName="CoreUpliftResultDescription">
+                      </td>
+                      <td style="text-align: center;">
+                        <input type="text" class="form-control" formControlName="CoreUpliftResultUnit">
+                      </td>
+                      <td style="text-align: center;">
+                        <input type="text" class="form-control" formControlName="CoreUpliftResultBefore">
+                      </td>
+                      <td style="text-align: center;">
+                        <input type="text" class="form-control" formControlName="CoreUpliftResultAfter">
+                      </td>
+                      <td style="text-align: center;">
+                        <input type="text" class="form-control" formControlName="CoreUpliftResultBenefit">
+                      </td>
+                      <td style="text-align: center;">
+                        <input type="text" class="form-control" formControlName="CoreUpliftResultRating">
+                      </td>
+                    </tbody>
+                  </table>
+                </form>
+
+              </div>
+            </div>
+            <div class="modal-body" style="text-align: right;">
+              <button type="button" class="btn btn-primary" style="width: 95px;" (click)="updateWork()">Update</button>
+              &nbsp;
+              <button type="button" class="btn btn-danger" style="width: 95px;"
+                (click)="modalRef.hide()">Cancel</button>
+            </div>
+          </ng-template> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,254 @@
+<ng-template [ngIf]="LoadPage" [ngIfElse]="Success">
+  <ngx-spinner bdColor="#fffffff" color="#105bac" size="medium" type="ball-clip-rotate-pulse" [fullScreen]="true">
+  </ngx-spinner>
+</ng-template>
+
+<ng-template #Success>
+  <header>
+    <nav class="navbar navbar-expand-sm  border-bottom box-shadow mb-3 fixed-top" style="background:#0078b8">
+      <div class="container-fluid">
+        <a class="navbar-brand text-left py-2" routerLink="/">
+          <img src="assets/images/blue-logo.png" style="width:60%;margin-bottom: 7px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse"
+          aria-label="Toggle navigation" [attr.aria-expanded]="isExpanded" (click)="toggle()">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse" [ngClass]="{ show: isExpanded }"
+          style="text-align: left;padding-top: 20px;margin-left:-100px;scroll-padding-bottom: 10px;">
+          <ul class="navbar-nav flex-grow">
+            <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+              <a class="nav-link menu" [routerLink]="['/']" style="color: #FFFFFF;margin-bottom: 7px;"> My Dashboard
+              </a>
+              <span class="active-none" [ngClass]="{'active-link': getMaskUnderline('home')}"></span>
+              <!--dimgray-->
+            </li>
+            <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+              <a class="nav-link menu" [routerLink]="['/initiative/my-tasks']"
+                style="color: #FFFFFF;margin-bottom: 7px;"> My Tasks </a>
+              <span class="active-none" [ngClass]="{'active-link': getMaskUnderline('my-task') }"></span>
+              <!--dimgray-->
+            </li>
+            <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+              <a class="nav-link menu" [routerLink]="['/initiative/my-own']" style="color:#FFFFFF;margin-bottom: 7px;">
+                My Own Initiatives
+              </a>
+              <span class="active-none" [ngClass]="{'active-link': getMaskUnderline('my-own') }"></span>
+
+            </li>
+            <!-- <ng-container *ngIf="showOverview">
+              <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+                <a class="nav-link menu" [routerLink]="['/initiative/overview']"
+                  style="color:#FFFFFF;margin-bottom: 7px;"> Overview </a>
+                <span class="active-none" [ngClass]="{'active-link': getMaskUnderline() == 'overview'}"></span>
+              </li>
+            </ng-container> -->
+            <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+              <a class="nav-link menu" [routerLink]="['/initiative/overview']"
+                style="color:#FFFFFF;margin-bottom: 7px;"> Overview </a>
+              <span class="active-none" [ngClass]="{'active-link': getMaskUnderline('overview')}"></span>
+            </li>
+
+            <ng-container *ngIf="CheckPermissionSetting(permissionServiceStaticVar.DASHBOARD_MENU_PAGE_ID)">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false" style="color:#FFFFFF;margin-bottom: 7px;">
+                  Report Menu
+                </a>
+                <span class="active-none" [ngClass]="{'active-link': getMaskUnderline('reportMenu')}"></span>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownDashboard">
+                  <a class="dropdown-item" [routerLink]="['/initiative/dashboard-builtin']"> System Reports </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" [routerLink]="['/initiative/dashboard']"> Custom Reports </a>
+                </div>
+              </li>
+            </ng-container>
+
+            <li class="nav-item dropdown"
+              *ngIf="CheckPermissionSetting(permissionServiceStaticVar.SETTING_MENU_PAGE_ID)">
+              <!--*ngIf="          getEmailLists.indexOf(mailAccount?.toLowerCase()) >= 0-->
+              <!--*ngIf="mailAccount === 'thammatad.a@frontiscompany.com'"-->
+              <a class="nav-link dropdown-toggle" href="#" id="settingsDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" style="color:#FFFFFF;margin-bottom: 7px;">
+                Settings
+              </a>
+              <span class="active-none" [ngClass]="{'active-link': getMaskUnderline('setting')}"></span>
+              <div class="dropdown-menu" aria-labelledby="settingsDropdown">
+                <a class="dropdown-item" [routerLink]="['/setting']" style="cursor: pointer;"
+                  *ngIf="CheckPermissionSetting(permissionServiceStaticVar.SETTING_PAGE_ID)">
+                  Settings
+                </a>
+                <div class="dropdown-divider"
+                  *ngIf="CheckPermissionSetting(permissionServiceStaticVar.PERMISSION_PAGE_ID)"></div>
+                <a class="dropdown-item" [routerLink]="['/user/list']" style="cursor: pointer;"
+                  *ngIf="CheckPermissionSetting(permissionServiceStaticVar.PERMISSION_PAGE_ID)">
+                  Permission
+                </a>
+                <a class="dropdown-item" [routerLink]="['/role/list']" style="cursor: pointer;"
+                  *ngIf="CheckPermissionSetting(permissionServiceStaticVar.ROLE_PAGE_ID)">
+                  Roles
+                </a>
+                <div class="dropdown-divider"
+                  *ngIf="CheckPermissionSetting(permissionServiceStaticVar.VACMANAGEMENT_PAGE_ID) || CheckPermissionSetting(permissionServiceStaticVar.PICMANAGEMENT_PAGE_ID)">
+                </div>
+                <a class="dropdown-item" [routerLink]="['/vac-manager']" style="cursor: pointer;"
+                  *ngIf="CheckPermissionSetting(permissionServiceStaticVar.VACMANAGEMENT_PAGE_ID)">
+                  VAC Management
+                </a>
+                <a class="dropdown-item" [routerLink]="['/pic-manager']" style="cursor: pointer;"
+                  *ngIf="CheckPermissionSetting(permissionServiceStaticVar.PICMANAGEMENT_PAGE_ID)">
+                  PIC Management
+                </a>
+                <div class="dropdown-divider"
+                  *ngIf="CheckPermissionSetting(permissionServiceStaticVar.MAINTAIN_PAGE_ID)"></div>
+                <a class="dropdown-item" [routerLink]="['/maintain']" style="cursor: pointer;"
+                  *ngIf="CheckPermissionSetting(permissionServiceStaticVar.MAINTAIN_PAGE_ID)">
+                  Maintain
+                </a>
+                <div class="dropdown-divider"
+                  *ngIf="CheckPermissionSetting(permissionServiceStaticVar.KPIMAINTAIN_PAGE_ID) || CheckPermissionSetting(permissionServiceStaticVar.KPIMAINTAINVIEWER_PAGE_ID)">
+                </div>
+                <a class="dropdown-item" [routerLink]="['/initiative/kpi-maintain']" style="cursor: pointer;"
+                  *ngIf="CheckPermissionSetting(permissionServiceStaticVar.KPIMAINTAIN_PAGE_ID) || CheckPermissionSetting(permissionServiceStaticVar.KPIMAINTAINVIEWER_PAGE_ID)">
+                  KPI Maintain
+                </a>
+                <div class="dropdown-divider"
+                  *ngIf="CheckPermissionSetting(permissionServiceStaticVar.INACTIVEMAIL_PAGE_ID)"></div>
+                <a class="dropdown-item" [routerLink]="['/performance-inactive']" style="cursor: pointer;"
+                  *ngIf="CheckPermissionSetting(permissionServiceStaticVar.INACTIVEMAIL_PAGE_ID)">
+                  Inactive Email
+                </a>
+              </div>
+
+            </li>
+
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" (click)="checkSetting()" aria-expanded="false"
+                style="color:#FFFFFF;margin-bottom: 7px;">
+                Create
+              </a>
+              <span class="active-none" [ngClass]="{'active-link': getMaskUnderline('create')}"></span>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" (click)="createInitiative()" style="cursor: pointer;">
+                  New Initiative
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" [ngClass]="{'disabled-check': isAvailableBudgetPool}" (click)="RequestPool()"
+                  style="cursor: pointer;">
+                  New Request Annual Pool
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" [ngClass]="{'disabled-check': isActiveITBudgetSurvey}"
+                  [routerLink]="['/initiative/create-survey']" (click)="BudgetSurvey()">
+                  <!-- dropdown-item disabled-check-->
+                  New IT & Digital Budget Survey
+                </a>
+              </div>
+            </li>
+            <li class="nav-item dropdown ml-2">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" style="color:#FFFFFF;margin-bottom: 7px;">
+                <i class="fa fa-user" aria-hidden="false"> &nbsp;</i>
+                <!--<img src="assets/images/user.png" alt="" width="25px" class="mr-2">-->
+                {{ displayName }}
+              </a>
+              <div class="dropdown-menu dropdown-profile" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item item-profile" (click)="showChildModal()">
+                  <i class="fas fa-user-alt mr-2"></i> Profile
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item item-profile" (click)="logout()">
+                  <i class="fas fa-sign-out-alt mr-2"></i> Logout
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <br><br><br><br>
+  <div bsModal #profileModal="bs-modal" class="modal fade modal-search" (onHidden)="onHidden()"
+    [config]="{ backdrop: 'static'}">
+    <div class="modal-dialog modal-profile">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 id="dialog-child-name" class="modal-title pull-left"> Profile </h4>
+          <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="row text-center">
+            <div class="col-12">
+              <img src="assets/images/user.png" alt="" width="150px" class="mx-3 rounded-circle">
+            </div>
+            <div class="col-12 mt-3">
+              <div class="row">
+                <div class="col-4 text-right">
+                  <strong> Name : </strong>
+                </div>
+                <div class="col-8 text-left">
+                  <span> {{ displayName }} </span>
+                </div>
+              </div>
+            </div>
+            <hr>
+
+            <div class="col-12 my-2">
+              <div class="row">
+                <div class="col-4 text-right">
+                  <strong> jobTitle : </strong>
+                </div>
+                <div class="col-8 text-left">
+                  <span> {{ jobTitle }} </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 my-2">
+              <div class="row">
+                <div class="col-4 text-right">
+                  <strong> mail : </strong>
+                </div>
+                <div class="col-8 text-left">
+                  <span> {{ mailAccount }} </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 my-2">
+              <div class="row">
+                <div class="col-4 text-right">
+                  <strong> PrincipalName : </strong>
+                </div>
+                <div class="col-8 text-left">
+                  <span> {{ userPrincipalName }} </span>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 my-2">
+              <div class="row">
+                <div class="col-4 text-right">
+                  <strong> Company : </strong>
+                </div>
+                <div class="col-8 text-left">
+                  <span> {{ userCompany }} </span>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+        <div class="modal-footer text-center">
+          <button type="button" class="btn btn-outline-dark" (click)="hideChildModal()">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<div class="container-fluid main">
+  <router-outlet></router-outlet>
+</div>
+<app-footer></app-footer>

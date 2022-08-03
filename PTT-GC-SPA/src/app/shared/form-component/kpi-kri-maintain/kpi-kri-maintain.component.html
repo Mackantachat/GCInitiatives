@@ -1,0 +1,237 @@
+<form [formGroup]="initiativesForm">
+  <div class="row" style="margin-top:-40px;">
+    <div class="col-md-12" style="margin-top:-100px;padding-left: inherit; padding-right: inherit"
+      style="border-color: #FFFFFF;">
+      <div class="card text card-initiative" style="border-color: #FFFFFF;">
+        <div class="card-body" style="border-color: #FFFFFF;">
+          <div class="form-initiative">
+            <label for="" style="font-size: 28px; color: #414141">Maintain Corporate KPI / KRI / Long-term</label>
+            <hr />
+            <br>
+          </div>
+          <div class="form-initiative">
+            <div class=" row">
+              <div class="col-sm-1 col-form-label">
+                <label for="year">Year</label>
+              </div>
+              <div class="col-sm-2">
+                <select class="form-control form-control-sm" formControlName="year" id="year"
+                  (change)="selectChangeHandler($event)">
+                  <option [value]="y" *ngFor="let y of years">{{ y }}</option>
+                </select>
+              </div>
+              <div class="col-md-9" style="text-align: end;">
+                <button type="button" class="btn btn-primary btn-width ml-2" (click)="addData()"
+                  [ngClass]="{'freeze-control' : freezeControlKpi}">
+                  <i class="fa fa-plus"></i> Add
+                </button>&nbsp;&nbsp;
+              </div>
+            </div>
+            <div class="wrapper">
+              <table class="table table-bordered sticky">
+                <thead style="border: 1px solid black;">
+                  <tr>
+                    <th class="sticky-col first-col no-column" rowspan="2">No.</th>
+                    <th class="sticky-col second-col kpi-column" rowspan="2">KPI Target</th>
+                    <th class="text-center align-middle row-header">Score 1</th>
+                    <th class="text-center align-middle row-header">Score 2</th>
+                    <th class="text-center align-middle row-header">Score 3</th>
+                    <th class="text-center align-middle row-header">Score 4</th>
+                    <th class="text-center align-middle row-header">Score 5</th>
+                    <!-- <th class="text-center align-middle" colspan="5">Score</th> -->
+                    <th class="text-center align-middle row-header" rowspan="2">
+                      Initiative ID / Initiative Name
+                    </th>
+                    <th class="text-center align-middle row-header" rowspan="2">
+                      Initiative Name
+                    </th>
+                    <th class="text-center align-middle row-header" rowspan="2">Action</th>
+                  </tr>
+                  <!----------------------------------------------------------------------------------------------->
+                  <!-- <tr style="min-height: 200px;">
+                    <th class="text-center align-middle">1</th>
+                    <th class="text-center align-middle">2</th>
+                    <th class="text-center align-middle">3</th>
+                    <th class="text-center align-middle">4</th>
+                    <th class="text-center align-middle">5</th>
+                  </tr> -->
+                </thead>
+                <tbody>
+                  <ng-container formArrayName="datas">
+                    <tr *ngFor="let _ of datas.controls; let idx = index">
+                      <ng-container [formGroupName]="idx">
+                        <td class="p-1 col1 tall sticky-col first-col" style="box-shadow: 1px 1px 1px 1px #bebebe;">
+                          <div class="text-center align-middle">
+                            <!-- <label>{{ datas.controls[idx].get("no").value }}</label> -->
+                            <label>{{ idx + 1 }}</label>
+                            <input type="hidden" formControlName="kpiMaintainId">
+                          </div>
+                        </td>
+                        <td class="sticky-col second-col" style="box-shadow: 1px 1px 1px 1px #bebebe;">
+                          <div class="row">
+                            <textarea class="form-control" formControlName="kpiName" rows="3" cols="50"
+                              [readonly]="freezeControlKpi"
+                              style="margin-left: 12px;margin-right: 12px;width: 300px;border:solid 1px rgb(207, 207, 207);"></textarea>
+                          </div>
+                        </td>
+                        <td>
+                          <table style="margin: -10px -10px">
+                            <tr>
+                              <td style="border: none;" cellspacing="0" cellpadding="0">
+                                <textarea style="width: 300px;" class="form-control" formControlName="scoreText1"
+                                  rows="3" cols="50" [readonly]="freezeControlKpi"></textarea>
+                              </td>
+                              <td style="border: none;" cellspacing="0" cellpadding="0">
+                                <select formControlName="scoreLevel1" class="form-control"
+                                  style="min-width: 40px;margin-left: -10px"
+                                  [style]="{'background-color': getColor(datas.controls[idx].get('scoreLevel1').value)}"
+                                  [ngClass]="{ 'pointer-events-none': true }">
+                                  <option *ngFor="let color of colors" [value]="color.id"
+                                    [style]="{ 'background-color': color.value }">
+                                  </option>
+                                </select>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td>
+                          <table style="margin: -10px -10px">
+                            <tr>
+                              <td style="border: none;" cellspacing="0" cellpadding="0">
+                                <textarea style="width: 300px;" class="form-control" formControlName="scoreText2"
+                                  rows="3" cols="50" [readonly]="freezeControlKpi"></textarea>
+                              </td>
+                              <td style="border: none;" cellspacing="0" cellpadding="0">
+                                <select formControlName="scoreLevel2" class="form-control"
+                                  style="min-width: 40px;margin-left: -10px"
+                                  [style]="{'background-color': getColor(datas.controls[idx].get('scoreLevel2').value)}"
+                                  [ngClass]="{ 'pointer-events-none': true }">
+                                  <option *ngFor="let color of colors" [value]="color.id"
+                                    [style]="{ 'background-color': color.value }">
+                                  </option>
+                                </select>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td>
+                          <table style="margin: -10px -10px">
+                            <tr>
+                              <td style="border: none;" cellspacing="0" cellpadding="0">
+                                <textarea style="width: 300px;" class="form-control" formControlName="scoreText3"
+                                  rows="3" cols="50" [readonly]="freezeControlKpi"></textarea>
+                              </td>
+                              <td style="border: none;" cellspacing="0" cellpadding="0">
+                                <select formControlName="scoreLevel3" class="form-control"
+                                  style="min-width: 40px;margin-left: -10px"
+                                  [style]="{'background-color': getColor(datas.controls[idx].get('scoreLevel3').value)}"
+                                  [ngClass]="{ 'pointer-events-none': true }">
+                                  <option *ngFor="let color of colors" [value]="color.id"
+                                    [style]="{ 'background-color': color.value }">
+                                  </option>
+                                </select>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td>
+                          <table style="margin: -10px -10px">
+                            <tr>
+                              <td style="border: none;" cellspacing="0" cellpadding="0">
+                                <textarea style="width: 300px;" class="form-control" formControlName="scoreText4"
+                                  rows="3" cols="50" [readonly]="freezeControlKpi"></textarea>
+                              </td>
+                              <td style="border: none;" cellspacing="0" cellpadding="0">
+                                <select formControlName="scoreLevel4" class="form-control"
+                                  style="min-width: 40px;margin-left: -10px"
+                                  [style]="{'background-color': getColor(datas.controls[idx].get('scoreLevel4').value)}"
+                                  [ngClass]="{ 'pointer-events-none': true }">
+                                  <option *ngFor="let color of colors" [value]="color.id"
+                                    [style]="{ 'background-color': color.value }">
+                                  </option>
+                                </select>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td>
+                          <table style="margin: -10px -10px">
+                            <tr>
+                              <td style="border: none;" cellspacing="0" cellpadding="0">
+                                <textarea style="width: 300px;" class="form-control" formControlName="scoreText5"
+                                  rows="3" cols="50" [readonly]="freezeControlKpi"></textarea>
+                              </td>
+                              <td style="border: none;" cellspacing="0" cellpadding="0">
+                                <select formControlName="scoreLevel5" class="form-control"
+                                  style="min-width: 40px;margin-left: -10px"
+                                  [style]="{'background-color': getColor(datas.controls[idx].get('scoreLevel5').value)}"
+                                  [ngClass]="{ 'pointer-events-none': true }">
+                                  <option *ngFor="let color of colors" [value]="color.id"
+                                    [style]="{ 'background-color': color.value }">
+                                  </option>
+                                </select>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                        <td>
+                          <div style="width: 15rem;">
+                            <ng-select formControlName="initiativeId" [items]="presidentList" bindValue="id"
+                              id="initiativeId" bindLabel="name" style="z-index: 99;" placeholder="Choose Initiative"
+                              [ngClass]="{'freeze-control' : freezeControlKpi}" (search)="SearchPerson($event)"
+                              appendTo="body">
+                            </ng-select>
+                          </div>
+                        </td>
+
+                        <td class="" style="min-width: 300px;word-break: break-all;">
+                          <p>
+                            <a [href]="getLink(idx)" target="_blank">{{getLinkName(idx)}}</a>
+                          </p>
+                        </td>
+
+                        <td class="" style="width: 200px;">
+                          <div class="inline" [ngClass]="{'freeze-control' : freezeControlKpi}">
+                            <div style="width: 120px;">
+                              <div class="custom-control custom-checkbox">
+                                <input formControlName="isActive" type="checkbox" class="custom-control-input"
+                                  id="isActive{{idx}}">
+                                <label for="isActive{{idx}}" class="custom-control-label">Active</label>
+                                <button type="button" class="close" (click)="deleteRow(idx)">
+                                  <i class="fa fa-trash-alt"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+
+                      </ng-container>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="row" style="margin-left:-20px;margin-top:20px">
+              <div class="col-md-12">
+                <div class="float-right">
+                  <button type="button" class="btn btn-primary btn-width ml-2" (click)="saveData()"
+                    [ngClass]="{'freeze-control' : freezeControlKpi}">
+                    <i class="far fa-save mr-2"></i> Save
+                  </button>
+                </div>
+                <!-- <input type="button" class="btn btn-primary btn-width" value="Add" (click)="addData()" /> -->
+
+                <!-- <input type="submit" value="Save" class="btn btn-primary btn-width ml-2" (click)="saveData()" /> -->
+
+              </div>
+            </div>
+            <div class="container top">
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

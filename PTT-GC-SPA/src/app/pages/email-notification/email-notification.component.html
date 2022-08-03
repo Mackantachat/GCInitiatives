@@ -1,0 +1,350 @@
+<h3 style="color: #1C6EA4;">Performance Inactive</h3>
+<br />
+
+<div class="row">
+  <div class="col-md-1">
+    <p style="font-size: 18px;">Period :</p>
+  </div>
+  <div class="col-md-3">
+    <div class="input-group">
+      <input type="text" [bsConfig]="bsConfigMonth" class="form-control" bsDatepicker #dpStart="bsDatepicker"
+        [minMode]="'month'" [(ngModel)]="seletedDate" (ngModelChange)="getByPeriod()">
+      <div class="input-group-append">
+        <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpStart.isOpen"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container top">
+  <div class="row">
+    <div class="col-md-6"></div>
+    <div class="col-md-6" style="text-align:right">
+      <button type="button" class="btn btn-success" (click)="createModal(create)" style="width:115px">
+        <i class="fas fa-plus mr-2"></i> <span style="font-size: 0.9rem;"> Add </span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div style="margin-top: 20px;">
+  <table class="table table-bordered">
+    <thead>
+      <tr style="background-color: rgb(68, 114, 196)">
+        <th scope="col" style="text-align: center;color: white;">Initiative ID</th>
+        <th scope="col" style="text-align: center;color: white;">Initiative Name</th>
+        <th scope="col" style="text-align: center;color: white;">Project Engineer</th>
+        <!-- <th scope="col" style="text-align: center;color: white;">Period</th> -->
+        <th scope="col" style="text-align: center;color: white;">From</th>
+        <th scope="col" style="text-align: center;color: white;">To</th>
+        <th scope="col" style="text-align: center;color: white;">POC</th>
+        <th scope="col" style="text-align: center;color: white;">Outstanding Items</th>
+        <th scope="col" style="text-align: center;color: white;">Highlight Work</th>
+        <th scope="col" style="text-align: center;color: white;">CLSD</th>
+        <th scope="col" style="text-align: center;color: white;">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let item of performanceInactiveList | slice: (currentPage-1)*pagination.itemsPerPage:currentPage*pagination.itemsPerPage; let i = index;">
+        <td scope="row" style="text-align: center;">{{item.initiativeCode}}</td>
+        <td style="text-align: center;">{{item.name}}</td>
+        <td style="text-align: center;">{{item.ownerName}}</td>
+        <!-- <td style="text-align: center;">{{item.Period}}</td> -->
+        <td style="text-align: center;">{{item.fromDate | date: "dd/MM/yyyy"}}</td>
+        <td style="text-align: center;">{{item.toDate | date: "dd/MM/yyyy"}}</td>
+        <td style="text-align: center;">
+          <!-- {{item.POC}} -->
+          <input type="checkbox" [checked]="item.poc" aria-label="Checkbox for following text input">
+        </td>
+        <td style="text-align: center;">
+          <!-- {{item.OutstandingItems}} -->
+          <input type="checkbox" [checked]="item.outstandingItems" aria-label="Checkbox for following text input">
+        </td>
+        <td style="text-align: center;">
+          <!-- {{item.HighlightWork}} -->
+          <input type="checkbox" [checked]="item.highlightWork" aria-label="Checkbox for following text input">
+        </td>
+        <td style="text-align: center;">
+          <!-- {{item.CLSD}} -->
+          <input type="checkbox" [checked]="item.clsd" aria-label="Checkbox for following text input">
+        </td>
+        <td style="text-align: center;">
+          <a type="button" class="btn btn-warning btn-sm mr-1 text-white btn-list" (click)="updateModal(item, update)">
+            <i class="fas fa-pen"></i>
+          </a> &nbsp;
+          <a type="button" class="btn btn-danger btn-sm mr-1 text-white btn-list" (click)="deleteModal(item, delete)">
+            <i class="far fa-trash-alt"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- modal-add -->
+<ng-template #create>
+  <div class="modal-header ">
+    <h4 class="modal-title pull-left">Add New Exception</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" [formGroup]="createEmailForm">
+    <div class="row">
+      <div class="col-md-2">
+        <p style="font-size: 16px;">Initiative ID :</p>
+      </div>
+      <div class="col-md-8">
+        <div class="input-group">
+          <!-- <tag-input id="InitiativeName" formControlName="InitiativeName">
+            <tag-input-dropdown [zIndex]="99999" [autocompleteItems]="initiativesList">
+            </tag-input-dropdown>
+          </tag-input> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-12 mt-4">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="POC" formControlName="POC" class="custom-control-input" type="checkbox">
+              <label class="custom-control-label" for="POC"> POC </label>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="OutstandingItems" formControlName="OutstandingItems" class="custom-control-input"
+                type="checkbox">
+              <label class="custom-control-label" for="OutstandingItems">
+                Outstanding Items
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="HighlightWork" formControlName="HighlightWork" class="custom-control-input" type="checkbox">
+              <label class="custom-control-label" for="HighlightWork">
+                Highlight Work
+              </label>
+
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="CLSD" formControlName="CLSD" class="custom-control-input" type="checkbox">
+              <label class="custom-control-label" for="CLSD">
+                CLSD
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="BenefitTracking" formControlName="BenefitTracking" class="custom-control-input"
+                type="checkbox">
+              <label class="custom-control-label" for="BenefitTracking">
+                Benefit Tracking
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Starting Date & Finish Date -->
+    <div class="form-group row">
+      <div class="col-md-5">
+        <label for="registerDate"> From: </label>
+        <div class="input-group">
+          <input id="From" formControlName="From" data-date-format="DD/MM/YYYY" type="text" [bsConfig]="bsConfig"
+            class="form-control" bsDatepicker #dpStart="bsDatepicker">
+          <div class="input-group-append">
+            <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpStart.isOpen"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="col-md-1">
+              <label for="registerDate"> <span class="text-danger"></span> </label>
+              <div class="input-group">
+                <div class="input-group-append">
+                  <span style="text-align: center;margin-top: 12px;">TO</span>
+                </div>
+              </div>
+            </div> -->
+
+      <div class="col-md-5">
+        <label for="FinishDate"> To: </label>
+        <div class="input-group">
+          <input id="To" formControlName="To" type="text" [bsConfig]="bsConfig" class="form-control" bsDatepicker
+            #dpFinish="bsDatepicker">
+          <div class="input-group-append">
+            <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpFinish.isOpen"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-body" style="text-align: right;">
+    <button type="button" class="btn btn-outline-primary" style="width: 95px;"
+      (click)="addNewException()">Submit</button>
+    &nbsp;
+    <button type="button" class="btn btn-outline-dark" style="width: 95px;" (click)="declineAdd()">Cancel</button>
+  </div>
+</ng-template>
+<!-- end-modal-add -->
+
+<!-- moda-update -->
+<ng-template #update>
+  <div class="modal-header ">
+    <h4 class="modal-title pull-left">Update new exception</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body" [formGroup]="updateEmailForm">
+    <div class="row">
+      <div class="col-md-2">
+        <p style="font-size: 16px;">Initiative ID :</p>
+      </div>
+      <div class="col-md-8">
+        <div class="input-group">
+          <input type="text" class="form-control" id="InitiativeID" formControlName="InitiativeID" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="col-md-12 mt-4">
+        <div class="row">
+          <div class="col-md-2">
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="POC" formControlName="POC" class="custom-control-input" type="checkbox">
+              <label class="custom-control-label" for="POC"> POC </label>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="OutstandingItems" formControlName="OutstandingItems" class="custom-control-input"
+                type="checkbox">
+              <label class="custom-control-label" for="OutstandingItems">
+                Outstanding Items
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="HighlightWork" formControlName="HighlightWork" class="custom-control-input" type="checkbox">
+              <label class="custom-control-label" for="HighlightWork">
+                Highlight Work
+              </label>
+
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="CLSD" formControlName="CLSD" class="custom-control-input" type="checkbox">
+              <label class="custom-control-label" for="CLSD">
+                CLSD
+              </label>
+            </div>
+          </div>
+
+          <div class="col-md-2">
+            <div class="custom-control custom-checkbox custom-control-inline">
+              <input id="BenefitTracking" formControlName="BenefitTracking" class="custom-control-input"
+                type="checkbox">
+              <label class="custom-control-label" for="BenefitTracking">
+                Benefit Tracking
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Starting Date & Finish Date -->
+    <div class="form-group row">
+      &nbsp;&nbsp;
+      <div class="col-md-5">
+        <label for="registerDate"> From: </label>
+        <div class="input-group">
+          <input id="From" formControlName="From" type="text" [bsConfig]="bsConfig" class="form-control" bsDatepicker
+            #dpStart="bsDatepicker">
+          <div class="input-group-append">
+            <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpStart.isOpen"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="col-md-1">
+            <label for="registerDate"> <span class="text-danger"></span> </label>
+            <div class="input-group">
+              <div class="input-group-append">
+                <span style="text-align: center;margin-top: 12px;">TO</span>
+              </div>
+            </div>
+          </div> -->
+
+      <div class="col-md-5">
+        <label for="FinishDate"> To: </label>
+        <div class="input-group">
+          <input id="To" formControlName="To" type="text" [bsConfig]="bsConfig" class="form-control" bsDatepicker
+            #dpFinish="bsDatepicker">
+          <div class="input-group-append">
+            <i class="far fa-calendar right-icon mt-2" [attr.aria-expanded]="dpFinish.isOpen"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-body" style="text-align: right;">
+    <button type="button" class="btn btn-outline-primary" style="width: 95px;" (click)="updateEmail()">Submit</button>
+    <button type="button" class="btn btn-outline-dark" style="width: 95px;" (click)="declineAdd()">Cancel</button>
+  </div>
+</ng-template>
+<!-- end-modal-update -->
+
+<!-- modal-delete -->
+<ng-template #delete>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Delete</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p style="text-align: left;font-size: 18px;margin-left: 3%;margin-top:3%">Are you certain you want to delete?</p>
+  </div>
+  <div class="modal-body" style="text-align: right">
+    <button type="button" class="btn btn-outline-primary" style="width: 95px;" (click)="confirmDelete()">Submit</button>
+    &nbsp;
+    <button type="button" class="btn btn-outline-dark" style="width: 95px;" (click)="declineDelete()">Cancel</button>
+  </div>
+</ng-template>
+<!-- end-modal-delete -->
+
+<ng-container class="mt-4 vertical-center">
+  <div class="d-flex justify-content-left">
+    <div class="form-inline">
+      <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+        [(ngModel)]="currentPage" [maxSize]="maxSize" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+        lastText="&raquo;" (click)="log($event)">
+      </pagination>
+    </div>
+  </div>
+</ng-container>

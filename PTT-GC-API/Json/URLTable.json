@@ -1,0 +1,7 @@
+[
+  {
+    "URLType": "MSFLOW",
+    "URL": "https://prod-06.southeastasia.logic.azure.com:443/workflows/b93b2973c7ac4c30859b11bf6b2a155e/triggers/manual/paths/invoke?api-version=2016-06-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=QrXya45L-Hif-9hQYiZTUtavTMSjz70HiCsp2UA2T2M",
+    "Remark": ""
+  }
+]

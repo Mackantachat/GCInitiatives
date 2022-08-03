@@ -1,0 +1,70 @@
+<div class="animated fadeIn">
+
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-4">
+      <div class="form-group">
+        <span class="fa fa-search form-control-feedback has-search"></span>
+        <input type="text" class="form-control pl-5" placeholder="Search" [(ngModel)]="searchModel" />
+        <!-- (ngModelChange)="OnFilterWithKeyDown($event)" -->
+      </div>
+    </div>
+    <div class="col-sm-12 col-md-4 col-lg-4">
+      <button class="btn btn-success" (click)="OnFilterWithKeyDown()">Search</button>
+    </div>
+  </div>
+
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr class="table-active text-center">
+        <th width="15%" [ngStyle]="{ cursor: 'pointer' }" (click)="sortBy('RoleName')">
+          Role
+        </th>
+        <th width="65%" [ngStyle]="{ cursor: 'pointer' }" (click)="sortBy('Description')">
+          Description
+        </th>
+        <th width="7.5%" [ngStyle]="{ cursor: 'pointer' }">
+          Edit
+        </th>
+        <th class="th-action" width="7.5%" [ngStyle]="{ cursor: 'pointer' }" (click)="sortBy('IsActive')">
+          Active
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let item of dataTable; let i = index">
+        <tr>
+          <td>{{ item.roleName }}</td>
+          <td>{{ item.description }}</td>
+          <td>
+            <a class="btn btn-warning action-anchor" (click)="navigateUserToEdit(i)">
+              <i class="fa fa-pen action-span"></i>
+            </a>
+          </td>
+          <td class="td-action">
+            <input type="checkbox" class="action-size disabled" [(ngModel)]="item.isActive" disabled />
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  <hr />
+  <ng-container class="mt-4">
+    <div class="d-flex justify-content-left">
+      <div class="form-inline">
+        <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+                    [(ngModel)]="currentPage" [maxSize]="maxSize" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;"
+                    lastText="&raquo;" (ngModelChange)="pageChanged($event)" #pager>
+        </pagination>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="row mt-4">
+    <div class="col-12">
+      <button class="btn btn-success btn-width-default" (click)="navigateUserToCreate()">
+        Add
+      </button>
+    </div>
+  </div>
+
+</div>

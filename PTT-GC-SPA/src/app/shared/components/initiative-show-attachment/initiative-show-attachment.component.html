@@ -1,0 +1,54 @@
+<div *ngIf="file.length > 0" class="modal-dialog modal-xl" [ngStyle]="{ 'margin-bottom' : '10%' }">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">
+                <i class="fas fa-cloud-upload-alt mr-2"></i> Attachment
+            </h4>
+        </div>
+        <div class="modal-body">
+            <div class="row mt-4" *ngIf="file.length">
+                <div class="col-md-12">
+                    <h3> <i class="fas fa-file-alt mr-2"></i> Files </h3>
+                    <hr>
+                </div>
+                <div class="col-md-12">
+                    <div class="table-wrapper-scroll-y table-custom-scrollbar">
+                        <ul>
+                            <li *ngFor="let item of file" class="my-4">
+                                <div class="row">
+                                    <div class="col-10">
+                                        {{ item.name }}
+                                    </div>
+                                    <div class="col-2">
+                                        <button type="button" class="btn btn-success btn-s mr-2"
+                                            (click)="DownloadAttachment(item.name, item.fileName)">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                        <ng-container *ngIf="!IsViewMode" >
+                                            <button type="button" class="btn btn-danger btn-s mr-2"
+                                            (click)="DeleteAttachment(item.id)">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                        </ng-container>                                       
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <span class="mr-auto">
+                <!-- <div class="text-danger" [ngStyle]="{ 'font-size': '14px' }">
+          *Please do not upload files over 2MB/File
+        </div> -->
+            </span>
+            <span class="mr-auto">
+                <div class="text-danger" [ngStyle]="{ 'font-size': '14px' }">
+                    If files are not found, please refresh the page (F5).
+                </div>
+            </span>
+        </div>
+    </div>
+</div>

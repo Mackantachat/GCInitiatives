@@ -1,0 +1,130 @@
+[
+    {
+      "TypeOfInvestmentId": "Environment",
+      "TypeOfInvestmentTitle": "Environment"
+    },
+    {
+      "TypeOfInvestmentId": "Safety",
+      "TypeOfInvestmentTitle": "Safety"
+    },
+    {
+      "TypeOfInvestmentId": "Law & Regulation",
+      "TypeOfInvestmentTitle": "Law & Regulation"
+    },
+    {
+      "TypeOfInvestmentId": "Maintain Reliability",
+      "TypeOfInvestmentTitle": "Maintain Reliability"
+    },
+    {
+      "TypeOfInvestmentId": "Replacement",
+      "TypeOfInvestmentTitle": "Replacement"
+    },
+    {
+      "TypeOfInvestmentId": "Growth: Backbone",
+      "TypeOfInvestmentTitle": "Growth: Backbone"
+    },
+    {
+      "TypeOfInvestmentId": "Growth: New business",
+      "TypeOfInvestmentTitle": "Growth: New business"
+    },
+    {
+      "TypeOfInvestmentId": "Growth: Build International Competitive base",
+      "TypeOfInvestmentTitle": "Growth: Build International Competitive base"
+    },
+    {
+      "TypeOfInvestmentId": "Growth: Diversify to performance chemicals",
+      "TypeOfInvestmentTitle": "Growth: Diversify to performance chemicals"
+    },
+    {
+      "TypeOfInvestmentId": "Growth: Enhance green",
+      "TypeOfInvestmentTitle": "Growth: Enhance green"
+    },
+    {
+      "TypeOfInvestmentId": "Sustain Core: Synergy",
+      "TypeOfInvestmentTitle": "Sustain Core: Synergy"
+    },
+    {
+      "TypeOfInvestmentId": "Sustain Core: Operational Excellence",
+      "TypeOfInvestmentTitle": "Sustain Core: Operational Excellence"
+    },
+    {
+      "TypeOfInvestmentId": "Sustain Core: Marketing Excellence",
+      "TypeOfInvestmentTitle": "Sustain Core: Marketing Excellence"
+    },
+    {
+      "TypeOfInvestmentId": "Sustain Core: Debot/Expansion",
+      "TypeOfInvestmentTitle": "Sustain Core: Debot/Expansion"
+    },
+    {
+      "TypeOfInvestmentId": "Sustain Core: Chain Integration",
+      "TypeOfInvestmentTitle": "Sustain Core: Chain Integration"
+    },
+    {
+      "TypeOfInvestmentId": "Sustain Core: New derivative",
+      "TypeOfInvestmentTitle": "Sustain Core: New derivative"
+    },
+    {
+      "TypeOfInvestmentId": "Sustain Core: Map ta put retrofit",
+      "TypeOfInvestmentTitle": "Sustain Core: Map ta put retrofit"
+    },
+    {
+      "TypeOfInvestmentId": "Sustain Core: Energy saving",
+      "TypeOfInvestmentTitle": "Sustain Core: Energy saving"
+    },
+    {
+      "TypeOfInvestmentId": "M&A",
+      "TypeOfInvestmentTitle": "M&A"
+    },
+    {
+      "TypeOfInvestmentId": "Divestment",
+      "TypeOfInvestmentTitle": "Divestment"
+    },
+    {
+      "TypeOfInvestmentId": "CVC",
+      "TypeOfInvestmentTitle": "CVC"
+    },
+    {
+      "TypeOfInvestmentId": "IT CAPEX",
+      "TypeOfInvestmentTitle": "IT CAPEX"
+    },
+    {
+      "TypeOfInvestmentId": "Digital CAPEX",
+      "TypeOfInvestmentTitle": "Digital CAPEX"
+    },
+    {
+      "TypeOfInvestmentId": "Turnaround",
+      "TypeOfInvestmentTitle": "Turnaround"
+    },
+    {
+      "TypeOfInvestmentId": "Overhaul",
+      "TypeOfInvestmentTitle": "Overhaul"
+    },
+    {
+      "TypeOfInvestmentId": "CSR",
+      "TypeOfInvestmentTitle": "CSR"
+    },
+    {
+      "TypeOfInvestmentId": "Welfare",
+      "TypeOfInvestmentTitle": "Welfare"
+    },
+    {
+      "TypeOfInvestmentId": "Lab & Quality",
+      "TypeOfInvestmentTitle": "Lab & Quality"
+    },
+    {
+      "TypeOfInvestmentId": "Technical Support for R&D",
+      "TypeOfInvestmentTitle": "Technical Support for R&D"
+    },
+    {
+      "TypeOfInvestmentId": "R&D",
+      "TypeOfInvestmentTitle": "R&D"
+    },
+    {
+      "TypeOfInvestmentId": "Others",
+      "TypeOfInvestmentTitle": "Others"
+    },
+    {
+      "TypeOfInvestmentId": "Engineering Request ER",
+      "TypeOfInvestmentTitle": "Engineering Request ER"
+    }
+  ]

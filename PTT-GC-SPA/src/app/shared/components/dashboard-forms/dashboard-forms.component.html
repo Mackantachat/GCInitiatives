@@ -1,0 +1,338 @@
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4 id="dialog-child-name" class="modal-title pull-left"> {{ typeOpen | titlecase}} </h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalClose()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form [formGroup]="headerForm" [ngClass]="{ 'disabled-div': isBuiltinReport}">
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <label for="reportName"> Report Name <span class="text-danger">*</span> : </label>
+                        <input type="text" class="form-control" formControlName="reportName" placeholder="Report Name"
+                            [ngClass]="{'is-invalid': HeaderFormValidator.reportName.invalid && HeaderFormValidator.reportName.touched }">
+                        <div class="text-feedback text-danger small"
+                            *ngIf="isSubmitted && HeaderFormValidator.reportName.invalid">
+                            Report Name is Invalid!.
+                        </div>
+
+                        <ng-container *ngIf="!isBuiltinReport">
+
+                            <label for="graphType"> Report Format <span class="text-danger">*</span> : </label>
+                            <div
+                                [ngClass]="{ 'disabled-div' : DisabledReportType(HeaderFormValidator.graphType.value)}">
+                                <select class="custom-select my-1 mr-sm-2" id="graphType" #graphType
+                                    formControlName="graphType"
+                                    [ngClass]="{'is-invalid': HeaderFormValidator.graphType.invalid && HeaderFormValidator.graphType.touched }"
+                                    (change)="ChangeReportType()">
+                                    <option *ngFor="let item of ddlGraphType"
+                                        [disabled]="DisabledReportType(item.value)" value="{{ item.value }}">
+                                        {{ item.name }}
+                                    </option>
+                                </select>
+                            </div>
+
+                            <div class="text-feedback text-danger small"
+                                *ngIf="isSubmitted && HeaderFormValidator.graphType.invalid">
+                                Report Type is Invalid!.
+                            </div>
+
+                        </ng-container>
+
+                    </div>
+
+                    <ng-container *ngIf="!isBuiltinReport">
+                        <div class="col-md-6">
+                            <ng-container *ngIf="isPageShowXAxisLabel">
+                                <label for="X_AxisLabel"> X Axis Label <span class="text-danger">*</span> : </label>
+                                <input type="text" class="form-control" formControlName="x_AxisLabel"
+                                    placeholder="X_AxisLabel"
+                                    [ngClass]="{'is-invalid': HeaderFormValidator.x_AxisLabel.invalid && HeaderFormValidator.x_AxisLabel.touched }">
+                                <div class="text-feedback text-danger small"
+                                    *ngIf="isSubmitted && HeaderFormValidator.x_AxisLabel.invalid">
+                                    X Axis Label is Invalid!.
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="isPageShowYAxisLabel">
+                                <label for="Y_AxisLabel"> Y Axis Label <span class="text-danger">*</span> : </label>
+                                <input type="text" class="form-control" formControlName="y_AxisLabel"
+                                    placeholder="Y_AxisLabel"
+                                    [ngClass]="{'is-invalid': HeaderFormValidator.y_AxisLabel.invalid && HeaderFormValidator.y_AxisLabel.touched }">
+                                <div class="text-feedback text-danger small"
+                                    *ngIf="isSubmitted && HeaderFormValidator.y_AxisLabel.invalid">
+                                    Y Axis Label is Invalid!.
+                                </div>
+                            </ng-container>
+                        </div>
+                    </ng-container>
+                </div>
+
+                <ng-container *ngIf="!isBuiltinReport">
+                    <div class="row" *ngIf="isPageShowStageType">
+                        <div class="col">
+                            <label for="stageType">Stage Type <span class="text-danger">*</span> : </label>
+                            <select class="custom-select my-1 mr-sm-2" formControlName="stageType" id="stageType"
+                                #stageType
+                                [ngClass]="{'is-invalid': HeaderFormValidator.stageType.invalid && HeaderFormValidator.stageType.touched }"
+                                (change)="ChangeStage()">
+                                <option *ngFor="let item of ddlStageType; let i = index" value="{{ item.value }}">
+                                    {{ item.name }}
+                                </option>
+                            </select>
+                            <div class="text-feedback text-danger small"
+                                *ngIf="isSubmitted && HeaderFormValidator.stageType.invalid">
+                                Y Axis Label is Invalid!.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="isPageShowAccumulate">
+                        <div class="col">
+                            <div class="custom-control custom-checkbox custom-control-inline">
+                                <input class="custom-control-input" id="isAccumulate" type="checkbox"
+                                    formControlName="isAccumulate">
+                                <label class="custom-control-label" for="isAccumulate"> Accumulate
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <br>
+            </form>
+
+            <ng-container *ngIf="!isBuiltinReport">
+                <form [formGroup]="detailXForm" *ngIf="isShowXAxis && isPageShowXAxis"
+                    [ngClass]="{ 'disabled-div': isBuiltinReport}">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="fieldName"> X Axis <span class="text-danger">*</span> : </label>
+                            <select class="custom-select my-1 mr-sm-2" formControlName="fieldName"
+                                [ngClass]="{'is-invalid': DetailXFormValidator.fieldName.invalid && DetailXFormValidator.fieldName.touched }"
+                                (change)="ChangeXAxis()">
+                                <option *ngFor="let item of ddlXAxis" value="{{ item.value }}">{{ item.name }}</option>
+                            </select>
+                            <div class="text-feedback text-danger small"
+                                *ngIf="isSubmitted && DetailXFormValidator.fieldName.invalid">
+                                X Axis is Invalid!.
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+
+                    <!-- <input type="text" class="form-control" formControlName="ColorCode" placeholder="ColorCode"> -->
+                </form>
+
+                <br>
+            </ng-container>
+
+
+            <ng-container *ngIf="!isBuiltinReport">
+                <form [formGroup]="detailYForm" *ngIf="isPageShowYAxis" [ngClass]="{ 'disabled-div': isBuiltinReport}">
+
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="table-active text-center table-initiative">
+                                <th width="10%"> No. </th>
+                                <th width="50%"> Y Axis <span class="text-danger">*</span> </th>
+                                <th width="20%" *ngIf="isPageShowAggregate"> Aggregate Function </th>
+                                <th width="20%"> Action </th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let control of detailYForm['controls']; let i = index">
+                            <tr [formGroup]="control">
+                                <td class="text-center">{{ i + 1 }}</td>
+                                <td>
+                                    <ng-select *ngIf="isShowYAxis" class="my-1 mr-sm-2" formControlName="fieldName"
+                                        [clearable]="false"
+                                        [ngClass]="{'is-invalid': DetailYFormValidator[i]['controls'].fieldName.invalid && DetailYFormValidator[i]['controls'].fieldName.touched }">
+                                        <ng-option *ngFor="let item of ddlYAxis"
+                                            [disabled]="CheckIsDupYAxis(item.value)" [value]="item.value">{{ item.name
+                                            }}
+                                        </ng-option>
+                                    </ng-select>
+                                    <div class="text-feedback text-danger small"
+                                        *ngIf="isSubmitted && DetailYFormValidator[i]['controls'].fieldName.invalid">
+                                        Field Name is Invalid!.
+                                    </div>
+                                </td>
+                                <td *ngIf="isPageShowAggregate">
+                                    <select class="custom-select my-1 mr-sm-2" formControlName="aggregateFunction">
+                                        <option *ngFor="let item of ddlAggregateFunction" value="{{ item }}">{{ item }}
+                                        </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col">
+                                            <i class="btn btn-light fas fa-caret-up" *ngIf="!isDisableUpAction(i)"
+                                                (click)="shiftUpAtion(i)"></i>
+                                            <i class="btn btn-light fas fa-caret-down" *ngIf="!isDisableDownAction(i)"
+                                                (click)="shiftDownAction(i)"></i>
+                                        </div>
+                                        <div class="col">
+                                            <button [disabled]="isCapexExcel_Powerpoint" class="btn btn-sm btn-danger"
+                                                (click)="RemoveFieldY(i)" *ngIf="canRemoveFieldY">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- <div [formGroup]="control" class="row" *ngFor="let control of detailYForm['controls']; let i = index">
+                    <div class="col">
+                        <label for="fieldName">{{ i + 1 }}. Y Axis <span class="text-danger">*</span> : </label>
+                        <select class="custom-select my-1 mr-sm-2" formControlName="fieldName">
+                            <option *ngFor="let item of ddlYAxis" value="{{ item }}">{{ item }}</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="aggregateFunction"> Aggregate Function : </label>
+                        <select class="custom-select my-1 mr-sm-2" formControlName="aggregateFunction">
+                            <option *ngFor="let item of ddlAggregateFunction" value="{{ item }}">{{ item }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-sm btn-danger" (click)="RemoveFieldY(i)" [disabled]="canRemoveFieldY">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div> -->
+                    <div class="row" style="justify-content: flex-end;">
+                        <div class="col-md-2">
+                            <button [disabled]="isCapexExcel_Powerpoint" class="btn btn-sm btn-block btn-primary mt-2"
+                                (click)="AddFieldY()" *ngIf="canAddFieldY"> Add Y Axis </button>
+                        </div>
+                    </div>
+                </form>
+
+                <br>
+
+            </ng-container>
+
+
+            <form [formGroup]="paramForm">
+
+                <table class="table table-hover" *ngIf="isShowTableParam">
+                    <thead>
+                        <tr class="table-active text-center table-initiative">
+                            <th width="5%"> No. </th>
+                            <th width="40%"> Parameter Field <span class="text-danger">*</span> </th>
+                            <th width="25%"> Filter Condition <span class="text-danger">*</span> </th>
+                            <th width="30%"> Value </th>
+                            <th *ngIf="!isBuiltinReport" width="10%"> Action </th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let control of paramForm['controls']; let i = index">
+                        <tr [formGroup]="control">
+                            <td class="text-center">{{ i + 1 }}</td>
+                            <td [ngClass]="{ 'disabled-div': isBuiltinReport}">
+                                <ng-select *ngIf="isShowParam" class="my-1 mr-sm-2" (change)="GetDropdownItems(i)"
+                                    formControlName="parameterField" [clearable]="false"
+                                    [ngClass]="{'is-invalid': ParamFormValidator[i]['controls'].parameterField.invalid && ParamFormValidator[i]['controls'].parameterField.touched }">
+                                    <ng-option *ngFor="let item of ddlParamField" [value]="item.value">{{ item.name }}
+                                    </ng-option>
+                                </ng-select>
+                                <div class="text-feedback text-danger small"
+                                    *ngIf="isSubmitted && ParamFormValidator[i]['controls'].parameterField.invalid">
+                                    Parameter Field is Invalid!.
+                                </div>
+                            </td>
+                            <td [ngClass]="{ 'disabled-div': isBuiltinReport}">
+                                <select class="custom-select my-1 mr-sm-2" formControlName="filterCondition"
+                                    (change)="OnFilterConditionChange(i)"
+                                    [ngClass]="{'is-invalid': ParamFormValidator[i]['controls'].filterCondition.invalid && ParamFormValidator[i]['controls'].filterCondition.touched }">
+                                    <option *ngFor="let item of ddlFilterCondition" value="{{ item }}">{{ item }}
+                                    </option>
+                                </select>
+                                <div class="text-feedback text-danger small"
+                                    *ngIf="isSubmitted && ParamFormValidator[i]['controls'].filterCondition.invalid">
+                                    Filter Condition is Invalid!.
+                                </div>
+                            </td>
+                            <td [ngClass]="{ 'disabled-div': isBuiltinReport}">
+                                <ng-container *ngIf="!paramForm['controls'][i]?.get('isShowDropdown').value">
+                                    <input type="text" class="form-control" formControlName="defaultValue"
+                                        placeholder="Default Value" (keydown.enter)="$event.preventDefault()">
+                                </ng-container>
+
+                                <ng-container *ngIf="paramForm['controls'][i]?.get('isShowDropdown').value">
+                                    <ng-select formControlName="defaultValueSelector" [items]="paramsDDL[i]"
+                                        loadingText="Loading" [multiple]="true" (search)="SearchDropdownItems(i,$event)"
+                                        (remove)="RemoveItem(i)" bindValue="itemValue" (change)="ItemChange(i)"
+                                        [maxSelectedItems]="paramForm['controls'][i]?.get('maxSelectedItems').value"
+                                        bindLabel="itemName" placeholder="Choose Data">
+                                    </ng-select>
+                                </ng-container>
+
+                            </td>
+                            <td *ngIf="!isBuiltinReport" [ngClass]="{ 'disabled-div': isBuiltinReport}">
+                                <button [disabled]="isCapexExcel_Powerpoint" class="btn btn-sm btn-danger"
+                                    (click)="RemoveParam(i)" *ngIf="canRemoveParam">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- <div [formGroup]="control" class="row" *ngFor="let control of paramForm['controls']; let i = index">
+                    <div class="col">
+                        <label for="parameterField">{{ i + 1 }}. Parameter Field <span class="text-danger">*</span> :
+                        </label>
+                        <select class="custom-select my-1 mr-sm-2" formControlName="parameterField">
+                            <option *ngFor="let item of ddlParamField" value="{{ item }}">{{ item }}</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="filterCondition"> Filter Condition : </label>
+                        <select class="custom-select my-1 mr-sm-2" formControlName="filterCondition">
+                            <option *ngFor="let item of ddlFilterCondition" value="{{ item }}">{{ item }}</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="defaultValue"> Default Value : </label>
+                        <input type="text" class="form-control" formControlName="defaultValue"
+                            placeholder="Default Value">
+                    </div>
+                    <div class="col-md-2 align-middle">
+                        <button class="btn btn-sm btn-danger" (click)="RemoveParam(i)" [disabled]="canRemoveParam">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div> -->
+
+                <ng-container *ngIf="!isBuiltinReport">
+                    <div class="row" style="justify-content: flex-end;" [ngClass]="{ 'disabled-div': isBuiltinReport}"
+                        *ngIf="isShowTableParam">
+                        <div class="col-md-2">
+                            <button [disabled]="isCapexExcel_Powerpoint" class="btn btn-sm btn-block btn-primary mt-2"
+                                (click)="AddParam()" *ngIf="canAddParam">
+                                Add Param </button>
+                        </div>
+                    </div>
+                </ng-container>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button *ngIf="typeOpen == 'edit'" type="button" class="btn btn-outline-primary"
+                (click)="DuplicateReport()"> Duplicate To </button>
+            <button type="button" class="btn btn-outline-warning" (click)="SaveAndView()"> Save and View
+            </button>
+            <button type="button" class="btn btn-outline-primary" (click)="OnSaveClick()"> Save </button>
+            <button type="button" class="btn btn-outline-dark" (click)="modalClose()">Close</button>
+        </div>
+    </div>
+</div>
+
+<div class="container text-center loader-layout">
+    <ngx-spinner bdColor="rgba(255,255,255,0.7)" color="#105bac" size="medium" type="ball-spin" [fullScreen]="true">
+        <p>Downloading...</p>
+    </ngx-spinner>
+</div>

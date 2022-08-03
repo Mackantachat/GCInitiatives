@@ -1,0 +1,399 @@
+<div class="row">
+    <div class="col-6 col-md-8 col-lg-9 col-xl-10">
+        <h4>Gate 2</h4>
+    </div>
+    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+        <select class="form-control" (change)="selectChange($event)" [(ngModel)]="version" *ngIf="mainTab">
+            <ng-container *ngFor="let item of versionList">
+                <option [value]="item.id">{{item.text}}</option>
+            </ng-container>
+        </select>
+    </div>
+</div>
+<form class="form-group" [formGroup]="gate2Form">
+    <!-- Row -->
+    <div class="row">
+        <!-- Change chps to checkControl or checkNotControl -->
+        <div class="col-sm-12 col-md-6 mt-4" [ngClass]="ps.checkControl(gate2Form,'Gate2','vacDate')">
+            <div class="row">
+                <div class="col-12"><span>VAC Date</span><span class="text-danger">*</span> : </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="dd/mm/yyyy" bsDatepicker
+                            #dpVAC="bsDatepicker" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', isAnimated: true }"
+                            formControlName="vacDate" [triggers]="viewMode ? '' : 'click:click'"
+                            [ngClass]="{'is-invalid': getFormError('vacDate') }" />
+                        <div *ngIf="!viewMode" class="input-group-append">
+                            <i class="far fa-calendar right-icon mt-2"></i>
+                        </div>
+                        <div class="text-feedback" *ngIf="getFormError('vacDate')">
+                            VAC Date is required !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 mt-4" [ngClass]="ps.checkControl(gate2Form,'Gate2','vacStatus')">
+            <div class="row">
+                <div class="col-12"><span>VAC Status</span></div>
+            </div>
+            <div class="row">
+                <div class="col-12"><input class="form-control" placeholder="" type="text" formControlName="vacStatus"
+                        readonly />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+    <div class="row">
+        <div class="col-sm-12 col-md-6 mt-4" [ngClass]="ps.checkControl(gate2Form,'Gate2','costEstimate')">
+            <div class="row">
+                <div class="col-12"><span>CAPEX + OPEX</span></div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" formControlName="costEstimate" mask="separator"
+                            thousandSeparator="," readonly />
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary input-group-append">M THB</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+    <div class="row">
+        <div class="col-sm-12 col-md-6 mt-4" [ngClass]="ps.checkControl(gate2Form,'Gate2','receivedOpexBudget')">
+            <div class="row">
+                <div class="col-12"><span>Receive OPEX Budget</span><span class="text-danger">*</span> : </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" formControlName="receivedOpexBudget"
+                            (blur)="onChangeCalculate()" mask="separator.2" thousandSeparator=","
+                            [ngClass]="{'is-invalid': getFormError('receivedOpexBudget') }" />
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary input-group-append">M THB</button>
+                        </div>
+                        <div class="text-feedback" *ngIf="getFormError('receivedOpexBudget')">
+                            Receive OPEX Budget is required !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 mt-4" [ngClass]="ps.checkControl(gate2Form,'Gate2','additionalOpexBudget')">
+            <div class="row">
+                <div class="col-12"><span>Additional OPEX Budget</span><span class="text-danger">*</span> : </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" formControlName="additionalOpexBudget"
+                            (blur)="onChangeCalculate()" mask="separator.2" thousandSeparator=","
+                            [ngClass]="{'is-invalid': getFormError('additionalOpexBudget') }" />
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary input-group-append">M THB</button>
+                        </div>
+                        <div class="text-feedback" *ngIf="getFormError('additionalOpexBudget')">
+                            Additional OPEX Budget is required !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+    <div class="row">
+        <div class="col-sm-12 col-md-6 mt-4" [ngClass]="ps.checkControl(gate2Form,'Gate2','overallCapex')">
+            <div class="row">
+                <div class="col-12"><span>Overall CAPEX (Estimated)</span><span class="text-danger">*</span> : </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" formControlName="overallCapex"
+                            (blur)="onChangeCalculate()" mask="separator.2" thousandSeparator=","
+                            [ngClass]="{'is-invalid': getFormError('overallCapex') }" />
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary input-group-append">M THB</button>
+                        </div>
+                        <div class="text-feedback" *ngIf="getFormError('overallCapex')">
+                            Overall CAPEX (Estimated) is required !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 mt-4" [ngClass]="ps.checkControl(gate2Form,'Gate2','tieInLongLeadItemsBudget')">
+            <div class="row">
+                <div class="col-12"><span>Request CAPEX for Tie-In/Long Lead Items Budget</span><span
+                        class="text-danger">*</span> : </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="text" class="form-control" formControlName="tieInLongLeadItemsBudget"
+                            (blur)="onChangeCalculate()" mask="separator.2" thousandSeparator=","
+                            [ngClass]="{'is-invalid': getFormError('tieInLongLeadItemsBudget') }" />
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary input-group-append">M THB</button>
+                        </div>
+                        <div class="text-feedback" *ngIf="getFormError('tieInLongLeadItemsBudget')">
+                            Request CAPEX for Tie-In/Long Lead Items Budget is required !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+    <div class="row">
+        <div class="col-sm-12 col-md-6 mt-4" [ngClass]="ps.checkControl(gate2Form,'Gate2','gateDate')">
+            <div class="row">
+                <div class="col-12"><span>Gate Date</span><span class="text-danger">*</span> : </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="input-group">
+                        <input class="form-control" type="text" placeholder="dd/mm/yyyy" bsDatepicker
+                            #dpGetDate="bsDatepicker" [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', isAnimated: true }"
+                            formControlName="gateDate" [triggers]="viewMode ? '' : 'click:click'"
+                            [ngClass]="{'is-invalid': getFormError('gateDate') }" />
+                        <div *ngIf="!viewMode" class="input-group-append">
+                            <i class="far fa-calendar right-icon mt-2"></i>
+                        </div>
+                        <div class="text-feedback" *ngIf="getFormError('gateDate')">
+                            Gate Date is required !
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 mt-4" [ngClass]="ps.checkControl(gate2Form,'Gate2','gateStatus')">
+            <div class="row">
+                <div class="col-12"><span>Gate Status</span></div>
+            </div>
+            <div class="row">
+                <div class="col-12"><input class="form-control" placeholder="" type="text" formControlName="gateStatus"
+                        readonly />
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12"><strong>Benefit and Justification</strong></div>
+            </div>
+            <!-- Col -->
+            <div class="row">
+                <!-- Col 1 -->
+                <div class="col-sm-12 col-md-4 mt-3" [ngClass]="ps.checkControl(gate2Form,'Gate2','benefit')">
+                    <div class="row">
+                        <div class="col-12"><span>Benefit (M THB/Year)</span><span class="text-danger"
+                                *ngIf="getValidateService().showBenefitAmount">*</span> : </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <input class="form-control" type="text" formControlName="benefit"
+                                (blur)="calculatePayback()" mask="separator.2" thousandSeparator=","
+                                [ngClass]="{'is-invalid': getFormError('benefit') }" />
+                            <div class="text-feedback" *ngIf="getFormError('benefit')">
+                                Gate Date is required !
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Col 2 -->
+                <div class="col-sm-12 col-md-4 mt-3" [ngClass]="ps.checkControl(gate2Form,'Gate2','irr')">
+                    <div class="row">
+                        <div class="col-12"><span>% IRR</span><span class="text-danger"
+                                *ngIf="getValidateService().showIrr">*</span> : </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <input class="form-control" type="text" formControlName="irr" mask="separator.2"
+                                thousandSeparator="," [ngClass]="{'is-invalid': getFormError('irr') }" />
+                            <div class="text-feedback" *ngIf="getFormError('irr')">
+                                IRR is required !
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Col 3 -->
+                <div class="col-sm-12 col-md-4 mt-3" [ngClass]="ps.checkControl(gate2Form,'Gate2','simplePayback')">
+                    <div class="row">
+                        <div class="col-12"><span>Simple Payback (Year)</span></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><input class="form-control" type="text" formControlName="simplePayback"
+                                readonly mask="separator.2" thousandSeparator="," />
+                        </div>
+                    </div>
+                </div>
+                <!-- Col 4 -->
+                <div class="col-sm-12 col-md-4 mt-3" [ngClass]="ps.checkControl(gate2Form,'Gate2','ram')">
+                    <div class="row">
+                        <div class="col-12"><span>RAM Level</span><span class="text-danger"
+                                *ngIf="getValidateService().showRam">*</span> : </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><input class="form-control" type="text" formControlName="ram"
+                                mask="separator.2" thousandSeparator=","
+                                [ngClass]="{'is-invalid': getFormError('ram') }" />
+                            <div class="text-feedback" *ngIf="getFormError('ram')">
+                                RAM Level is required !
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Col 5 -->
+                <div class="col-sm-12 col-md-4 mt-3" [ngClass]="ps.checkControl(gate2Form,'Gate2','jFactor')">
+                    <div class="row">
+                        <div class="col-12"><span>J-Factor</span><span class="text-danger"
+                                *ngIf="getValidateService().showJFactor">*</span> : </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <input class="form-control" type="text" formControlName="jFactor" mask="separator.2"
+                                thousandSeparator="," [ngClass]="{'is-invalid': getFormError('jFactor') }" />
+                            <div class="text-feedback" *ngIf="getFormError('jFactor')">
+                                J-Factor is required !
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Col -->
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+    <div class="row">
+        <div class="col-12 mt-4">
+            <strong>PIC Members</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 mt-2">
+            <span>Center</span>
+        </div>
+        <div class="col-12 col-md-12 col-lg-8 col-xl-6 mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <ng-container *ngFor="let centerStream of getBuStreamByType('Center') ; let i = index">
+                        <button [disabled]="viewMode" class="btn {{ i > 0 ? 'ml-3' : null }}"
+                            [ngClass]="{'btn-success': findCenterStream(centerStream.attribute01), 'btn-secondary': !findCenterStream(centerStream.attribute01), 'btn-danger': getFormError('centerStream')}"
+                            (click)="toggle(centerStream.attribute01,'center')">{{centerStream.attribute01}}</button>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <span>Up Stream</span>
+        </div>
+        <div class="col-12 col-md-12 col-lg-8 col-xl-6 mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <ng-container *ngFor="let upStream of getBuStreamByType('Up Stream') ; let i = index">
+                        <button [disabled]="viewMode" class="btn {{ i > 0 ? 'ml-3' : null }}"
+                            [ngClass]="{'btn-success': findUpStream(upStream.attribute01), 'btn-secondary': !findUpStream(upStream.attribute01), 'btn-danger': getFormError('upStream')}"
+                            (click)="toggle(upStream.attribute01,'up')">{{upStream.attribute01}}</button>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <span>Down Stream</span>
+        </div>
+        <div class="col-12 col-md-12 col-lg-8 col-xl-6 mt-2">
+            <div class="card">
+                <div class="card-body">
+                    <ng-container *ngFor="let downStream of getBuStreamByType('Down Stream') ; let i = index">
+                        <button [disabled]="viewMode" class="btn {{ i > 0 ? 'ml-3' : null }}"
+                            [ngClass]="{'btn-success': findDownStream(downStream.attribute01), 'btn-secondary': !findDownStream(downStream.attribute01), 'btn-danger': getFormError('downStream')}"
+                            (click)="toggle(downStream.attribute01,'down')">{{downStream.attribute01}}</button>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+    <div class="row">
+        <div class="col-sm-12 col-md-6 mt-3">
+            <div class="row">
+                <div class="col-12"><span>Presentation (Link)</span></div>
+            </div>
+            <div class="row">
+                <div class="col-12"><input class="form-control" formControlName="presentationLink" type="text" />
+                </div>
+                <div class="col-12">
+                    <span class="link-text" *ngIf="checkLink('presentationLink')"
+                        (click)="gotoLink('presentationLink')">Presentation (Link)</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 mt-3">
+            <div class="row">
+                <div class="col-12"><span>PIC MOM (Link)</span></div>
+            </div>
+            <div class="row">
+                <div class="col-12"><input class="form-control" formControlName="picMomLink" type="text" />
+                </div>
+                <div class="col-12">
+                    <span class="link-text" *ngIf="checkLink('picMomLink')" (click)="gotoLink('picMomLink')">PIC MOM
+                        (Link)</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 mt-3">
+            <div class="row">
+                <div class="col-12"><span>VAC CheckList (Link)</span></div>
+            </div>
+            <div class="row">
+                <div class="col-12"><input class="form-control" formControlName="vacCheckListLink" type="text" />
+                </div>
+                <div class="col-12">
+                    <span class="link-text" *ngIf="checkLink('vacCheckListLink')"
+                        (click)="gotoLink('vacCheckListLink')">VAC CheckList (Link)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+    <div class="row">
+        <div class="col-sm-12 col-md-12 mt-3">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-check-inline" *ngIf="!IsCim">
+                        <input class="form-check-input" type="checkbox" formControlName="requestPool" />
+                        <label class="form-check-label ml-2 mt-1">Request Pool</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row -->
+    <div class="row">
+        <div class="col-sm-12 col-md-6 mt-3">
+            <div class="row">
+                <div class="col-12"><span>Request Pool Status</span></div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <input class="form-control" formControlName="requestPoolStatus" type="text" readonly />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

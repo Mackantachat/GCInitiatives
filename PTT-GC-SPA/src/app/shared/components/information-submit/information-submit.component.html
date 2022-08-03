@@ -1,0 +1,28 @@
+<ng-container *ngIf="SubmitTo">
+  <hr>
+  <div class="row">
+    <div class="col-12">
+      <div class="card text card-initiative">
+        <div class="card-body">
+          <form [formGroup]="submitFrom">
+            <div class="form-group row mt-3">
+              <div class="col-md-4">
+                <label for="submitTo"> Submit to </label>
+                <select formControlName="status" class="form-control">
+                  <option value="forward" disabled> Submitted Forward </option>
+                  <option value="backward"> Submitted Backward </option>
+                  <option value="cancelled" [disabled]="StageSIL"> Submitted Cancelled </option>
+                </select>
+              </div>
+            </div>
+          </form>
+          <div class="form-group row mt-4 ml-1">
+            <button type="button" class="btn btn-white btn-width" (click)="Save()">Submit</button>
+            <button type="button" class="btn btn-white btn-width ml-2"
+              [routerLink]="['/initiative/my-own']">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

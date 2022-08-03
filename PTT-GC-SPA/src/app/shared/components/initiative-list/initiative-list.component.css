@@ -1,0 +1,77 @@
+.table-initiative {
+  font-size: 14px !important;
+}
+
+.table {
+  margin-bottom: 0px;
+}
+
+.table thead th {
+  vertical-align: middle;
+}
+
+.sortHover {
+  cursor: "pointer" !important;
+}
+
+.btn-list {
+  font-size: x-small;
+}
+
+/* Dropdown */
+
+.dropdown-item:focus, .dropdown-item:hover {
+  color: #ffffff;
+  background-color: #17a2b8;
+}
+
+.dropdown-item-border {
+  border-bottom: 1px solid rgba(0, 0, 0, .15);
+}
+
+.table-active, .table-active>td, .table-active>th {
+  background-color: #ffffff;
+}
+
+th, td {
+  color: #777777;
+  text-align: left;
+}
+
+th.th-action, td.td-action {
+  color: #777777;
+  text-align: right;
+}
+
+/* .dropdown-menu:before {
+  position: absolute;
+  top: -7px;
+  left: 78px; 
+  display: inline-block;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #ccc;
+  border-left: 7px solid transparent;
+  border-bottom-color: rgba(0, 0, 0, 0.2);
+  content: '';
+}
+
+.dropdown-menu:after {
+  position: absolute;
+  top: -6px;
+  left: 79px; 
+  display: inline-block;
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #ffffff;
+  border-left: 6px solid transparent;
+  content: '';
+} */
+
+.form-inline, .form-inline label {
+  align-items: inherit;
+}
+
+.custom-select {
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: inherit;
+}

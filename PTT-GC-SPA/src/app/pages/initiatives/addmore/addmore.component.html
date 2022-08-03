@@ -1,0 +1,563 @@
+<!-- <app-initiative-box></app-initiative-box> -->
+<app-initiative-header [name]="name"></app-initiative-header>
+
+<!-- <app-form-tabs-addmore></app-form-tabs-addmore> -->
+
+
+<form [formGroup]="initiativesForm" (keydown.enter)="$event.preventDefault()" style="margin-top: 1rem;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card text card-initiative">
+        <div class="card-body">
+          <div class="form-initiative">
+            <app-initiative-info [id]="id"></app-initiative-info>
+          </div>
+          <div class="form-initiative">
+            <label style="color: #454545;font-size: 28px;"> General Information </label>
+            <hr>
+          </div>
+          <div class="form-initiative">
+
+            <!-- Initiative No -->
+            <ng-container *ngIf="page == 'edit'">
+              <div class="form-group row">
+                <div class="col-md-6">
+                  <label for="name"> Initiative No. <span class="text-danger">*</span> : </label>
+                  <input formControlName="initiativeCode" type="text" class="form-control" readonly>
+                </div>
+              </div>
+            </ng-container>
+
+            <!-- Initiative Name -->
+            <div class="form-group row">
+              <div class="col-md-6">
+                <label for="name"> Initiative Name <span class="text-danger">*</span> : </label>
+                <input formControlName="name" type="text" class="form-control" [ngClass]="{'is-invalid': invalidName }">
+                <div class="invalid-feedback" *ngIf="invalidName">
+                  Initiative Name is required !
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label for="OwnerName"> Owner Name <span class="text-danger">*</span> : </label>
+                <ng-select formControlName="ownerName" [items]="owners" bindValue="ownerName" bindLabel="ownerName"
+                  placeholder="Choose Owner" (clear)="ClearOwnerName()">
+                </ng-select>
+                <div class="text-feedback" *ngIf="invalidOwnerName">
+                  OwnerName is required !
+                </div>
+              </div>
+              <!-- Co-Developer -->
+              <div class="col-md-3">
+                <label for="coDevelopers"> Co-Developer : </label>
+                <ng-select formControlName="coDeveloper" [items]="coDevelopers" loadingText="Loading" [multiple]="true"
+                  bindValue="coDeveloperName" bindLabel="coDeveloperName" placeholder="Choose CoDevelopers">
+                </ng-select>
+              </div>
+
+            </div>
+
+            <!-- Company && SpecifyCompany -->
+            <div class="form-group row">
+              <div class="col-md-3">
+                <label for="company"> Company <span class="text-danger">*</span> : </label>
+                <ng-select formControlName="company" [items]="companyName" bindValue="companyName"
+                  bindLabel="companyName" placeholder="Choose Company" required>
+                </ng-select>
+                <div class="text-feedback" *ngIf="invalidCompany">
+                  Company is required !
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label for="specifyCompany"> Please Specify : Company</label>
+                <input formControlName="specifyCompany" type="text" class="form-control">
+              </div>
+              <!-- Plant&&SpecifyPlant -->
+              <div class="col-md-3">
+                <label for="plant"> Plant <span class="text-danger">*</span> : </label>
+                <ng-select formControlName="plant" [items]="plants" bindValue="plantId" bindLabel="plantTitle"
+                  placeholder="Choose Plant" required>
+                </ng-select>
+                <div class="text-feedback" *ngIf="invalidPlant">
+                  Plant is required !
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label for="specifyPlant"> Please Specify : Plant</label>
+                <input formControlName="specifyPlant" type="text" class="form-control">
+              </div>
+            </div>
+
+
+            <div class="form-group row">
+              <div class="col-md-3">
+                <label for="organization"> Organization (Asset Owner) <span class="text-danger">*</span> : </label>
+                <ng-select formControlName="organization" [items]="organizations" bindValue="organizationTitle"
+                  bindLabel="organizationTitle" placeholder="Choose Organization" required>
+                </ng-select>
+                <div class="text-feedback" *ngIf="invalidOrganization">
+                  Organization (Asset Owner) is required !
+                </div>
+              </div>
+              <div class="col-3 mt-4 pt-3 mtp">
+                <div class="custom-control custom-checkbox custom-control-inline">
+                  <input id="integration" class="custom-control-input" type="checkbox" formControlName="integration">
+                  <label class="custom-control-label" for="integration"> MTP Integration </label>
+                </div>
+              </div>
+              <!-- Organization -->
+              <!-- Initiative Year && Register Date -->
+              <div class="col-md-3">
+                <label for="year"> Initiative Year <span class="text-danger">*</span> : </label>
+                <select formControlName="year" class="form-control">
+                  <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                </select>
+              </div>
+              <div class="col-md-3">
+                <label for="registerDate"> Register Date <span class="text-danger">*</span> : </label>
+                <div class="input-group">
+                  <input formControlName="registeringDate" type="text" class="form-control"
+                    style="background-color:#B9B9B9" readonly>
+                  <div class="input-group-append">
+                    <i class="far fa-calendar right-icon mt-2"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <!-- Starting Date & Finish Date -->
+            <div class="form-group row">
+              <div class="col-md-3">
+                <label for="registerDate"> Starting Date <span class="text-danger">*</span> : </label>
+                <div class="input-group">
+                  <input formControlName="startingDate" type="text" [bsConfig]="bsConfigStart" class="form-control"
+                    bsDatepicker #dpStart="bsDatepicker" (bsValueChange)="StartDateChange($event)">
+                  <div class="input-group-append">
+                    <i class="far fa-calendar right-icon mt-2" (click)="dpStart.toggle()"
+                      [attr.aria-expanded]="dpStart.isOpen"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <label for="FinishDate"> Finish Date <span class="text-danger">*</span> : </label>
+                <div class="input-group">
+                  <input formControlName="finishingDate" type="text" [bsConfig]="bsConfigFinish" class="form-control"
+                    bsDatepicker #dpFinish="bsDatepicker" [ngClass]="{ 'is-invalid': invalidStartingDate }"
+                    (bsValueChange)="FinishChange($event)">
+                  <div class="input-group-append">
+                    <i class="far fa-calendar right-icon mt-2" (click)="dpFinish.toggle()"
+                      [attr.aria-expanded]="dpFinish.isOpen"></i>
+                  </div>
+                  <div class="invalid-feedback" *ngIf="invalidStartingDate">
+                    Finish Date is required !
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Location -->
+            <div class="form-group row ">
+              <div class="col-md-6" *ngIf="showLocation">
+                <label for="location"> Location : </label>
+                <br>
+                <div class="mt-1">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input id="domestic" value="domestic" class="custom-control-input" type="radio" name="location"
+                      formControlName="location">
+                    <label class="custom-control-label" for="domestic"> Domestic </label>
+                  </div>
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input id="oversea" value="oversea" class="custom-control-input" type="radio" name="location"
+                      formControlName="location">
+                    <label class="custom-control-label" for="oversea"> Oversea </label>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6" *ngIf="showLocation">
+                <label for="specifyLocation"> Please Specify : </label>
+                <input formControlName="specifyLocation" type="text" class="form-control">
+              </div>
+            </div>
+
+            <!-- Initiative Detail -->
+            <div class="form-group row ">
+              <div class="col-md-6">
+                <label for="background"> Background <span class="text-danger">*</span> : </label>
+                <textarea formControlName="background" class="form-control" rows="3"
+                  [ngClass]="{ 'is-invalid': invalidBackground }"></textarea>
+                <div class="invalid-feedback" *ngIf="invalidBackground">
+                  Background is required !
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="resultObjective"> Objective/Expected Result <span class="text-danger">*</span> : </label>
+                <textarea formControlName="resultObjective" class="form-control" rows="3"
+                  [ngClass]="{'is-invalid': invalidResultObjective }"></textarea>
+                <div class="invalid-feedback" *ngIf="invalidResultObjective">
+                  Objective/Expected Result is required !
+                </div>
+              </div>
+            </div>
+
+
+            <!-- ScopeOfWork -->
+            <div class="form-group row ">
+              <div class="col-md-6">
+                <label for="scopeOfWork"> Scope of Work <span class="text-danger">*</span> : </label>
+                <textarea formControlName="scopeOfWork" class="form-control" rows="3"
+                  [ngClass]="{'is-invalid': invalidScopeOfWork }"></textarea>
+                <div class="invalid-feedback" *ngIf="invalidScopeOfWork">
+                  ScopeOfWork is required !
+                </div>
+              </div>
+              <div class="col-md-3 my-3">
+                <br><br>
+                <div class="custom-control custom-checkbox custom-control-inline">
+                  <input id="involveItDigital" class="custom-control-input" type="checkbox"
+                    formControlName="involveItDigital">
+                  <label class="custom-control-label" for="involveItDigital">
+                    Is this Initiative involve IT & digital
+                  </label>
+                </div>
+              </div>
+              <div class="col-md-3 my-3">
+                <br><br>
+                <div class="custom-control custom-checkbox custom-control-inline">
+                  <input id="requestProjectEngineer" class="custom-control-input" type="checkbox"
+                    formControlName="requestProjectEngineer">
+                  <label class="custom-control-label" for="requestProjectEngineer">
+                    Request Project Engineer (TPX)
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-2">
+                <label for="name"> Request OPEX <span class="text-danger">*</span> : </label>
+                <br />
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input id="trueOpex" value="trueOpex" class="custom-control-input" type="radio" name="requestOpex"
+                    formControlName="requestOpex" checked>
+                  <label class="custom-control-label" for="trueOpex"> Yes </label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input id="falseOpex" value="falseOpex" class="custom-control-input" type="radio" name="requestOpex"
+                    formControlName="requestOpex">
+                  <label class="custom-control-label" for="falseOpex"> No </label>
+                </div>
+              </div>
+              <div class="col-md-2" *ngIf="showCostEstOpex">
+                <label for="costEstOpex"> Cost Estimated <span class="text-danger">*</span> : </label>
+                <input formControlName="costEstOpex" type="text" class="form-control" step='0.01' placeholder='0.00'
+                  mask="separator.2" thousandSeparator="," [ngClass]="{ 'is-invalid': invalidCostEstOpex }">
+                <div class="invalid-feedback" *ngIf="invalidCostEstOpex">
+                  Cost Estimated (OPEX) is required !
+                </div>
+              </div>
+              <div class="col-md-2" *ngIf="showCostEstOpex">
+                <label for="costEstOpex">&nbsp;&nbsp;</label>
+                <select type="text" class="form-control" formControlName="costEstOpexType">
+                  <option value="THB" selected> M.THB </option>
+                  <option value="USD"> M.USD </option>
+                </select>
+              </div>
+              <!------------------------------------------------------------------------------------------------------------>
+              <div class="col-md-2">
+                <label for="name"> Request CAPEX <span class="text-danger">*</span> : </label>
+                <br />
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input id="true" value="true" class="custom-control-input" type="radio" name="requestCapex"
+                    formControlName="requestCapex">
+                  <label class="custom-control-label" for="true"> Yes </label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input id="false" value="false" class="custom-control-input" type="radio" name="requestCapex"
+                    formControlName="requestCapex">
+                  <label class="custom-control-label" for="false"> No </label>
+                </div>
+              </div>
+              <div class="col-md-2" *ngIf="showCostEstCapex">
+                <label for="costEstCapex"> Cost Estimated (CAPEX) <span class="text-danger">*</span> : </label>
+                <input formControlName="costEstCapex" type="text" class="form-control" step='0.01' placeholder='0.00'
+                  mask="separator.2" thousandSeparator="," (input)="OnChangeCostEstimated()"
+                  [ngClass]="{ 'is-invalid': invalidCostEstCapex }">
+                <div class="invalid-feedback" *ngIf="invalidCostEstCapex">
+                  Cost Estimated (CAPEX) is required !
+                </div>
+              </div>
+              <div class="col-md-2" *ngIf="showCostEstCapex">
+                <label for="costEstCapex">&nbsp;&nbsp;</label>
+                <select type="text" class="form-control" formControlName="costEstCapexType">
+                  <option value="THB" selected> M.THB </option>
+                  <option value="USD"> M.USD </option>
+                </select>
+              </div>
+              <!------------------------------------------------------------------------------------------------------------>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-12 mt-4">
+                <div class="row">
+                  <div class="col-md-6 my-3">
+                    <div class="custom-control custom-checkbox custom-control-inline">
+                      <input id="divestment" class="custom-control-input" type="checkbox" formControlName="divestment">
+                      <label class="custom-control-label" for="divestment">
+                        Divestment
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+
+              <!-- FX ( THB/USD ) -->
+              <div class="col-md-2">
+                <label for="name"> FX(THB/USD): <span class="text-danger">*</span> : </label>
+                <input type="text" class="form-control" formControlName="fxExchange" step='0.01' placeholder='0.00'
+                  mask="separator.2" thousandSeparator="," [ngClass]="{ 'is-invalid': invalidFX }">
+                <div class="invalid-feedback" *ngIf="invalidFX">
+                  FX ( THB/USD ) is required !
+                </div>
+              </div>
+
+              <!-- Budget Source -->
+              <div class="col-md-4" *ngIf="showBudgetSource">
+                <label for="name"> Budget Source: <span class="text-danger">*</span> : </label>
+                <select formControlName="budgetSource" class="form-control">
+                  <option value="" disabled> Choose Budget Source</option>
+                  <option value="Capex">CAPEX</option>
+                  <option value="ER">ER</option>
+                </select>
+              </div>
+
+              <!-- Type of Investment -->
+              <div class="col-md-6" *ngIf="showTypeOfInvestment">
+                <label for="name"> Type of Investment: <span class="text-danger">*</span> : </label>
+                <ng-select formControlName="typeOfInvestment" [items]="typeOfInvestments" bindValue="typeOfInvestmentId"
+                  bindLabel="typeOfInvestmentTitle" placeholder="Choose Type of Investment"
+                  (change)="OnChangeTypeOfInvestment()" required>
+                </ng-select>
+                <div class="text-feedback" *ngIf="invalidTypeOfInvestment">
+                  Type of Investment is required !
+                </div>
+              </div>
+
+
+              <!-- IRR -->
+              <div class="col-md-2" *ngIf="showIrr">
+                <label> IRR% <span class="text-danger">*</span> : </label>
+                <div class="input-group">
+                  <input type="text" class="form-control" formControlName="irr" placeholder='0'
+                    [ngClass]="{ 'is-invalid': invalidIrr }" mask="separator.2" thousandSeparator=",">
+                  <div class="invalid-feedback" *ngIf="invalidIrr">
+                    IRR% is required !
+                  </div>
+                  <div class="input-group-append">
+                    <i class="fas fa-percent right-icon" [ngStyle]="{'margin-top': '10px' }"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- WACC% -->
+              <div class="col-md-2" *ngIf="showWacc">
+                <label class="my-3"> WACC% : </label>
+                <div class="input-group">
+                  <input type="number" class="form-control" formControlName="wacc" placeholder='0' readonly>
+                  <div class="input-group-append">
+                    <i class="fas fa-percent right-icon" [ngStyle]="{'margin-top': '10px' }"></i>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Type of Benefit & RAM-->
+              <div class="col-md-2" *ngIf="showTypeBenefit">
+                <label> Type of Benefit <span class="text-danger">*</span> : </label>
+                <select type="text" class="form-control" formControlName="typeBenefit"
+                  [ngClass]="{ 'is-invalid': invalidTypeOfBenefit }" required>
+                  <option value="" selected disabled>Choose Type of Benefit</option>
+                  <option value="EBITDA">EBITDA</option>
+                  <option value="EBIT">EBIT</option>
+                  <option value="NON-FINANCIAL">NON-FINANCIAL</option>
+                </select>
+                <div class="invalid-feedback" *ngIf="invalidTypeOfBenefit">
+                  Type of Benefit is required !
+                </div>
+              </div>
+
+              <div class="col-md-2" *ngIf="showRam">
+                <label class="my-3"> RAM : </label>
+                <select type="text" class="form-control" formControlName="ram" [ngClass]="{ 'is-invalid': invalidRam }">
+                  <option value="" selected> Choose RAM </option>
+                  <option value="Very low"> Very low </option>
+                  <option value="Low"> Low </option>
+                  <option value="Medium"> Medium </option>
+                  <option value="High"> High </option>
+                </select>
+                <div class="text-feedback" *ngIf="invalidRam">
+                  RAM is required !
+                </div>
+              </div>
+
+              <!-- Benefit Amount & PayBack Period -->
+              <div class="col-md-6" *ngIf="showBenefitAmount">
+                <label> Benefit Amount <span class="text-danger">*</span> : </label>
+                <div class="row">
+                  <div class="col-md-8">
+                    <input type="text" class="form-control" formControlName="benefitAmount" step='0.01'
+                      placeholder='0.00' mask="separator.3" thousandSeparator=","
+                      [ngClass]="{ 'is-invalid': invalidBenefitAmount }" (input)="OnChangeBenefitAmount()">
+                    <div class="invalid-feedback" *ngIf="invalidBenefitAmount">
+                      Benefit Amount is required !
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <select type="text" class="form-control" formControlName="benefitAmountType">
+                      <option value="THB"> M.THB / Year </option>
+                      <option value="USD"> M.USD / Year </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-2" *ngIf="showPayBackPeriod">
+                <label> Pay Back Period <span class="text-danger">*</span> : </label>
+                <input type="text" class="form-control" formControlName="payBackPeriod" step='0.01' placeholder='0.00'
+                  mask="separator.2" thousandSeparator="," readonly>
+              </div>
+
+              <!-- Budget Type -->
+              <div class="col-md-2" *ngIf="showBudget">
+                <label class="my-3"> Budget Type : </label>
+                <select type="text" class="form-control" formControlName="budgetType"
+                  [ngClass]="{ 'is-invalid': invalidBudget }">
+                  <option value="" selected> Choose Budget Type </option>
+                  <option> By initiative </option>
+                  <option> Pool </option>
+                </select>
+                <div class="text-feedback" *ngIf="invalidBudget">
+                  Budget Type is required !
+                </div>
+              </div>
+
+              <!-- JFactor-->
+              <div class="col-md-2" *ngIf="showJFactor">
+                <label class="my-3"> JFactor : </label>
+                <input type="text" class="form-control" formControlName="jFactor" step='0.01' placeholder='0.00'
+                  [ngClass]="{ 'is-invalid': invalidJFactor }" mask="separator.2" thousandSeparator=",">
+                <div class="invalid-feedback" *ngIf="invalidJFactor">
+                  JFactor is required !
+                </div>
+              </div>
+            </div>
+
+            <!-- Suggestion -->
+            <div class="row mt-5">
+              <div class="col-md-12">
+                <h3>
+                  Suggestion Process
+                  <div class="float-right">
+                    <button type="submit" class="btn btn-info hvr-shadow" disabled> <i class="fas fa-cog mr-2"></i>
+                      Suggest </button>
+                  </div>
+                </h3>
+                <hr>
+              </div>
+            </div>
+
+            <!-- Suggestion Loading -->
+            <div [ngStyle]="{ 'position': 'relative' }" *ngIf="isLoadSuggest" class="loader-layout">
+              <ngx-spinner bdColor="#fffff" size="medium" color="#105bac" type="ball-clip-rotate-pulse"
+                [fullScreen]="false"></ngx-spinner>
+            </div>
+
+            <!-- Suggestion Process -->
+            <div class="row animated fadeIn" *ngIf="!isLoadSuggest">
+              <div class="col-md-12">
+                <div class="card text card-initiative">
+                  <div class="card-body">
+                    <div class="form-initiative">
+                      <div class="form-group row mt-2">
+                        <div class="col-md-12" style="margin-bottom:-50px">
+                          <div class="mt-1">
+                            <div class="custom-control custom-checkbox custom-control-inline col-md-1">
+                              <input id="cim" class="custom-control-input" type="checkbox" formControlName="cim"
+                                (click)="CheckCim($event)">
+                              <label class="custom-control-label" for="cim"> CIM </label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline col-md-1">
+                              <input id="pim" class="custom-control-input" type="checkbox" formControlName="pim"
+                                (click)="CheckPim($event)">
+                              <label class="custom-control-label" for="pim"> PIM </label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline col-md-1">
+                              <input id="dim" class="custom-control-input" type="checkbox" formControlName="dim"
+                                (click)="CheckDim($event)">
+                              <label class="custom-control-label" for="dim"> DIM </label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline col-md-2"
+                              style="margin-right:-50px;">
+                              <input id="directCapex" class="custom-control-input" type="checkbox"
+                                formControlName="directCapex" (click)="CheckCapex($event)">
+                              <label class="custom-control-label" for="directCapex"> Direct CAPEX </label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline col-md-1">
+                              <input id="max" class="custom-control-input" type="checkbox" formControlName="max"
+                                (click)="CheckMax($event)">
+                              <label class="custom-control-label" for="max"> MAX </label>
+                            </div>
+
+                            <div class="custom-control custom-checkbox custom-control-inline col-md-1">
+                              <input id="cpi" class="custom-control-input" type="checkbox" formControlName="cpi"
+                                (change)="CheckCpi($event)">
+                              <label class="custom-control-label" for="cpi"> CPI </label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline col-md-1">
+                              <input id="strategy" class="custom-control-input" type="checkbox"
+                                formControlName="strategy" (change)="CheckStrategy($event)">
+                              <label class="custom-control-label" for="strategy"> Strategy </label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline col-md-1">
+                              <input id="randD" class="custom-control-input" type="checkbox" formControlName="randD"
+                                (change)="CheckRAndD($event)">
+                              <label class="custom-control-label" for="randD"> R&D </label>
+                            </div>
+                            <div class="custom-control custom-checkbox custom-control-inline col-md-1">
+                              <input id="other" class="custom-control-input" type="checkbox" formControlName="other"
+                                (change)="CheckOther($event)">
+                              <label class="custom-control-label" for="other"> Other </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Button -->
+            <!-- <app-initiative-button
+                (SaveDraft)="SaveDraft()"
+                (SaveSubmit)="Submit()"
+                (Required)="CheckRequired($event)"
+                [Cim]="IsCim"
+                [Capex]="IsCapex"
+                [Strategy]="IsStrategy"
+                [Max]="IsMax"
+                [validate]="CheckValidForm"
+                [page]="page"
+                [id]="id">
+              </app-initiative-button> -->
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<app-addmore-button (SaveDraft)="SaveDraft()" (SaveSubmit)="SaveSubmit()" [validate]="invalidSubmit">
+</app-addmore-button>

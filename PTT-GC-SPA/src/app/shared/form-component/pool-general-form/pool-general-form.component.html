@@ -1,0 +1,335 @@
+<form [formGroup]="initiativesForm">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card text card-initiative">
+        <div class="card-body">
+          <div class="form-initiative">
+            <div *ngIf="appRequestNo" class="form-group row">
+              <div class="col-md-6">
+                <label>Appropriation No. :​</label>
+                <input class="form-control" value="{{appRequestNo}}" readonly>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-6" *ngIf="GetId()">
+                <label for="code">
+                  Initiative Code :
+                </label>
+                <input type="text" class="form-control" value="{{GetInitativeCode()}}" readonly />
+
+              </div>
+              <div class="col-md-6">
+                <label for="name">
+                  Initiative Name <span class="text-danger">*</span> :
+                </label>
+                <input formControlName="name" type="text" class="form-control"
+                  [ngClass]="{ 'is-invalid': getErrorMessage('name') }" required />
+                <div class="invalid-feedback" *ngIf="getErrorMessage('name')">
+                  Initiative Name is required !
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-6">
+                <label for="OwnerName">
+                  Owner Name <span class="text-danger">*</span> :
+                </label>
+                <ng-select formControlName="ownerName" [items]="owners" bindValue="ownerName" bindLabel="ownerName"
+                  placeholder="Choose Owner" (search)="SearchOwnerName($event)" (clear)="ClearOwnerName()" required>
+                </ng-select>
+                <div class="text-feedback" *ngIf="getErrorMessage('ownerName')">
+                  OwnerName is required !
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="RequestPool"> Request Pool <span class="text-danger">*</span> : </label>
+                <select formControlName="poolType" class="form-control"
+                  [ngClass]="{ 'is-invalid': getErrorMessage('poolType') }" (change)="onChangePoolType()">
+                  <option value="" selected disabled> Choose .. </option>
+                  <option value="Digital CAPEX"> Digital CAPEX </option>
+                  <option value="IT CAPEX"> IT CAPEX </option>
+                  <option value="PIM"> PIM </option>
+                  <option value="MAX"> MAX </option>
+                  <option value="ER"> ER </option>
+                  <option value="MTPi"> MTPi </option>
+                </select>
+                <div class="text-feedback" *ngIf="getErrorMessage('poolType')">
+                  Request Pool is required !
+                </div>
+              </div>
+            </div>
+            <ng-container *ngIf="poolPim;else isNotPoolPim">
+              <div class="form-group row">
+                <div class="col-md-6">
+                  <label for="company"> Company <span class="text-danger">*</span> : </label>
+                  <ng-select formControlName="company" [items]="companyList" bindValue="value" bindLabel="name"
+                    placeholder="Choose Company" (change)="onChangeCompany()" (focus)="onChangeCompany()"
+                    [readonly]="haveCompany" required>
+                  </ng-select>
+                  <div class="text-feedback" *ngIf="getErrorMessage('company')">
+                    Company is required !
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="organization"> Organization (Asset Owner) <span class="text-danger">*</span> : </label>
+                  <ng-select formControlName="organization" [items]="GetOrganizations()" bindValue="name"
+                    bindLabel="name" placeholder="Choose Organization">
+                  </ng-select>
+                  <div class="text-feedback" *ngIf="getErrorMessage('organization')">
+                    Organization (Asset Owner) is required !
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+            <ng-template #isNotPoolPim>
+              <div class="form-group row">
+                <div class="col-md-6">
+                  <label for="company"> Company <span class="text-danger">*</span> : </label>
+                  <ng-select formControlName="company" [items]="companyList" bindValue="value" bindLabel="name"
+                    placeholder="Choose Company" (change)="onChangeCompany()" (focus)="onChangeCompany()"
+                    [readonly]="haveCompany" required>
+                  </ng-select>
+                  <div class="text-feedback" *ngIf="getErrorMessage('company')">
+                    Company is required !
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label for="organization"> Organization (Asset Owner) <span class="text-danger">*</span> : </label>
+                  <ng-select formControlName="organization" [items]="GetOrganizations()" bindValue="name"
+                    bindLabel="name" placeholder="Choose Organization">
+                  </ng-select>
+                  <div class="text-feedback" *ngIf="getErrorMessage('organization')">
+                    Organization (Asset Owner) is required !
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-6">
+                  <label for="plant"> Plant <span class="text-danger">*</span> : </label>
+                  <ng-select formControlName="plant" [items]="GetPlants()" bindValue="id" bindLabel="name"
+                    placeholder="Choose Plant">
+                  </ng-select>
+                  <div class="text-feedback" *ngIf="getErrorMessage('plant')">
+                    Plant is required !
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+
+            <div class="form-group row mt-5" *ngIf="poolPim">
+              <hr class="mt-3">
+              <div class="col-md-12">
+                <div class="custom-control custom-checkbox custom-control-inline">
+                  <input id="reference" class="custom-control-input" type="checkbox" formControlName="requestReference"
+                    (click)="requestReference($event)">
+                  <label class="custom-control-label" for="reference">
+                    Reference By Initiative
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row" *ngIf="requestRef">
+              <div class="col-md-12">
+                <h3>
+                  Selected Initiative
+                </h3>
+              </div>
+              <div class="col-md-4">
+                <label for="TotalInitiative">
+                  Total Initiative :
+                </label>
+                <input formControlName="totalInitiative" type="text" class="form-control" readonly />
+              </div>
+              <div class="col-md-4">
+                <label for="TotalProject">
+                  Total Project Cost (M THB) :
+                </label>
+                <input formControlName="totalProject" type="text" class="form-control" readonly />
+              </div>
+            </div>
+
+
+          </div>
+
+          <!-- table -->
+          <div class="form-group row" *ngIf="requestRef">
+            <div class="col-md-12">
+              <table class="table table-hover">
+                <thead>
+                  <tr class="table-active text-center table-initiative">
+                    <th width="8%">
+                      Select​
+                    </th>
+                    <th width="8%">
+                      Initiative ID
+                    </th>
+                    <th width="15%">
+                      Initiative Name
+                    </th>
+                    <th width="14%">
+                      Owner Name
+                    </th>
+                    <th width="10%">Investment type​</th>
+                    <th width="8%">
+                      Benefit Type​ (IRR/Jfactor)
+                    </th>
+                    <th width="8%">
+                      Benefit Value​
+                    </th>
+                    <th width="10%">
+                      Project Cost (M THB)
+                    </th>
+                    <th width="8%">
+                      Stage Gate
+                    </th>
+                    <th width="8%">
+                      Reason (Concern Issue/Necessity)​
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngIf="getinitiativesFormArrayLength()  == 0; else haveInitiatives">
+                    <tr class="table-initiative">
+                      <td colspan="10">No Data</td>
+                    </tr>
+                  </ng-container>
+                  <ng-template #haveInitiatives>
+                    <ng-container
+                      *ngFor="let item of initiativesForm.get('initiativesList')['controls']; let i = index">
+                      <tr [formGroup]="item">
+                        <!-- <tr *ngFor="let item of initiativesForm.get('initiativesList')['controls']; let i = index"
+                        class="table-initiative"> -->
+                        <td>
+                          <input (change)="getArrayLength()" class="checkbox-custom" type="checkbox"
+                            formControlName="selected" [disabled]="viewMode" />
+                        </td>
+                        <td>{{ item.get('initiativeCode').value }}</td>
+                        <td>{{ item.get('name').value }}</td>
+                        <td>{{ item.get('ownerName').value }}</td>
+                        <td>{{ item.get('typeOfInvestment').value }}</td>
+                        <td>{{ item.get('typeBenefit').value }}</td>
+                        <td>{{ item.get('benefit').value }}</td>
+                        <td>{{ item.get('costEstimate').value }}</td>
+                        <td>{{ item.get('stage').value }}</td>
+                        <td>{{ item.get('note').value }}</td>
+                      </tr>
+                    </ng-container>
+                  </ng-template>
+                </tbody>
+              </table>
+            </div>
+            <hr class="mt-3">
+          </div>
+
+
+          <!-- filter condition detail -->
+          <div [formGroup]="searchDetailForm" class="form-group row" *ngIf="requestRef">
+            <div class="col-md-12">
+              <h3>
+                Filter Initiative
+              </h3>
+            </div>
+
+
+            <!-- <div class="col-md-3">
+              <label for="organization"> Organization (Asset Owner) : </label>
+              <ng-select formControlName="searchOrganization" [items]="GetOrganizations()" bindValue="name"
+                bindLabel="name" placeholder="Choose Organization">
+              </ng-select>
+            </div> -->
+            <div class="col-md-3">
+              <label for="plant"> Plant : </label>
+              <ng-select formControlName="searchPlant" [items]="GetPlants()" bindValue="id" bindLabel="name"
+                placeholder="Choose Plant">
+              </ng-select>
+            </div>
+            <div class="col-md-3">
+              <!-- select gate -->
+              <label for="searchGate">Stage Gate : </label>
+              <select formControlName="searchGate" class="form-control">
+                <option value="" selected disabled> Choose .. </option>
+                <option value="1">Gate 1</option>
+                <option value="2">Gate 2</option>
+                <option value="3">Gate 3</option>
+                <option value="4">Gate 4</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <a class="btn btn-info" (click)="searchInitiatives()">Search</a>
+            </div>
+          </div>
+
+          <!-- table shopping -->
+          <div class="form-group row" *ngIf="requestRef && !viewMode">
+            <div class="col-md-12">
+              <table class="table table-hover">
+                <thead>
+                  <tr class="table-active text-center table-initiative">
+                    <th width="8%">
+                      Select​
+                    </th>
+                    <th width="8%">
+                      Initiative ID
+                    </th>
+                    <th width="15%">
+                      Initiative Name
+                    </th>
+                    <th width="14%">
+                      Owner Name
+                    </th>
+                    <th width="10%">Investment type​</th>
+                    <th width="8%">
+                      Benefit Type​ (IRR/Jfactor)
+                    </th>
+                    <th width="8%">
+                      Benefit Value​
+                    </th>
+                    <th width="10%">
+                      Project Cost (M THB)
+                    </th>
+                    <th width="8%">
+                      Stage Gate
+                    </th>
+                    <th width="8%">
+                      Reason (Concern Issue/Necessity)​
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngIf="initiativesList.length == 0; else haveInitiatives">
+                    <tr class="table-initiative">
+                      <td colspan="10">No Data</td>
+                    </tr>
+                  </ng-container>
+                  <ng-template #haveInitiatives>
+                    <ng-container *ngFor="let item of initiativesList; let i = index">
+                      <tr>
+                        <!-- <tr *ngFor="let item of initiativesForm.get('initiativesList')['controls']; let i = index"
+                        class="table-initiative"> -->
+                        <td>
+                          <a class="btn btn-info" (click)="chooseData(i)">select</a>
+                          <!-- <input (click)="chooseData(i)" class="checkbox-custom" type="checkbox" [disabled]="viewMode" /> -->
+                        </td>
+                        <td>{{ item.initiativeCode }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.ownerName }}</td>
+                        <td>{{ item.typeOfInvestment }}</td>
+                        <td>{{ item.typeBenefit }}</td>
+                        <td>{{ item.benefit }}</td>
+                        <td>{{ item.costEstimate }}</td>
+                        <td>{{ item.stage }}</td>
+                        <td>{{ item.note }}</td>
+                      </tr>
+                    </ng-container>
+                  </ng-template>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- end shopping table -->
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

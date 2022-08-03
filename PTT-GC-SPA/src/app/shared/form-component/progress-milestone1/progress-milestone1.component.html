@@ -1,0 +1,265 @@
+<ng-container *ngIf="isAdmin; else isNotAdmin">
+  <br />
+  <h3 style="color: #1C6EA4;">Progress & Milestone {{ InitiativeService.isRevise ? '(Revise Plan)' : null }}</h3>
+  <div class="content py-3" [formGroup]="progressFormNewLogic">
+    <div class="row">
+      <div class="col-lg-2">
+      </div>
+      <div class="col-lg-2 center">
+        <p>Basic Start Date</p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>Basic Finish Date</p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>Actual Start Date</p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>Actual Finish Date</p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>POC Weight (%)</p>
+      </div>
+    </div>
+    <div class="row overall">
+      <div class="col-lg-2">
+        <p class="center">Overall Plan</p>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (ngModelChange)="clearDateFunctionChangeValue()" 
+          [ngClass]="{ 'plan-inValid': isInvalid('basicStartDate') }"/>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (ngModelChange)="clearDateFunctionChangeValue()" 
+          [ngClass]="{ 'plan-inValid': isInvalid('basicFinishDate') }"/>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" triggers="" />
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" type="number" formControlName="pocWeightPercent">
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Progress 1 -->
+  <div class="card space" *ngFor="let elm of progressPlanMile1; let yearIndex = index;">
+    <div class="card-header dropdown" data-toggle="collapse" [attr.data-target]="'#collapse'+elm.year">
+      <div class="row">
+        <div class="col-lg-6">
+          <p>Progress Plan ({{getYear(yearIndex)}})</p>
+        </div>
+        <div class="col-lg-6">
+          <p style="text-align: right;"><i class="fa fa-caret-down"></i></p>
+        </div>
+      </div>
+    </div>
+    <div class="card-body collapse show" id="collapse{{elm.year}}" aria-labelledby="headingOne">
+      <table class="table table-hover responsive">
+        <thead>
+          <tr class="table-active text-center table-initiative">
+            <th>POC %</th>
+            <th>JAN</th>
+            <th>FEB</th>
+            <th>MAR</th>
+            <th>APR</th>
+            <th>MAY</th>
+            <th>JUN</th>
+            <th>JUL</th>
+            <th>AUG</th>
+            <th>SEP</th>
+            <th>OCT</th>
+            <th>NOV</th>
+            <th>DEC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataPOC;">
+            <th>{{item.name}}</th>
+            <td *ngFor="let data of elm.listMonth; let monthIndex = index">
+              <!-- OLD -->
+              <!-- <input *ngIf="item.id == 1" type="text" class="form-control" [(ngModel)]="data.planValue"
+                placeholder="{{data.planDisp}}" placeholder="{{data.planValue}}" mask="separator.2" step="0.01"
+                separatorLimit="100" [ngClass]="{ 'plan-inValid': !data.planDisabled && !getPlanError }"
+                (keypress)="keyPress($event)" (blur)="checkLimit('planValue',monthIndex,yearIndex)"
+                [allowNegativeNumbers]="true"> -->
+              <input *ngIf="item.id == 1" type="text" class="form-control" [(ngModel)]="data.planValue"
+                mask="separator.2" step="0.01" separatorLimit="100"
+                [ngClass]="{ 'plan-inValid': !data.planDisabled && !getPlanError }" (keypress)="keyPress($event)"
+                (blur)="checkLimit('planValue',monthIndex,yearIndex)" [allowNegativeNumbers]="true">
+
+              <input *ngIf="item.id == 2" type="text" class="form-control" [(ngModel)]="data.actualValue"
+                mask="separator.2" step="0.01" separatorLimit="100" (keypress)="keyPress($event)"
+                (blur)="checkLimit('actualValue',monthIndex,yearIndex)" [allowNegativeNumbers]="true">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ng-container>
+<ng-template #isNotAdmin>
+  <br />
+  <h3 style="color: #1C6EA4;">Progress & Milestone {{ InitiativeService.isRevise ? '(Revise Plan)' : null }}</h3>
+  <div class="content py-3" [formGroup]="progressFormNewLogic">
+    <div class="row">
+      <div class="col-lg-2">
+      </div>
+      <div class="col-lg-2 center">
+        <p>Basic Start Date <span class="text-danger">*</span></p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>Basic Finish Date <span class="text-danger">*</span></p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>Actual Start Date <span class="text-danger">*</span></p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>Actual Finish Date</p>
+      </div>
+      <div class="col-lg-2 center">
+        <p>POC Weight (%)</p>
+      </div>
+    </div>
+    <div class="row overall">
+      <div class="col-lg-2">
+        <p class="center">Overall Plan</p>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="basic_start" formControlName="basicStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (ngModelChange)="clearDateFunctionChangeValue()"
+          [triggers]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore) ? '' : 'click:click'"
+          [readonly]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore) "
+          [isDisabled]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore) " 
+          [ngClass]="{ 'plan-inValid': isInvalid('basicStartDate') }"/>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" id="basic_finish" formControlName="basicFinishDate" type="text" bsDatepicker
+          [bsConfig]="bsBasicConfig" (ngModelChange)="clearDateFunctionChangeValue()"
+          [triggers]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore)  ? '' : 'click:click'"
+          [readonly]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore) "
+          [isDisabled]="(viewMode || getWBS) && (!InitiativeService.isRevise && !InitiativeService.isAddmore)"
+          [ngClass]="{ 'plan-inValid': isInvalid('basicFinishDate') }" />
+      </div>
+      <div class="col-lg-2">
+        <!--Unlock ให้ฟิลด์สามารถเลือกได้ อย่าพึ่งลบคุณเอ็นแจ้งว่าต้องlock เมื่อ 25-8-21-->
+        <!--<input class="form-control" id="actual_start" formControlName="actualStartDate" type="text" bsDatepicker
+          [bsConfig]="bsConfig" (ngModelChange)="clearActualStart()" [triggers]="viewMode || !getWBS ? '' : 'click:click'" 
+          [readonly]="isActualStartDate" [isDisabled]="viewMode || isActualStartDate || !getWBS" 
+          (blur)="preventNullEvent($event)" />-->
+          <input class="form-control" id="actual_start" formControlName="actualStartDate" type="text" readonly 
+          bsDatepicker [bsConfig]="bsConfig" isDisabled='true' triggers='' />
+      </div>
+      <div class="col-lg-2">
+        <div *ngIf="allowActualFinishDate || viewMode; else elseBasicOverall">
+          <input class="form-control" id="actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+            [bsConfig]="bsActualConfig" (ngModelChange)="clearActual()" isDisabled="true" triggers='' readonly />
+        </div>
+        <ng-template #elseBasicOverall>
+          <input class="form-control" id="actual_finish" formControlName="actualFinishDate" type="text" bsDatepicker
+            [bsConfig]="bsActualConfig" (ngModelChange)="clearActual()" [minDate]="getMinDate()" />
+        </ng-template>
+      </div>
+      <div class="col-lg-2">
+        <input class="form-control" type="number" formControlName="pocWeightPercent" readonly>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Progress 1 -->
+  <div class="card space" *ngFor="let elm of progressPlanMile1; let yearIndex = index;">
+    <div class="card-header dropdown" data-toggle="collapse" [attr.data-target]="'#collapse'+elm.year">
+      <div class="row">
+        <div class="col-lg-6">
+          <p>Progress Plan ({{getYear(yearIndex)}})</p>
+        </div>
+        <div class="col-lg-6">
+          <p style="text-align: right;"><i class="fa fa-caret-down"></i></p>
+        </div>
+      </div>
+    </div>
+    <div class="card-body collapse show" id="collapse{{elm.year}}" aria-labelledby="headingOne">
+      <table class="table table-hover responsive">
+        <thead>
+          <tr class="table-active text-center table-initiative">
+            <th>POC %</th>
+            <th>JAN</th>
+            <th>FEB</th>
+            <th>MAR</th>
+            <th>APR</th>
+            <th>MAY</th>
+            <th>JUN</th>
+            <th>JUL</th>
+            <th>AUG</th>
+            <th>SEP</th>
+            <th>OCT</th>
+            <th>NOV</th>
+            <th>DEC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of dataPOC;">
+            <th>{{item.name}}</th>
+            <td *ngFor="let data of elm.listMonth; let monthIndex = index">
+              <input *ngIf="item.id == 1" type="text" class="form-control" placeholder="{{data.planDisp}}"
+                [(ngModel)]="data.planValue" (blur)="checkLimit('planValue',monthIndex,yearIndex)"
+                [readonly]="data.planDisabled" mask="separator.2" step="0.01" separatorLimit="100"
+                [ngClass]="{ 'plan-inValid': !data.planDisabled && !getPlanError }" (keypress)="keyPress($event)"
+                [allowNegativeNumbers]="true">
+
+              <input *ngIf="item.id == 2" type="text" class="form-control" placeholder="{{data.actualDisp}}"
+                [(ngModel)]="data.actualValue" mask="separator.2" step="0.01" separatorLimit="100"
+                [readonly]="data.actualDisabled || maxActualValue==100 || !disActualFinish"
+                (blur)="checkLimit('actualValue',monthIndex,yearIndex)" (keypress)="keyPress($event)"
+                [allowNegativeNumbers]="true">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- <table class="table table-hover responsive">
+      <thead>
+        <tr class="table-active text-center table-initiative">
+          <th>Type</th>
+          <th>POC %</th>
+          <th>JAN</th>
+          <th>FEB</th>
+          <th>MAR</th>
+          <th>APR</th>
+          <th>MAY</th>
+          <th>JUN</th>
+          <th>JUL</th>
+          <th>AUG</th>
+          <th>SEP</th>
+          <th>OCT</th>
+          <th>NOV</th>
+          <th>DEC</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dataPOC; ; let b = index">
+          <td rowspan="2" [style]="show(item.type , item.name)">
+            {{item.type}}
+          </td>
+          <td>{{item.name}}</td>
+          <td *ngFor="let data of elm.listMonth; let i = index">
+            <input *ngIf="item.id == 1" class="form-control" type="number" [(ngModel)]="data.planAccumulate"
+              [readonly]="true">
+            <input *ngIf="item.id == 2" class="form-control" type="number" [(ngModel)]="data.actualAccumulate"
+              [readonly]="true">
+          </td>
+        </tr>
+      </tbody>
+    </table> -->
+    </div>
+  </div>
+</ng-template>

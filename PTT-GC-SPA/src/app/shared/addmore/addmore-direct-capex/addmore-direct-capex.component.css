@@ -1,0 +1,47 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.card-initiative {
+  border: none;
+}
+
+table {
+  table-layout: fixed;
+}
+
+.fixedBenefit {
+  width: 280px;
+  overflow: hidden;
+}
+
+.fixed {
+  width: 140px;
+  overflow: hidden;
+}
+
+.fixedMonth {
+  width: 90px;
+  overflow: hidden;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+.btn-width {
+  width:105px;
+}
+
+.btn-co {
+  width: 100%;
+  /* width:2180px; */
+}
+
+

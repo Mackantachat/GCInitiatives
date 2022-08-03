@@ -1,0 +1,184 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>PTT_GC_API</RootNamespace>
+    <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptModuleKind>None</TypeScriptModuleKind>
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Dtos\SettingChart\Parameter.cs" />
+    <Compile Remove="Migrations\20200121070939_cancel.cs" />
+    <Compile Remove="Migrations\20200121070939_cancel.Designer.cs" />
+    <Compile Remove="Migrations\20200123084945_add_new_table_D1.cs" />
+    <Compile Remove="Migrations\20200123084945_add_new_table_D1.Designer.cs" />
+    <Compile Remove="Migrations\20200123085513_add2.cs" />
+    <Compile Remove="Migrations\20200123085513_add2.Designer.cs" />
+    <Compile Remove="Migrations\20200123090005_add_Plant.cs" />
+    <Compile Remove="Migrations\20200123090005_add_Plant.Designer.cs" />
+    <Compile Remove="Migrations\20200123090707_add_codev.cs" />
+    <Compile Remove="Migrations\20200123090707_add_codev.Designer.cs" />
+    <Compile Remove="Migrations\20200123090903_add_codev.cs" />
+    <Compile Remove="Migrations\20200123090903_add_codev.Designer.cs" />
+    <Compile Remove="Migrations\20200123091018_add_dev.cs" />
+    <Compile Remove="Migrations\20200123091018_add_dev.Designer.cs" />
+    <Compile Remove="Migrations\20200123091109_aa.cs" />
+    <Compile Remove="Migrations\20200123091109_aa.Designer.cs" />
+    <Compile Remove="Migrations\20200123091215_asdf.cs" />
+    <Compile Remove="Migrations\20200123091215_asdf.Designer.cs" />
+    <Compile Remove="Migrations\20200123091408_asdfasf.cs" />
+    <Compile Remove="Migrations\20200123091408_asdfasf.Designer.cs" />
+    <Compile Remove="Migrations\20200302110911_test_email.cs" />
+    <Compile Remove="Migrations\20200302110911_test_email.Designer.cs" />
+    <Compile Remove="Migrations\20200319124819_test_impact.cs" />
+    <Compile Remove="Migrations\20200319124819_test_impact.Designer.cs" />
+    <Compile Remove="Migrations\20200320080934_add_DetailInformation.cs" />
+    <Compile Remove="Migrations\20200320080934_add_DetailInformation.Designer.cs" />
+    <Compile Remove="Migrations\20200320081631_remove_DetailInformation.cs" />
+    <Compile Remove="Migrations\20200320081631_remove_DetailInformation.Designer.cs" />
+    <Compile Remove="Migrations\20200320082128_add_detail_info.cs" />
+    <Compile Remove="Migrations\20200320082128_add_detail_info.Designer.cs" />
+    <Compile Remove="Migrations\20200320082432_add_detail_info.cs" />
+    <Compile Remove="Migrations\20200320082432_add_detail_info.Designer.cs" />
+    <Compile Remove="Migrations\20200320082650_add_detail_information.cs" />
+    <Compile Remove="Migrations\20200320082650_add_detail_information.Designer.cs" />
+    <Compile Remove="Migrations\20200421074053_setting-Report.cs" />
+    <Compile Remove="Migrations\20200421074053_setting-Report.Designer.cs" />
+    <Compile Remove="Migrations\20200427083829_redesign_ReportHeaderColumn_2.cs" />
+    <Compile Remove="Migrations\20200427083829_redesign_ReportHeaderColumn_2.Designer.cs" />
+    <Compile Remove="Migrations\20200427085922_editColumnReportHeader.cs" />
+    <Compile Remove="Migrations\20200427085922_editColumnReportHeader.Designer.cs" />
+    <Compile Remove="Migrations\20200427090218_editColumnReportHeader1.cs" />
+    <Compile Remove="Migrations\20200427090218_editColumnReportHeader1.Designer.cs" />
+    <Compile Remove="Migrations\20200429073344_addViewDropdown.cs" />
+    <Compile Remove="Migrations\20200429073344_addViewDropdown.Designer.cs" />
+    <Compile Remove="Migrations\20200511105511_CreateTableStageTypeTracking.cs" />
+    <Compile Remove="Migrations\20200511105511_CreateTableStageTypeTracking.Designer.cs" />
+    <Compile Remove="Migrations\20200512025814_TypeStageApprover.cs" />
+    <Compile Remove="Migrations\20200512025814_TypeStageApprover.Designer.cs" />
+    <Compile Remove="Migrations\20200512051303_test.cs" />
+    <Compile Remove="Migrations\20200512051303_test.Designer.cs" />
+    <Compile Remove="Migrations\20200518053708_add_tabl_BlankablePlans.cs" />
+    <Compile Remove="Migrations\20200518053708_add_tabl_BlankablePlans.Designer.cs" />
+    <Compile Remove="Migrations\20200518054203_edit_decimal_BlankablePlan.cs" />
+    <Compile Remove="Migrations\20200518054203_edit_decimal_BlankablePlan.Designer.cs" />
+    <Compile Remove="Migrations\20200522033316_V_AuditsTable.cs" />
+    <Compile Remove="Migrations\20200522033316_V_AuditsTable.Designer.cs" />
+    <Compile Remove="Migrations\20200522094636_add_StageType_ClevelTargetLines.cs" />
+    <Compile Remove="Migrations\20200522094636_add_StageType_ClevelTargetLines.Designer.cs" />
+    <Compile Remove="Migrations\20200522100051_add_StageType_ClevelTargetLines.cs" />
+    <Compile Remove="Migrations\20200522100051_add_StageType_ClevelTargetLines.Designer.cs" />
+    <Compile Remove="Migrations\20200525072249_add_MaxApproverAndSetting.cs" />
+    <Compile Remove="Migrations\20200525072249_add_MaxApproverAndSetting.Designer.cs" />
+    <Compile Remove="Migrations\20200527025006_add_MonthAdd_MonthlyInvestmnetPlan.cs" />
+    <Compile Remove="Migrations\20200527025006_add_MonthAdd_MonthlyInvestmnetPlan.Designer.cs" />
+    <Compile Remove="Migrations\20200602101204_rename-column-status-history.cs" />
+    <Compile Remove="Migrations\20200602101204_rename-column-status-history.Designer.cs" />
+    <Compile Remove="Migrations\20200602101453_changenamecolumnhistory.cs" />
+    <Compile Remove="Migrations\20200602101453_changenamecolumnhistory.Designer.cs" />
+    <Compile Remove="Migrations\20200602101833_changenamecolumnhistory.cs" />
+    <Compile Remove="Migrations\20200602101833_changenamecolumnhistory.Designer.cs" />
+    <Compile Remove="Migrations\20200615112310_add_approveandsubmitdate.cs" />
+    <Compile Remove="Migrations\20200615112310_add_approveandsubmitdate.Designer.cs" />
+    <Compile Remove="Migrations\20200615112447_add_approveandsubmitdate.cs" />
+    <Compile Remove="Migrations\20200615112447_add_approveandsubmitdate.Designer.cs" />
+    <Compile Remove="Migrations\20200617080236_edit_Owner_int_to_double.cs" />
+    <Compile Remove="Migrations\20200617080236_edit_Owner_int_to_double.Designer.cs" />
+    <Compile Remove="Migrations\20200624070218_add_Key_Detail.cs" />
+    <Compile Remove="Migrations\20200624070218_add_Key_Detail.Designer.cs" />
+    <Compile Remove="Migrations\20200624070512_add_Key_Detail.cs" />
+    <Compile Remove="Migrations\20200624070512_add_Key_Detail.Designer.cs" />
+    <Compile Remove="Migrations\20200624070823_add_Key_Detail.cs" />
+    <Compile Remove="Migrations\20200624070823_add_Key_Detail.Designer.cs" />
+    <Compile Remove="Migrations\20200624072159_add_Key_Detail.cs" />
+    <Compile Remove="Migrations\20200624072159_add_Key_Detail.Designer.cs" />
+    <Compile Remove="Migrations\20200629041642_add_TableForInterfaceFiles.cs" />
+    <Compile Remove="Migrations\20200629041642_add_TableForInterfaceFiles.Designer.cs" />
+    <Compile Remove="Migrations\20200629093727_addTableForInterfaces.cs" />
+    <Compile Remove="Migrations\20200629093727_addTableForInterfaces.Designer.cs" />
+    <Compile Remove="Migrations\20200707035430_add_subType_for_Capexs.cs" />
+    <Compile Remove="Migrations\20200707035430_add_subType_for_Capexs.Designer.cs" />
+    <Compile Remove="Migrations\20200707083449_addRunningSequence.cs" />
+    <Compile Remove="Migrations\20200707083449_addRunningSequence.Designer.cs" />
+    <Compile Remove="Migrations\20200804075159_add_DimSponsor.cs" />
+    <Compile Remove="Migrations\20200804075159_add_DimSponsor.Designer.cs" />
+    <Compile Remove="Migrations\20200819092316_fix_risk_model.cs" />
+    <Compile Remove="Migrations\20200819092316_fix_risk_model.Designer.cs" />
+    <Compile Remove="Migrations\20200819094914_fix_risk_model_2.cs" />
+    <Compile Remove="Migrations\20200819094914_fix_risk_model_2.Designer.cs" />
+    <Compile Remove="Migrations\20200820034714_modify-risk-model.cs" />
+    <Compile Remove="Migrations\20200820034714_modify-risk-model.Designer.cs" />
+    <Compile Remove="Migrations\20200820040134_modify-risk-model.cs" />
+    <Compile Remove="Migrations\20200820040134_modify-risk-model.Designer.cs" />
+    <Compile Remove="Migrations\20200820045755_Alter_risk_column.cs" />
+    <Compile Remove="Migrations\20200820045755_Alter_risk_column.Designer.cs" />
+    <Compile Remove="Migrations\20200820051738_alter-risk-column.cs" />
+    <Compile Remove="Migrations\20200820051738_alter-risk-column.Designer.cs" />
+    <Compile Remove="Migrations\20200824074233_add_ProgressPlan.cs" />
+    <Compile Remove="Migrations\20200824074233_add_ProgressPlan.Designer.cs" />
+    <Compile Remove="Migrations\20200928050533_add-column-BudgetUsedOutsideIdeamani-Capx.cs" />
+    <Compile Remove="Migrations\20200928050533_add-column-BudgetUsedOutsideIdeamani-Capx.Designer.cs" />
+    <Compile Remove="Migrations\20200928063211_edit-column-3-digits.cs" />
+    <Compile Remove="Migrations\20200928063211_edit-column-3-digits.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--<PackageReference Include="EntityFramework" Version="6.4.0" />-->
+    <PackageReference Include="Castle.Windsor" Version="5.0.1" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.10.1" />
+    <PackageReference Include="DotNetCore.NPOI" Version="1.2.2" />
+    <PackageReference Include="FastReport.OpenSource" Version="2020.2.9" />
+    <PackageReference Include="FastReport.OpenSource.Data.MsSql" Version="2020.2.0" />
+    <PackageReference Include="FastReport.OpenSource.Export.PdfSimple" Version="2020.2.0" />
+    <PackageReference Include="FastReport.OpenSource.Web" Version="2020.2.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.Azure.Storage.Blob" Version="11.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.6.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+    <PackageReference Include="SoapCore" Version="1.1.0-alpha" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="3.1.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="GCtemplate.pptx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Picture1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Reports\test1.frx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Maintain\" />
+    <Folder Include="Reports\" />
+  </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+</Project>

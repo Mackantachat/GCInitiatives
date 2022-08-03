@@ -1,0 +1,59 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 id="dialog-child-name" class="modal-title pull-left"> Confirmation of Investment Type </h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="hideChildModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-row mt-1">
+          <div class="col form-group">
+            <label for="exampleFormControlInput1">
+              <i class="fas fa-question-circle mr-2"></i> What type of change (Replace) ?
+            </label>
+            <br>
+            <div class="mt-1 pl-4">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="in-kind" value="in-kind" class="custom-control-input" type="radio" name="replace" [(ngModel)]="replace" (change)="OnChangeReplace()">
+                <label class="custom-control-label" for="in-kind"> In-kind </label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="not-in-kind" value="not-in-kind" class="custom-control-input" type="radio" name="replace" [(ngModel)]="replace" (change)="OnChangeReplace()">
+                <label class="custom-control-label" for="not-in-kind"> Not in-kind </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row mt-2">
+          <div class="col form-group">
+            <label for="exampleFormControlInput1">
+              <i class="fas fa-question-circle mr-2"></i> Does Initiative is related to replace an obsolate item ?
+            </label>
+            <br>
+            <div class="mt-1 pl-4">
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="yes" value="yes" class="custom-control-input" type="radio" name="obsolate" [(ngModel)]="obsolate" (change)="OnChangeObsolate()">
+                <label class="custom-control-label" for="yes"> Yes </label>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <input id="no" value="no" class="custom-control-input" type="radio" name="obsolate" [(ngModel)]="obsolate" (change)="OnChangeObsolate()">
+                <label class="custom-control-label" for="no"> No </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <span class="mr-auto">
+        <div class="alert alert-primary label-investment" role="alert">
+          {{ confirmText }}
+        </div>
+      </span>
+      <button type="button" class="btn btn-outline-success" (click)="Confirm()"> Confirm </button>
+      <button type="button" class="btn btn-outline-dark" (click)="hideChildModal()">Close</button>
+    </div>
+  </div>
+</div>

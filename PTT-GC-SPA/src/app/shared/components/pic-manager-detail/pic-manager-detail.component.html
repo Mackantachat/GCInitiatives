@@ -1,0 +1,204 @@
+<ngx-spinner>
+</ngx-spinner>
+<div class="animated fadeIn">
+  <div class="row mt-3">
+    <div class="col-12">
+      <h4>{{title}} PIC Management</h4>
+    </div>
+  </div>
+
+  <form class="form-group w-100" [formGroup]="form">
+    <div class="row">
+      <div class="col-md-12">
+        <span>Meeting Date</span>
+      </div>
+      <div class="col-12 col-md-4 col-lg-3 col-xl-2 mt-3">
+        <ng-container *ngIf="!viewMode; else viewDate">
+          <input class="form-control" type="text" placeholder="dd/mm/yyyy" bsDatepicker #dpVAC="bsDatepicker"
+            [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY', isAnimated: true }" formControlName="meetingDate"
+            placement="right" />
+        </ng-container>
+        <ng-template #viewDate>
+          <input class="form-control" type="text"
+            [value]="getDateValue('meetingDate') ? (getDateValue('meetingDate') | date: 'dd/MM/yyyy') : ''" readonly />
+        </ng-template>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 mt-3">
+        <span>PIC Member</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <span>Up Stream</span>
+      </div>
+      <div class="col-12 col-md-12 col-lg-8 col-xl-6 mt-2">
+        <div class="card">
+          <div class="card-body">
+
+            <ng-container *ngFor="let upStream of getBuStreamByType('Up Stream') ; let i = index">
+              <button [disabled]="viewMode" class="btn {{ i > 0 ? 'ml-3' : null }}"
+                [ngClass]="{'btn-success': findUpStream(upStream.attribute01), 'btn-secondary': !findUpStream(upStream.attribute01)}"
+                (click)="toggle(upStream.attribute01,'up')">{{upStream.attribute01}}</button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 mt-2">
+        <span>Center</span>
+      </div>
+      <div class="col-12 col-md-12 col-lg-8 col-xl-6 mt-2">
+        <div class="card">
+          <div class="card-body">
+            <ng-container *ngFor="let centerStream of getBuStreamByType('Center') ; let i = index">
+              <button [disabled]="viewMode" class="btn {{ i > 0 ? 'ml-3' : null }}"
+                [ngClass]="{'btn-success': findCenter(centerStream.attribute01), 'btn-secondary': !findCenter(centerStream.attribute01)}"
+                (click)="toggle(centerStream.attribute01,'center')">{{centerStream.attribute01}}</button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <span>Down Stream</span>
+      </div>
+      <div class="col-12 col-md-12 col-lg-8 col-xl-6 mt-2">
+        <div class="card">
+          <div class="card-body">
+            <ng-container *ngFor="let downStream of getBuStreamByType('Down Stream') ; let i = index">
+              <button [disabled]="viewMode" class="btn {{ i > 0 ? 'ml-3' : null }}"
+                [ngClass]="{'btn-success': findDownStream(downStream.attribute01), 'btn-secondary': !findDownStream(downStream.attribute01)}"
+                (click)="toggle(downStream.attribute01,'down')">{{downStream.attribute01}}</button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <div class="row mt-4">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-hover table-striped" style="width: max-content">
+          <thead class="text-center bg-light">
+            <th style="width: 120px;">
+              Select
+            </th>
+            <th style="width: 120px;">
+              Initialtive ID
+            </th>
+            <th style="width: 120px;">
+              Initialtive Name
+            </th>
+            <th style="width: 120px;">
+              Owner
+            </th>
+            <th style="width: 120px;">
+              Initialtive Type
+            </th>
+            <th style="width: 120px;">
+              Plant
+            </th>
+            <th style="width: 120px;">
+              E-MOC No.
+            </th>
+            <th style="width: 120px;">
+              PIC Gate
+            </th>
+            <th style="width: 120px;">
+              Presentation
+            </th>
+            <th style="width: 120px;">
+              PDD
+            </th>
+            <!-- <th style="width: 120px;">
+              SMEs Request
+            </th> -->
+            <th style="width: 120px;">
+              Overall Cost Estimate
+            </th>
+            <th style="width: 120px;">
+              Request CAPEX
+            </th>
+            <th style="width: 120px;">
+              Request OPEX
+            </th>
+            <th style="width: 120px;">
+              Result
+            </th>
+            <th style="width: 120px;">
+              Stage
+            </th>
+            <th style="width: 120px;">
+              Process
+            </th>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let item of form.get('initiativeMember')['controls']; let i = index">
+              <tr [formGroup]="item">
+                <td style="text-align: center;">
+                  <input class="checkbox-custom" type="checkbox" formControlName="selected"
+                    (change)="chooseCheckbox(i)" />
+                </td>
+                <td>{{ item.get('initiativeCode').value }}</td>
+                <td>{{ item.get('name').value }}</td>
+                <td>{{ item.get('ownerName').value }}</td>
+                <td>{{ item.get('initiativeType').value}}</td>
+                <td>{{ item.get('plant').value}}</td>
+                <td>{{ item.get('emocNo').value }}</td>
+                <td>{{ item.get('gate').value }}</td>
+                <td>{{ item.get('presentation').value}}</td>
+                <td>{{ item.get('pdd').value}}</td>
+                <td>{{ item.get('overallCostEst').value}}</td>
+                <td>{{ item.get('requestCapex').value}}</td>
+                <td>{{ item.get('requestOpex').value}}</td>
+                <td>
+                  <ng-select [readonly]="viewMode" [clearable]="false" [items]="ddlResult" bindValue="value"
+                    bindLabel="name" formControlName="result" placeholder="Please Select"
+                    (change)="changeResult($event,i)">
+                  </ng-select>
+                </td>
+                <td>
+                  <ng-select *ngIf="getShowElem('stage',i)" formControlName="stage" [multiple]="false"
+                    [clearable]="false" placeholder="Please Select" [readonly]="viewMode">
+                    <ng-container
+                      *ngFor="let itemOption of getStageAndProgress('stage',i,item.get('initiativeId').value)">
+                      <ng-option [value]="itemOption">{{itemOption}}</ng-option>
+                    </ng-container>
+                  </ng-select>
+                </td>
+                <td>
+                  <ng-select *ngIf="getShowElem('process',i)" formControlName="process" [multiple]="false"
+                    [clearable]="false" placeholder="Please Select" [readonly]="viewMode">
+                    <ng-container
+                      *ngFor="let itemOption of getStageAndProgress('process',i,item.get('initiativeId').value)">
+                      <ng-option [value]="itemOption">{{itemOption}}</ng-option>
+                    </ng-container>
+                  </ng-select>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="row mt-3">
+    <div class="col-md-6">
+      <!-- <button class="btn btn-danger btn-width-default" (click)="onCancel()">Cancel</button> -->
+      <button *ngIf="!viewMode" type="button" class="btn btn-success btn-width mr-3" (click)="onSave()"><i
+          class="far fa-check-circle mr-2"></i>Submit</button>
+    </div>
+    <div class="col-md-6" style="text-align:right">
+      <button *ngIf="!viewMode" type="button" class="btn btn-success btn-width mr-3"
+        (click)="onSaveDraft()">Draft</button>
+      <button type="button" class="btn btn-outline-dark" (click)="onCancel()">Cancel</button>
+    </div>
+  </div>
+</div>

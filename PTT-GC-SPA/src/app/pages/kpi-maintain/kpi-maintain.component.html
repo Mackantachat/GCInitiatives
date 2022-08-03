@@ -1,0 +1,186 @@
+<form [formGroup]="initiativesForm">
+  <div class="row">
+    <div class="col-md-12" style="padding-left: inherit; padding-right: inherit">
+      <div class="card text card-initiative">
+        <div class="card-body">
+          <div class="form-initiative">
+            <label for="" style="font-size: 28px; color: #414141">My Own Initiatives > Test</label>
+            <hr />
+          </div>
+          <div class="form-initiative">
+            <!-- E-MOC -->
+            <div class="row mt-1">
+              <div class="col">
+                <label style="color: #414141">Maintain Corporate KPI</label>
+                <hr />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-sm-1 col-form-label">
+                <label for="year">Year</label>
+              </div>
+              <div class="col-sm-2">
+                <select class="form-control" formControlName="year" id="year">
+                  <option [value]="y" *ngFor="let y of years">{{ y }}</option>
+                </select>
+              </div>
+            </div>
+
+            <table #dataTable class="table table-responsive table-bordered">
+              <thead>
+                <tr>
+                  <th class="text-center align-middle" rowspan="2">No.</th>
+                  <th class="text-center align-middle" rowspan="2">
+                    KPI Target
+                  </th>
+                  <th class="text-center align-middle" colspan="10">score</th>
+                  <th class="text-center align-middle" rowspan="2">
+                    Initiative ID / Initiative Name
+                  </th>
+                  <th class="text-center align-middle" rowspan="2">
+                    Initiative Name
+                  </th>
+                  <th class="text-center align-middle" rowspan="2">Action</th>
+                </tr>
+                <tr>
+                  <th class="text-center align-middle">1</th>
+                  <th class="text-center align-middle"></th>
+                  <th class="text-center align-middle">2</th>
+                  <th class="text-center align-middle"></th>
+                  <th class="text-center align-middle">3</th>
+                  <th class="text-center align-middle"></th>
+                  <th class="text-center align-middle">4</th>
+                  <th class="text-center align-middle"></th>
+                  <th class="text-center align-middle">5</th>
+                  <th class="text-center align-middle"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <ng-container formArrayName="datas">
+                  <!-- <tr *ngFor="let data of initiativesForm.get('datas')['controls']; let idx = index"> -->
+                  <tr *ngFor="let _ of datas.controls; let idx = index">
+                    <ng-container [formGroupName]="idx">
+                      <td class="text-center align-middle p-1">
+                        <label>{{ datas.controls[idx].get("no").value }}</label>
+                      </td>
+                      <td class="text-center align-middle p-1">
+                        <input type="text" class="form-control" formControlName="kpiTarget" />
+                      </td>
+                      <td class="text-center align-middle p-1" style="width: 100px;">
+                        <input type="text" class="form-control" formControlName="score1" />
+                      </td>
+                      <td class="text-center align-middle p-1">
+                        <div>
+                          <select formControlName="score1Color"
+                            class="form-control form-control-sm ml-auto round-box minimal"
+                            [style]="{'background-color': datas.controls[idx].get('score1Color').value}"
+                            [ngClass]="{ 'pointer-events-none': true }">
+                            <option *ngFor="let color of colors" [value]="color.id"
+                              [style]="{ 'background-color': color.id }">
+                            </option>
+                          </select>
+                        </div>
+                      </td>
+                      <td class="text-center align-middle p-1" style="width: 100px;">
+                        <input type="text" class="form-control" formControlName="score2" />
+                      </td>
+                      <td class="text-center align-middle p-1">
+                        <div>
+                          <select formControlName="score2Color"
+                            class="form-control form-control-sm ml-auto round-box minimal"
+                            [style]="{'background-color': datas.controls[idx].get('score2Color').value}">
+                            <option *ngFor="let color of colors" [value]="color.id"
+                              [style]="{ 'background-color': color.id }">
+                            </option>
+                          </select>
+                        </div>
+                      </td>
+                      <td class="text-center align-middle p-1" style="width: 100px;">
+                        <input type="text" class="form-control" formControlName="score3" />
+                      </td>
+                      <td class="text-center align-middle p-1">
+                        <div>
+                          <select formControlName="score3Color"
+                            class="form-control form-control-sm ml-auto round-box minimal"
+                            [style]="{'background-color': datas.controls[idx].get('score3Color').value}">
+                            <option *ngFor="let color of colors" [value]="color.id"
+                              [style]="{ 'background-color': color.id }">
+                            </option>
+                          </select>
+                        </div>
+                      </td>
+                      <td class="text-center align-middle p-1" style="width: 100px;">
+                        <input type="text" class="form-control" formControlName="score4" />
+                      </td>
+                      <td class="text-center align-middle p-1">
+                        <div>
+                          <select formControlName="score4Color"
+                            class="form-control form-control-sm ml-auto round-box minimal"
+                            [style]="{'background-color': datas.controls[idx].get('score4Color').value}">
+                            <option *ngFor="let color of colors" [value]="color.id"
+                              [style]="{ 'background-color': color.id }">
+                            </option>
+                          </select>
+                        </div>
+                      </td>
+                      <td class="text-center align-middle p-1" style="width: 100px;">
+                        <input type="text" class="form-control" formControlName="score5" />
+                      </td>
+                      <td class="text-center align-middle p-1">
+                        <div>
+                          <select formControlName="score5Color"
+                            class="form-control form-control-sm ml-auto round-box minimal"
+                            [style]="{'background-color': datas.controls[idx].get('score5Color').value}">
+                            <option *ngFor="let color of colors" [value]="color.id"
+                              [style]="{ 'background-color': color.id }">
+                            </option>
+                          </select>
+                        </div>
+                      </td>
+                      <td class="text-center align-middle" style="width: 200px;">
+                        <ng-select [items]="initiatives" (change)="initiativeChange(idx)" [virtualScroll]="true"
+                          bindLabel="name" bindValue="id" formControlName="initiativeId">
+                        </ng-select>
+                      </td>
+                      <td class="text-center align-middle p-1">
+                        <a [href]="getLink(idx)">
+                          {{getLinkName(idx)}}
+                        </a>
+                      </td>
+                      <td class="text-center align-middle" style="width: 200px;">
+                        <!-- <button type="button" class="close" aria-label="Close" (click)="deleteRow(idx)">
+                            <span aria-hidden="true">&times;</span>
+                          </button> -->
+
+
+                        <div class="custom-control custom-checkbox">
+                          <input formControlName="action" type="checkbox" class="custom-control-input"
+                            id="action{{idx}}">
+                          <label for="action{{idx}}" class="custom-control-label">Active</label>
+                          <button type="button" class="close" (click)="deleteRow(idx)">
+                            <i class="fa fa-trash-alt"></i>
+                          </button>
+                        </div>
+
+                      </td>
+                    </ng-container>
+                  </tr>
+                </ng-container>
+              </tbody>
+            </table>
+
+            <div class="container top">
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="button" class="btn btn-primary btn-width" value="Add" (click)="addData()" />
+                  <input type="submit" value="Save" class="btn btn-primary btn-width ml-2" (click)="saveData()" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

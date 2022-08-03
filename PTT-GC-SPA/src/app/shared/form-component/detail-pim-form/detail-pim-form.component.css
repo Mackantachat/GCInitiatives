@@ -1,0 +1,71 @@
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.milestone-textarea {
+    margin: 0px 0;
+}
+
+.card-initiative {
+    border: none;
+}
+
+/* .btn-width {
+    width: 105px;
+} */
+
+.btn-co {
+    width: 100%;
+    /* width:1050px; */
+}
+
+/*  Disable Ng Select */
+
+.edit-detail .ng-select .ng-arrow-wrapper {
+    background-color: #B9B9B9;
+}
+
+.edit-detail .ng-select.ng-select-single .ng-select-container {
+    left: 0;
+    width: 100%;
+    background-color: #B9B9B9;
+    border-radius: 2px;
+}
+
+.edit-detail .ng-select.ng-select-multiple .ng-select-container .ng-value-container {
+    left: 0;
+    width: 100%;
+    background-color: #B9B9B9;
+    border-radius: 2px;
+}
+
+.edit-detail .ng-select.ng-select-multiple.ng-select-disabled>.ng-select-container .ng-value-container .ng-value {
+    background-color: #B9B9B9;
+    border: 1px solid #B9B9B9;
+}
+
+.edit-detail .ng-select.ng-select-disabled>.ng-select-container {
+    background-color: #B9B9B9;
+}
+
+.disabled-emoc {
+    cursor: not-allowed !important;
+    pointer-events: none;
+    opacity: 1;
+    background: aliceblue;
+  }
+
+  .link-text{
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+  }

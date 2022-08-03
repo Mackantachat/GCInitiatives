@@ -1,0 +1,32 @@
+<section class="edit">
+  <div class="card bg-light mb-4" *ngIf="CheckStatus" style="">
+    <div class="card-body row" style="margin-top:10px;padding-bottom:-40px">
+      <div class="col-md-1">
+        <p class="font-weight-bolder"> Status </p>
+      </div>
+      <div class="col-md-4">
+        <span [ngStyle]="{ 'font-size' : '15px' }"> <strong> {{ status | uppercase }}  </strong> </span>
+      </div>
+      <ng-container *ngIf="stage">
+        <div class="col-md-1">
+          <p class="font-weight-bolder"> Stage </p>
+        </div>
+        <div class="col-md-5">
+          <p> {{ stage }} </p>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="remark">
+        <div class="card-body row" style="margin-top:10px;padding-bottom:-40px">
+          <div class="col-md-1">
+            <p class="font-weight-bolder"> Remark </p>
+          </div>
+          <div class="col-md-11">
+            <p> {{ remark }} </p>
+          </div>
+        </div>
+      </ng-container>
+
+    </div>
+  </div>
+  <br>
+</section>

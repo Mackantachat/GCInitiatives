@@ -1,0 +1,196 @@
+export interface DetailInformation {
+  id: number;
+  initiativeId: number;
+  initiativeYear: string;
+  strategicObjective: string;
+  strategy: string;
+  initiativeTypeMax: string;
+  workstream: string;
+  subWorkstream1: string;
+  subWorkstream2: string;
+  proCategory: string;
+  proSubCategory: string;
+  proLever: string;
+  baseline: number;
+  baselineHistorical: number;
+  baselineNonHistorical: number;
+  saving: number;
+  savingHistorical: number;
+  savingNonHistorical: number;
+  iL3Date: Date;
+  iL4Date: Date;
+  iL5Date: Date;
+  //sponsorEvp: string;
+  //workstreamLead: string;
+  //toFinance: string;
+  //cto: string;
+  //cfo: string;
+  president: string;
+  manager: string;
+  projectManager: string;
+  productionProcess: string;
+  milestoneSchedule: string;
+  expectedTarget: string;
+  comparisonWithOther: string;
+  otherResources: string;
+  otherInvestment: string;
+  consistent: string;
+  keySuccessFactor: string;
+  synergyBenefit: string;
+  otherStrategic: string;
+  marketOverview: string;
+  potentialCustomer: string;
+  salesPlan: string;
+  sourceOfFeedback: string;
+  otherBusiness: string;
+  safetyIndex: string;
+  corporateImageIndex: string;
+  otherQuality: string;
+  baseCase: string;
+  projectIrrBaseCase: number;
+  npvBaseCase: number;
+  paybackBaseCase: number;
+  ebitdaBaseCase: number;
+  optimisticCase: string;
+  projectIrrOptimisticCase: number;
+  npvOptimisticCase: number;
+  paybackOptimisticCase: number;
+  ebitdaOptimisticCase: number;
+  pessimisticCase: string;
+  projectIrrPessimisticCase: number;
+  npvPessimisticCase: number;
+  paybackPessimisticCase: number;
+  ebitdaPessimisticCase: number;
+  depreciationCost: string;
+  usefulYear: number;
+  usefulMonth: number;
+  remark: string;
+  otherKpis: string;
+  forEnvironment: string;
+  forTurnaround: string;
+  cutFeedDate: Date;
+  startUpDate: Date;
+  cycleYear: number;
+  cycleMonth: number;
+  replaceEquipment: string;
+  equipmentName: string;
+  replacementDate: Date;
+  oldAssetCondition: string;
+  OldAssetNo: string;
+  EquipmentOrAsset: string;
+  boi: string;
+  boiNo: string;
+  haveAdditional: string;
+  capitalL: number;
+  catalyst: number;
+  software: number;
+  rightOfUse: number;
+  coordinate: string;
+  parties: string;
+  submitTo: string;
+  baselineStartDate: Date;
+  baselineFinishDate: Date;
+  reviseForecastStartDate: Date;
+  reviseForecastFinishDate: Date;
+  actualStartDate: Date;
+  actualFinishDate: Date;
+  requireDirectBenefit: boolean,
+  directBenefit: number,
+  requireIndirectBenefit: boolean,
+  indirectBenefit: number,
+  isDeliverAsPerCommittedScope: boolean,
+  scopeDetail: string,
+  isDeliverAsPerCommittedDate: boolean,
+  timelineDetail: string,
+  isDeliverAsPerCommittedCost: boolean,
+  costDetail: string,
+  isImpactProduction: boolean,
+  isAlignWithCorporateStrategy: boolean,
+  year: number,
+  isSimProjectSkipGate2: boolean
+  projectDirector: string,
+  projectEngineer: string,
+  processEngineer: string,
+  divMgrOfProcessEngineer: string,
+  smes: string,
+  sponsorEvp: string,
+  workstreamLeadVp: string,
+  toFinance: string,
+  cto: string,
+  cfo: string,
+  kickoffMeeting: Date,
+  gate1Date: Date,
+  gate2Date: Date,
+  gate3Date: Date,
+
+  sourceOfImprovement: string,
+  typeOfCpi: string,
+  analysisTool: string,
+  rootCause: string,
+  stepExplanation: string,
+  estimatedBudgetOpex: number,
+  estimatedBenefitSavings: number,
+  estimatedBenefitCalculationDetails: string,
+  actualBudgetOpex: number,
+  actualBudgetSavings: number,
+  actualBenefitCalculationDetails: string,
+
+  projectDocumentDatabase: string;
+  fixedAsset: boolean;
+  requestSubPic: boolean;
+  internalOrderNo: string;
+
+  //simProjectSkipGate2
+  simProjectSkipGate2: boolean;
+
+  //add field 18-01-2021
+  ram: string;
+  jFactor: number;
+  //add pim detail
+  attachProcess: boolean;
+  attachPlotPlanSite: boolean;
+  attachReference: boolean;
+  attachBenefit: boolean;
+  useExternalEmoc: boolean;
+  externalEmoc: string;
+  projectNonFinancialBenefit: string;
+
+  //HighlightWork
+  highlightWorkStatus: string;
+  highlightWorkConCern: string;
+  nextActivities: string;
+
+  //Team Support
+  requestTeamSupport: boolean;
+  requestHandoverExecution: boolean;
+  requestHandoverPlantOwner: boolean;
+  vpOfPlantOwner: string;
+  dmOfPlantOwner: string;
+  plantEngineer: string;
+  plantProcessEngineer: string;
+  divMgrOfPlantProcessEngineer: string;
+  teamSupports: string[];
+  teamSupportComments: TeamSupportComments[];
+  projectSponsor: string;
+}
+export interface TeamSupports {
+  initiativeId: number;
+  employeeID: string;
+  teamSupportName: string;
+  email: string;
+  sendEmailStatus: number;
+}
+export interface TeamSupportComments {
+  id: number;
+  initiativeId: number;
+  employeeID: string;
+  teamSupportName: string;
+  comment: string;
+}
+export interface PimGateConfig {
+  gate0: string;
+  gate1: string;
+  gate2: string;
+  gate3: string;
+  gate4: string;
+}

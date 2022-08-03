@@ -1,0 +1,62 @@
+[
+    {
+      "WorkStreamTitle": "Aromatics",
+      "CLevel": "SEVP-U/MCS"
+    },
+    {
+      "WorkStreamTitle": "EO Based",
+      "CLevel": "SEVP-D"
+    },
+    {
+      "WorkStreamTitle": "GCME",
+      "CLevel": "COE"
+    },
+    {
+      "WorkStreamTitle": "Green",
+      "CLevel": "SEVP-D"
+    },
+    {
+      "WorkStreamTitle": "Health",
+      "CLevel": "COE"
+    },
+    {
+      "WorkStreamTitle": "Maintenance costs",
+      "CLevel": "COE"
+    },
+    {
+      "WorkStreamTitle": "Marketing and sales (upstream)",
+      "CLevel": "SEVP-U/MCS"
+    },
+    {
+      "WorkStreamTitle": "Olefins",
+      "CLevel": "SEVP-U/MCS"
+    },
+    {
+      "WorkStreamTitle": "Phenol",
+      "CLevel": "SEVP-D"
+    },
+    {
+      "WorkStreamTitle": "Polymers",
+      "CLevel": "SEVP-D"
+    },
+    {
+      "WorkStreamTitle": "Procurement",
+      "CLevel": "COE"
+    },
+    {
+      "WorkStreamTitle": "Refinery",
+      "CLevel": "SEVP-U/MCS"
+    },
+    {
+      "WorkStreamTitle": "Turnaround and sustained CAPEX",
+      "CLevel": "COE"
+    },
+    {
+      "WorkStreamTitle": "Supply chain optimization (upstream)",
+      "CLevel": "SEVP-U/MCS"
+    },
+    {
+      "WorkStreamTitle": "Utilities",
+      "CLevel": "SEVP-U/MCS"
+    }
+]

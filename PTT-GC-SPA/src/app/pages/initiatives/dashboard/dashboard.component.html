@@ -1,0 +1,33 @@
+<div class="form-group row mt-3">
+    <div class="col-md-12">
+      <h3> {{ name }} </h3>
+      <hr>
+    </div>
+  </div>
+
+<div bsModal #dashboardModal="bs-modal" class="modal fade modal-dashboard" [config]="{backdrop: 'static'}">
+    <app-dashboard-forms
+    *ngIf="isModalCanOpen"
+    [typeOpen]="typeOpenModal"
+    [reportID]="reportID"
+    (thisModalClose)="CloseModal($event)"
+    >
+    </app-dashboard-forms>
+</div>
+
+<app-dashboard-list
+ [allHeadersReport] = 'allHeader'
+ [pagination]= 'pagination'
+ (showModalType)="ShowModal($event)"
+ (deleteReportByID) = "DeleteReport($event)"
+ (OnPageLengthChanged)="PageLengthChange($event)"
+ (OnPageChanged)="PageChange($event)"
+ (OnRefreshData)="RefreshDataClick($event)"
+ (OnSearchClick)="SearchClick($event)"
+></app-dashboard-list>
+
+<!-- <app-initiative-no-data></app-initiative-no-data> -->
+<ng-template #Nodata>
+</ng-template>
+
+<!-- <app-impact-excel></app-impact-excel> -->

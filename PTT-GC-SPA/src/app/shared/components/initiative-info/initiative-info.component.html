@@ -1,0 +1,122 @@
+<!-- <div>
+    <label for="" style="margin-top: 3px;font-size: 15px;color: #313131; font-weight: bold;">Initiative Information</label>
+</div> -->
+
+<table class="table table-hover">
+    <thead>
+        <tr class="table-active text-center table-initiative">
+            <th width="8%">
+                Initiative ID
+            </th>
+            <th width="15%">
+                Initiative Name
+            </th>
+            <th width="14%">
+                Owner
+            </th>
+            <!-- <th width="10%">Assign To</th> -->
+            <th width="8%">
+                Register Date
+            </th>
+            <th width="8%">
+                Organization
+            </th>
+            <th width="10%">
+                Initiative Type
+            </th>
+            <th width="8%">Stage</th>
+            <th width="8%">
+                Status
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="table-initiative" *ngIf="initiative">
+            <td>{{ initiative.initiativeCode }}</td>
+            <td>{{ initiative.name }}</td>
+            <td>{{ initiative.ownerName }}</td>
+            <!-- <td></td> -->
+            <td>
+                {{ initiative.registeringDate | date: "dd/MM/yyyy" }}
+            </td>
+            <td>{{ initiative.organization }}</td>
+            <td>
+                <span *ngIf="CheckInitiativeType(initiative.initiativeType)">
+                    {{ initiative.initiativeType | uppercase }}
+                </span>
+                <span *ngIf="initiative.cim"> CIM </span>
+                <span *ngIf="initiative.pim"> PIM </span>
+                <span *ngIf="initiative.dim"> DIM </span>
+                <span *ngIf="initiative.cpi"> CPI </span>
+                <span *ngIf="initiative.directCapex"> Direct CAPEX </span>
+                <span *ngIf="initiative.strategy"> Strategy </span>
+                <span *ngIf="initiative.randD"> R&D </span>
+                <span *ngIf="initiative.max"> MAX </span>
+                <span *ngIf="initiative.other"> Other </span>
+            </td>
+            <td>
+                <span *ngIf="initiative.stage">
+                    <i class="fas fa-circle text-success icon-LI"></i>
+                    {{ UpperCaseReplaceStage(initiative.stage) }} <br />
+                </span>
+            </td>
+            <td>
+                <span class="badge badge-dark text-white" *ngIf="initiative.status == 'draft'">
+                    Draft
+                </span>
+                <span class="badge badge-dark text-white" *ngIf="initiative.status == 'add more'">Add more
+                </span>
+                <span class="badge badge-dark text-white" *ngIf="initiative.status == 'add more pool'">Add more Pool
+                </span>
+                <span class="badge badge-warning text-white" *ngIf="initiative.status == 'admin check'">
+                    Admin check
+                </span>
+                <span class="badge badge-info" *ngIf="initiative.status == 'wait for submission'">
+                    Wait for submission
+                </span>
+                <span class="badge badge-warning text-white" *ngIf="initiative.status == 'wait for approval'">
+                    Wait for approval
+                </span>
+                <span class="badge badge-info" *ngIf="initiative.status == 'revise'">
+                    Revise
+                </span>
+                <span class="badge badge-info" *ngIf="initiative.status == 'revised'">
+                    Revised
+                </span>
+                <span class="badge badge-danger" *ngIf="initiative.status == 'reject'">
+                    Reject
+                </span>
+                <span class="badge badge-danger" *ngIf="initiative.status == 'rejected'">
+                    Rejected
+                </span>
+                <span class="badge badge-success" *ngIf="initiative.status == 'approved'">
+                    Approved
+                </span>
+                <span class="badge badge-secondary" *ngIf="initiative.status == 'cancelled'">
+                    Cancelled
+                </span>
+                <span class="badge badge-success" *ngIf="initiative.status == 'finish'">
+                    Finish
+                </span>
+                <span class="badge badge-success" *ngIf="initiative.status == 'principle approved'">
+                    Principle Approved
+                </span>
+                <span class="badge badge-warning text-white" *ngIf="initiative.status == 'wait for review'">
+                    Wait for review
+                </span>
+                <span class="badge badge-warning text-white" *ngIf="initiative.status == 'wait for create App.'">
+                    Wait for create App.
+                </span>
+                <span class="badge badge-warning text-white" *ngIf="initiative.status == 'wait for create WBS'">
+                    Wait for create WBS
+                </span>
+                <span class="badge badge-warning text-white" *ngIf="initiative.status == 'wait for cancellation'">
+                    Wait for Cancellation
+                </span>
+                <span class="badge badge-warning text-white" *ngIf="initiative.status == 'wait for update'">
+                    Wait for Update
+                </span>
+            </td>
+        </tr>
+    </tbody>
+</table>

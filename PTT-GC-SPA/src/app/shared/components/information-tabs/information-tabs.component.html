@@ -1,0 +1,41 @@
+<ng-container *ngIf="CheckType == 'false'">
+  <tabset #informationTabs>
+
+    <tab heading="CAPEX Information" *ngIf="IsCheckCreatenew == true">
+      <app-view-revistion></app-view-revistion>
+    </tab>
+    <tab heading="CAPEX Information" *ngIf="IsCheckAddmoreCapex == true">
+      <app-view-revistion-addmore></app-view-revistion-addmore>
+    </tab>
+    <tab heading="CAPEX Information" *ngIf="IsCheckReturn == true">
+      <app-view-revistion-return></app-view-revistion-return>
+    </tab>
+
+    <!-- </ng-template> -->
+
+
+
+
+
+    <ng-template #General>
+    </ng-template>
+  </tabset>
+</ng-container>
+
+
+<ng-container *ngIf="CheckType == 'true'">
+  <!-- <div *ngIf="IsCheckRequestpool == true">
+    <app-pool [id]="id" [page_]="pagePool" [statusView_]="statusView"></app-pool>
+  </div> -->
+  <div *ngIf="IsCheckAddmorepool == true">
+    <app-addmore-pool [id]="id"></app-addmore-pool>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="CheckType != 'true'">
+  <app-initiative-file [id]="id"></app-initiative-file>
+</ng-container>
+
+<ng-container *ngIf="disableSubmitToCapex == 'true' && !IsCim ">
+  <app-information-submit></app-information-submit>
+</ng-container>

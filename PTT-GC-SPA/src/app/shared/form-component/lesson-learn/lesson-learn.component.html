@@ -1,0 +1,86 @@
+<!-- <ng-container>
+  <div bsModal #AttachmentLessonLearnForm="bs-modal" class="modal fade modal-Attachment"
+    [config]="{ backdrop: 'static'}">
+    <app-lesson-learn-attachment (modelClose)="CloseAttachmentLessonLearnForm()" [id]="GetId">
+    </app-lesson-learn-attachment>
+  </div>
+</ng-container> -->
+<div class="row">
+  <div class="col-12">
+    <div class=" card text card-initiative">
+      <div class="card-body">
+        <div class="form-initiative">
+          <app-initiative-info [id]="id"></app-initiative-info>
+        </div>
+        <div>
+          <span style="font-size: 28px;color: #454545;">Project Lesson Learned</span>
+          <hr>
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-12">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Lesson learn No.</th>
+                    <th scope="col">Milestone</th>
+                    <th scope="col">Area of learning</th>
+                    <th scope="col">Issue</th>
+                    <th scope="col">Background</th>
+                    <th scope="col">Lesson Learn</th>
+                    <th scope="col">Remark</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let row of dataRows">
+                    <th scope="row">{{row.lessonLearnNo}}</th>
+                    <td>{{getTypeDetail(row)}}</td>
+                    <td>{{row.areaOfLearning}}</td>
+                    <td>{{row.issues}}</td>
+                    <td>{{row.background}}</td>
+                    <td>{{row.lessonLearned}}</td>
+                    <td>{{row.remark}}</td>
+                    <td>{{row.rating}}</td>
+                    <td>
+                      <button type="button" class="btn btn-info btn-width mr-2"
+                        (click)="ShowAttachmentLessonLearnForm(row)">
+                        <span class="fas fa-paperclip mr-2"></span>
+                      </button>
+                      <ng-container *ngIf="!viewMode; else isViewModeAction">
+                        <!-- edit mode -->
+                        <button type="button" class="btn btn-warning btn-width mr-2" (click)="editRow(row)">
+                          <i class="fas fa-edit"></i>
+                        </button>
+                      </ng-container>
+                      <ng-template #isViewModeAction>
+                        <!-- view mode -->
+                        <button type="button" class="btn btn-warning btn-width mr-2" (click)="editRow(row)">
+                          <i class="fas fa-eye"></i>
+                        </button>
+                      </ng-template>
+
+                      <button *ngIf="!viewMode" type="button" class="btn btn-danger btn-width" (click)="deleteRow(row)">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="float-right">
+                <button *ngIf="!viewMode" type="button" class="btn btn-primary btn-width" (click)="addRow()">
+                  <i class="fas fa-plus mr-2"></i> Add new
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

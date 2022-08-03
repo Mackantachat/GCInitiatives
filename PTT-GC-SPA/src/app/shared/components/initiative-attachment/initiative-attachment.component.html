@@ -1,0 +1,146 @@
+<div class="modal-dialog modal-xl" [ngStyle]="{ 'margin-bottom' : '10%' }">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">
+        <i class="fas fa-cloud-upload-alt mr-2"></i> Attachment
+      </h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="CloseModal()">
+        <i class="fas fa-times-circle"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <ng-template [ngIf]="isUpLoading" [ngIfElse]="UploadSuccess">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card card-layout">
+              <div class="card-body">
+                <ngx-spinner bdColor="#fffffff" color="#105bac" size="medium" type="line-scale" [fullScreen]="false">
+                  <p class="mt-5"> Uploading </p>
+                </ngx-spinner>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template #UploadSuccess>
+        <div class="form-group row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <div class="row mt-3">
+              <ng-container *ngIf="initiativeMode=='edit' || approveEdit" >
+                <div class="col-md-12">
+                  <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="FileOverBase($event)"
+                    [uploader]="uploader" class="card bg-faded p-3 text-center mb-3 my-drop-zone">
+                    <i class="fas fa-upload fa-3x"></i>
+                    <span class="mt-3"> Drop Files Here </span>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" ng2FileSelect [uploader]="uploader" multiple>
+                        <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+                <div class="col-md-12 upload-box mt-3" *ngIf="uploader?.queue?.length">
+                  <div class="row justify-content-between mt-3">
+                    <div class="col">
+                      <h5>
+                        <i class="fas fa-cloud-upload-alt mr-2"></i> Upload Queue
+                      </h5>
+                    </div>
+                    <div class="col text-right">
+                      <p> Queue length : {{ uploader?.queue?.length }}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="table-wrapper-scroll-y table-custom-scrollbar">
+                        <table class="table table-hover mt-2">
+                          <thead class="table-secondary">
+                            <tr>
+                              <th width="70%">Name</th>
+                              <th width="20%" class="text-center">Size</th>
+                              <th width="10%" class="text-center">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of uploader.queue">
+                              <td>
+                                <span> {{ item?.file?.name }} </span>
+                              </td>
+                              <td nowrap class="text-center" *ngIf="uploader.options.isHTML5">
+                                {{ item?.file?.size/1024/1024 | number:'.2' }} MB
+                              </td>
+                              <td nowrap class="text-center">
+                                <ng-container *ngIf="initiativeMode=='edit' || approveEdit" >
+                                <button type="button" class="btn btn-danger btn-xs" (click)="item.remove()">
+                                  <i class="fas fa-trash-alt"></i>
+                                </button>
+                              </ng-container>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4" *ngIf="file.length">
+          <div class="col-md-12">
+            <h3> <i class="fas fa-file-alt mr-2"></i> Files </h3>
+            <hr>
+          </div>
+          <div class="col-md-12">
+            <div class="table-wrapper-scroll-y table-custom-scrollbar">
+              <ul>
+                <li *ngFor="let item of file" class="my-4">
+                  <div class="row">
+                    <div class="col-10">
+                      {{ item.name }}
+                    </div>
+                    <div class="col-2">
+                      <button type="button" class="btn btn-success btn-s mr-2"
+                        (click)="DownloadAttachment(item.name, item.fileName)">
+                        <i class="fas fa-download"></i>
+                      </button>
+                      <ng-container *ngIf="initiativeMode=='edit' || approveEdit" >
+                        <button type="button" class="btn btn-danger btn-s mr-2" (click)="DeleteAttachment(item.id)">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </ng-container>
+                     
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+    <div class="modal-footer">
+      <span class="mr-auto">
+        <!-- <div class="text-danger" [ngStyle]="{ 'font-size': '14px' }">
+          *Please do not upload files over 2MB/File
+        </div> -->
+      </span>
+      <span class="mr-auto">
+        <div class="text-danger" [ngStyle]="{ 'font-size': '14px' }">
+          If files are not found, please refresh the page (F5).
+        </div>
+      </span>
+      <ng-container *ngIf="initiativeMode=='edit' || approveEdit" >
+      <button type="button" class="btn btn-outline-success" (click)="UploadAttachment()"> Upload
+      </button>
+    </ng-container>
+      <button type="button" class="btn btn-outline-dark" (click)="HideModal()">Close</button>
+    </div>
+  </div>
+</div>

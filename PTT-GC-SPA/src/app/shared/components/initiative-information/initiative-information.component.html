@@ -1,0 +1,91 @@
+<div class="information">
+  <div class="card bg-light">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <p class="font-weight-bolder"> Initiative ID :</p>
+        </div>
+        <div class="col-md-2">
+          <p>
+            {{ InitiativeDetail.code }}
+          </p>
+        </div>
+        <ng-container *ngIf="InitiativeDetail.stage">
+          <div class="col-md-1 text-right">
+            <p class="font-weight-bolder"> Stage :</p>
+          </div>
+          <div class="col-md-5">
+            <p>
+              {{ InitiativeDetail.stage }}
+            </p>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-light">
+    <div class="card-body">
+      <div class="row" *ngIf="GetRevision.Revistion != null || GetRevision.Revistion != undefined">
+        <div class="col-md-2 text-right">
+          <p class="font-weight-bolder"> Revistion No. :</p>
+        </div>
+        <div class="col-md-4">
+          <p>
+            {{ GetRevision.Revistion }}
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <p class="font-weight-bolder"> Initiative Name :</p>
+        </div>
+        <div class="col-md-5">
+          <p>
+            {{ InitiativeDetail.name }}
+          </p>
+        </div>
+        <div class="col-md-2 text-right">
+          <p class="font-weight-bolder"> Initiative Year :</p>
+        </div>
+        <div class="col-md-3">
+          <p>
+            {{ InitiativeDetail.year }}
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2 text-right">
+          <p class="font-weight-bolder"> Owner Name :</p>
+        </div>
+        <div class="col-md-5">
+          <p>
+            {{ InitiativeDetail.owner }}
+          </p>
+        </div>
+
+        <ng-template [ngIf]="SubWorkstream1" [ngIfElse]="NoSubWorkstream1">
+          <div class="col-md-2 text-right">
+            <p class="font-weight-bolder">SubWorkstream:</p>
+          </div>
+          <div class="col-md-3">
+            <p>
+              {{ SubWorkstream1 }}
+            </p>
+          </div>
+         </ng-template>
+         <ng-template #NoSubWorkstream1>
+          <div class="col-md-2 text-right">
+            <p class="font-weight-bolder"> Organization : </p>
+          </div>
+          <div class="col-md-3">
+            <p>
+              {{ InitiativeDetail.organization }}
+            </p>
+          </div>
+         </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

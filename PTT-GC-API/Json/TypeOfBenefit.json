@@ -1,0 +1,317 @@
+[
+    {
+        "TypeOfBenefitCode" : "RE_001",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Feedstock expense"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_002",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "NRV"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_003",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Variable Cost - Stream"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_004",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Variable Cost - Electricity"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_005",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Variable Cost - Fuel gas/natural gas"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_006",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Variable Cost - Other"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_007",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Manufacturing Fixed Cost - Personal Expense"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_008",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Manufacturing Fixed Cost - Repair and Maintenance"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_009",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Manufacturing Fixed Cost - Insurance"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_010",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Manufacturing Fixed Cost - Other"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_011",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Personal Expense"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_012",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Professional Fees"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_013",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Office Rental"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_014",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Logistics Costs warehouse and transportation"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_015",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Personal Expense"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_016",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Other"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_017",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Small and Medium CAPEX reduction"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_018",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "EBIT improvement from increased sales"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_019",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Sale Revenue"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_020",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Service Revenue"
+    },
+    {
+        "TypeOfBenefitCode" : "RE_021",
+        "TypeOfBenefitGroup": "Recurring",
+        "TypeOfBenefitTitle": "Other Income"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_001",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Feedstock expense"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_002",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "NRV"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_003",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Variable Cost - Stream"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_004",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Variable Cost - Electricity"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_005",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Variable Cost - Fuel gas/natural gas"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_006",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Variable Cost - Other"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_007",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Manufacturing Fixed Cost - Personal Expense"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_008",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Manufacturing Fixed Cost - Repair and Maintenance"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_009",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Manufacturing Fixed Cost - Insurance"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_010",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Manufacturing Fixed Cost - Other"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_011",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Personal Expense"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_012",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Professional Fees"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_013",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Office Rental"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_014",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Logistics Costs warehouse and transportation"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_015",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Personal Expense"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_016",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Other"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_017",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Small and Medium CAPEX reduction"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_018",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "EBIT improvement from increased sales"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_019",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Sales Revenue"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_020",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Service Revenue"
+    },
+    {
+        "TypeOfBenefitCode" : "ONE_021",
+        "TypeOfBenefitGroup": "One time",
+        "TypeOfBenefitTitle": "Other Income"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_001",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Feedstock expense"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_002",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "NRV"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_003",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Variable Cost - Stream"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_004",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Variable Cost - Electricity"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_005",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Variable Cost - Fuel gas/natural gas"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_006",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Variable Cost - Other"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_007",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Manufacturing Fixed Cost - Personal Expense"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_008",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Manufacturing Fixed Cost - Repair and Maintenance"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_009",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Manufacturing Fixed Cost - Insurance"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_010",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Manufacturing Fixed Cost - Other"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_011",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Personal Expense"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_012",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Professional Fees"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_013",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Office Rental"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_014",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Logistics Costs warehouse and transportation"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_015",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Personal Expense"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_016",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Selling and Administrative Expense - Other"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_017",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Small and Medium CAPEX reduction"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_018",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "EBIT improvement from increased sales"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_019",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Sales Revenue"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_020",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Service Revenue"
+    },
+    {
+        "TypeOfBenefitCode" : "IM_021",
+        "TypeOfBenefitGroup": "Implementation Cost",
+        "TypeOfBenefitTitle": "Other Income"
+    }
+]

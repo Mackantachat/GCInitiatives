@@ -1,0 +1,32 @@
+.textbox-center {
+  text-align: center;
+  background-color: #ffffff;
+  border: 0px none;
+  pointer-events: none;
+}
+.textbox-center > input {
+  text-align: left;
+}
+.wrapper {
+  position: relative;
+  overflow: auto;
+  border: 0px solid black;
+  white-space: nowrap;
+}
+
+.freeze-control {
+  pointer-events: none;
+  opacity: 50%;
+}
+
+/* .modal-body {
+  background-color: #ffffff;
+  padding-left: -15%;
+  min-width: 1200px;
+} */
+
+/* .modal-content {
+  min-width: 1500px;
+  background-color: #c3c3c3;
+  padding-left: -25%;
+} */

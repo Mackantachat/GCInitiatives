@@ -1,0 +1,112 @@
+[
+  {
+
+    "ReportID": 1,
+    "Sequence": 1,
+    "ParameterName": "CLevel",
+    "ParameterFIeld": "CLevel",
+    "FilterCondition": "IN",
+    "ParameterType": "String",
+    "Required": "N",
+    "DefaultValue": "COE,SEVP-D,SEVP-U/MCS"
+  },
+  {
+
+    "ReportID": 1,
+    "Sequence": 2,
+    "ParameterName": "StartYear",
+    "ParameterFIeld": "TargetToIL4_C",
+    "FilterCondition": ">=",
+    "ParameterType": "DateTime",
+    "Required": "N",
+    "DefaultValue": "2019-01-01"
+  },
+  {
+
+    "ReportID": 1,
+    "Sequence": 3,
+    "ParameterName": "EndYear",
+    "ParameterFIeld": "TargetToIL4_C",
+    "FilterCondition": "<=",
+    "ParameterType": "DateTime",
+    "Required": "N",
+    "DefaultValue": "2019-12-31"
+  },
+  {
+
+    "ReportID": 2,
+    "Sequence": 1,
+    "ParameterName": "CLevel",
+    "ParameterFIeld": "CLevel",
+    "FilterCondition": "IN",
+    "ParameterType": "String",
+    "Required": "N",
+    "DefaultValue": "COE,SEVP-D,SEVP-U/MCS"
+  },
+  {
+
+    "ReportID": 2,
+    "Sequence": 2,
+    "ParameterName": "EndYear",
+    "ParameterFIeld": "TargetToIL4_C",
+    "FilterCondition": "<=",
+    "ParameterType": "DateTime",
+    "Required": "N",
+    "DefaultValue": "2019-12-31"
+  },
+  {
+
+    "ReportID": 3,
+    "Sequence": 1,
+    "ParameterName": "CLevel",
+    "ParameterFIeld": "CLevel",
+    "FilterCondition": "IN",
+    "ParameterType": "String",
+    "Required": "N",
+    "DefaultValue": "COE,SEVP-D,SEVP-U/MCS"
+  },
+  {
+
+    "ReportID": 3,
+    "Sequence": 2,
+    "ParameterName": "StartYear",
+    "ParameterFIeld": "TargetToIL5_C",
+    "FilterCondition": ">=",
+    "ParameterType": "DateTime",
+    "Required": "N",
+    "DefaultValue": "2019-01-01"
+  },
+  {
+
+    "ReportID": 3,
+    "Sequence": 3,
+    "ParameterName": "EndYear",
+    "ParameterFIeld": "TargetToIL5_C",
+    "FilterCondition": "<=",
+    "ParameterType": "DateTime",
+    "Required": "N",
+    "DefaultValue": "2019-12-31"
+  },
+  {
+
+    "ReportID": 4,
+    "Sequence": 1,
+    "ParameterName": "CLevel",
+    "ParameterFIeld": "CLevel",
+    "FilterCondition": "IN",
+    "ParameterType": "String",
+    "Required": "N",
+    "DefaultValue": "COE,SEVP-D,SEVP-U/MCS"
+  },
+  {
+
+    "ReportID": 4,
+    "Sequence": 2,
+    "ParameterName": "EndYear",
+    "ParameterFIeld": "TargetToIL5_C",
+    "FilterCondition": "<=",
+    "ParameterType": "DateTime",
+    "Required": "N",
+    "DefaultValue": "2019-12-31"
+  }
+]
